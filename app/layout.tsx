@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer"; // Import Footer
 
 export const metadata: Metadata = {
   title: "Hafsa Financials | Global Advisory",
@@ -14,9 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased flex flex-col min-h-screen">
         <Navbar />
-        {children}
+        <div className="flex-grow">{children}</div>
+        <Footer /> {/* Add Footer Here */}
       </body>
     </html>
   );
