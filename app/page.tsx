@@ -1,25 +1,51 @@
 import ComplexityCalculator from "@/components/ComplexityCalculator";
+import HybridModel from "@/components/HybridModel";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50">
-      <section className="bg-brand-blue text-white py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Hafsa Financials</h1>
-          <p className="text-xl md:text-2xl text-brand-gold font-light">Empowering Businesses with Strategic Financial Excellence.</p>
-          <p className="max-w-2xl mx-auto text-gray-300">Trusted IFRS Advisory, Financial Architecture, and Risk Management for global businesses.</p>
-          <div className="flex justify-center gap-4 pt-4">
-            <button className="bg-brand-gold text-brand-dark px-8 py-3 rounded-full font-bold hover:bg-white transition-colors">Get a Consultation</button>
-            <button className="border border-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors">Explore Services</button>
+      {/* 1. Hero Section */}
+      <section className="bg-brand-blue text-white py-24 px-6 relative overflow-hidden">
+        {/* Abstract Background Element */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-gold/10 skew-x-12 transform origin-top translate-x-20"></div>
+        
+        <div className="max-w-6xl mx-auto relative z-10 text-center space-y-8">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+            Hafsa Financials
+          </h1>
+          <p className="text-xl md:text-3xl text-brand-gold font-light tracking-wide">
+            Empowering Businesses with Strategic Financial Excellence.
+          </p>
+          <p className="max-w-2xl mx-auto text-lg text-gray-200 leading-relaxed">
+            Trusted IFRS Advisory, Financial Architecture, and Risk Management for 
+            global businesses in the UK, UAE, and USA.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
+            <button className="bg-brand-gold text-brand-dark px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all shadow-lg">
+              Get a Consultation
+            </button>
+            <button className="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 hover:border-white transition-all">
+              Explore Services
+            </button>
           </div>
         </div>
       </section>
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-brand-dark">Transparent Pricing</h2>
-            <p className="text-gray-600 mt-2">Our complexity-based model ensures you only pay for the expertise you need.</p>
+
+      {/* 2. Hybrid Delivery Model (NEW) */}
+      <HybridModel />
+
+      {/* 3. Pricing Calculator */}
+      <section className="py-24 px-6 bg-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">Transparent Investment</h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              Our complexity-based model ensures you only pay for the expertise you need. 
+              Price skimming for premium IFRS judgment; penetration pricing for standard tasks.
+            </p>
           </div>
+          
           <ComplexityCalculator />
         </div>
       </section>
