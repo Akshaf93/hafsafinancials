@@ -34,21 +34,7 @@ export default function Home() {
 
       {/* 2. Hybrid Delivery Model (NEW) */}
       <HybridModel />
-
-      {/* 3. Pricing Calculator */}
-      <section className="py-24 px-6 bg-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">Transparent Investment</h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Our complexity-based model ensures you only pay for the expertise you need. 
-              Price skimming for premium IFRS judgment; penetration pricing for standard tasks.
-            </p>
-          </div>
-          
-          <ComplexityCalculator />
-        </div>
-      </section>
+      
     </main>
   );
 }
