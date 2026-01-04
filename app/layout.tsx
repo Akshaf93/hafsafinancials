@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Hafsa Financials | Global Advisory",
@@ -13,19 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
-    </html>
-  );
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
       <body className="antialiased">
-        <Navbar />  {/* Add this line */}
+        <Navbar />
         {children}
       </body>
     </html>
   );
-}
-
 }
