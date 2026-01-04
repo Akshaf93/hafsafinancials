@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Content from Source [11, 12]
 const SERVICES = [
   {
     id: "ifrs",
@@ -42,7 +43,7 @@ const SERVICES = [
 ];
 
 export default function ServicesOverview() {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <section className="py-20 bg-white">
@@ -52,33 +53,44 @@ export default function ServicesOverview() {
           <p className="text-gray-600 mt-2">Comprehensive financial solutions for every stage of growth.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {/* Using 'items-start' prevents the grid from stretching other cards 
+           when one expands, which causes that "jittery" layout jump.
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start">
           {SERVICES.map((service) => (
             <motion.div
               key={service.id}
-              layout
-              onClick={() => setSelected(selected === service.id ? null : service.id)}
-              className={`cursor-pointer rounded-xl p-6 transition-colors shadow-lg border border-gray-100
-                ${selected === service.id ? "bg-brand-blue text-white" : "bg-white hover:bg-gray-50"}
+              layout // <--- This is the magic prop for smooth resizing
+              onMouseEnter={() => setHovered(service.id)}
+              onMouseLeave={() => setHovered(null)}
+              transition={{ layout: { duration: 0.3, type: "spring", stiffness: 200, damping: 25 } }}
+              className={`rounded-xl p-6 shadow-lg border border-gray-100 relative overflow-hidden
+                ${hovered === service.id ? "bg-brand-blue text-white z-10 scale-105" : "bg-white hover:bg-gray-50"}
               `}
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className={`font-bold text-lg mb-2 ${selected === service.id ? "text-brand-gold" : "text-brand-dark"}`}>
-                {service.title}
-              </h3>
-              <p className={`text-sm ${selected === service.id ? "text-blue-100" : "text-gray-500"}`}>
-                {service.short}
-              </p>
+              {/* Content Wrapper to ensure text doesn't jump */}
+              <motion.div layout="position">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-brand-gold" : "text-brand-dark"}`}>
+                  {service.title}
+                </h3>
+                <p className={`text-sm ${hovered === service.id ? "text-blue-100" : "text-gray-500"}`}>
+                  {service.short}
+                </p>
+              </motion.div>
 
-              <AnimatePresence>
-                {selected === service.id && (
+              <AnimatePresence mode="wait">
+                {hovered === service.id && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="mt-4 pt-4 border-t border-white/20 text-sm text-blue-50 leading-relaxed"
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="overflow-hidden"
                   >
-                    {service.details}
+                    <p className="mt-4 pt-4 border-t border-white/20 text-sm text-blue-50 leading-relaxed">
+                      {service.details}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
