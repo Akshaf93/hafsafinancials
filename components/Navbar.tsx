@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Updated Links based on Blueprint [Source: 79]
+// Updated Links: Added "Pricing" based on [Source: 129, 161]
 const LINKS = [
   { name: "Services", href: "/services" },
+  { name: "Pricing", href: "/pricing" }, // Added this tab
   { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
   { name: "Team", href: "/team" },
@@ -19,10 +20,12 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
+        {/* Logo [Source: 79] */}
         <Link href="/" className="text-2xl font-bold text-brand-blue tracking-tight">
           Hafsa<span className="text-brand-gold">Financials</span>
         </Link>
 
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
           {LINKS.map((link) => (
             <Link
@@ -37,6 +40,7 @@ export default function Navbar() {
           ))}
         </div>
 
+        {/* CTA Button [Source: 79] */}
         <button className="bg-brand-blue text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-brand-dark transition-colors shadow-lg shadow-brand-blue/20">
           Book Consultation
         </button>
