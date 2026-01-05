@@ -2,166 +2,132 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative bg-brand-blue text-white overflow-hidden pt-32 pb-40 px-6 min-h-[90vh] flex flex-col justify-center">
+    <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
       
-      {/* --- BACKGROUND VISUAL: ABSTRACT WORLD MAP [Source: 263] --- */}
-      {/* This represents the "Global Presence" visual requested in the doc */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <svg className="w-full h-full" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-          {/* Abstract Dot Grid Map */}
-          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1" fill="currentColor" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-          
-          {/* Animated Pulse Points for Key Locations (UAE, UK, USA, PK) */}
-          {/* UK */}
-          <motion.circle cx="480" cy="130" r="4" fill="#d4af37" 
-            animate={{ scale: [1, 2, 1], opacity: [0.7, 0, 0.7] }} 
-            transition={{ duration: 3, repeat: Infinity }} 
-          />
-          {/* UAE */}
-          <motion.circle cx="560" cy="210" r="4" fill="#d4af37" 
-            animate={{ scale: [1, 2, 1], opacity: [0.7, 0, 0.7] }} 
-            transition={{ duration: 3, delay: 0.5, repeat: Infinity }} 
-          />
-          {/* Pakistan */}
-          <motion.circle cx="600" cy="200" r="4" fill="#d4af37" 
-            animate={{ scale: [1, 2, 1], opacity: [0.7, 0, 0.7] }} 
-            transition={{ duration: 3, delay: 1, repeat: Infinity }} 
-          />
-          {/* USA (East Coast) */}
-          <motion.circle cx="280" cy="160" r="4" fill="#d4af37" 
-            animate={{ scale: [1, 2, 1], opacity: [0.7, 0, 0.7] }} 
-            transition={{ duration: 3, delay: 1.5, repeat: Infinity }} 
-          />
-        </svg>
-        {/* Gradient Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-brand-blue/80 to-transparent"></div>
+      {/* --- 1. BACKGROUND ART (Abstract Blue/Gold) --- */}
+      {/* We use a specific high-res Unsplash image that matches your "Royal Blue & Gold" theme */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?q=80&w=2070&auto=format&fit=crop"
+          alt="Abstract Financial Art"
+          fill
+          className="object-cover"
+          priority
+        />
+        
+        {/* --- 2. THE COLOR SCHEME TWEAK --- */}
+        {/* Instead of solid blue, we use a sophisticated gradient overlay.
+            This makes the text readable while letting the 'Art' shine through. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/95 via-brand-blue/80 to-brand-dark/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
         
         {/* --- LEFT: CONTENT --- */}
-        <div className="space-y-8 text-center lg:text-left">
+        <div className="space-y-8">
           
-          {/* Trust Badge [Source: 8] */}
+          {/* Trust Badge - Glassmorphism Style */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-blue-900/50 border border-brand-gold/30 px-4 py-2 rounded-full backdrop-blur-sm"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2 rounded-full"
           >
-            <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-            <span className="text-xs font-bold tracking-widest uppercase text-brand-gold">
-              Trusted IFRS & Financial Advisory
+            <span className="w-2 h-2 rounded-full bg-brand-gold shadow-[0_0_10px_#d4af37]"></span>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-white/90">
+              Global Financial Advisory
             </span>
           </motion.div>
 
-          {/* Main Headline [Source: 4] */}
+          {/* Headline - Clean & Sharp */}
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight leading-none"
-          >
-            Empowering Businesses with <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Strategic Financial
-            </span>
-            <span className="block text-brand-gold mt-2">Excellence.</span>
-          </motion.h1>
-
-          {/* Sub-Headline / Description [Source: 262] */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-blue-100 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]"
           >
-            Global advisory serving businesses in <span className="text-white font-semibold">UAE, Saudi Arabia, UK, Canada, Australia, USA, and Pakistan.</span>
-          </motion.p>
+            Strategic <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-200 to-brand-gold drop-shadow-sm">
+              Financial Excellence
+            </span>
+          </motion.h1>
 
-          {/* CTA Buttons [Source: 5, 80] */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
+            className="text-lg text-blue-100/80 font-light leading-relaxed max-w-xl border-l-2 border-brand-gold/50 pl-6"
           >
-            <button className="bg-brand-gold text-brand-dark px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            Empowering businesses in <span className="text-white font-medium">UAE, UK, USA, & Pakistan</span> with IFRS-ready, AI-accelerated, and human-judged financial architecture.
+          </motion.p>
+
+          {/* CTA Buttons - Gold & Glass */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-5 pt-4"
+          >
+            <button className="bg-brand-gold text-brand-dark px-8 py-4 rounded-lg font-bold hover:bg-white transition-all shadow-[0_0_30px_rgba(212,175,55,0.2)]">
               Get a Consultation
             </button>
-            <Link href="/services" className="px-8 py-4 rounded-full font-bold border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-2 group">
+            <Link href="/services" className="px-8 py-4 rounded-lg font-bold text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all flex items-center justify-center gap-2 group">
               Explore Services
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span className="group-hover:translate-x-1 transition-transform text-brand-gold">→</span>
             </Link>
-          </motion.div>
-
-          {/* Team Highlights [Source: 10] */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="pt-8 flex flex-wrap justify-center lg:justify-start gap-4 text-xs font-medium text-blue-300 uppercase tracking-wide"
-          >
-            <span>Chartered Accountants</span> • <span>CFAs</span> • <span>FRMs</span> • <span>IT Auditors</span>
           </motion.div>
         </div>
 
-        {/* --- RIGHT: INTERACTIVE DASHBOARD CARD (Abstract Visual) [Source: 6, 90] --- */}
+        {/* --- RIGHT: ABSTRACT VISUAL (Instead of Dashboard Card) --- */}
+        {/* We let the background art take center stage, but add a 
+            minimalist 'Glass Card' floating here to show the 'Human + AI' metric. */}
         <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden lg:block relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="hidden lg:flex justify-end"
         >
-          {/* Abstract Glassmorphism Card representing 'Financial Clarity' */}
-          <div className="relative z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl transform rotate-y-12 rotate-x-6 hover:rotate-0 transition-transform duration-500 ease-out">
-            {/* Header */}
-            <div className="flex justify-between items-center mb-8">
-              <div className="h-3 w-32 bg-white/20 rounded-full"></div>
-              <div className="flex gap-2">
-                <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                <div className="h-3 w-3 rounded-full bg-green-400"></div>
-              </div>
-            </div>
-            {/* Chart Area */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-end h-32 gap-4">
-                {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
-                  <div key={i} className="w-full bg-brand-gold/80 rounded-t-sm relative group">
-                    <motion.div 
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
-                      className="w-full bg-gradient-to-t from-brand-gold to-white/50 absolute bottom-0"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="h-1 w-full bg-white/10 rounded-full"></div>
-            </div>
-            {/* Metric */}
-            <div className="mt-6 flex justify-between items-center">
+          <div className="relative p-8 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-xl border border-white/10 rounded-2xl max-w-sm w-full shadow-2xl">
+            
+            {/* Decorative Gold Line */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-50"></div>
+
+            <div className="space-y-6">
               <div>
-                <div className="h-2 w-16 bg-white/20 rounded-full mb-2"></div>
-                <div className="h-6 w-24 bg-brand-gold/20 rounded-lg flex items-center justify-center text-brand-gold font-bold text-sm">
-                  +24.5%
+                <h3 className="text-brand-gold text-sm font-bold uppercase tracking-widest mb-1">Our Model</h3>
+                <p className="text-2xl font-light text-white">70% Human Expertise</p>
+                <div className="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "70%" }}
+                    transition={{ duration: 1.5, delay: 1 }}
+                    className="h-full bg-brand-gold"
+                  />
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-xs text-gray-300">IFRS Compliance</div>
-                <div className="text-lg font-bold text-white">100%</div>
+
+              <div>
+                <p className="text-2xl font-light text-white">30% AI Intelligence</p>
+                <div className="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+                   <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "30%" }}
+                    transition={{ duration: 1.5, delay: 1.2 }}
+                    className="h-full bg-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                <span>Audit Defensible</span>
+                <span className="text-white">● ● ●</span>
               </div>
             </div>
           </div>
-
-          {/* Decorative Glow Behind */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-blue/50 blur-[100px] -z-10"></div>
         </motion.div>
 
       </div>
