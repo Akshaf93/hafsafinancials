@@ -109,19 +109,23 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
-          {/* FIX IS HERE: Increased pb-4 md:pb-6 to show the 'g', added -mb-2 to keep layout tight */}
-          <span className="block overflow-hidden text-[clamp(2.5rem,6vw,5rem)] pb-4 md:pb-6 -mb-2">
+          
+          {/* --- FIX START --- */}
+          {/* 1. Wrapper: overflow-hidden + huge padding (pb-10) to fit the 'g' + negative margin (-mb-10) to fix spacing */}
+          <span className="block overflow-hidden text-[clamp(2.5rem,6vw,5rem)] pb-10 -mb-10">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              // Added pb-1 here as well just to be safe with bg-clip-text
-              className="block py-1 pb-1 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
+              // 2. Inner: Added pb-2 to ensure bg-clip-text covers the descender
+              className="block py-4 pb-2 -mt-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
             >
               Strategic
             </motion.span>
           </span>
-          <span className="block relative z-10">
+          {/* --- FIX END --- */}
+
+          <span className="block relative z-10 pt-2"> {/* Added pt-2 for slight separation */}
             <motion.span 
               initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -141,7 +145,7 @@ export default function Hero() {
             </motion.span>
           </span>
         </h1>
-
+        
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
