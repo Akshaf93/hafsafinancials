@@ -94,23 +94,24 @@ export default function Hero() {
         </motion.div>
 
         {/* Typography */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-none">
-          <span className="block overflow-hidden pb-4 md:pb-8">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
+          <span className="block overflow-hidden pb-6 -mb-2 md:pb-10 md:-mb-4">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
+              className="block py-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
             >
               Strategic
             </motion.span>
           </span>
-          <span className="block relative">
+          <span className="block relative z-10">
             <motion.span 
               initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-brand-gold drop-shadow-[0_0_35px_rgba(212,175,55,0.6)]"
+              className="block text-brand-gold"
+              style={{ textShadow: "0 0 30px rgba(229, 208, 149, 0.6), 0 0 60px rgba(229, 208, 149, 0.3)" }}
             >
               Excellence
             </motion.span>
