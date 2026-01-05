@@ -95,12 +95,12 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
-          <span className="block overflow-hidden pb-6 -mb-2 md:pb-10 md:-mb-4">
+          <span className="block overflow-hidden pb-4 -mb-1 md:pb-8 md:-mb-4">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="block py-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
+              className="block py-1 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
             >
               Strategic
             </motion.span>
