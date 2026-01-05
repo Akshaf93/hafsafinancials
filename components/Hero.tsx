@@ -4,37 +4,37 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-const GridBackground = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    {/* Royal Blue Gradient Base - Source: 90 */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a]" />
+const ObsidianBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
+    {/* Deep Obsidian Base */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
     
-    {/* Financial Grid Pattern - Represents Modeling/Excel */}
+    {/* Soft Gold Grid - Very Subtle */}
     <div 
-      className="absolute inset-0 opacity-[0.07]" 
+      className="absolute inset-0 opacity-[0.03]" 
       style={{ 
-        backgroundImage: `linear-gradient(#fbbf24 1px, transparent 1px), linear-gradient(90deg, #fbbf24 1px, transparent 1px)`, 
-        backgroundSize: '40px 40px' 
+        backgroundImage: `linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)`, 
+        backgroundSize: '50px 50px' 
       }} 
     />
     
-    {/* Gold Glow Accents */}
-    <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen" />
-    <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] mix-blend-screen" />
+    {/* Ambient Gold Glows (Luxury Feel) */}
+    <div className="absolute -top-[10%] left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[120px]" />
+    <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#FDFCF0]/5 rounded-full blur-[100px]" />
   </div>
 );
 
 export default function Hero() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y1 = useTransform(scrollY, [0, 500], [0, 150]); // Parallax effect
 
   return (
     <section 
       ref={containerRef}
       className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-20 pb-10"
     >
-      <GridBackground />
+      <ObsidianBackground />
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 
@@ -47,30 +47,33 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center gap-0 mb-8 rounded-full border border-white/10 bg-slate-900/50 backdrop-blur-md overflow-hidden"
+          className="flex items-center gap-0 mb-8 rounded-full border border-[#D4AF37]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.1)]"
         >
-          <div className="px-4 py-1.5 bg-blue-900/40 text-blue-200 text-[10px] md:text-xs font-bold tracking-wider uppercase border-r border-white/10">
+          {/* Ivory Side */}
+          <div className="px-5 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#D4AF37]/20">
             70% Human Expert
           </div>
-          <div className="px-4 py-1.5 bg-amber-900/20 text-amber-200 text-[10px] md:text-xs font-bold tracking-wider uppercase flex items-center gap-2">
+          {/* Gold Side */}
+          <div className="px-5 py-2 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-2">
             <span>30% AI Driven</span>
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
             </span>
           </div>
         </motion.div>
 
         {/* Headlines - Source: 4 & 551 */}
-        <div className="space-y-2 mb-8 relative">
+        <div className="space-y-4 mb-10 relative">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1]"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1]"
           >
             Strategic <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">
+            {/* Soft Gold Gradient Text */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#D4AF37] to-[#8a7035]">
               Financial Excellence
             </span>
           </motion.h1>
@@ -79,9 +82,9 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-lg md:text-2xl text-slate-300 font-light max-w-3xl mx-auto mt-6"
+            className="text-lg md:text-2xl text-[#FDFCF0]/60 font-light max-w-3xl mx-auto mt-6 tracking-wide"
           >
-            Human Judgment. <span className="text-white font-medium">AI Intelligence.</span> Financial Excellence.
+            Human Judgment. <span className="text-[#D4AF37] font-normal">AI Intelligence.</span> Financial Excellence.
           </motion.p>
         </div>
 
@@ -90,15 +93,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
         >
-          <button className="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm sm:text-base rounded shadow-[0_0_30px_rgba(245,158,11,0.3)] transition-all transform hover:-translate-y-0.5">
+          {/* Primary Button: Soft Gold Background, Obsidian Text */}
+          <button className="w-full sm:w-auto px-8 py-4 bg-[#D4AF37] hover:bg-[#eac45f] text-[#050505] font-bold text-sm sm:text-base tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all transform hover:-translate-y-0.5">
             Get a Consultation
           </button>
           
-          <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm sm:text-base rounded backdrop-blur-sm transition-all flex items-center justify-center gap-2 group">
+          {/* Secondary Button: Ivory Outline */}
+          <Link href="/services" className="w-full sm:w-auto px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#D4AF37]/50 text-[#FDFCF0] hover:text-[#D4AF37] font-medium text-sm sm:text-base tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center justify-center gap-2 group">
             <span>Explore Services</span>
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
+            <span className="group-hover:translate-x-1 transition-transform text-[#D4AF37]">→</span>
           </Link>
         </motion.div>
 
@@ -107,23 +112,23 @@ export default function Hero() {
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            transition={{ delay: 1, duration: 1 }}
-           className="mt-20 w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/10 pt-10"
+           className="mt-24 w-full grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#FDFCF0]/10 pt-10"
         >
-            <div className="text-center md:text-left px-4">
-               <h4 className="text-amber-500 font-bold text-sm uppercase tracking-widest mb-1">Trusted Advisory</h4>
-               <p className="text-slate-400 text-sm">IFRS Implementation & Financial Architecture [cite: 8]</p>
+            <div className="text-center md:text-left px-4 group hover:bg-[#FDFCF0]/5 p-4 rounded transition-colors duration-500">
+               <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-2">Trusted Advisory</h4>
+               <p className="text-[#FDFCF0]/50 text-sm font-light">IFRS Implementation & Financial Architecture</p>
             </div>
             
-            <div className="text-center px-4 border-l-0 md:border-l border-r-0 md:border-r border-white/10">
-               <h4 className="text-blue-400 font-bold text-sm uppercase tracking-widest mb-1">Global Reach</h4>
+            <div className="text-center px-4 md:border-l md:border-r border-[#FDFCF0]/10 group hover:bg-[#FDFCF0]/5 p-4 rounded transition-colors duration-500">
+               <h4 className="text-[#FDFCF0] font-bold text-xs uppercase tracking-[0.2em] mb-2">Global Reach</h4>
                {/* Source: 262 */}
-               <p className="text-slate-400 text-sm">UAE, UK, USA, KSA, Canada & Pakistan</p>
+               <p className="text-[#FDFCF0]/50 text-sm font-light">UAE, UK, USA, KSA, Canada & Pakistan</p>
             </div>
 
-            <div className="text-center md:text-right px-4">
-               <h4 className="text-amber-500 font-bold text-sm uppercase tracking-widest mb-1">Expert Team</h4>
+            <div className="text-center md:text-right px-4 group hover:bg-[#FDFCF0]/5 p-4 rounded transition-colors duration-500">
+               <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-2">Expert Team</h4>
                {/* Source: 10 */}
-               <p className="text-slate-400 text-sm">CAs, CFAs, FRMs & IT Auditors</p>
+               <p className="text-[#FDFCF0]/50 text-sm font-light">CAs, CFAs, FRMs & IT Auditors</p>
             </div>
         </motion.div>
 
