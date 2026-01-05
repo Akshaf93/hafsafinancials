@@ -9,21 +9,34 @@ export default function Home() {
   return (
     <main className="bg-white">
       
-      {/* 1. HERO SECTION (Now includes the trust signals internally) */}
+      {/* 1. HERO SECTION (Includes the integrated trust signals) */}
       <Hero />
 
-      {/* --------------------------------------------------
-      DELETE THIS ENTIRE SECTION (The old white tabs)
-      --------------------------------------------------
-      <div className="relative -mt-10 max-w-6xl mx-auto px-6 z-20">
-        <div className="bg-white rounded-xl shadow-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b-4 border-brand-gold">
-          ... content ...
-        </div>
-      </div>
-      --------------------------------------------------
-      */}
-
-      {/* 3. SERVICES PREVIEW */}
+      {/* 2. SERVICES PREVIEW */}
       <ServicesOverview />
+
+      {/* 3. HYBRID DELIVERY MODEL */}
+      <HybridModel />
+
+      {/* 4. INSIGHTS & NEWSLETTERS */}
+      <InsightsPreview />
+
+      {/* 5. SOCIAL PROOF */}
+      <Testimonials />
       
-      {/* ... rest of the page remains the same ... */}
+      {/* 6. FINAL CTA (Before Footer) */}
+      <section className="py-24 px-6 bg-slate-50 text-center">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <h2 className="text-3xl font-bold text-brand-dark">Ready to Optimize Your Financial Strategy?</h2>
+          <p className="text-gray-600">
+            Join the businesses in UAE, UK, and USA trusting Hafsa Financials for their IFRS and Strategic needs.
+          </p>
+          <Link href="/pricing" className="inline-block bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-brand-dark transition-colors">
+            View Pricing Bundles
+          </Link>
+        </div>
+      </section>
+
+    </main>
+  );
+}
