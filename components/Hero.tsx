@@ -89,7 +89,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* --- MAIN CONTENT --- */}
+    {/* --- MAIN CONTENT --- */}
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-3 md:space-y-5"
       >
@@ -109,12 +109,6 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
-          
-          {/* --- FIX START --- */}
-          {/* CHANGED: 
-              1. Wrapper padding increased to pb-20 and -mb-20. This creates a massive "safe zone" for the letter 'g'.
-              2. Inner span padding changed to py-6 to ensure the text gradient doesn't cut off at the bottom edge.
-          */}
           <span className="block overflow-hidden text-[clamp(2.5rem,6vw,5rem)] pb-20 -mb-20">
             <motion.span 
               initial={{ y: "100%" }}
@@ -122,10 +116,9 @@ export default function Hero() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="block py-6 -mt-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
             >
-              Strategic
+              Strategic Financial
             </motion.span>
           </span>
-          {/* --- FIX END --- */}
 
           <span className="block relative z-10 pt-2"> 
             <motion.span 
@@ -148,16 +141,17 @@ export default function Hero() {
           </span>
         </h1>
         
+        {/* Updated Tagline per Doc Page 33 */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
           className="text-base sm:text-lg md:text-xl text-[#FDFCF0]/60 font-light max-w-2xl mx-auto leading-relaxed"
         >
-          Empowering global enterprises with <span className="text-[#FDFCF0] font-normal">IFRS Precision</span> & <span className="text-[#FDFCF0] font-normal">AI Acceleration</span>.
+          Human Judgment. <span className="text-[#FDFCF0] font-normal">AI Intelligence</span>. Financial Excellence.
         </motion.p>
 
-        {/* Buttons */}
+        {/* Updated Buttons per Doc Page 1 */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -165,7 +159,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 md:pt-8"
         >
           <button className="group relative px-6 py-2.5 sm:px-8 sm:py-3 bg-amber-400 text-slate-900 font-bold text-sm sm:text-base rounded-full overflow-hidden shadow-[0_0_40px_rgba(251,191,36,0.2)] hover:shadow-[0_0_60px_rgba(251,191,36,0.4)] transition-all">
-            <span className="relative z-10 group-hover:text-white transition-colors">Start Consultation</span>
+            <span className="relative z-10 group-hover:text-white transition-colors">Get a Consultation</span>
             <div className="absolute inset-0 bg-slate-900 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500 ease-out" />
           </button>
           
@@ -173,7 +167,7 @@ export default function Hero() {
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/10 transition-all">
               ↓
             </div>
-            <span>Explore Capabilities</span>
+            <span>Explore Services</span>
           </Link>
         </motion.div>
       </motion.div>
