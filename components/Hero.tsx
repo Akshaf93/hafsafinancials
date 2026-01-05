@@ -2,10 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-// --- THE "TOPOGRAPHIC WAVE" COMPONENT ---
-// This creates the 'living lines' effect without heavy 3D libraries
+// --- THE "TOPOGRAPHIC WAVE" COMPONENT (Unchanged) ---
 const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number; yOffset: number }) => (
   <motion.div
     initial={{ pathLength: 0, opacity: 0 }}
@@ -16,23 +14,18 @@ const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number;
   >
     <svg viewBox="0 0 1440 320" className="w-full h-[300px] md:h-[500px] fill-none">
       <motion.path
-        d="M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160" // Sine wave curve
+        d="M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160"
         stroke="url(#gold-gradient)"
         strokeWidth="2"
         fill="none"
         animate={{
           d: [
-            "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160", // State A
-            "M0,160 C320,0,420,300,740,160 C1060,0,1160,300,1480,160", // State B (Inverted)
-            "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160", // Back to A
+            "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160",
+            "M0,160 C320,0,420,300,740,160 C1060,0,1160,300,1480,160",
+            "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160",
           ],
         }}
-        transition={{
-          duration: 10,
-          ease: "easeInOut",
-          repeat: Infinity,
-          delay: delay,
-        }}
+        transition={{ duration: 10, ease: "easeInOut", repeat: Infinity, delay: delay }}
       />
       <defs>
         <linearGradient id="gold-gradient" x1="0" x2="1" y1="0" y2="0">
@@ -49,39 +42,33 @@ const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number;
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 500], [0, 150]); // Parallax text
+  const yText = useTransform(scrollY, [0, 500], [0, 150]);
   
-  // Create 15 lines to form the "mesh"
   const lines = Array.from({ length: 12 }).map((_, i) => ({
     id: i,
-    delay: i * 0.2, // Stagger animation
-    opacity: 1 - i * 0.05, // Fade out further back
-    yOffset: i * 3, // Vertical spacing
+    delay: i * 0.2,
+    opacity: 1 - i * 0.05,
+    yOffset: i * 3,
   }));
 
   return (
-    <section className="relative h-screen min-h-[800px] flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e]">
+    // FIX 1: Changed min-h-[800px] to h-screen for perfect fit
+    <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e]">
       
-      {/* --- LAYER 1: BACKGROUND GLOW --- */}
-      {/* A deep radial glow to highlight the center stage */}
+      {/* Background Layers (Unchanged) */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/30 via-[#0a0f1e] to-[#0a0f1e]" />
-
-      {/* --- LAYER 2: THE TOPOGRAPHIC MESH --- */}
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60 pointer-events-none perspective-[1000px]">
         <div className="relative w-full h-full transform rotate-x-12 scale-125">
-           {lines.map((line) => (
-             <WaveLine key={line.id} {...line} />
-           ))}
+           {lines.map((line) => (WaveLine({ ...line })))}
         </div>
       </div>
 
-      {/* --- LAYER 3: CONTENT (Centered & Powerful) --- */}
+      {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}
         className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8"
       >
-        
-        {/* The "Crown" Badge */}
+        {/* Badge (Unchanged) */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,7 +82,7 @@ export default function Hero() {
           <span className="w-1.5 h-1.5 bg-brand-gold rounded-full shadow-[0_0_10px_#d4af37]"></span>
         </motion.div>
 
-        {/* The Typography */}
+        {/* Typography (Unchanged) */}
         <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-white leading-none">
           <span className="block overflow-hidden">
             <motion.span 
@@ -116,8 +103,6 @@ export default function Hero() {
             >
               Excellence
             </motion.span>
-            
-            {/* Subtle reflection under the text */}
             <motion.span 
                initial={{ opacity: 0 }}
                animate={{ opacity: 0.2 }}
@@ -138,7 +123,7 @@ export default function Hero() {
           Empowering global enterprises with <span className="text-white font-normal">IFRS Precision</span> & <span className="text-white font-normal">AI Acceleration</span>.
         </motion.p>
 
-        {/* The Action Bar */}
+        {/* Buttons (Unchanged) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -158,10 +143,40 @@ export default function Hero() {
           </Link>
         </motion.div>
 
+        {/* FIX 2: INTEGRATED & RESTYLED TABS (Trust Signals) */}
+        <motion.div 
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 1.3, duration: 0.8 }}
+           className="pt-16 border-t border-white/5 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto"
+        >
+            {/* Signal 1 */}
+            <div className="flex flex-col items-center gap-3">
+               <div className="text-brand-gold text-2xl mb-2">🛡️</div>
+               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
+               <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
+            </div>
+            {/* Signal 2 */}
+            <div className="flex flex-col items-center gap-3 relative">
+               {/* Subtle separator lines */}
+               <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
+               <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
+               <div className="text-brand-gold text-2xl mb-2">🌍</div>
+               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
+               <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
+            </div>
+            {/* Signal 3 */}
+            <div className="flex flex-col items-center gap-3">
+               <div className="text-brand-gold text-2xl mb-2">👨‍💻</div>
+               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
+               <p className="text-gray-400 text-xs">CAs, CFAs, & FRMs</p>
+            </div>
+        </motion.div>
+
       </motion.div>
 
-      {/* --- LAYER 4: VIGNETTE & GRAIN (Texture) --- */}
-      <div className="absolute inset-0 pointer-events-none z-20 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0f1e_100%)]" />
+      {/* Texture Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-20 bg-[radial-gradient(circle_at_center,transparent_20%,#0a0f1e_100%)] opacity-70" />
       
     </section>
   );
