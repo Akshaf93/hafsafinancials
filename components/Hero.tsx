@@ -1,16 +1,20 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, MotionValue } from "framer-motion";
 import Link from "next/link";
 
-const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number; yOffset: number }) => (
-  <motion.div
-    initial={{ pathLength: 0, opacity: 0 }}
-    animate={{ pathLength: 1, opacity: opacity }}
-    transition={{ duration: 2, delay: 0.5 }}
-    className="absolute w-[200%] -left-1/2"
-    style={{ top: `${50 + yOffset}%` }}
-  >
+const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: { delay: number; opacity: number; yOffset: number; mouseX: MotionValue<number>; mouseY: MotionValue<number>; index: number }) => {
+  const x = useTransform(mouseX, [-0.5, 0.5], [-30 * (index * 0.1 + 1), 30 * (index * 0.1 + 1)]);
+  const y = useTransform(mouseY, [-0.5, 0.5], [-15 * (index * 0.1 + 1), 15 * (index * 0.1 + 1)]);
+
+  return (
+    <motion.div
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={{ pathLength: 1, opacity: opacity }}
+      transition={{ duration: 2, delay: 0.5 }}
+      className="absolute w-[200%] -left-1/2"
+      style={{ top: `${50 + yOffset}%`, x, y }}
+    >
     <svg viewBox="0 0 1440 320" className="w-full h-[300px] md:h-[500px] fill-none">
       <motion.path
         d="M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160"
@@ -37,11 +41,21 @@ const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number;
       </defs>
     </svg>
   </motion.div>
-);
+  );
+};
 
 export default function Hero() {
   const { scrollY } = useScroll();
   const yText = useTransform(scrollY, [0, 500], [0, 150]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const { clientX, clientY, currentTarget } = e;
+    const { width, height } = currentTarget.getBoundingClientRect();
+    mouseX.set((clientX / width) - 0.5);
+    mouseY.set((clientY / height) - 0.5);
+  };
   
   const lines = Array.from({ length: 12 }).map((_, i) => ({
     id: i,
@@ -51,27 +65,29 @@ export default function Hero() {
   }));
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e] pt-28 pb-12">
+    <section onMouseMove={handleMouseMove} className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e] pt-20 pb-10 md:pt-28 md:pb-12">
       
       {/* Background Layers */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/30 via-[#0a0f1e] to-[#0a0f1e]" />
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60 pointer-events-none perspective-[1000px]">
         <div className="relative w-full h-full transform rotate-x-12 scale-125">
-           {lines.map((line) => (WaveLine({ ...line })))}
+           {lines.map((line, i) => (
+             <WaveLine key={line.id} {...line} mouseX={mouseX} mouseY={mouseY} index={i} />
+           ))}
         </div>
       </div>
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6 md:space-y-8"
       >
         {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-brand-gold/20 px-6 py-2 rounded-full mx-auto"
+          className="inline-flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-md border border-brand-gold/20 px-4 py-1.5 sm:px-6 sm:py-2 rounded-full mx-auto"
         >
           <span className="w-1.5 h-1.5 bg-brand-gold rounded-full shadow-[0_0_10px_#d4af37]"></span>
           <span className="text-xs font-bold tracking-[0.3em] uppercase text-brand-gold/80">
@@ -81,7 +97,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Typography */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-none">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-none">
           <span className="block overflow-hidden">
             <motion.span 
               initial={{ y: "100%" }}
@@ -116,7 +132,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="text-lg md:text-2xl text-blue-100/60 font-light max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-2xl text-blue-100/60 font-light max-w-2xl mx-auto leading-relaxed"
         >
           Empowering global enterprises with <span className="text-white font-normal">IFRS Precision</span> & <span className="text-white font-normal">AI Acceleration</span>.
         </motion.p>
@@ -126,9 +142,9 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 md:pt-8"
         >
-          <button className="group relative px-10 py-4 bg-brand-gold text-brand-dark font-bold text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all">
+          <button className="group relative px-8 py-3 sm:px-10 sm:py-4 bg-brand-gold text-brand-dark font-bold text-base sm:text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all">
             <span className="relative z-10 group-hover:text-white transition-colors">Start Consultation</span>
             <div className="absolute inset-0 bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500 ease-out" />
           </button>
@@ -147,7 +163,7 @@ export default function Hero() {
          initial={{ opacity: 0, y: 20 }}
          animate={{ opacity: 1, y: 0 }}
          transition={{ delay: 1.3, duration: 0.8 }}
-         className="relative z-10 mt-12 border-t border-white/10 pt-8 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto text-center"
+         className="relative z-10 mt-8 md:mt-12 border-t border-white/10 pt-6 md:pt-8 grid grid-cols-3 gap-4 md:gap-12 max-w-3xl mx-auto text-center"
       >
           <div className="flex flex-col items-center gap-3">
              <div className="text-brand-gold text-2xl mb-2">🛡️</div>
