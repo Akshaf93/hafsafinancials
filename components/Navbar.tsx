@@ -39,7 +39,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b
         ${isTransparent 
           ? "bg-transparent border-transparent py-6" 
-          : "bg-white/90 backdrop-blur-md border-gray-100 py-3 shadow-sm"
+          : "bg-[#FDFCF0]/90 backdrop-blur-md border-[#E5D095]/10 py-3 shadow-sm"
         }
       `}
     >
@@ -47,10 +47,10 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-tight transition-colors">
-          <span className={isTransparent ? "text-white" : "text-brand-blue"}>
+          <span className={isTransparent ? "text-[#FDFCF0]" : "text-[#050505]"}>
             Hafsa
           </span>
-          <span className="text-brand-gold">Financials</span>
+          <span className="text-[#E5D095]">Financials</span>
         </Link>
 
         {/* Desktop Links */}
@@ -59,10 +59,10 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-brand-gold
+              className={`text-sm font-medium transition-colors hover:text-[#E5D095]
                 ${isTransparent 
-                  ? "text-white/90 hover:text-white" 
-                  : "text-gray-600 hover:text-brand-blue"
+                  ? "text-[#FDFCF0]/90 hover:text-[#FDFCF0]" 
+                  : "text-gray-600 hover:text-[#050505]"
                 }
               `}
             >
@@ -74,8 +74,8 @@ export default function Navbar() {
         {/* CTA Button */}
         <button className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg
           ${isTransparent 
-            ? "bg-white/10 text-white border border-white/20 hover:bg-white hover:text-brand-dark" 
-            : "bg-brand-blue text-white hover:bg-brand-dark"
+            ? "bg-[#FDFCF0]/10 text-[#FDFCF0] border border-[#FDFCF0]/20 hover:bg-[#FDFCF0] hover:text-[#050505]" 
+            : "bg-[#050505] text-[#E5D095] hover:bg-[#E5D095] hover:text-[#050505]"
           }
         `}>
           Book Consultation

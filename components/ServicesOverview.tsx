@@ -46,7 +46,7 @@ export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#FDFCF0]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-brand-dark">Our Expertise</h2>
@@ -65,16 +65,16 @@ export default function ServicesOverview() {
               onMouseLeave={() => setHovered(null)}
               transition={{ layout: { duration: 0.3, type: "spring", stiffness: 200, damping: 25 } }}
               className={`rounded-xl p-6 shadow-lg border border-gray-100 relative overflow-hidden
-                ${hovered === service.id ? "bg-brand-blue text-white z-10 scale-105" : "bg-white hover:bg-gray-50"}
+                ${hovered === service.id ? "bg-[#050505] text-[#FDFCF0] z-10 scale-105 border-[#E5D095]/30" : "bg-white hover:bg-white/80"}
               `}
             >
               {/* Content Wrapper to ensure text doesn't jump */}
               <motion.div layout="position">
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-brand-gold" : "text-brand-dark"}`}>
+                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#E5D095]" : "text-brand-dark"}`}>
                   {service.title}
                 </h3>
-                <p className={`text-sm ${hovered === service.id ? "text-blue-100" : "text-gray-500"}`}>
+                <p className={`text-sm ${hovered === service.id ? "text-[#FDFCF0]/70" : "text-gray-500"}`}>
                   {service.short}
                 </p>
               </motion.div>
@@ -88,7 +88,7 @@ export default function ServicesOverview() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="mt-4 pt-4 border-t border-white/20 text-sm text-blue-50 leading-relaxed">
+                    <p className="mt-4 pt-4 border-t border-white/10 text-sm text-[#FDFCF0]/60 leading-relaxed">
                       {service.details}
                     </p>
                   </motion.div>
