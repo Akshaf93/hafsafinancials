@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
-// Updated Links: Added "Pricing" based on [Source: 129, 161]
 const LINKS = [
   { name: "Services", href: "/services" },
-  { name: "Pricing", href: "/pricing" }, // Added this tab
+  { name: "Pricing", href: "/pricing" },
   { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
   { name: "Team", href: "/team" },
@@ -15,14 +15,42 @@ const LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Check if we are on the homepage (to apply transparent logic)
+  const isHome = pathname === "/";
+
+  // Dynamic Styles
+  // If we are on Home AND at the top: Transparent bg, White text
+  // Otherwise (Scrolled or other pages): White bg, Dark text
+  const isTransparent = isHome && !isScrolled;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b
+        ${isTransparent 
+          ? "bg-transparent border-transparent py-6" 
+          : "bg-white/90 backdrop-blur-md border-gray-100 py-3 shadow-sm"
+        }
+      `}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
-        {/* Logo [Source: 79] */}
-        <Link href="/" className="text-2xl font-bold text-brand-blue tracking-tight">
-          Hafsa<span className="text-brand-gold">Financials</span>
+        {/* Logo */}
+        <Link href="/" className="text-2xl font-bold tracking-tight transition-colors">
+          <span className={isTransparent ? "text-white" : "text-brand-blue"}>
+            Hafsa
+          </span>
+          <span className="text-brand-gold">Financials</span>
         </Link>
 
         {/* Desktop Links */}
@@ -32,7 +60,10 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-brand-gold
-                ${pathname === link.href ? "text-brand-blue font-bold" : "text-gray-600"}
+                ${isTransparent 
+                  ? "text-white/90 hover:text-white" 
+                  : "text-gray-600 hover:text-brand-blue"
+                }
               `}
             >
               {link.name}
@@ -40,8 +71,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button [Source: 79] */}
-        <button className="bg-brand-blue text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-brand-dark transition-colors shadow-lg shadow-brand-blue/20">
+        {/* CTA Button */}
+        <button className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg
+          ${isTransparent 
+            ? "bg-white/10 text-white border border-white/20 hover:bg-white hover:text-brand-dark" 
+            : "bg-brand-blue text-white hover:bg-brand-dark"
+          }
+        `}>
           Book Consultation
         </button>
       </div>
