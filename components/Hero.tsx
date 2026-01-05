@@ -146,8 +146,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500 ease-out" />
           </button>
           
-          <Link href="/services" className="text-white/80 hover:text-white font-medium flex items-center gap-3 transition-colors group">
-            <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition-all">
+          <Link href="/services" className="text-white/80 hover:text-white font-medium text-sm sm:text-base flex items-center gap-2 sm:gap-3 transition-colors group">
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition-all">
               ↓
             </div>
             <span>Explore Capabilities</span>
