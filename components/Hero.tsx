@@ -51,10 +51,7 @@ export default function Hero() {
   }));
 
   return (
-    // FIX: Use h-[100dvh] ensures it fits mobile/desktop screens exactly without scrollbars
-    // We added 'pt-20' ONLY if you wanted content to clear the navbar, but since 
-    // we want the content centered in the full screen, we keep flex-center and no padding.
-    <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e]">
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e] pt-28 pb-12">
       
       {/* Background Layers */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/30 via-[#0a0f1e] to-[#0a0f1e]" />
@@ -67,7 +64,7 @@ export default function Hero() {
       {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8 mt-10" // Added mt-10 to visually balance the navbar height
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8"
       >
         {/* Badge */}
         <motion.div 
