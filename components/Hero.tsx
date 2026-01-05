@@ -94,8 +94,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Typography */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-none">
-          <span className="block overflow-hidden pb-2 md:pb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-none">
+          <span className="block overflow-hidden pb-3 md:pb-5">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -129,9 +129,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="text-base sm:text-lg md:text-2xl text-blue-100/60 font-light max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-[#FDFCF0]/60 font-light max-w-2xl mx-auto leading-relaxed"
         >
-          Empowering global enterprises with <span className="text-white font-normal">IFRS Precision</span> & <span className="text-white font-normal">AI Acceleration</span>.
+          Empowering global enterprises with <span className="text-[#FDFCF0] font-normal">IFRS Precision</span> & <span className="text-[#FDFCF0] font-normal">AI Acceleration</span>.
         </motion.p>
 
         {/* Buttons */}
