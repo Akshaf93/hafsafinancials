@@ -3,37 +3,50 @@ import HybridModel from "@/components/HybridModel";
 import ServicesOverview from "@/components/ServicesOverview";
 import InsightsPreview from "@/components/InsightsPreview";
 import Testimonials from "@/components/Testimonials";
+import GlobalReach from "@/components/GlobalReach"; // New
+import TeamPreview from "@/components/TeamPreview"; // New
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="bg-[#050505]">
       
-      {/* 1. HERO SECTION (Includes the integrated trust signals) */}
+      {/* 1. HERO SECTION */}
       <Hero />
 
-      {/* 2. SERVICES PREVIEW */}
+      {/* 2. SERVICES OVERVIEW (Interactive Tiles) */}
       <ServicesOverview />
 
-      {/* 3. HYBRID DELIVERY MODEL */}
+      {/* 3. GLOBAL REACH (New: Visualizes Country List) */}
+      <GlobalReach />
+
+      {/* 4. HYBRID DELIVERY MODEL (70/30 Philosophy) */}
       <HybridModel />
 
-      {/* 4. INSIGHTS & NEWSLETTERS */}
+      {/* 5. TEAM PREVIEW (New: Founder & Credentials) */}
+      <TeamPreview />
+
+      {/* 6. INSIGHTS & NEWSLETTERS */}
       <InsightsPreview />
 
-      {/* 5. SOCIAL PROOF */}
+      {/* 7. SOCIAL PROOF */}
       <Testimonials />
       
-      {/* 6. FINAL CTA (Before Footer) */}
-      <section className="py-24 px-6 bg-slate-50 text-center">
+      {/* 8. FINAL CTA */}
+      <section className="py-24 px-6 bg-[#FDFCF0] text-center border-t border-[#D4AF37]/20">
         <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl font-bold text-brand-dark">Ready to Optimize Your Financial Strategy?</h2>
-          <p className="text-gray-600">
-            Join the businesses in UAE, UK, and USA trusting Hafsa Financials for their IFRS and Strategic needs.
+          <h2 className="text-3xl font-bold text-[#050505]">Ready to Optimize Your Financial Strategy?</h2>
+          <p className="text-[#050505]/70">
+            Join businesses in UAE, UK, and USA trusting Hafsa Financials for their IFRS and Strategic needs.
           </p>
-          <Link href="/pricing" className="inline-block bg-brand-blue text-white px-8 py-3 rounded-full font-bold hover:bg-brand-dark transition-colors">
-            View Pricing Bundles
-          </Link>
+          <div className="flex justify-center gap-4">
+            <Link href="/pricing" className="bg-[#050505] text-[#D4AF37] px-8 py-3 rounded-sm font-bold hover:bg-[#1a1a1a] transition-colors shadow-lg">
+              View Pricing Bundles
+            </Link>
+            <Link href="/contact" className="border border-[#050505]/20 text-[#050505] px-8 py-3 rounded-sm font-bold hover:border-[#050505] transition-colors">
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
 
