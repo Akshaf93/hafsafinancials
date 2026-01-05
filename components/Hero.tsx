@@ -95,7 +95,7 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-none">
-          <span className="block overflow-hidden pb-3 md:pb-5">
+          <span className="block overflow-hidden pb-4 md:pb-8">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -105,12 +105,12 @@ export default function Hero() {
               Strategic
             </motion.span>
           </span>
-          <span className="block overflow-hidden relative">
+          <span className="block relative">
             <motion.span 
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
+              initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-brand-gold drop-shadow-[0_0_25px_rgba(212,175,55,0.4)]"
+              className="block text-brand-gold drop-shadow-[0_0_35px_rgba(212,175,55,0.6)]"
             >
               Excellence
             </motion.span>
@@ -163,19 +163,19 @@ export default function Hero() {
          className="relative z-10 mt-8 md:mt-12 border-t border-white/10 pt-6 md:pt-8 grid grid-cols-3 gap-4 md:gap-12 max-w-3xl mx-auto text-center"
       >
           <div className="flex flex-col items-center gap-3">
-             <div className="text-brand-gold text-2xl mb-2">🛡️</div>
+             <div className="text-brand-gold text-2xl mb-2 drop-shadow-[0_0_15px_rgba(229,208,149,0.6)]">🛡️</div>
              <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
              <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
           </div>
           <div className="flex flex-col items-center gap-3 relative">
              <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
              <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
-             <div className="text-brand-gold text-2xl mb-2">🌍</div>
+             <div className="text-brand-gold text-2xl mb-2 drop-shadow-[0_0_15px_rgba(229,208,149,0.6)]">🌍</div>
              <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
              <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
           </div>
           <div className="flex flex-col items-center gap-3">
-             <div className="text-brand-gold text-2xl mb-2">👨‍💻</div>
+             <div className="text-brand-gold text-2xl mb-2 drop-shadow-[0_0_15px_rgba(229,208,149,0.6)]">👨‍💻</div>
              <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
              <p className="text-gray-400 text-xs">CAs, CFAs, & FRMs</p>
           </div>
