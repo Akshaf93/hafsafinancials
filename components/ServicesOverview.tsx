@@ -46,19 +46,19 @@ export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="relative py-20 bg-[#FDFCF0]">
+    <section className="relative py-20 bg-[#050505]">
       {/* Subtle Grain/Grid Texture for immersion */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        className="absolute inset-0 opacity-[0.05] pointer-events-none" 
         style={{ 
-          backgroundImage: `radial-gradient(#050505 1px, transparent 1px)`, 
+          backgroundImage: `radial-gradient(#D4AF37 1px, transparent 1px)`, 
           backgroundSize: '30px 30px' 
         }} 
       />
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-brand-dark">Our Expertise</h2>
-          <p className="text-gray-600 mt-2">Comprehensive financial solutions for every stage of growth.</p>
+          <h2 className="text-3xl font-bold text-[#FDFCF0]">Our Expertise</h2>
+          <p className="text-gray-400 mt-2">Comprehensive financial solutions for every stage of growth.</p>
         </div>
 
         {/* Using 'items-start' prevents the grid from stretching other cards 
@@ -72,17 +72,17 @@ export default function ServicesOverview() {
               onMouseEnter={() => setHovered(service.id)}
               onMouseLeave={() => setHovered(null)}
               transition={{ layout: { duration: 0.3, type: "spring", stiffness: 200, damping: 25 } }}
-              className={`rounded-xl p-6 shadow-lg border border-gray-100 relative overflow-hidden
-                ${hovered === service.id ? "bg-[#050505] text-[#FDFCF0] z-10 scale-105 border-[#E5D095]/30" : "bg-white hover:bg-white/80"}
+              className={`rounded-xl p-6 shadow-lg border relative overflow-hidden transition-all duration-300
+                ${hovered === service.id ? "bg-[#D4AF37] text-[#050505] z-10 scale-105 border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.3)]" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20"}
               `}
             >
               {/* Content Wrapper to ensure text doesn't jump */}
               <motion.div layout="position">
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#E5D095]" : "text-brand-dark"}`}>
+                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#050505]" : "text-[#FDFCF0]"}`}>
                   {service.title}
                 </h3>
-                <p className={`text-sm ${hovered === service.id ? "text-[#FDFCF0]/70" : "text-gray-500"}`}>
+                <p className={`text-sm ${hovered === service.id ? "text-[#050505]/80" : "text-gray-400"}`}>
                   {service.short}
                 </p>
               </motion.div>
@@ -96,7 +96,7 @@ export default function ServicesOverview() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="mt-4 pt-4 border-t border-white/10 text-sm text-[#FDFCF0]/60 leading-relaxed">
+                    <p className="mt-4 pt-4 border-t border-[#050505]/20 text-sm text-[#050505]/80 leading-relaxed">
                       {service.details}
                     </p>
                   </motion.div>

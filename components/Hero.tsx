@@ -134,8 +134,8 @@ export default function Hero() {
 
       </motion.div>
 
-      {/* Gradient Fade to blend Obsidian Hero into Ivory Services */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#FDFCF0] to-transparent z-20 pointer-events-none" />
+      {/* Gradient Fade to blend Obsidian Hero into Obsidian Services */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-20 pointer-events-none" />
     </section>
   );
 }
