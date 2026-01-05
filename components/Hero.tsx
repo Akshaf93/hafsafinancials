@@ -77,14 +77,14 @@ export default function Hero() {
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6 md:space-y-8"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-3 md:space-y-5"
       >
         {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-md border border-brand-gold/20 px-4 py-1.5 sm:px-6 sm:py-2 rounded-full mx-auto"
+          className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-brand-gold/20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full mx-auto"
         >
           <span className="w-1.5 h-1.5 bg-brand-gold rounded-full shadow-[0_0_10px_#d4af37]"></span>
           <span className="text-xs font-bold tracking-[0.3em] uppercase text-brand-gold/80">
@@ -95,7 +95,7 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-none">
-          <span className="block overflow-hidden">
+          <span className="block overflow-hidden pb-2 md:pb-4">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
