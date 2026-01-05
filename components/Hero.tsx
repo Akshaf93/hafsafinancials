@@ -141,7 +141,7 @@ export default function Hero() {
           transition={{ delay: 1, duration: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 md:pt-8"
         >
-          <button className="group relative px-8 py-3 sm:px-10 sm:py-4 bg-brand-gold text-brand-dark font-bold text-base sm:text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all">
+          <button className="group relative px-6 py-2.5 sm:px-8 sm:py-3 bg-brand-gold text-brand-dark font-bold text-sm sm:text-base rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all">
             <span className="relative z-10 group-hover:text-white transition-colors">Start Consultation</span>
             <div className="absolute inset-0 bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500 ease-out" />
           </button>
