@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, MotionValue } from "framer-motion";
+import { motion, useTransform, useMotionValue, MotionValue } from "framer-motion";
 import Link from "next/link";
 
 const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: { delay: number; opacity: number; yOffset: number; mouseX: MotionValue<number>; mouseY: MotionValue<number>; index: number }) => {
@@ -45,7 +45,6 @@ const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: { delay: n
 };
 
 export default function Hero() {
-  const { scrollY } = useScroll();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -78,7 +77,6 @@ export default function Hero() {
 
       {/* --- MAIN CONTENT --- */}
       <motion.div 
-        style={{ y: yText }}
         className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6 md:space-y-8"
       >
         {/* Badge */}
