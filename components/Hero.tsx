@@ -33,9 +33,9 @@ const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: { delay: n
       <defs>
         <linearGradient id="gold-gradient" x1="0" x2="1" y1="0" y2="0">
           <stop offset="0%" stopColor="transparent" />
-          <stop offset="20%" stopColor="#d4af37" stopOpacity="0.2" />
-          <stop offset="50%" stopColor="#d4af37" stopOpacity="1" />
-          <stop offset="80%" stopColor="#d4af37" stopOpacity="0.2" />
+          <stop offset="20%" stopColor="#E5D095" stopOpacity="0.2" />
+          <stop offset="50%" stopColor="#E5D095" stopOpacity="1" />
+          <stop offset="80%" stopColor="#E5D095" stopOpacity="0.2" />
           <stop offset="100%" stopColor="transparent" />
         </linearGradient>
       </defs>
@@ -46,7 +46,6 @@ const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: { delay: n
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 500], [0, 150]);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -65,10 +64,10 @@ export default function Hero() {
   }));
 
   return (
-    <section onMouseMove={handleMouseMove} className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e] pt-20 pb-10 md:pt-28 md:pb-12">
+    <section onMouseMove={handleMouseMove} className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#050505] pt-16 pb-0 md:pt-24 md:pb-0">
       
       {/* Background Layers */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/30 via-[#0a0f1e] to-[#0a0f1e]" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#E5D095]/10 via-[#050505] to-[#050505]" />
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60 pointer-events-none perspective-[1000px]">
         <div className="relative w-full h-full transform rotate-x-12 scale-125">
            {lines.map((line, i) => (
