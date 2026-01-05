@@ -1,199 +1,192 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-// 1. New Component: The "Network Grid" Background
-// Represents global connectivity (UAE, UK, USA)
-const NetworkGrid = () => (
-  <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="white" strokeWidth="0.5" fill="none"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-    </svg>
+// --- ANIMATED GRID FLOOR (Adds Depth & Grounding) ---
+const GridFloor = () => (
+  <div className="absolute bottom-0 left-0 w-full h-[50vh] z-0 pointer-events-none perspective-[1000px] opacity-30">
+    <div className="w-full h-full bg-[linear-gradient(to_bottom,transparent_0%,#1e3a8a_100%)] absolute top-0 left-0 z-10" />
+    <div className="w-[200%] h-[200%] -ml-[50%] bg-[size:60px_60px] bg-[linear-gradient(to_right,#d4af37_1px,transparent_1px),linear-gradient(to_bottom,#d4af37_1px,transparent_1px)] transform rotate-x-[60deg] animate-grid-flow" />
   </div>
 );
 
-// 2. New Component: Floating Glow Orbs (Fills empty space)
-const GlowingOrb = ({ color, size, top, left, delay }: any) => (
+// --- FLOATING "DATA STREAM" LINES ---
+const DataStream = ({ top, delay, duration }: any) => (
   <motion.div
-    animate={{ 
-      scale: [1, 1.2, 1], 
-      opacity: [0.3, 0.6, 0.3],
-      x: [0, 50, 0],
-      y: [0, -50, 0]
-    }}
-    transition={{ 
-      duration: 10, 
-      repeat: Infinity, 
-      delay: delay,
-      ease: "easeInOut" 
-    }}
-    className={`absolute rounded-full blur-[100px] pointer-events-none z-0 ${color}`}
-    style={{ width: size, height: size, top, left }}
+    initial={{ x: "-100%", opacity: 0 }}
+    animate={{ x: "200%", opacity: [0, 1, 0] }}
+    transition={{ duration: duration, repeat: Infinity, delay: delay, ease: "linear" }}
+    className="absolute h-[1px] bg-gradient-to-r from-transparent via-brand-gold to-transparent w-full z-10"
+    style={{ top }}
   />
 );
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
+  const yBg = useTransform(scrollY, [0, 500], [0, 100]);
   
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // Mouse Parallax Effect
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const springX = useSpring(0, { stiffness: 50, damping: 20 });
+  const springY = useSpring(0, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 20; // Move up to 20px
+      const y = (e.clientY / innerHeight - 0.5) * 20;
+      springX.set(x);
+      springY.set(y);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [springX, springY]);
 
   return (
-    <section className="relative h-screen min-h-[850px] flex items-center overflow-hidden bg-[#050A18]">
+    <section className="relative h-[95vh] min-h-[800px] flex items-center overflow-hidden bg-brand-dark">
       
-      {/* --- LAYER 1: THE ART (Brighter & More Visible) --- */}
-      <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
+      {/* --- LAYER 1: ARCHITECTURAL BACKDROP (Busy & Detailed) --- */}
+      {/* High-rise buildings representing "Financial Architecture" & Structure */}
+      <motion.div 
+        style={{ y: yBg, x: springX, scale: 1.1 }} 
+        className="absolute inset-0 z-0"
+      >
         <Image
-          src="https://images.unsplash.com/photo-1639322537228-ad7117a39499?q=80&w=2664&auto=format&fit=crop"
-          alt="Abstract Liquid Gold"
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+          alt="Financial Architecture"
           fill
-          className="object-cover opacity-80 mix-blend-screen" // Changed blend mode to make it pop
+          className="object-cover opacity-20 grayscale brightness-75" 
           priority
         />
-        {/* Lighter Gradient so art shows through */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050A18] via-[#050A18]/80 to-brand-blue/30" />
+        {/* Overlay to tint it Royal Blue */}
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/50" />
       </motion.div>
 
-      {/* --- LAYER 2: AMBIENT GLOW ORBS (Fills negative space) --- */}
-      <GlowingOrb color="bg-brand-blue" size="500px" top="-10%" left="-10%" delay={0} />
-      <GlowingOrb color="bg-brand-gold" size="400px" top="40%" left="30%" delay={2} />
-      <GlowingOrb color="bg-cyan-500" size="300px" top="10%" left="80%" delay={4} />
+      {/* --- LAYER 2: THE GRID FLOOR (Structure) --- */}
+      <GridFloor />
 
-      {/* --- LAYER 3: NETWORK GRID --- */}
-      <NetworkGrid />
-
-      {/* --- LAYER 4: GIANT WATERMARK TEXT (Texture behind headline) --- */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 select-none pointer-events-none overflow-hidden w-full">
-        <h1 className="text-[20vw] font-bold text-white/[0.03] leading-none tracking-tighter whitespace-nowrap">
-          HAFSA FINANCIALS
-        </h1>
+      {/* --- LAYER 3: DATA STREAMS (Motion) --- */}
+      <div className="absolute inset-0 z-0 overflow-hidden opacity-30">
+         <DataStream top="20%" delay={0} duration={8} />
+         <DataStream top="45%" delay={2} duration={12} />
+         <DataStream top="70%" delay={4} duration={10} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-2 gap-16 items-center">
+      {/* --- LAYER 4: MAIN CONTENT --- */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-12 gap-12 items-center">
         
-        {/* --- LEFT: CONTENT --- */}
-        <div className="space-y-8">
+        {/* --- LEFT: HERO TEXT (Span 7 cols) --- */}
+        <div className="lg:col-span-7 space-y-10">
           
-          {/* Badge */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full shadow-[0_0_20px_rgba(30,58,138,0.5)]"
-          >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-gold"></span>
+          {/* Animated "Signal" Badge */}
+          <div className="flex items-center gap-4">
+            <div className="flex gap-1 h-6 items-end">
+              {[1,2,3,4,5].map(i => (
+                <motion.div 
+                  key={i} 
+                  animate={{ height: [10, 24, 10] }} 
+                  transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }}
+                  className="w-1 bg-brand-gold rounded-full"
+                />
+              ))}
+            </div>
+            <span className="text-brand-gold font-bold tracking-[0.2em] text-sm uppercase">
+              Live from Dubai, London & NY
             </span>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-white">
-              Global Financial Intelligence
-            </span>
-          </motion.div>
+          </div>
 
-          {/* Headline */}
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-white leading-[1.05]">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400">
-              Precision
-            </span>
-            <span className="block">
-              Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-200 to-brand-gold filter drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]">
-                Vision.
-              </span>
+          <h1 className="text-6xl md:text-8xl font-bold text-white leading-[0.9] tracking-tight">
+            Structure <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-gray-400">
+              Your Growth.
             </span>
           </h1>
+          
+          <div className="h-1 w-32 bg-brand-gold rounded-full" />
 
-          <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-xl border-l-4 border-brand-gold pl-6">
-            Empowering businesses in <strong className="text-white">UK, UAE, USA & Pakistan</strong> with IFRS-ready, AI-accelerated financial architecture.
+          <p className="text-xl text-gray-300 leading-relaxed max-w-2xl border-l-4 border-white/10 pl-6">
+            We architect financial clarity for the global enterprise. 
+            Blending <span className="text-brand-gold font-bold">IFRS Precision</span> with <span className="text-cyan-400 font-bold">AI Intelligence</span>.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-5 pt-4">
-            <button className="bg-brand-gold text-brand-dark px-10 py-4 rounded-xl font-bold hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)]">
-              Get a Consultation
+          <div className="flex flex-wrap gap-6 pt-2">
+            <button className="bg-brand-gold text-brand-dark px-10 py-5 rounded-sm font-bold text-lg hover:bg-white transition-all border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1">
+              Start Consultation
             </button>
-            <Link href="/services" className="px-10 py-4 rounded-xl font-bold text-white border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all flex items-center gap-3">
-              Explore Services
+            <Link href="/services" className="group flex items-center gap-4 px-8 py-5 text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-all rounded-sm backdrop-blur-sm">
+              <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-brand-gold group-hover:border-brand-gold group-hover:text-brand-dark transition-colors">
+                ➔
+              </div>
+              <span className="font-bold">Explore Expertise</span>
             </Link>
           </div>
         </div>
 
-        {/* --- RIGHT: THE "ARTISTIC" DASHBOARD --- */}
+        {/* --- RIGHT: THE "GLASS STACK" (Span 5 cols) --- */}
+        {/* Instead of one abstract shape, a dense stack of actionable cards */}
         <motion.div 
-          style={{ y: y2 }}
-          className="hidden lg:block relative h-[600px] w-full perspective-[2000px]"
+          style={{ y: springY }}
+          className="lg:col-span-5 hidden lg:flex flex-col gap-6"
         >
-          {/* 1. Main Glass Card (Tilted & Frosted) */}
+          {/* Card 1: The "Architect" Metric */}
           <motion.div 
-            initial={{ rotateY: -15, rotateX: 10, opacity: 0 }}
-            animate={{ rotateY: -5, rotateX: 5, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            className="absolute top-10 left-10 w-96 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl relative overflow-hidden"
           >
-            {/* Inner Content */}
-            <div className="flex justify-between items-start mb-12">
-               <div className="p-3 bg-brand-gold/20 rounded-2xl">
-                 <div className="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center text-brand-dark font-bold">HF</div>
-               </div>
-               <div className="text-right">
-                 <p className="text-[10px] text-gray-400 uppercase tracking-widest">Confidence Score</p>
-                 <p className="text-3xl font-bold text-white font-mono">98.4%</p>
-               </div>
-            </div>
-            
-            {/* Animated Graph Line */}
-            <div className="relative h-24 w-full mt-8">
-               <svg className="w-full h-full overflow-visible">
-                 <motion.path 
-                   d="M0 80 Q 50 80, 80 40 T 150 50 T 220 20 T 300 10" 
-                   fill="none" 
-                   stroke="#d4af37" 
-                   strokeWidth="3"
-                   initial={{ pathLength: 0 }}
-                   animate={{ pathLength: 1 }}
-                   transition={{ duration: 3, ease: "easeInOut" }}
-                 />
-                 {/* Glow under line */}
-                 <path d="M0 80 Q 50 80, 80 40 T 150 50 T 220 20 T 300 10 L 300 100 L 0 100 Z" fill="url(#gradient-gold)" opacity="0.2" />
-                 <defs>
-                   <linearGradient id="gradient-gold" x1="0" y1="0" x2="0" y2="1">
-                     <stop offset="0%" stopColor="#d4af37" />
-                     <stop offset="100%" stopColor="transparent" />
-                   </linearGradient>
-                 </defs>
-               </svg>
-            </div>
-            <div className="flex gap-2 mt-6">
-               <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs border border-green-500/30">Audit Ready</span>
-               <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs border border-blue-500/30">IFRS Compliant</span>
+            <div className="absolute top-0 right-0 p-4 opacity-20 text-6xl">📊</div>
+            <h3 className="text-gray-400 text-xs uppercase tracking-widest mb-1">Financial Accuracy</h3>
+            <div className="text-4xl font-bold text-white mb-2">99.9%</div>
+            <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+              <motion.div animate={{ width: "99.9%" }} transition={{ duration: 2 }} className="h-full bg-brand-gold" />
             </div>
           </motion.div>
 
-          {/* 2. Floating Abstract Shapes (To fill emptiness) */}
+          {/* Card 2: The "Global" Map Preview */}
           <motion.div 
-            animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-40 right-0 w-64 h-72 bg-brand-blue/20 backdrop-blur-xl border border-white/10 rounded-[2rem] z-10 flex items-center justify-center"
+             initial={{ opacity: 0, x: 50 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ delay: 0.4 }}
+             className="bg-brand-blue/40 backdrop-blur-xl border border-white/20 p-6 rounded-2xl flex items-center gap-6"
           >
-            <div className="text-center">
-              <div className="text-4xl mb-2">🤖 + 🧠</div>
-              <div className="text-xs text-gray-400 uppercase tracking-widest">Hybrid Model</div>
-            </div>
+             <div className="w-16 h-16 rounded-full bg-blue-900 flex items-center justify-center border border-white/10 relative">
+                <div className="absolute inset-0 border border-brand-gold rounded-full animate-ping opacity-20"></div>
+                🌍
+             </div>
+             <div>
+               <h3 className="text-white font-bold text-lg">Global Advisory</h3>
+               <p className="text-xs text-gray-400">Serving UK, UAE, USA & PK</p>
+             </div>
           </motion.div>
 
-          {/* 3. Deep Background Card (Depth) */}
-          <div className="absolute top-60 left-40 w-80 h-80 bg-black/40 backdrop-blur-sm border border-white/5 rounded-[2rem] -z-10 transform scale-90"></div>
+          {/* Card 3: The "Hybrid" Badge */}
+          <motion.div 
+             initial={{ opacity: 0, x: 50 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ delay: 0.6 }}
+             className="bg-gradient-to-r from-brand-gold/20 to-transparent border border-brand-gold/30 p-6 rounded-2xl"
+          >
+             <div className="flex justify-between items-center mb-2">
+               <span className="text-brand-gold font-bold">Hybrid Model</span>
+               <span className="text-white text-xs bg-white/10 px-2 py-1 rounded">Active</span>
+             </div>
+             <div className="flex gap-1 text-sm text-gray-300">
+               <span>70% Human</span>
+               <span className="text-brand-gold">•</span>
+               <span>30% AI</span>
+             </div>
+          </motion.div>
 
         </motion.div>
       </div>
+
+      {/* --- DECORATIVE: BACKGROUND TEXTURE --- */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-blue/40 to-transparent pointer-events-none" />
     </section>
   );
 }
