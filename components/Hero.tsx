@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
-// --- THE "TOPOGRAPHIC WAVE" COMPONENT (Unchanged) ---
 const WaveLine = ({ delay, opacity, yOffset }: { delay: number; opacity: number; yOffset: number }) => (
   <motion.div
     initial={{ pathLength: 0, opacity: 0 }}
@@ -52,10 +51,12 @@ export default function Hero() {
   }));
 
   return (
-    // FIX 1: Changed min-h-[800px] to h-screen for perfect fit
-    <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e]">
+    // FIX: Use h-[100dvh] ensures it fits mobile/desktop screens exactly without scrollbars
+    // We added 'pt-20' ONLY if you wanted content to clear the navbar, but since 
+    // we want the content centered in the full screen, we keep flex-center and no padding.
+    <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0f1e]">
       
-      {/* Background Layers (Unchanged) */}
+      {/* Background Layers */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-blue/30 via-[#0a0f1e] to-[#0a0f1e]" />
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60 pointer-events-none perspective-[1000px]">
         <div className="relative w-full h-full transform rotate-x-12 scale-125">
@@ -66,9 +67,9 @@ export default function Hero() {
       {/* --- MAIN CONTENT --- */}
       <motion.div 
         style={{ y: yText }}
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8"
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8 mt-10" // Added mt-10 to visually balance the navbar height
       >
-        {/* Badge (Unchanged) */}
+        {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,8 +83,8 @@ export default function Hero() {
           <span className="w-1.5 h-1.5 bg-brand-gold rounded-full shadow-[0_0_10px_#d4af37]"></span>
         </motion.div>
 
-        {/* Typography (Unchanged) */}
-        <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-white leading-none">
+        {/* Typography */}
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-none">
           <span className="block overflow-hidden">
             <motion.span 
               initial={{ y: "100%" }}
@@ -123,7 +124,7 @@ export default function Hero() {
           Empowering global enterprises with <span className="text-white font-normal">IFRS Precision</span> & <span className="text-white font-normal">AI Acceleration</span>.
         </motion.p>
 
-        {/* Buttons (Unchanged) */}
+        {/* Buttons */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -143,29 +144,25 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* FIX 2: INTEGRATED & RESTYLED TABS (Trust Signals) */}
+        {/* Integrated Tabs (Trust Signals) */}
         <motion.div 
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ delay: 1.3, duration: 0.8 }}
            className="pt-16 border-t border-white/5 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto"
         >
-            {/* Signal 1 */}
             <div className="flex flex-col items-center gap-3">
                <div className="text-brand-gold text-2xl mb-2">🛡️</div>
                <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
                <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
             </div>
-            {/* Signal 2 */}
             <div className="flex flex-col items-center gap-3 relative">
-               {/* Subtle separator lines */}
                <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
                <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
                <div className="text-brand-gold text-2xl mb-2">🌍</div>
                <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
                <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
             </div>
-            {/* Signal 3 */}
             <div className="flex flex-col items-center gap-3">
                <div className="text-brand-gold text-2xl mb-2">👨‍💻</div>
                <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
