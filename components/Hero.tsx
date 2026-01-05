@@ -1,206 +1,133 @@
 "use client";
 
-import { motion, useTransform, useMotionValue, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
-interface WaveLineProps {
-  delay: number;
-  opacity: number;
-  yOffset: number;
-  mouseX: MotionValue<number>;
-  mouseY: MotionValue<number>;
-  index: number;
-}
-
-const WaveLine = ({ delay, opacity, yOffset, mouseX, mouseY, index }: WaveLineProps) => {
-  const x = useTransform(mouseX, [-0.5, 0.5], [-30 * (index * 0.1 + 1), 30 * (index * 0.1 + 1)]);
-  const y = useTransform(mouseY, [-0.5, 0.5], [-15 * (index * 0.1 + 1), 15 * (index * 0.1 + 1)]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: opacity }}
-      transition={{ duration: 2, delay: 0.5 }}
-      className="absolute w-[200%] -left-1/2"
-      style={{ top: `${50 + yOffset}%`, x, y }}
-    >
-      <svg viewBox="0 0 1440 320" className="w-full h-[300px] md:h-[500px] fill-none">
-        <motion.path
-          d="M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160"
-          stroke="url(#gold-gradient)"
-          strokeWidth="2"
-          fill="none"
-          animate={{
-            d: [
-              "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160",
-              "M0,160 C320,0,420,300,740,160 C1060,0,1160,300,1480,160",
-              "M0,160 C320,300,420,0,740,160 C1060,320,1160,0,1480,160",
-            ],
-          }}
-          transition={{ duration: 10, ease: "easeInOut", repeat: Infinity, delay: delay }}
-        />
-        <defs>
-          <linearGradient id="gold-gradient" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="20%" stopColor="#fbbf24" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#fbbf24" stopOpacity="1" />
-            <stop offset="80%" stopColor="#fbbf24" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="transparent" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </motion.div>
-  );
-};
+const GridBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    {/* Royal Blue Gradient Base - Source: 90 */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a]" />
+    
+    {/* Financial Grid Pattern - Represents Modeling/Excel */}
+    <div 
+      className="absolute inset-0 opacity-[0.07]" 
+      style={{ 
+        backgroundImage: `linear-gradient(#fbbf24 1px, transparent 1px), linear-gradient(90deg, #fbbf24 1px, transparent 1px)`, 
+        backgroundSize: '40px 40px' 
+      }} 
+    />
+    
+    {/* Gold Glow Accents */}
+    <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen" />
+    <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] mix-blend-screen" />
+  </div>
+);
 
 export default function Hero() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const { clientX, clientY, currentTarget } = e;
-    const { width, height } = currentTarget.getBoundingClientRect();
-    mouseX.set((clientX / width) - 0.5);
-    mouseY.set((clientY / height) - 0.5);
-  };
-  
-  const lines = Array.from({ length: 12 }).map((_, i) => ({
-    id: i,
-    delay: i * 0.2,
-    opacity: 1 - i * 0.05,
-    yOffset: i * 3,
-  }));
+  const containerRef = useRef(null);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
 
   return (
     <section 
-      onMouseMove={handleMouseMove} 
-      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#050505] pt-16 pb-0 md:pt-24 md:pb-0"
+      ref={containerRef}
+      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-20 pb-10"
     >
-      
-      {/* Background Layers */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-[#050505] to-[#050505]" />
-      
-      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60 pointer-events-none perspective-[1000px]">
-        <div className="relative w-full h-full transform rotate-x-12 scale-125">
-           {lines.map((line, i) => (
-             <WaveLine key={line.id} {...line} mouseX={mouseX} mouseY={mouseY} index={i} />
-           ))}
-        </div>
-      </div>
+      <GridBackground />
 
-    {/* --- MAIN CONTENT --- */}
+      {/* --- MAIN CONTENT --- */}
       <motion.div 
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-3 md:space-y-5"
+        style={{ y: y1 }}
+        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center"
       >
-        {/* Badge */}
+        
+        {/* 70/30 Philosophy Badge - Source: 490 */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-amber-500/20 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full mx-auto"
+          className="flex items-center gap-0 mb-8 rounded-full border border-white/10 bg-slate-900/50 backdrop-blur-md overflow-hidden"
         >
-          <span className="w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_10px_#fbbf24]"></span>
-          <span className="text-xs font-bold tracking-[0.3em] uppercase text-amber-400/80">
-            Audit-Ready Intelligence
-          </span>
-          <span className="w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_10px_#fbbf24]"></span>
+          <div className="px-4 py-1.5 bg-blue-900/40 text-blue-200 text-[10px] md:text-xs font-bold tracking-wider uppercase border-r border-white/10">
+            70% Human Expert
+          </div>
+          <div className="px-4 py-1.5 bg-amber-900/20 text-amber-200 text-[10px] md:text-xs font-bold tracking-wider uppercase flex items-center gap-2">
+            <span>30% AI Driven</span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+          </div>
         </motion.div>
 
-        {/* Typography */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
-          <span className="block overflow-hidden text-[clamp(2.5rem,6vw,5rem)] pb-20 -mb-20">
-            <motion.span 
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="block py-6 -mt-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
-            >
-              Strategic Financial
-            </motion.span>
-          </span>
+        {/* Headlines - Source: 4 & 551 */}
+        <div className="space-y-2 mb-8 relative">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1]"
+          >
+            Strategic <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">
+              Financial Excellence
+            </span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="text-lg md:text-2xl text-slate-300 font-light max-w-3xl mx-auto mt-6"
+          >
+            Human Judgment. <span className="text-white font-medium">AI Intelligence.</span> Financial Excellence.
+          </motion.p>
+        </div>
 
-          <span className="block relative z-10 pt-2"> 
-            <motion.span 
-              initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-amber-400"
-              style={{ textShadow: "0 0 30px rgba(251, 191, 36, 0.6), 0 0 60px rgba(251, 191, 36, 0.3)" }}
-            >
-              Excellence
-            </motion.span>
-            <motion.span 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 0.2 }}
-               transition={{ delay: 1 }}
-               className="absolute top-full left-0 w-full transform -scale-y-100 blur-sm text-amber-400/50 pointer-events-none"
-            >
-              Excellence
-            </motion.span>
-          </span>
-        </h1>
-        
-        {/* Updated Tagline per Doc Page 33 */}
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="text-base sm:text-lg md:text-xl text-[#FDFCF0]/60 font-light max-w-2xl mx-auto leading-relaxed"
-        >
-          Human Judgment. <span className="text-[#FDFCF0] font-normal">AI Intelligence</span>. Financial Excellence.
-        </motion.p>
-
-        {/* Updated Buttons per Doc Page 1 */}
+        {/* Buttons - Source: 5 */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 md:pt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
         >
-          <button className="group relative px-6 py-2.5 sm:px-8 sm:py-3 bg-amber-400 text-slate-900 font-bold text-sm sm:text-base rounded-full overflow-hidden shadow-[0_0_40px_rgba(251,191,36,0.2)] hover:shadow-[0_0_60px_rgba(251,191,36,0.4)] transition-all">
-            <span className="relative z-10 group-hover:text-white transition-colors">Get a Consultation</span>
-            <div className="absolute inset-0 bg-slate-900 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500 ease-out" />
+          <button className="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm sm:text-base rounded shadow-[0_0_30px_rgba(245,158,11,0.3)] transition-all transform hover:-translate-y-0.5">
+            Get a Consultation
           </button>
           
-          <Link href="/services" className="text-white/80 hover:text-white font-medium text-sm sm:text-base flex items-center gap-2 sm:gap-3 transition-colors group">
-            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/10 transition-all">
-              ↓
-            </div>
+          <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm sm:text-base rounded backdrop-blur-sm transition-all flex items-center justify-center gap-2 group">
             <span>Explore Services</span>
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </motion.div>
-      </motion.div>
 
-      {/* Integrated Tabs (Trust Signals) */}
-      <motion.div 
-         initial={{ opacity: 0, y: 20 }}
-         animate={{ opacity: 1, y: 0 }}
-         transition={{ delay: 1.3, duration: 0.8 }}
-         className="relative z-10 mt-8 md:mt-12 border-t border-white/10 pt-6 md:pt-8 grid grid-cols-3 gap-4 md:gap-12 max-w-3xl mx-auto text-center"
-      >
-          <div className="flex flex-col items-center gap-3">
-             <div className="text-2xl mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.6)]">🛡️</div>
-             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
-             <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
-          </div>
-          <div className="flex flex-col items-center gap-3 relative">
-             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
-             <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
-             <div className="text-2xl mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.6)]">🌍</div>
-             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
-             <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
-          </div>
-          <div className="flex flex-col items-center gap-3">
-             <div className="text-2xl mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.6)]">👨‍💻</div>
-             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
-             <p className="text-gray-400 text-xs">CAs, CFAs, & FRMs</p>
-          </div>
-      </motion.div>
+        {/* Trust Signals / Footer Grid - Source: 8, 262, 10 */}
+        <motion.div 
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ delay: 1, duration: 1 }}
+           className="mt-20 w-full grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/10 pt-10"
+        >
+            <div className="text-center md:text-left px-4">
+               <h4 className="text-amber-500 font-bold text-sm uppercase tracking-widest mb-1">Trusted Advisory</h4>
+               <p className="text-slate-400 text-sm">IFRS Implementation & Financial Architecture [cite: 8]</p>
+            </div>
+            
+            <div className="text-center px-4 border-l-0 md:border-l border-r-0 md:border-r border-white/10">
+               <h4 className="text-blue-400 font-bold text-sm uppercase tracking-widest mb-1">Global Reach</h4>
+               {/* Source: 262 */}
+               <p className="text-slate-400 text-sm">UAE, UK, USA, KSA, Canada & Pakistan</p>
+            </div>
 
-      {/* Texture Overlay */}
-      <div className="absolute inset-0 pointer-events-none z-20 bg-[radial-gradient(circle_at_center,transparent_20%,#0a0f1e_100%)] opacity-70" />
-      
+            <div className="text-center md:text-right px-4">
+               <h4 className="text-amber-500 font-bold text-sm uppercase tracking-widest mb-1">Expert Team</h4>
+               {/* Source: 10 */}
+               <p className="text-slate-400 text-sm">CAs, CFAs, FRMs & IT Auditors</p>
+            </div>
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 }
