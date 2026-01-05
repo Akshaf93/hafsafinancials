@@ -95,7 +95,7 @@ export default function Hero() {
 
         {/* Typography */}
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
-          <span className="block pb-12 -mb-2 md:pb-20 md:-mb-6">
+          <span className="block pb-12 md:pb-20 md:-mb-6">
             <motion.span 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
