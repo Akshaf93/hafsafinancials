@@ -140,33 +140,32 @@ export default function Hero() {
             <span>Explore Capabilities</span>
           </Link>
         </motion.div>
+      </motion.div>
 
-        {/* Integrated Tabs (Trust Signals) */}
-        <motion.div 
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 1.3, duration: 0.8 }}
-           className="pt-16 border-t border-white/5 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto"
-        >
-            <div className="flex flex-col items-center gap-3">
-               <div className="text-brand-gold text-2xl mb-2">🛡️</div>
-               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
-               <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
-            </div>
-            <div className="flex flex-col items-center gap-3 relative">
-               <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
-               <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
-               <div className="text-brand-gold text-2xl mb-2">🌍</div>
-               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
-               <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-               <div className="text-brand-gold text-2xl mb-2">👨‍💻</div>
-               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
-               <p className="text-gray-400 text-xs">CAs, CFAs, & FRMs</p>
-            </div>
-        </motion.div>
-
+      {/* Integrated Tabs (Trust Signals) - Moved outside parallax container */}
+      <motion.div 
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ delay: 1.3, duration: 0.8 }}
+         className="relative z-10 mt-12 border-t border-white/10 pt-8 grid grid-cols-3 gap-8 md:gap-12 max-w-3xl mx-auto text-center"
+      >
+          <div className="flex flex-col items-center gap-3">
+             <div className="text-brand-gold text-2xl mb-2">🛡️</div>
+             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Trusted Advisory</h3>
+             <p className="text-gray-400 text-xs">IFRS & Financial Excellence</p>
+          </div>
+          <div className="flex flex-col items-center gap-3 relative">
+             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
+             <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/10 hidden md:block"></div>
+             <div className="text-brand-gold text-2xl mb-2">🌍</div>
+             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Global Reach</h3>
+             <p className="text-gray-400 text-xs">UK, UAE, USA & Pakistan</p>
+          </div>
+          <div className="flex flex-col items-center gap-3">
+             <div className="text-brand-gold text-2xl mb-2">👨‍💻</div>
+             <h3 className="text-white font-bold uppercase tracking-widest text-xs">Expert Team</h3>
+             <p className="text-gray-400 text-xs">CAs, CFAs, & FRMs</p>
+          </div>
       </motion.div>
 
       {/* Texture Overlay */}
