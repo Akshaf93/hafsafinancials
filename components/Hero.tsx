@@ -94,7 +94,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Typography */}
-       <h1 className="font-bold tracking-tighter text-white leading-[0.9]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
           <span className="block overflow-hidden text-[clamp(2.5rem,6vw,5rem)] pb-2 md:pb-3">
             <motion.span 
               initial={{ y: "100%" }}
