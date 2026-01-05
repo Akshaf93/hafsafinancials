@@ -46,8 +46,16 @@ export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="py-20 bg-[#FDFCF0]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative py-20 bg-[#FDFCF0]">
+      {/* Subtle Grain/Grid Texture for immersion */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        style={{ 
+          backgroundImage: `radial-gradient(#050505 1px, transparent 1px)`, 
+          backgroundSize: '30px 30px' 
+        }} 
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-brand-dark">Our Expertise</h2>
           <p className="text-gray-600 mt-2">Comprehensive financial solutions for every stage of growth.</p>

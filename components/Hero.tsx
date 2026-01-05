@@ -32,7 +32,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-20 pb-10"
+      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-20 pb-32"
     >
       <ObsidianBackground />
 
@@ -133,6 +133,9 @@ export default function Hero() {
         </motion.div>
 
       </motion.div>
+
+      {/* Gradient Fade to blend Obsidian Hero into Ivory Services */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#FDFCF0] to-transparent z-20 pointer-events-none" />
     </section>
   );
 }
