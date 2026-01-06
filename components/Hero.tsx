@@ -131,11 +131,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          // FIX: Replaced manual gradient divs with 'mask-image'. 
-          // This fades the image to transparent at the top and bottom, revealing the TRUE background.
+          // FIXED: Used CSS Mask instead of gradient divs to ensure TRUE transparency
           className="relative w-full aspect-[1.6/1] 
-            [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] 
-            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]"
+            [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] 
+            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
         >
           {/* Map Base */}
           <div 
@@ -146,37 +145,52 @@ export default function Hero() {
             }}
           />
 
-          {/* Locations */}
+          {/* Locations - CALLOUT STYLE */}
           {LOCATIONS.map((loc, i) => (
             <motion.div
               key={loc.name}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-              className="absolute w-3 h-3 -ml-1.5 -mt-1.5 z-20"
-              style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
+              className="absolute z-20 flex flex-col items-center"
+              style={{ 
+                top: `${loc.top}%`, 
+                left: `${loc.left}%`,
+                // Shift container to center precisely on the coordinate
+                transform: 'translate(-50%, -50%)' 
+              }}
             >
-              {/* Dot */}
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]" />
+              {/* === IF ALIGN TOP (Label sits ABOVE dot) === */}
+              {loc.align === 'top' && (
+                <>
+                  <div className="mb-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+                    {loc.name}
+                  </div>
+                  {/* Vertical Line */}
+                  <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37] to-transparent opacity-50"></div>
+                </>
+              )}
 
-              {/* Label */}
-              <div 
-                className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
-                  ${loc.align === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'}
-                `}
-              >
-                <div className="bg-[#FDFCF0]/10 backdrop-blur-sm border border-[#FDFCF0]/10 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded shadow-lg">
-                  {loc.name}
-                </div>
-              </div>
+              {/* === THE DOT (No Glow) === */}
+              <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
+
+              {/* === IF ALIGN BOTTOM (Label sits BELOW dot) === */}
+              {loc.align === 'bottom' && (
+                <>
+                  {/* Vertical Line */}
+                  <div className="w-[1px] h-6 bg-gradient-to-t from-[#D4AF37] to-transparent opacity-50"></div>
+                  <div className="mt-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+                    {loc.name}
+                  </div>
+                </>
+              )}
             </motion.div>
           ))}
         </motion.div>
 
       </div>
 
-      {/* Gradient Fade for Bottom of Section */}
+      {/* Hero Bottom Gradient Fade (Page blend) */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
