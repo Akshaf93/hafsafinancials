@@ -35,9 +35,10 @@ export default function Navbar() {
     : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
 
   const navPosition = isHome ? "fixed" : "sticky";
+  const hideNavbar = isHome && isScrolled;
 
   return (
-    <nav className={`${navPosition} top-0 z-50 w-full transition-all duration-500 ${navBackground}`}>
+    <nav className={`${navPosition} top-0 z-50 w-full transition-all duration-500 ${navBackground} ${hideNavbar ? "-translate-y-full" : "translate-y-0"}`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}

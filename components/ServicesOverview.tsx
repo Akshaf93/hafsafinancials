@@ -52,15 +52,22 @@ export default function ServicesOverview() {
   const [activeTab, setActiveTab] = useState("ifrs");
 
   return (
-    // Preserved pt-32 to accommodate the Fixed Navbar
-    <div className="relative w-full max-w-7xl mx-auto px-6 pt-32 pb-16">
+    // Reduced padding and max-width as requested
+    <div className="relative w-full max-w-6xl mx-auto px-6 pt-24 pb-12">
       
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-12">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-10">
         <div className="max-w-4xl">
-          <h2 className="text-5xl md:text-7xl font-serif font-medium text-[#FDFCF0] mb-8">
+          <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-6">
             Our <span className="text-[#E5D095]">Expertise</span>
-          </h2>           
+          </h2>
+          <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed text-[#FDFCF0]/80">
+            <p>
+              Hafsa Financials delivers hands-on IFRS advisory, financial architecture, internal audit, and control solutions grounded in real engagements — not theory.
+            </p>
+            <p className="text-[#FDFCF0]/60">
+              We help organizations uncover hidden risks, correct misstatements, strengthen governance, and convert compliance into decision-ready insight. Our work enables Boards, CFOs, and stakeholders to rely on financial information that is accurate, defensible, and audit-ready.
+            </p>
           </div>
         </div>
         <Link 
@@ -89,7 +96,7 @@ export default function ServicesOverview() {
       </div>
 
       {/* ACTIVE TAB CONTENT AREA */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-10 md:p-12 min-h-[400px] shadow-2xl flex flex-col justify-center">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-8 md:p-10 min-h-[300px] shadow-2xl flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {SERVICE_TABS.map((tab) => activeTab === tab.id && (
             <motion.div
@@ -101,10 +108,10 @@ export default function ServicesOverview() {
               className="flex flex-col h-full justify-between"
             >
               <div>
-                <h3 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-6">
+                <h3 className="text-2xl md:text-3xl font-serif font-medium text-[#FDFCF0] mb-4">
                   {tab.headline}
                 </h3>
-                <p className="text-[#FDFCF0]/70 text-lg md:text-xl leading-relaxed max-w-4xl mb-10">
+                <p className="text-[#FDFCF0]/70 text-lg leading-relaxed max-w-4xl mb-8">
                   {tab.content}
                 </p>
               </div>
