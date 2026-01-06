@@ -23,13 +23,6 @@ export default function Home() {
         <ServicesOverview />
       </section>
 
-      {/* SECTION 3: GLOBAL REACH (Merged into Hero? Or if separate, keep it) */}
-      {/* If you are using the separate component, uncomment below: */}
-      {/* <section className="h-screen w-full snap-start relative flex flex-col justify-center">
-        <GlobalReach />
-      </section> 
-      */}
-
       {/* SECTION 4: HYBRID MODEL */}
       <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <HybridModel />
