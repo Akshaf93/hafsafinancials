@@ -4,8 +4,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-// --- GLOBAL REACH LOCATIONS ---
-// Coordinates calibrated for the map
+// --- MAP LOCATIONS ---
+// Calibrated for the larger map size
 const LOCATIONS = [
   { name: "United States", top: 28, left: 20, align: "bottom" },
   { name: "Canada", top: 12, left: 18, align: "top" },
@@ -43,14 +43,12 @@ export default function Hero() {
     >
       <ObsidianBackground />
 
-      {/* --- CONTENT LAYER (Text) --- */}
-      {/* We keep the text in the container, but leave the right side empty for the map */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full pointer-events-none">
-        
-        {/* Left Column: Text (Pointer events auto to allow clicking buttons) */}
+      {/* --- LEFT CONTENT LAYER --- */}
+      {/* We restrict the text to the left half so it doesn't overlap the huge map too much */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full h-full flex items-center pointer-events-none">
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left pointer-events-auto pl-4 md:pl-0"
+          className="w-full lg:w-1/2 flex flex-col items-start text-left pointer-events-auto"
         >
           {/* Badge */}
           <motion.div 
@@ -132,49 +130,52 @@ export default function Hero() {
       </div>
 
 
-      {/* --- MAP LAYER (Positioned Absolutely to Right) --- */}
-      {/* 1. h-[85vh]: Forces the map to be tall (spanning vertically).
-          2. right-[-5%]: Pulls it slightly off-screen to create a dynamic look.
-          3. mask-image: Adds the requested gradient reflection/fade at top & bottom.
+      {/* --- HUGE MAP LAYER (Right Side) --- */}
+      {/* 1. We position it absolute on the right. 
+          2. We set a massive height (h-[90vh]) so it spans vertically.
+          3. 'right-[-5%]' pulls it slightly off screen to feel immersive.
       */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-2%] h-[60vh] md:h-[85vh] aspect-[1.8/1] z-10 pointer-events-none"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.4 }}
+        className="absolute top-1/2 -translate-y-1/2 right-[-5%] lg:right-[-2%] h-[80vh] md:h-[90vh] aspect-[1.9/1] z-10 pointer-events-none"
       >
+        {/* Gradient Mask to prevent "Boxy" look */}
         <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+            
             {/* Map Image */}
             <div 
                 className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
                 style={{ 
-                backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
-                filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+                  backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
+                  filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
                 }}
             />
 
-            {/* Interactive Pins (Pointer Events Auto to allow hover/clicks) */}
+            {/* Interactive Pins (Pointer Events Auto) */}
             {LOCATIONS.map((loc, i) => (
                 <motion.div
                 key={loc.name}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-                className="absolute w-4 h-4 -ml-2 -mt-2 z-20 pointer-events-auto"
+                className="absolute w-5 h-5 -ml-2.5 -mt-2.5 z-20 pointer-events-auto"
                 style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
                 >
-                {/* Dot with Border */}
+                {/* Dot: Gold Center, THICK Black Border */}
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
+                <span className="relative inline-flex rounded-full h-5 w-5 bg-[#D4AF37] border-[4px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
 
-                {/* Always Visible Label */}
+                {/* Label: Solid Black BG, Gold Border */}
                 <div 
-                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
+                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap z-30
                     ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
                     `}
                 >
-                    <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
-                    {loc.name}
+                    <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-xl flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                      {loc.name}
                     </div>
                 </div>
                 </motion.div>
