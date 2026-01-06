@@ -4,14 +4,23 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-const JURISDICTIONS = [
-  "USA", "UK", "UAE", "Canada", 
-  "Saudi Arabia", "Pakistan", "Australia", "New Zealand"
+// --- GLOBAL REACH LOCATIONS ---
+// Coordinates calibrated for the map
+const LOCATIONS = [
+  { name: "United States", top: 28, left: 20, align: "bottom" },
+  { name: "Canada", top: 12, left: 18, align: "top" },
+  { name: "United Kingdom", top: 18, left: 47, align: "top" },
+  { name: "UAE", top: 40, left: 62, align: "bottom" },
+  { name: "Saudi Arabia", top: 38, left: 59, align: "top" },
+  { name: "Pakistan", top: 35, left: 66, align: "top" },
+  { name: "Australia", top: 72, left: 85, align: "top" },
+  { name: "New Zealand", top: 82, left: 93, align: "top" },
 ];
 
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
+    {/* Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -34,13 +43,14 @@ export default function Hero() {
     >
       <ObsidianBackground />
 
-      {/* --- CONTENT LAYER --- */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center h-full pointer-events-none">
+      {/* --- CONTENT LAYER (Text) --- */}
+      {/* We keep the text in the container, but leave the right side empty for the map */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full pointer-events-none">
         
-        {/* LEFT COLUMN: TEXT (Pointer events auto) */}
+        {/* Left Column: Text (Pointer events auto to allow clicking buttons) */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left pointer-events-auto pl-4 md:pl-0 z-30"
+          className="flex flex-col items-start text-left pointer-events-auto pl-4 md:pl-0"
         >
           {/* Badge */}
           <motion.div 
@@ -82,23 +92,9 @@ export default function Hero() {
               className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide"
             >
               Human Judgment. <span className="text-[#D4AF37] font-normal">AI Intelligence.</span> 
-              <br />Global Advisory.
+              <br />Global Advisory across 8+ Jurisdictions.
             </motion.p>
           </div>
-
-          {/* Active Jurisdictions List (Replaces Pins) */}
-          <motion.div 
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             transition={{ delay: 0.6 }}
-             className="flex flex-wrap gap-2 mb-10 max-w-md"
-          >
-             {JURISDICTIONS.map((country, i) => (
-                <span key={country} className="px-3 py-1 border border-[#D4AF37]/20 text-[#FDFCF0]/60 text-xs uppercase tracking-wider rounded-full">
-                  {country}
-                </span>
-             ))}
-          </motion.div>
 
           {/* Buttons */}
           <motion.div 
@@ -115,62 +111,76 @@ export default function Hero() {
               <span className="group-hover:translate-x-1 transition-transform text-[#D4AF37]">→</span>
             </Link>
           </motion.div>
+
+          {/* Mini Footer Grid */}
+          <motion.div 
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             transition={{ delay: 1, duration: 1 }}
+             className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6"
+          >
+              <div className="text-left">
+                 <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
+                 <p className="text-[#FDFCF0]/50 text-xs font-light">IFRS & Architecture</p>
+              </div>
+              <div className="text-left">
+                 <h4 className="text-[#FDFCF0] font-bold text-xs uppercase tracking-[0.2em] mb-1">Expert Team</h4>
+                 <p className="text-[#FDFCF0]/50 text-xs font-light">CAs, CFAs & FRMs</p>
+              </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* --- CSS 3D GLOBE LAYER --- */}
+
+      {/* --- MAP LAYER (Positioned Absolutely to Right) --- */}
+      {/* 1. h-[85vh]: Forces the map to be tall (spanning vertically).
+          2. right-[-5%]: Pulls it slightly off-screen to create a dynamic look.
+          3. mask-image: Adds the requested gradient reflection/fade at top & bottom.
+      */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-        className="absolute top-1/2 -translate-y-1/2 right-[-10%] md:right-[5%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] z-10 pointer-events-none"
+        transition={{ duration: 1.2, delay: 0.4 }}
+        className="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-2%] h-[60vh] md:h-[85vh] aspect-[1.8/1] z-10 pointer-events-none"
       >
-         {/* 1. The Globe Container */}
-         <div className="relative w-full h-full">
-            
-            {/* 2. Atmosphere Glow (Behind) */}
-            <div className="absolute inset-0 rounded-full bg-[#D4AF37] blur-[120px] opacity-10 animate-pulse" />
+        <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+            {/* Map Image */}
+            <div 
+                className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
+                style={{ 
+                backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
+                filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+                }}
+            />
 
-            {/* 3. The Sphere */}
-            <div className="relative w-full h-full rounded-full overflow-hidden shadow-[inset_-20px_-20px_50px_rgba(0,0,0,0.9),_inset_10px_10px_30px_rgba(255,255,255,0.05)] bg-[#111]">
-                
-                {/* 4. The Spinning Map Texture */}
-                {/* We use a double-width background moving left to right to simulate spin */}
+            {/* Interactive Pins (Pointer Events Auto to allow hover/clicks) */}
+            {LOCATIONS.map((loc, i) => (
+                <motion.div
+                key={loc.name}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
+                className="absolute w-4 h-4 -ml-2 -mt-2 z-20 pointer-events-auto"
+                style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
+                >
+                {/* Dot with Border */}
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
+
+                {/* Always Visible Label */}
                 <div 
-                   className="absolute inset-0 w-[200%] h-full opacity-60"
-                   style={{
-                      backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
-                      backgroundSize: 'contain',
-                      backgroundRepeat: 'repeat-x',
-                      filter: 'invert(1) sepia(1) saturate(0.2) brightness(0.6)',
-                      animation: 'spin 30s linear infinite'
-                   }}
-                />
-            </div>
-
-            {/* 5. Orbital Ring 1 (Tilted) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-[#D4AF37]/10 rounded-full animate-[spin_20s_linear_infinite]" 
-                 style={{ borderTopColor: 'transparent', borderBottomColor: 'transparent', transform: 'translate(-50%, -50%) rotate(45deg)' }} 
-            />
-            
-            {/* 6. Orbital Ring 2 (Opposite Tilt) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#FDFCF0]/5 rounded-full animate-[spin_25s_linear_infinite_reverse]" 
-                 style={{ borderLeftColor: 'transparent', borderRightColor: 'transparent', transform: 'translate(-50%, -50%) rotate(-25deg)' }} 
-            />
-
-            {/* 7. Floating "Satellite" Dot */}
-            <div className="absolute top-0 left-[50%] w-2 h-2 bg-[#D4AF37] rounded-full shadow-[0_0_15px_#D4AF37] animate-[ping_3s_ease-in-out_infinite]" />
-
-         </div>
+                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
+                    ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
+                    `}
+                >
+                    <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
+                    {loc.name}
+                    </div>
+                </div>
+                </motion.div>
+            ))}
+        </div>
       </motion.div>
-
-      {/* Global CSS for the spin animation */}
-      <style jsx global>{`
-        @keyframes spin {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
 
       {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
