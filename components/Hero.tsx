@@ -9,11 +9,11 @@ const LOCATIONS = [
   { name: "United States", top: 28, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
   { name: "United Kingdom", top: 20, left: 48, align: "top" },
-  { name: "UAE", top: 42, left: 63, align: "bottom" },
+  { name: "UAE", top: 46, left: 63, align: "bottom" },
   { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
-  { name: "Pakistan", top: 35, left: 68, align: "top" },
-  { name: "Australia", top: 70, left: 85, align: "top" },
-  { name: "New Zealand", top: 82, left: 95, align: "top" },
+  { name: "Pakistan", top: 33, left: 67, align: "top" },
+  { name: "Australia", top: 68, left: 85, align: "top" },
+  { name: "New Zealand", top: 78, left: 95, align: "top" },
 ];
 
 // REMOVED: ObsidianBackground component (It is now in globals.css for consistency)
