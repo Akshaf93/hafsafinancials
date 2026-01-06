@@ -42,8 +42,7 @@ export default function Hero() {
     >
       <ObsidianBackground />
 
-      {/* --- LEFT CONTENT LAYER --- */}
-      {/* We restrict the text to the left half (z-20) so it sits ON TOP of the map if they overlap */}
+      {/* --- LEFT CONTENT (Text) --- */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 w-full h-full flex items-center pointer-events-none">
         <motion.div 
           style={{ y: y1 }}
@@ -129,21 +128,21 @@ export default function Hero() {
       </div>
 
 
-      {/* --- HUGE MAP LAYER (Right Side) --- */}
-      {/* 1. h-[80vh]: Makes the map tall (spanning vertically).
-          2. right-[-15%]: Pushes it off-screen to the right so it doesn't cover the text.
-          3. mask-image: Creates the vertical fade at top/bottom.
+      {/* --- MAP CONTAINER --- */}
+      {/* 1. h-screen: Spans full viewport height.
+         2. flex items-center: Ensures map is Vertically Centered.
+         3. right-[-x%]: Offsets it to the right.
       */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="absolute top-1/2 -translate-y-1/2 right-[-20%] md:right-[-10%] lg:right-[-5%] h-[70vh] md:h-[80vh] aspect-[1.9/1] z-10 pointer-events-none"
+        className="absolute top-0 right-[-20%] md:right-[-10%] lg:right-[-5%] h-screen w-[60vw] md:w-[50vw] flex items-center justify-center z-10 pointer-events-none"
       >
-        {/* Gradient Mask for "Reflection" Effect */}
-        <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+        {/* Map Wrapper with Aspect Ratio */}
+        <div className="relative w-full h-[85vh] md:h-[90vh]">
             
-            {/* Map Image */}
+            {/* The Map Image */}
             <div 
                 className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
                 style={{ 
@@ -152,6 +151,12 @@ export default function Hero() {
                 }}
             />
 
+            {/* --- THE FIX: GRADIENT OVERLAYS (Reflections) --- */}
+            {/* Top Fade */}
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#050505] to-transparent z-20" />
+            {/* Bottom Fade */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-20" />
+
             {/* Interactive Pins */}
             {LOCATIONS.map((loc, i) => (
                 <motion.div
@@ -159,16 +164,16 @@ export default function Hero() {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-                className="absolute w-5 h-5 -ml-2.5 -mt-2.5 z-20 pointer-events-auto"
+                className="absolute w-5 h-5 -ml-2.5 -mt-2.5 z-30 pointer-events-auto"
                 style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
                 >
-                {/* Dot: Gold Center, THICK Black Border */}
+                {/* Dot */}
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
                 <span className="relative inline-flex rounded-full h-5 w-5 bg-[#D4AF37] border-[4px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
 
-                {/* Label: Solid Black BG, Gold Border */}
+                {/* Label */}
                 <div 
-                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap z-30
+                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap z-40
                     ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
                     `}
                 >
@@ -182,7 +187,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Bottom Fade */}
+      {/* Hero Bottom Fade (Separate from map, for page continuity) */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
     </section>
   );
