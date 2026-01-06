@@ -7,29 +7,29 @@ const TABS = [
   {
     id: "arch",
     label: "Financial Architecture",
-    headline: "Designing IFRS-ready structures, not just statements[cite: 1103].",
-    content: "We restructured the financial backbone to support defensible reporting[cite: 1104]. Key deliverables included IFRS-aligned Chart of Accounts [cite: 1106], balance sheet reconstruction [cite: 1107], and T-account cash flow methodology[cite: 1108].",
+    headline: "Designing IFRS-ready structures, not just statements.",
+    content: "We restructured the financial backbone to support defensible reporting. Key deliverables included IFRS-aligned Chart of Accounts, balance sheet reconstruction, and T-account cash flow methodology.",
     tags: ["CoA Design", "Balance Sheet Cleanup"]
   },
   {
     id: "ifrs",
     label: "IFRS Advisory",
-    headline: "Judgment-driven application of standards[cite: 1114].",
-    content: "Addressed critical non-compliance through practical implementation[cite: 1115]. Implemented IFRS 9 ECL models [cite: 1117], IAS 16 depreciation frameworks [cite: 1118], and IAS 36 impairment testing[cite: 1119].",
+    headline: "Judgment-driven application of standards.",
+    content: "Addressed critical non-compliance through practical implementation. Implemented IFRS 9 ECL models, IAS 16 depreciation frameworks, and IAS 36 impairment testing.",
     tags: ["IFRS 9 ECL", "IAS 16 & 36"]
   },
   {
     id: "analysis",
     label: "Business Analysis",
-    headline: "Turning compliance into insight[cite: 1125].",
-    content: "Converted financial data into decision-useful intelligence[cite: 1126]. Delivered working capital cycle analysis [cite: 1128], gross margin trend reports [cite: 1129], and post-IFRS ROCE recalculations[cite: 1130].",
+    headline: "Turning compliance into insight.",
+    content: "Converted financial data into decision-useful intelligence. Delivered working capital cycle analysis, gross margin trend reports, and post-IFRS ROCE recalculations.",
     tags: ["Liquidity Analysis", "Margin Trends"]
   },
   {
     id: "controls",
     label: "Internal Controls",
-    headline: "Embedding discipline into daily operations[cite: 1135].",
-    content: "Remediated critical governance gaps[cite: 1136]. Replaced informal approvals with structured procurement SOPs [cite: 1141], depreciation policies [cite: 1140], and audit-ready documentation[cite: 1143].",
+    headline: "Embedding discipline into daily operations.",
+    content: "Remediated critical governance gaps. Replaced informal approvals with structured procurement SOPs, depreciation policies, and audit-ready documentation.",
     tags: ["SOP Design", "Governance Matrix"]
   }
 ];
