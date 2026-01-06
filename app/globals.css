@@ -4,7 +4,7 @@
 
 :root {
   --foreground-rgb: 253, 252, 240;
-  --gold-primary: #D4AF37;
+  --gold-primary: #E5D095;
 }
 
 /* --- 1. GLOBAL SCROLL SNAP (Fixes Sensitivity) --- */
@@ -40,8 +40,8 @@ body::after {
   opacity: 0.03;
   pointer-events: none;
   background-image: 
-    linear-gradient(#D4AF37 1px, transparent 1px), 
-    linear-gradient(90deg, #D4AF37 1px, transparent 1px);
+    linear-gradient(#E5D095 1px, transparent 1px), 
+    linear-gradient(90deg, #E5D095 1px, transparent 1px);
   background-size: 50px 50px;
 }
 

@@ -44,16 +44,16 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center gap-0 mb-6 rounded-full border border-[#D4AF37]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.1)]"
+            className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.1)]"
           >
-            <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#D4AF37]/20">
+            <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#E5D095]/20">
               70% Human Expert
             </div>
-            <div className="px-4 py-2 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-2">
+            <div className="px-4 py-2 bg-[#E5D095]/10 text-[#E5D095] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-2">
               <span>30% AI Driven</span>
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E5D095] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E5D095]"></span>
               </span>
             </div>
           </motion.div>
@@ -67,7 +67,7 @@ export default function Hero() {
               className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl"
             >
               Strategic <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#D4AF37] to-[#8a7035]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
                 Financial Excellence
               </span>
             </motion.h1>
@@ -78,7 +78,7 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 1 }}
               className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide"
             >
-              Human Judgment. <span className="text-[#D4AF37] font-normal">AI Intelligence.</span> 
+              Human Judgment. <span className="text-[#E5D095] font-normal">AI Intelligence.</span> 
               <br />Global Advisory across 8+ Jurisdictions.
             </motion.p>
           </div>
@@ -90,12 +90,12 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
-            <button className="px-8 py-4 bg-[#D4AF37] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all transform hover:-translate-y-0.5">
+            <button className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all transform hover:-translate-y-0.5">
               Get a Consultation
             </button>
-            <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#D4AF37]/50 text-[#FDFCF0] hover:text-[#D4AF37] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
+            <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#E5D095]/50 text-[#FDFCF0] hover:text-[#E5D095] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
               <span>Explore Services</span>
-              <span className="group-hover:translate-x-1 transition-transform text-[#D4AF37]">→</span>
+              <span className="group-hover:translate-x-1 transition-transform text-[#E5D095]">→</span>
             </Link>
           </motion.div>
 
@@ -107,7 +107,7 @@ export default function Hero() {
              className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6"
           >
               <div className="text-left">
-                 <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
+                 <h4 className="text-[#E5D095] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
                  <p className="text-[#FDFCF0]/50 text-xs font-light">IFRS & Architecture</p>
               </div>
               <div className="text-left">
@@ -153,21 +153,21 @@ export default function Hero() {
               {/* TOP ALIGN */}
               {loc.align === 'top' && (
                 <>
-                  <div className="mb-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+                  <div className="mb-1 bg-[#050505]/90 border border-[#E5D095]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
                     {loc.name}
                   </div>
-                  <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37] to-transparent opacity-50"></div>
+                  <div className="w-[1px] h-6 bg-gradient-to-b from-[#E5D095] to-transparent opacity-50"></div>
                 </>
               )}
 
               {/* DOT */}
-              <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
+              <div className="w-2 h-2 rounded-full bg-[#E5D095] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
 
               {/* BOTTOM ALIGN */}
               {loc.align === 'bottom' && (
                 <>
-                  <div className="w-[1px] h-6 bg-gradient-to-t from-[#D4AF37] to-transparent opacity-50"></div>
-                  <div className="mt-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+                  <div className="w-[1px] h-6 bg-gradient-to-t from-[#E5D095] to-transparent opacity-50"></div>
+                  <div className="mt-1 bg-[#050505]/90 border border-[#E5D095]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
                     {loc.name}
                   </div>
                 </>
