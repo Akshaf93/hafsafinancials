@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useRef } from "react";
 
 // --- MAP LOCATIONS ---
-// Calibrated for the larger map size
 const LOCATIONS = [
   { name: "United States", top: 28, left: 20, align: "bottom" },
   { name: "Canada", top: 12, left: 18, align: "top" },
@@ -44,11 +43,11 @@ export default function Hero() {
       <ObsidianBackground />
 
       {/* --- LEFT CONTENT LAYER --- */}
-      {/* We restrict the text to the left half so it doesn't overlap the huge map too much */}
+      {/* We restrict the text to the left half (z-20) so it sits ON TOP of the map if they overlap */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 w-full h-full flex items-center pointer-events-none">
         <motion.div 
           style={{ y: y1 }}
-          className="w-full lg:w-1/2 flex flex-col items-start text-left pointer-events-auto"
+          className="w-full lg:w-[45%] flex flex-col items-start text-left pointer-events-auto"
         >
           {/* Badge */}
           <motion.div 
@@ -131,18 +130,18 @@ export default function Hero() {
 
 
       {/* --- HUGE MAP LAYER (Right Side) --- */}
-      {/* 1. We position it absolute on the right. 
-          2. We set a massive height (h-[90vh]) so it spans vertically.
-          3. 'right-[-5%]' pulls it slightly off screen to feel immersive.
+      {/* 1. h-[80vh]: Makes the map tall (spanning vertically).
+          2. right-[-15%]: Pushes it off-screen to the right so it doesn't cover the text.
+          3. mask-image: Creates the vertical fade at top/bottom.
       */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="absolute top-1/2 -translate-y-1/2 right-[-5%] lg:right-[-2%] h-[80vh] md:h-[90vh] aspect-[1.9/1] z-10 pointer-events-none"
+        className="absolute top-1/2 -translate-y-1/2 right-[-20%] md:right-[-10%] lg:right-[-5%] h-[70vh] md:h-[80vh] aspect-[1.9/1] z-10 pointer-events-none"
       >
-        {/* Gradient Mask to prevent "Boxy" look */}
-        <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+        {/* Gradient Mask for "Reflection" Effect */}
+        <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
             
             {/* Map Image */}
             <div 
@@ -153,7 +152,7 @@ export default function Hero() {
                 }}
             />
 
-            {/* Interactive Pins (Pointer Events Auto) */}
+            {/* Interactive Pins */}
             {LOCATIONS.map((loc, i) => (
                 <motion.div
                 key={loc.name}
