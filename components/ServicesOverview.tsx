@@ -60,14 +60,7 @@ export default function ServicesOverview() {
         <div className="max-w-4xl">
           <h2 className="text-5xl md:text-7xl font-serif font-medium text-[#FDFCF0] mb-8">
             Our <span className="text-[#E5D095]">Expertise</span>
-          </h2>
-          <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed text-[#FDFCF0]/80">
-            <p>
-              Hafsa Financials delivers hands-on IFRS advisory, financial architecture, internal audit, and control solutions grounded in real engagements — not theory.
-            </p>
-            <p className="text-[#FDFCF0]/60">
-              We help organizations uncover hidden risks, correct misstatements, strengthen governance, and convert compliance into decision-ready insight. Our work enables Boards, CFOs, and stakeholders to rely on financial information that is accurate, defensible, and audit-ready.
-            </p>
+          </h2>           
           </div>
         </div>
         <Link 

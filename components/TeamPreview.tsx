@@ -24,7 +24,7 @@ export default function TeamPreview() {
             We combine the precision of Chartered Accountants (CA) with the strategic foresight of CFAs and the rigorous risk management of FRMs.
           </p>
           <div className="flex gap-3 pt-4">
-             {["ACCA", "CFA", "FRM", "IT Audit"].map(badge => (
+             {["ACCA", "CFA", "FRM", "ICAEW", "IT Auditor"].map(badge => (
                <span key={badge} className="px-3 py-1 border border-[#E5D095]/30 text-[#E5D095] text-xs font-bold rounded">{badge}</span>
              ))}
           </div>
