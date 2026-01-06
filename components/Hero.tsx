@@ -18,7 +18,10 @@ const LOCATIONS = [
 
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
+    {/* Deep Obsidian Radial Base */}
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
+    
+    {/* Optional: Subtle Grid Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -46,7 +49,7 @@ export default function Hero() {
         {/* --- LEFT COLUMN: TEXT CONTENT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left z-20"
+          className="flex flex-col items-start text-left z-20" // z-20 keeps text on TOP of the big map
         >
           {/* Badge */}
           <motion.div 
@@ -129,23 +132,20 @@ export default function Hero() {
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          // FIXED: Used CSS Mask instead of gradient divs to ensure TRUE transparency
-          className="relative w-full aspect-[1.6/1] 
-            [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] 
-            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+          animate={{ opacity: 1, scale: 1.35 }} // SCALED UP TO 1.35 (Make it Bigger)
+          transition={{ duration: 1.2, delay: 0.4 }}
+          // REMOVED: No 'mask-image' classes here, so the fade is gone.
+          className="relative w-full aspect-[1.6/1]"
         >
-          {/* Map Base */}
+          {/* Map Base - Using your uploaded 'world-map.png' */}
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
             style={{ 
-              backgroundImage: "url('/World_map_-_low_resolution.svg')",
-              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+              backgroundImage: "url('/world-map.png')",
             }}
           />
 
-          {/* Locations - CALLOUT STYLE */}
+          {/* Locations - Callout Style */}
           {LOCATIONS.map((loc, i) => (
             <motion.div
               key={loc.name}
@@ -156,28 +156,25 @@ export default function Hero() {
               style={{ 
                 top: `${loc.top}%`, 
                 left: `${loc.left}%`,
-                // Shift container to center precisely on the coordinate
                 transform: 'translate(-50%, -50%)' 
               }}
             >
-              {/* === IF ALIGN TOP (Label sits ABOVE dot) === */}
+              {/* TOP ALIGN */}
               {loc.align === 'top' && (
                 <>
                   <div className="mb-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
                     {loc.name}
                   </div>
-                  {/* Vertical Line */}
                   <div className="w-[1px] h-6 bg-gradient-to-b from-[#D4AF37] to-transparent opacity-50"></div>
                 </>
               )}
 
-              {/* === THE DOT (No Glow) === */}
+              {/* THE DOT */}
               <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
 
-              {/* === IF ALIGN BOTTOM (Label sits BELOW dot) === */}
+              {/* BOTTOM ALIGN */}
               {loc.align === 'bottom' && (
                 <>
-                  {/* Vertical Line */}
                   <div className="w-[1px] h-6 bg-gradient-to-t from-[#D4AF37] to-transparent opacity-50"></div>
                   <div className="mt-1 bg-[#050505]/90 border border-[#D4AF37]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
                     {loc.name}
@@ -190,7 +187,7 @@ export default function Hero() {
 
       </div>
 
-      {/* Hero Bottom Gradient Fade (Page blend) */}
+      {/* Hero Bottom Gradient Fade */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
