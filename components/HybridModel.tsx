@@ -23,7 +23,7 @@ export default function HybridModel() {
         {/* HUMAN SIDE */}
         <motion.div 
           className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "ai" ? "md:flex-[1] opacity-50" : activeSide === "human" ? "md:flex-[3]" : "md:flex-[1]"}
+            ${activeSide === "ai" ? "md:flex-[1] opacity-50" : activeSide === "human" ? "md:flex-[3]" : "md:flex-[2]"}
             bg-[#1a1a1a] border-r border-[#333] min-w-0
           `}
           onMouseEnter={() => setActiveSide("human")}
@@ -50,7 +50,7 @@ export default function HybridModel() {
         {/* AI SIDE */}
         <motion.div 
           className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "human" ? "md:flex-[1] opacity-50" : activeSide === "ai" ? "md:flex-[3]" : "md:flex-[1]"}
+            ${activeSide === "human" ? "md:flex-[1] opacity-50" : activeSide === "ai" ? "md:flex-[3]" : "md:flex-[2]"}
             bg-[#0a0a0a] min-w-0
           `}
           onMouseEnter={() => setActiveSide("ai")}
