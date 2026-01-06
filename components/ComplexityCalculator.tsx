@@ -45,10 +45,10 @@ export default function ComplexityCalculator() {
   const { min, max } = calculatePrice();
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-[#0a0a0a] rounded-xl shadow-2xl border border-[#D4AF37]/20 overflow-hidden">
-      <div className="bg-[#1a1a1a] p-6 text-[#FDFCF0] text-center border-b border-[#D4AF37]/10">
+    <div className="w-full max-w-2xl mx-auto bg-[#0a0a0a] rounded-xl shadow-2xl border border-[#E5D095]/20 overflow-hidden">
+      <div className="bg-[#1a1a1a] p-6 text-[#FDFCF0] text-center border-b border-[#E5D095]/10">
         <h3 className="text-2xl font-bold">Smart Fee Estimator</h3>
-        <p className="text-[#D4AF37]/80 text-sm mt-1">Estimate investment based on complexity & scope</p>
+        <p className="text-[#E5D095]/80 text-sm mt-1">Estimate investment based on complexity & scope</p>
       </div>
       <div className="p-8 space-y-8">
         <div className="space-y-3">
@@ -59,7 +59,7 @@ export default function ComplexityCalculator() {
                 key={key}
                 onClick={() => setService(key)}
                 className={`py-2 px-4 rounded-lg text-sm font-medium transition-all ${
-                  service === key ? "bg-[#D4AF37] text-[#050505] shadow-md" : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:bg-[#2a2a2a]"
+                  service === key ? "bg-[#E5D095] text-[#050505] shadow-md" : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:bg-[#2a2a2a]"
                 }`}
               >
                 {SERVICE_DATA[key].name}
@@ -70,7 +70,7 @@ export default function ComplexityCalculator() {
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <label className="text-sm font-semibold text-[#FDFCF0]/60 uppercase tracking-wide">Complexity Level</label>
-            <span className="text-xs font-bold text-[#D4AF37] bg-[#D4AF37]/10 px-2 py-1 rounded">
+            <span className="text-xs font-bold text-[#E5D095] bg-[#E5D095]/10 px-2 py-1 rounded">
               {complexity === "standard" ? "Standard (Base)" : complexity === "intermediate" ? "Intermediate (+25%)" : "Advanced (+50%)"}
             </span>
           </div>
@@ -80,7 +80,7 @@ export default function ComplexityCalculator() {
                 key={level}
                 onClick={() => setComplexity(level as ComplexityLevel)}
                 className={`flex-1 py-2 rounded-md border-2 text-sm font-semibold capitalize transition-all ${
-                  complexity === level ? "border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]" : "border-[#333] text-[#FDFCF0]/40 hover:border-[#555]"
+                  complexity === level ? "border-[#E5D095] bg-[#E5D095]/10 text-[#E5D095]" : "border-[#333] text-[#FDFCF0]/40 hover:border-[#555]"
                 }`}
               >
                 {level}
@@ -94,10 +94,10 @@ export default function ComplexityCalculator() {
             id="multiCountry"
             checked={isMultiCountry}
             onChange={(e) => setIsMultiCountry(e.target.checked)}
-            className="w-5 h-5 text-[#D4AF37] rounded focus:ring-[#D4AF37] bg-[#0a0a0a] border-[#333]"
+            className="w-5 h-5 text-[#E5D095] rounded focus:ring-[#E5D095] bg-[#0a0a0a] border-[#333]"
           />
           <label htmlFor="multiCountry" className="text-sm text-[#FDFCF0]/80 font-medium cursor-pointer">
-            Multi-Country / Cross-Border Scope? <span className="text-xs text-[#D4AF37]">(+20%)</span>
+            Multi-Country / Cross-Border Scope? <span className="text-xs text-[#E5D095]">(+20%)</span>
           </label>
         </div>
         <div className="bg-[#000000] rounded-xl p-6 text-center text-white relative overflow-hidden border border-[#333]">
@@ -107,7 +107,7 @@ export default function ComplexityCalculator() {
               key={`${min}-${max}`}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="text-4xl font-bold text-[#D4AF37]"
+              className="text-4xl font-bold text-[#E5D095]"
             >
               ${min.toLocaleString()} - ${max.toLocaleString()}
             </motion.div>

@@ -23,7 +23,7 @@ export default function GlobalReach() {
     <div className="relative w-full h-full flex flex-col justify-center items-center overflow-hidden pt-32">
       
       {/* Local Atmosphere (Spotlight) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#E5D095]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-center">
         <motion.div
@@ -34,7 +34,7 @@ export default function GlobalReach() {
           className="mb-8"
         >
           <h2 className="text-4xl md:text-6xl font-bold text-[#FDFCF0]">
-            Global <span className="text-[#D4AF37]">Impact</span>
+            Global <span className="text-[#E5D095]">Impact</span>
           </h2>
           <p className="text-[#FDFCF0]/60 mt-4 text-xl font-light tracking-wide">
             8+ Jurisdictions. One Standard of Excellence.
@@ -62,8 +62,8 @@ export default function GlobalReach() {
               onMouseEnter={() => setActivePin(loc.name)}
               onMouseLeave={() => setActivePin(null)}
             >
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-30 animate-ping" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4AF37] shadow-[0_0_15px_#D4AF37]" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#E5D095] opacity-30 animate-ping" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E5D095] shadow-[0_0_15px_#E5D095]" />
 
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 px-3 py-1 bg-[#FDFCF0] text-[#050505] text-xs font-bold uppercase tracking-wider rounded shadow-xl whitespace-nowrap transition-all duration-300 pointer-events-none

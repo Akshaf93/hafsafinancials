@@ -27,7 +27,7 @@ export default function HybridModel() {
           onMouseLeave={() => setActiveSide(null)}
         >
           <div className="relative z-10">
-            <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-8 -left-4">70%</h3>
+            <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-8 -left-4">70%</h3>
             <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4">Human-Led</h3>
             
             {(activeSide === "human" || activeSide === null) && (
@@ -35,7 +35,7 @@ export default function HybridModel() {
                 <p className="text-[#FDFCF0]/70 mb-6 max-w-md">
                    Complex judgments, ethical strategy, and board-level negotiation.
                 </p>
-                <ul className="space-y-2 text-sm text-[#D4AF37]">
+                <ul className="space-y-2 text-sm text-[#E5D095]">
                   <li>✓ IFRS Interpretation</li>
                   <li>✓ Valuation Logic</li>
                   <li>✓ Negotiation</li>
@@ -55,7 +55,7 @@ export default function HybridModel() {
           onMouseLeave={() => setActiveSide(null)}
         >
           <div className="relative z-10">
-            <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-8 -left-4">30%</h3>
+            <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-8 -left-4">30%</h3>
             <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4">AI-Driven</h3>
 
             {(activeSide === "ai" || activeSide === null) && (
@@ -63,7 +63,7 @@ export default function HybridModel() {
                 <p className="text-[#FDFCF0]/70 mb-6 max-w-md">
                   Accelerated data processing, scenario testing, and anomaly detection.
                 </p>
-                <ul className="space-y-2 text-sm text-[#D4AF37]">
+                <ul className="space-y-2 text-sm text-[#E5D095]">
                    <li>✓ Auto-Cleansing</li>
                    <li>✓ Stress Testing</li>
                    <li>✓ Draft Generation</li>

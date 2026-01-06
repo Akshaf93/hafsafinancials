@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold tracking-tight">
-            Hafsa<span className="text-[#D4AF37]">Financials</span>
+            Hafsa<span className="text-[#E5D095]">Financials</span>
           </h2>
           <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
             Global financial advisory combining human judgment with AI intelligence. Serving UK, UAE, USA, and Pakistan.
@@ -19,10 +19,10 @@ export default function Footer() {
         <div>
           <h3 className="font-bold text-lg mb-4">Company</h3>
           <ul className="space-y-2 text-sm text-[#FDFCF0]/60">
-            <li><Link href="/about" className="hover:text-[#D4AF37]">About Us</Link></li>
-            <li><Link href="/team" className="hover:text-[#D4AF37]">Our Team</Link></li>
-            <li><Link href="/services" className="hover:text-[#D4AF37]">Services</Link></li>
-            <li><Link href="/contact" className="hover:text-[#D4AF37]">Contact</Link></li>
+            <li><Link href="/about" className="hover:text-[#E5D095]">About Us</Link></li>
+            <li><Link href="/team" className="hover:text-[#E5D095]">Our Team</Link></li>
+            <li><Link href="/services" className="hover:text-[#E5D095]">Services</Link></li>
+            <li><Link href="/contact" className="hover:text-[#E5D095]">Contact</Link></li>
           </ul>
         </div>
 
@@ -47,9 +47,9 @@ export default function Footer() {
             <input 
               type="email" 
               placeholder="Email address" 
-              className="bg-[#1a1a1a] border-none text-[#FDFCF0] text-sm px-4 py-2 rounded-lg w-full focus:ring-1 focus:ring-[#D4AF37]"
+              className="bg-[#1a1a1a] border-none text-[#FDFCF0] text-sm px-4 py-2 rounded-lg w-full focus:ring-1 focus:ring-[#E5D095]"
             />
-            <button className="bg-[#D4AF37] text-[#050505] font-bold px-4 py-2 rounded-lg hover:bg-[#FDFCF0] transition-colors">
+            <button className="bg-[#E5D095] text-[#050505] font-bold px-4 py-2 rounded-lg hover:bg-[#FDFCF0] transition-colors">
               Go
             </button>
           </div>

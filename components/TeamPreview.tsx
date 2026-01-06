@@ -15,7 +15,7 @@ export default function TeamPreview() {
           className="md:w-1/2 space-y-6"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#FDFCF0]">
-            Expert <span className="text-[#D4AF37]">Leadership</span>
+            Expert <span className="text-[#E5D095]">Leadership</span>
           </h2>
           <p className="text-xl text-[#FDFCF0]/60 font-light">
             Founded by Mirza Muhammad Bilal Qasim Barlas.
@@ -25,11 +25,11 @@ export default function TeamPreview() {
           </p>
           <div className="flex gap-3 pt-4">
              {["ACCA", "CFA", "FRM", "IT Audit"].map(badge => (
-               <span key={badge} className="px-3 py-1 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-bold rounded">{badge}</span>
+               <span key={badge} className="px-3 py-1 border border-[#E5D095]/30 text-[#E5D095] text-xs font-bold rounded">{badge}</span>
              ))}
           </div>
           <div className="pt-6">
-            <Link href="/team" className="text-[#FDFCF0] hover:text-[#D4AF37] border-b border-[#D4AF37] pb-1 transition-colors">
+            <Link href="/team" className="text-[#FDFCF0] hover:text-[#E5D095] border-b border-[#E5D095] pb-1 transition-colors">
               Meet the Experts →
             </Link>
           </div>
@@ -44,10 +44,10 @@ export default function TeamPreview() {
           {/* Abstract Team Visual */}
           <div className="grid grid-cols-2 gap-4 opacity-80">
             <div className="h-40 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-4">
-               <span className="text-[#D4AF37] font-bold text-lg">Strategy</span>
+               <span className="text-[#E5D095] font-bold text-lg">Strategy</span>
             </div>
             <div className="h-40 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-4 mt-8">
-               <span className="text-[#D4AF37] font-bold text-lg">Compliance</span>
+               <span className="text-[#E5D095] font-bold text-lg">Compliance</span>
             </div>
           </div>
         </motion.div>

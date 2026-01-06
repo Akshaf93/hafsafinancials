@@ -24,47 +24,47 @@ export default function PricingPage() {
             <div className="p-8 hover:bg-[#1a1a1a] transition-colors group">
               <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Starter</h3>
               <p className="text-sm text-[#FDFCF0]/60 mb-6">Sole Proprietor / Micro</p>
-              <div className="text-3xl font-bold text-[#D4AF37] mb-6">$1.5k - $3k</div>
+              <div className="text-3xl font-bold text-[#E5D095] mb-6">$1.5k - $3k</div>
               <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
                 <li>IFRS Advisory Lite</li>
                 <li>Basic Ratio Analysis</li>
                 <li>Tax Filing Support</li>
               </ul>
-              <button className="w-full py-2 border border-[#D4AF37] text-[#D4AF37] font-bold rounded-lg group-hover:bg-[#D4AF37] group-hover:text-[#050505] transition-all">Choose Starter</button>
+              <button className="w-full py-2 border border-[#E5D095] text-[#E5D095] font-bold rounded-lg group-hover:bg-[#E5D095] group-hover:text-[#050505] transition-all">Choose Starter</button>
             </div>
 
             {/* Growth */}
             <div className="p-8 hover:bg-[#1a1a1a] transition-colors group relative">
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#D4AF37]"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-[#E5D095]"></div>
               <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Growth</h3>
               <p className="text-sm text-[#FDFCF0]/60 mb-6">SMEs</p>
-              <div className="text-3xl font-bold text-[#D4AF37] mb-6">$5k - $10k</div>
+              <div className="text-3xl font-bold text-[#E5D095] mb-6">$5k - $10k</div>
               <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
                 <li>Full IFRS Advisory</li>
                 <li>Business Analysis</li>
                 <li>Risk Assessment</li>
                 <li>KPI Dashboards</li>
               </ul>
-              <button className="w-full py-2 bg-[#D4AF37] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Choose Growth</button>
+              <button className="w-full py-2 bg-[#E5D095] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Choose Growth</button>
             </div>
 
             {/* Professional */}
             <div className="p-8 hover:bg-[#1a1a1a] transition-colors group">
               <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Professional</h3>
               <p className="text-sm text-[#FDFCF0]/60 mb-6">Medium Enterprises</p>
-              <div className="text-3xl font-bold text-[#D4AF37] mb-6">$12k - $25k</div>
+              <div className="text-3xl font-bold text-[#E5D095] mb-6">$12k - $25k</div>
               <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
                 <li>Financial Architect Services</li>
                 <li>Stress Testing</li>
                 <li>Internal Controls</li>
                 <li>Tax Advisory</li>
               </ul>
-              <button className="w-full py-2 border border-[#D4AF37] text-[#D4AF37] font-bold rounded-lg group-hover:bg-[#D4AF37] group-hover:text-[#050505] transition-all">Choose Pro</button>
+              <button className="w-full py-2 border border-[#E5D095] text-[#E5D095] font-bold rounded-lg group-hover:bg-[#E5D095] group-hover:text-[#050505] transition-all">Choose Pro</button>
             </div>
 
             {/* Enterprise */}
             <div className="p-8 bg-[#151515] text-[#FDFCF0]">
-              <h3 className="text-xl font-bold text-[#D4AF37] mb-2">Enterprise</h3>
+              <h3 className="text-xl font-bold text-[#E5D095] mb-2">Enterprise</h3>
               <p className="text-sm text-[#FDFCF0]/60 mb-6">Large Corporates</p>
               <div className="text-3xl font-bold text-[#FDFCF0] mb-6">$30k+</div>
               <ul className="space-y-3 text-[#FDFCF0]/70 mb-8">
@@ -73,7 +73,7 @@ export default function PricingPage() {
                 <li>Multi-location Risk</li>
                 <li>Strategic Advisory</li>
               </ul>
-              <button className="w-full py-2 bg-[#D4AF37] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Contact Us</button>
+              <button className="w-full py-2 bg-[#E5D095] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Contact Us</button>
             </div>
 
           </div>
