@@ -4,8 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function HybridModel() {
-  // 'human' | 'ai' | null
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<"human" | "ai" | null>(null);
 
   return (
     <div className="w-full h-full bg-[#050505] flex flex-col justify-center items-center py-24 relative overflow-hidden">
@@ -19,70 +18,66 @@ export default function HybridModel() {
           70% Human. <span className="text-[#D4AF37]">30% AI.</span>
         </h3>
         <p className="text-[#FDFCF0]/60 mt-4 max-w-2xl mx-auto">
-          [cite_start]"Financial judgment remains human. Intelligence is accelerated by AI." [cite: 574]
+          "Financial judgment remains human. Intelligence is accelerated by AI."
         </p>
       </div>
 
-      {/* THE CARDS CONTAINER */}
-      <div className="relative w-full max-w-6xl h-[500px] flex gap-2 px-4 md:px-0">
+      {/* CARDS CONTAINER */}
+      {/* Fixed height ensures no vertical layout shift. Flex ensures they fill the width. */}
+      <div className="relative w-full max-w-6xl h-[500px] flex gap-4 px-6 md:px-0">
         
         {/* === CARD 1: HUMAN EXPERT === */}
         <motion.div
-          layout
           onHoverStart={() => setActive("human")}
           onHoverEnd={() => setActive(null)}
-          // Animation Logic:
-          // Default: flex-1 (50%)
-          // Hover 'human': flex-[2] (Grows)
-          // Hover 'ai': flex-[0.5] (Shrinks)
+          // ANIMATION LOGIC:
+          // Standard state: flex: 1 (50% width)
+          // Active state: flex: 2 (66% width)
+          // Inactive state: flex: 0.5 (33% width)
           animate={{
-            flex: active === "human" ? 2.5 : active === "ai" ? 0.5 : 1,
-            opacity: active === "ai" ? 0.6 : 1
+            flex: active === "human" ? 2 : active === "ai" ? 0.5 : 1,
+            opacity: active === "ai" ? 0.5 : 1
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="relative h-full rounded-2xl overflow-hidden border border-[#D4AF37]/20 bg-[#111] cursor-pointer group"
         >
-          {/* Background Image/Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-[#050505] opacity-90" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
+          {/* Dark Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-[#050505]" />
 
           {/* Content */}
-          <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
-            {/* Top Badge */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center border border-[#D4AF37]/30">
-                <span className="text-xl">🧠</span>
-              </div>
-              <h4 className="text-xl font-bold text-[#FDFCF0] uppercase tracking-wider">
+          <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
+            {/* Top Label */}
+            <div className="border-l-2 border-[#D4AF37] pl-4">
+              <h4 className="text-lg font-bold text-[#FDFCF0] uppercase tracking-widest">
                 70% Human Expert
               </h4>
             </div>
 
-            {/* Description (Visible when active or default) */}
+            {/* Description Text */}
             <motion.div 
                animate={{ opacity: active === "ai" ? 0 : 1 }} 
-               className="space-y-4"
+               className="space-y-6"
             >
-               <h3 className="text-3xl font-serif text-[#D4AF37]">
+               <h3 className="text-4xl font-serif text-[#D4AF37]">
                  Strategic Judgment
                </h3>
-               <p className="text-[#FDFCF0]/70 leading-relaxed max-w-md">
-                 Led by CAs, CFAs, and FRMs. We handle complex IFRS interpretations, valuation logic, and board-level negotiations. [cite_start]AI supports, but never decides. [cite: 576, 594]
+               <p className="text-[#FDFCF0]/80 leading-relaxed max-w-md text-sm md:text-base">
+                 Led by CAs, CFAs, and FRMs. We handle complex IFRS interpretations, valuation logic, and board-level negotiations. AI supports, but never decides.
                </p>
                
-               {/* List of Human Tasks */}
-               <ul className="space-y-2 mt-4">
+               {/* Bullet Points */}
+               <div className="space-y-2">
                  {["IFRS Policy Decisions", "M&A Structuring", "Audit Defense"].map((item) => (
-                   <li key={item} className="flex items-center gap-2 text-sm text-[#FDFCF0]/80">
-                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full" />
+                   <div key={item} className="flex items-center gap-3 text-sm text-[#FDFCF0]/60">
+                     <div className="w-1 h-1 bg-[#D4AF37] rounded-full" />
                      {item}
-                   </li>
+                   </div>
                  ))}
-               </ul>
+               </div>
             </motion.div>
             
-            {/* Hover Instruction */}
-            <div className="text-[#FDFCF0]/30 text-xs font-mono uppercase tracking-widest group-hover:text-[#D4AF37] transition-colors">
+            {/* Hover Indicator */}
+            <div className="text-[#D4AF37] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
               Core Value Driver
             </div>
           </div>
@@ -90,67 +85,57 @@ export default function HybridModel() {
 
         {/* === CARD 2: AI DRIVEN === */}
         <motion.div
-          layout
           onHoverStart={() => setActive("ai")}
           onHoverEnd={() => setActive(null)}
-          // Animation Logic:
-          // Default: flex-1 (50%)
-          // Hover 'ai': flex-[2] (Grows)
-          // Hover 'human': flex-[0.5] (Shrinks)
           animate={{
-            flex: active === "ai" ? 2.5 : active === "human" ? 0.5 : 1,
-            opacity: active === "human" ? 0.6 : 1
+            flex: active === "ai" ? 2 : active === "human" ? 0.5 : 1,
+            opacity: active === "human" ? 0.5 : 1
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="relative h-full rounded-2xl overflow-hidden border border-[#FDFCF0]/10 bg-[#0a0a0a] cursor-pointer group"
         >
-          {/* Background with Techy Feel */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] to-[#050505] opacity-90" />
-          <div className="absolute inset-0 opacity-10 bg-[linear-gradient(0deg,transparent_24%,rgba(212,175,55,0.3)_25%,rgba(212,175,55,0.3)_26%,transparent_27%,transparent_74%,rgba(212,175,55,0.3)_75%,rgba(212,175,55,0.3)_76%,transparent_77%,transparent),linear-gradient(90deg,transparent_24%,rgba(212,175,55,0.3)_25%,rgba(212,175,55,0.3)_26%,transparent_27%,transparent_74%,rgba(212,175,55,0.3)_75%,rgba(212,175,55,0.3)_76%,transparent_77%,transparent)] bg-[length:30px_30px]" />
+          {/* Dark Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] to-[#050505] opacity-80" />
+          {/* Subtle Grid Overlay */}
+          <div 
+            className="absolute inset-0 opacity-10"
+            style={{ 
+                backgroundImage: `linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)`, 
+                backgroundSize: '40px 40px' 
+            }}
+          />
 
           {/* Content */}
-          <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
-            {/* Top Badge */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30">
-                <span className="text-xl">⚡</span>
-              </div>
-              <h4 className="text-xl font-bold text-[#FDFCF0] uppercase tracking-wider">
+          <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
+            {/* Top Label */}
+            <div className="border-l-2 border-[#FDFCF0]/30 pl-4">
+              <h4 className="text-lg font-bold text-[#FDFCF0] uppercase tracking-widest">
                 30% AI Driven
               </h4>
             </div>
 
-            {/* Description */}
+            {/* Description Text */}
             <motion.div 
                animate={{ opacity: active === "human" ? 0 : 1 }} 
-               className="space-y-4"
+               className="space-y-6"
             >
-               <h3 className="text-3xl font-serif text-blue-400">
+               <h3 className="text-4xl font-serif text-[#FDFCF0]">
                  Speed & Scale
                </h3>
-               <p className="text-[#FDFCF0]/70 leading-relaxed max-w-md">
-                 Our engines scan contracts for IFRS indicators, run thousands of stress-test scenarios, and detect anomalies instantly. [cite_start]Efficiency without error. [cite: 596, 600]
+               <p className="text-[#FDFCF0]/80 leading-relaxed max-w-md text-sm md:text-base">
+                 Our engines scan contracts for IFRS indicators, run thousands of stress-test scenarios, and detect anomalies instantly. Efficiency without error.
                </p>
 
-               {/* List of AI Tasks */}
-               <ul className="space-y-2 mt-4">
+               {/* Bullet Points */}
+               <div className="space-y-2">
                  {["Anomaly Detection", "Scenario Simulations", "Data Cleansing"].map((item) => (
-                   <li key={item} className="flex items-center gap-2 text-sm text-[#FDFCF0]/80">
-                     <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                   <div key={item} className="flex items-center gap-3 text-sm text-[#FDFCF0]/60">
+                     <div className="w-1 h-1 bg-[#FDFCF0] rounded-full" />
                      {item}
-                   </li>
+                   </div>
                  ))}
-               </ul>
+               </div>
             </motion.div>
 
-            {/* Hover Instruction */}
-            <div className="text-[#FDFCF0]/30 text-xs font-mono uppercase tracking-widest group-hover:text-blue-400 transition-colors">
-              Efficiency Engine
-            </div>
-          </div>
-        </motion.div>
-
-      </div>
-    </div>
-  );
-}
+            {/* Hover Indicator */}
+            <div className="text-[#FDFCF0] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-10
