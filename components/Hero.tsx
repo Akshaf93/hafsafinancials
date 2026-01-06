@@ -16,8 +16,7 @@ const LOCATIONS = [
   { name: "New Zealand", top: 75, left: 94, align: "top" },
 ];
 
-// REMOVED: ObsidianBackground component (It is now in globals.css for consistency)
-
+// REMOVED: ObsidianBackground component (It is now in globals.css for consistenc
 export default function Hero() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
