@@ -41,7 +41,7 @@ export default function Footer() {
         <div>
           <h3 className="font-bold text-lg mb-4">Subscribe</h3>
           <p className="text-xs text-[#FDFCF0]/50 mb-4">
-            Join 1,000+ professionals receiving our weekly IFRS & Strategy updates.
+            Join 1,000+ professionals receiving our monthly IFRS & Strategy updates.
           </p>
           <div className="flex gap-2">
             <input 
