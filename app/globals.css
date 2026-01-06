@@ -4,34 +4,36 @@
 
 :root {
   --foreground-rgb: 253, 252, 240;
-  --gold-primary: #E5D095;
+  --gold-primary: #D4AF37;
 }
 
-/* --- 1. GLOBAL SCROLL SNAP (Fixes Sensitivity) --- */
+/* --- SCROLL SNAP FIX --- */
 html {
-  /* "mandatory" enforces snapping, but on 'html' it handles mouse-wheel momentum 
-     much better than overflow-scroll divs, preventing accidental skipping. */
-  scroll-snap-type: y mandatory;
+  /* CHANGED: 'mandatory' -> 'proximity' 
+     This prevents the page from aggressively snapping back up when you 
+     try to scroll to the footer. */
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  margin: 0;
-  /* --- 2. UNIFIED OBSIDIAN BACKGROUND (Fixes Color Mismatch) --- */
   background-color: #050505;
+  margin: 0;
+  min-h-screen;
 }
 
-/* LAYER 1: The Deep Radial Gradient (From Hero) */
+/* Background Layer 1: Radial Gradient */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2; /* Behind everything */
+  z-index: -2;
   background: radial-gradient(circle at center, #1a1a1a 0%, #050505 60%, #000000 100%);
 }
 
-/* LAYER 2: The Soft Gold Grid Texture (From Hero) */
+/* Background Layer 2: Texture */
 body::after {
   content: "";
   position: fixed;
@@ -40,19 +42,12 @@ body::after {
   opacity: 0.03;
   pointer-events: none;
   background-image: 
-    linear-gradient(#E5D095 1px, transparent 1px), 
-    linear-gradient(90deg, #E5D095 1px, transparent 1px);
+    linear-gradient(#D4AF37 1px, transparent 1px), 
+    linear-gradient(90deg, #D4AF37 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 /* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 10px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
