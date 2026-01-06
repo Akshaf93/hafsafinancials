@@ -52,8 +52,7 @@ export default function ServicesOverview() {
   const [activeTab, setActiveTab] = useState("ifrs");
 
   return (
-    // Reduced padding and max-width further to make it compact
-    <div className="relative w-full max-w-5xl mx-auto px-6 pt-16 pb-8">
+    <div className="relative w-full max-w-7xl mx-auto px-6 py-24">
       
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-8">
@@ -77,7 +76,7 @@ export default function ServicesOverview() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${
+            className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all ${
               activeTab === tab.id
                 ? "bg-[#E5D095] text-[#050505] shadow-[0_0_15px_rgba(229,208,149,0.4)]"
                 : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:text-[#E5D095] hover:bg-[#FDFCF0]/5"
@@ -89,7 +88,7 @@ export default function ServicesOverview() {
       </div>
 
       {/* ACTIVE TAB CONTENT AREA */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 md:p-8 min-h-[250px] shadow-2xl flex flex-col justify-center">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-8 md:p-12 min-h-[400px] shadow-2xl flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {SERVICE_TABS.map((tab) => activeTab === tab.id && (
             <motion.div
@@ -101,10 +100,10 @@ export default function ServicesOverview() {
               className="flex flex-col h-full justify-between"
             >
               <div>
-                <h3 className="text-xl md:text-2xl font-serif font-medium text-[#FDFCF0] mb-3">
+                <h3 className="text-2xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-6">
                   {tab.headline}
                 </h3>
-                <p className="text-[#FDFCF0]/70 text-base leading-relaxed max-w-3xl mb-6">
+                <p className="text-[#FDFCF0]/70 text-lg leading-relaxed max-w-4xl mb-8">
                   {tab.content}
                 </p>
               </div>
