@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const LINKS = [
   { name: "Services", href: "/services" },
@@ -14,9 +15,27 @@ const LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Detect scroll to toggle transparency
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Logic: 
+  // 1. If we are on the Home page ('/') AND not scrolled yet -> Transparent
+  // 2. Otherwise (Scrolled OR different page) -> Solid Dark
+  const isHome = pathname === "/";
+  const navBackground = isHome && !isScrolled 
+    ? "bg-transparent border-transparent" 
+    : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[#050505]/80 backdrop-blur-md border-b border-[#FDFCF0]/10 shadow-sm transition-all duration-300">
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground}`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}

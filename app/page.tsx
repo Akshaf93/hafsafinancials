@@ -9,51 +9,51 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    // Height Calculation: 100vh (Screen) - 80px (Navbar approx)
-    // This creates a perfect scroll container below the header.
-    <main className="h-[calc(100vh-80px)] w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-transparent">
+    // UPDATED: Removed fixed height calculation and overflow-y-scroll.
+    // We let the window handle the scroll so the Navbar can detect it.
+    <main className="w-full bg-transparent">
       
       {/* SECTION 1: HERO */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center overflow-hidden">
+      <section className="h-screen w-full relative flex flex-col justify-center overflow-hidden">
         <Hero />
       </section>
 
       {/* SECTION 2: SERVICES */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center">
+      <section className="h-screen w-full relative flex flex-col justify-center">
         <ServicesOverview />
       </section>
 
       {/* SECTION 3: GLOBAL REACH */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center">
+      <section className="h-screen w-full relative flex flex-col justify-center">
         <GlobalReach />
       </section>
 
       {/* SECTION 4: HYBRID MODEL */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center">
+      <section className="h-screen w-full relative flex flex-col justify-center">
         <HybridModel />
       </section>
 
       {/* SECTION 5: TEAM */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center">
+      <section className="h-screen w-full relative flex flex-col justify-center">
         <TeamPreview />
       </section>
 
       {/* SECTION 6: INSIGHTS */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-center">
+      <section className="h-screen w-full relative flex flex-col justify-center">
         <InsightsPreview />
       </section>
 
       {/* SECTION 7: TESTIMONIALS & CTA */}
-      <section className="h-full w-full snap-start relative flex flex-col justify-between">
+      <section className="min-h-screen w-full relative flex flex-col justify-between">
         {/* Top Spacer */}
         <div />
         
         {/* Content Centered */}
-        <div className="flex-grow flex flex-col justify-center">
+        <div className="flex-grow flex flex-col justify-center py-20">
             <Testimonials />
         </div>
         
-        {/* Footer CTA (Sticks to bottom of this section) */}
+        {/* Footer CTA */}
         <div className="py-12 bg-[#FDFCF0]/5 border-t border-[#FDFCF0]/10 text-center backdrop-blur-sm">
           <h2 className="text-2xl font-bold text-[#FDFCF0] mb-4">Ready to Start?</h2>
           <div className="flex justify-center gap-4">
