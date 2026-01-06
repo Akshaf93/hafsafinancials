@@ -6,7 +6,7 @@ export default function InsightsPreview() {
   return (
     <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6">
       <div className="mb-12">
-        <h2 className="text-4xl font-bold text-[#FDFCF0]">Intelligence Hub</h2>
+        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">Intelligence Hub</h2>
         <p className="text-[#FDFCF0]/60 mt-4">Stay ahead with our exclusive newsletters.</p>
       </div>
 

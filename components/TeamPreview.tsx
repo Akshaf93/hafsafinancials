@@ -14,7 +14,7 @@ export default function TeamPreview() {
           viewport={{ once: true }}
           className="md:w-1/2 space-y-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#FDFCF0]">
+          <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
             Expert <span className="text-[#E5D095]">Leadership</span>
           </h2>
           <p className="text-xl text-[#FDFCF0]/60 font-light">

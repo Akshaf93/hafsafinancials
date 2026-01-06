@@ -33,7 +33,7 @@ export default function GlobalReach() {
           viewport={{ once: true }}
           className="mb-8"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-[#FDFCF0]">
+          <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
             Global <span className="text-[#E5D095]">Impact</span>
           </h2>
           <p className="text-[#FDFCF0]/60 mt-4 text-xl font-light tracking-wide">

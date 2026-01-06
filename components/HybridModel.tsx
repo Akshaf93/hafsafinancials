@@ -9,7 +9,7 @@ export default function HybridModel() {
   return (
     <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-[#FDFCF0]">Delivery Philosophy</h2>
+        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">Delivery Philosophy</h2>
         <p className="text-xl text-[#FDFCF0]/60 font-light mt-4">
           "Human Judgment. AI Intelligence. Financial Excellence."
         </p>

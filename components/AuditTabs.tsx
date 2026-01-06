@@ -38,19 +38,19 @@ export default function AuditTabs() {
   const [activeTab, setActiveTab] = useState("arch");
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-6 py-16">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-[#FDFCF0]">Hands-On <span className="text-[#E5D095]">Transformation</span></h2>
-        <p className="text-[#FDFCF0]/50 text-xs mt-2 uppercase tracking-widest">Real-World Case Study</p>
+    <div className="w-full max-w-7xl mx-auto px-6 py-24">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">Hands-On <span className="text-[#E5D095]">Transformation</span></h2>
+        <p className="text-[#FDFCF0]/50 text-sm mt-4 uppercase tracking-[0.2em]">Real-World Case Study</p>
       </div>
 
       {/* COMPACT TABS HEADER */}
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
+      <div className="flex flex-wrap justify-center gap-4 mb-10">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all border ${
+            className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all border ${
               activeTab === tab.id
                 ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-lg"
                 : "bg-[#1a1a1a] text-[#FDFCF0]/60 border-[#333] hover:border-[#E5D095]/50 hover:text-[#E5D095]"
@@ -62,7 +62,7 @@ export default function AuditTabs() {
       </div>
 
       {/* TAB CONTENT */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 min-h-[200px]">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {TABS.map((tab) => activeTab === tab.id && (
             <motion.div
@@ -70,15 +70,16 @@ export default function AuditTabs() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
+              className="max-w-4xl mx-auto text-center"
             >
-              <h3 className="text-lg font-bold text-[#FDFCF0] mb-2">{tab.headline}</h3>
-              <p className="text-[#FDFCF0]/70 text-sm leading-relaxed mb-6">
+              <h3 className="text-2xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-6">{tab.headline}</h3>
+              <p className="text-[#FDFCF0]/70 text-lg leading-relaxed mb-10">
                 {tab.content}
               </p>
-              <div className="flex gap-2">
+              <div className="flex justify-center gap-3">
                 {tab.tags.map(tag => (
-                  <span key={tag} className="px-2 py-1 bg-[#E5D095]/10 text-[#E5D095] text-[10px] font-bold rounded border border-[#E5D095]/20">
+                  <span key={tag} className="px-4 py-2 bg-[#E5D095]/10 text-[#E5D095] text-xs font-bold rounded border border-[#E5D095]/20 uppercase tracking-wide">
                     {tag}
                   </span>
                 ))}
