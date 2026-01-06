@@ -10,10 +10,10 @@ const LOCATIONS = [
   { name: "Canada", top: 15, left: 20, align: "top" },
   { name: "United Kingdom", top: 38, left: 48, align: "top" },
   { name: "UAE", top: 50, left: 63, align: "bottom" },
-  { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
+  { name: "Saudi Arabia", top: 36, left: 60, align: "top" },
   { name: "Pakistan", top: 32, left: 67, align: "top" },
   { name: "Australia", top: 65, left: 85, align: "top" },
-  { name: "New Zealand", top: 75, left: 89, align: "top" },
+  { name: "New Zealand", top: 75, left: 94, align: "top" },
 ];
 
 // REMOVED: ObsidianBackground component (It is now in globals.css for consistency)
