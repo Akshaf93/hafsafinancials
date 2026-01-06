@@ -1,67 +1,118 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const SERVICES = [
-  { id: "ifrs", title: "IFRS Advisory", icon: "📊", short: "Implementation & Transition", details: "Full IFRS conversion and complex standard advisory." },
-  { id: "arch", title: "Financial Architect", icon: "🏛️", short: "Modeling & Strategy", details: "CFO-level modeling, stress testing, and planning." },
-  { id: "analysis", title: "Business Analysis", icon: "📈", short: "KPIs & Dashboards", details: "Ratio analysis, Balanced Scorecards, and Power BI." },
-  { id: "tax", title: "Tax Advisory", icon: "⚖️", short: "UK & Pakistan", details: "Corporate tax planning and cross-border filing." },
-  { id: "audit", title: "Internal Controls", icon: "🛡️", short: "Audit & Compliance", details: "Gap analysis and internal audit frameworks." },
+  { 
+    id: "ifrs", 
+    title: "IFRS Advisory", 
+    icon: "📊", 
+    short: "Implementation & Transition", 
+    details: "Full IFRS conversion, policy alignment, and complex standard advisory (IFRS 9, 15, 16, 17)." 
+  },
+  { 
+    id: "arch", 
+    title: "Financial Architect", 
+    icon: "🏛️", 
+    short: "Modeling & Strategy", 
+    details: "CFO-level 3-statement modeling, valuation (DCF), stress testing, and strategic planning." 
+  },
+  { 
+    id: "risk", 
+    title: "Risk & Controls", 
+    icon: "🛡️", 
+    short: "Audit & Compliance", 
+    details: "Internal audit frameworks, gap analysis, cyber-risk assessment, and ICFR." 
+  },
+  { 
+    id: "analysis", 
+    title: "Business Analysis", 
+    icon: "📈", 
+    short: "KPIs & Dashboards", 
+    details: "Power BI dashboards, balanced scorecards, and performance optimization strategies." 
+  },
+  { 
+    id: "tax", 
+    title: "Tax Advisory", 
+    icon: "⚖️", 
+    short: "UK, UAE & Pakistan", 
+    details: "Cross-border tax structuring, corporate filing, and compliance optimization." 
+  },
 ];
 
 export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    // Removed bg color, using h-full to fill the snap section
-    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-12">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-[#FDFCF0]">Our Expertise</h2>
-        <p className="text-[#FDFCF0]/50 mt-2 text-lg">Comprehensive financial solutions for every stage.</p>
+    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20">
+      
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div className="max-w-2xl">
+          <h2 className="text-4xl md:text-5xl font-serif font-medium text-[#FDFCF0] mb-4">
+            Financial <span className="text-[#D4AF37]">Mastery</span>
+          </h2>
+          <p className="text-[#FDFCF0]/60 text-lg font-light leading-relaxed">
+            We don’t just report numbers; we architect them. From complex IFRS transitions to board-level strategic modeling.
+          </p>
+        </div>
+        <Link 
+          href="/services" 
+          className="group flex items-center gap-2 text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:border-[#D4AF37] transition-all"
+        >
+          <span className="text-sm font-bold uppercase tracking-wider">View Full Scope</span>
+          <span className="group-hover:translate-x-1 transition-transform">→</span>
+        </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start">
-        {SERVICES.map((service) => (
-          <motion.div
-            key={service.id}
-            layout
-            onMouseEnter={() => setHovered(service.id)}
-            onMouseLeave={() => setHovered(null)}
-            className={`rounded-xl p-6 border relative overflow-hidden cursor-pointer transition-colors duration-300
-              ${hovered === service.id 
-                ? "bg-[#E5D095] border-[#E5D095] shadow-[0_0_30px_rgba(229,208,149,0.4)] z-10" 
-                : "bg-[#FDFCF0]/5 border-[#FDFCF0]/10 hover:bg-[#FDFCF0]/10"
-              }
-            `}
-          >
-            <motion.div layout="position">
-              <div className="text-3xl mb-4">{service.icon}</div>
-              <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#050505]" : "text-[#FDFCF0]"}`}>
-                {service.title}
-              </h3>
-              <p className={`text-xs ${hovered === service.id ? "text-[#050505]/80" : "text-[#FDFCF0]/60"}`}>
-                {service.short}
-              </p>
-            </motion.div>
+      {/* BENTO GRID LAYOUT */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+        {SERVICES.map((service, index) => {
+          // Span logic: First 2 items span 3 cols (half width), others span 2 cols (third width)
+          const spanClass = index < 2 ? "md:col-span-3" : "md:col-span-2";
+          
+          return (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              onMouseEnter={() => setHovered(service.id)}
+              onMouseLeave={() => setHovered(null)}
+              className={`${spanClass} group relative p-8 rounded-2xl border border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden hover:border-[#D4AF37]/50 transition-all duration-500`}
+            >
+              {/* Hover Gradient Effect */}
+              <div 
+                className={`absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} 
+              />
+              
+              {/* Content */}
+              <div className="relative z-10 flex flex-col h-full justify-between min-h-[180px]">
+                <div className="flex justify-between items-start">
+                  <div className="p-3 rounded-lg bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 text-2xl group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-2xl">↗</span>
+                </div>
 
-            <AnimatePresence>
-              {hovered === service.id && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="overflow-hidden"
-                >
-                  <p className="mt-4 pt-4 border-t border-[#050505]/20 text-xs text-[#050505] leading-relaxed font-medium">
+                <div className="mt-6">
+                  <h3 className="text-xl font-bold text-[#FDFCF0] mb-1 group-hover:text-[#D4AF37] transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#FDFCF0]/50 text-xs font-bold tracking-widest uppercase mb-3">
+                    {service.short}
+                  </p>
+                  <p className="text-[#FDFCF0]/60 text-sm leading-relaxed max-w-[90%]">
                     {service.details}
                   </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
