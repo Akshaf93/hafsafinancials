@@ -21,7 +21,7 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: #050505;
   margin: 0;
-  min-h-screen;
+  min-height: 100vh;
 }
 
 /* Background Layer 1: Radial Gradient */
