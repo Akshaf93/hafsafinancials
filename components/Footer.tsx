@@ -41,7 +41,7 @@ export default function Footer() {
         <div>
           <h3 className="font-bold text-lg mb-4">Subscribe</h3>
           <p className="text-xs text-[#FDFCF0]/50 mb-4">
-            Join 5,000+ professionals receiving our weekly IFRS & Strategy updates.
+            Join 1,000+ professionals receiving our weekly IFRS & Strategy updates.
           </p>
           <div className="flex gap-2">
             <input 
@@ -57,7 +57,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between text-xs text-[#FDFCF0]/40">
-        <p>&copy; 2024 Hafsa Financials. All rights reserved.</p>
+        <p>&copy; 2026 Hafsa Financials. All rights reserved.</p>
         <p>Privacy Policy | Terms of Engagement</p>
       </div>
     </footer>
