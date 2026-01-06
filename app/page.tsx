@@ -9,42 +9,41 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    // UPDATED: Removed fixed height calculation and overflow-y-scroll.
-    // We let the window handle the scroll so the Navbar can detect it.
-    <main className="w-full bg-transparent">
+    // UPDATED: No 'overflow-y-scroll' here. We let the Window scroll (enabled by globals.css)
+    <main className="w-full">
       
       {/* SECTION 1: HERO */}
-      <section className="h-screen w-full relative flex flex-col justify-center overflow-hidden">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
         <Hero />
       </section>
 
       {/* SECTION 2: SERVICES */}
-      <section className="h-screen w-full relative flex flex-col justify-center">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <ServicesOverview />
       </section>
 
       {/* SECTION 3: GLOBAL REACH */}
-      <section className="h-screen w-full relative flex flex-col justify-center">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <GlobalReach />
       </section>
 
       {/* SECTION 4: HYBRID MODEL */}
-      <section className="h-screen w-full relative flex flex-col justify-center">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <HybridModel />
       </section>
 
       {/* SECTION 5: TEAM */}
-      <section className="h-screen w-full relative flex flex-col justify-center">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <TeamPreview />
       </section>
 
       {/* SECTION 6: INSIGHTS */}
-      <section className="h-screen w-full relative flex flex-col justify-center">
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <InsightsPreview />
       </section>
 
       {/* SECTION 7: TESTIMONIALS & CTA */}
-      <section className="min-h-screen w-full relative flex flex-col justify-between">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-between">
         {/* Top Spacer */}
         <div />
         

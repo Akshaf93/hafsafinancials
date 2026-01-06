@@ -7,11 +7,16 @@
   --gold-primary: #D4AF37;
 }
 
+/* --- ADDED: Global Magnetic Scroll --- */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  /* deeply rich radial gradient: Obsidian -> Midnight Blue -> Void */
   background: radial-gradient(circle at 50% 30%, #1a1e29 0%, #050505 60%, #000000 100%);
-  background-attachment: fixed; /* Keeps the glow in place while scrolling */
+  background-attachment: fixed;
 }
 
 /* Subtle texture overlay */
