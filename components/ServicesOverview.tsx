@@ -1,71 +1,140 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-const SERVICES = [
-  { id: "ifrs", title: "IFRS Advisory", icon: "📊", short: "Implementation", details: "IFRS 9, 15, 16 & 17 Advisory." },
-  { id: "arch", title: "Financial Architect", icon: "🏛️", short: "Modeling", details: "3-Statement models & Valuation." },
-  { id: "risk", title: "Risk & Controls", icon: "🛡️", short: "Compliance", details: "Internal Audit & Cyber Risk." },
-  { id: "analysis", title: "Business Analysis", icon: "📈", short: "KPIs", details: "Power BI & Strategy Dashboards." },
-  { id: "tax", title: "Tax Advisory", icon: "⚖️", short: "Cross-Border", details: "UK, UAE & Pakistan Tax Filing." },
+// Service Data sourced directly from HAFSA FINANCIALS.pdf (Pages 2-3)
+const SERVICE_TABS = [
+  {
+    id: "ifrs",
+    label: "IFRS Advisory",
+    headline: "Transition, Compliance & Technical Advisory.",
+    // Source: PDF Page 2 (Service 1)
+    content: "Full IFRS implementation and transition support. Specialized advisory for complex standards including IFRS 9 (Financial Instruments), IFRS 15 (Revenue), IFRS 16 (Leases), and IFRS 17 (Insurance). Includes accounting policy development and financial risk assessment.",
+    tags: ["IFRS 9, 15, 16 & 17", "Policy Development", "Gap Analysis"]
+  },
+  {
+    id: "arch",
+    label: "Financial Architect",
+    headline: "CFO-Level Modeling & Strategic Planning.",
+    // Source: PDF Page 3 (Service 4)
+    content: "Advanced 3-statement financial modeling, stress testing, and multi-year forecasting. We provide strategic financial planning, PPE asset schedules, and scenario analysis to guide capital allocation and growth.",
+    tags: ["3-Statement Models", "Stress Testing", "Valuation"]
+  },
+  {
+    id: "analysis",
+    label: "Business Analysis",
+    headline: "Turning Data into Strategic Insight.",
+    // Source: PDF Page 2 (Service 2)
+    content: "Tailor-made ratio analysis with commentary and Balanced Scorecard implementation. We build interactive KPI Dashboards (Power BI enabled) to track performance and drive strategy optimization.",
+    tags: ["Power BI Dashboards", "Balanced Scorecard", "Ratio Analysis"]
+  },
+  {
+    id: "tax",
+    label: "Tax Advisory",
+    headline: "Cross-Border Compliance (UK & Pakistan).",
+    // Source: PDF Page 2 (Service 3)
+    content: "Comprehensive corporate and individual tax planning. Services include filing, compliance, and cross-border tax structuring for businesses operating in the UK, Pakistan, and international jurisdictions.",
+    tags: ["UK Corp Tax", "Pakistan Filings", "Cross-Border"]
+  },
+  {
+    id: "controls",
+    label: "Internal Controls",
+    headline: "Governance, Risk & Compliance Frameworks.",
+    // Source: PDF Page 3 (Service 5)
+    content: "Internal control assessment and gap analysis. We design IT & business process controls, internal audit frameworks, and custom implementations for application and physical security.",
+    tags: ["Gap Analysis", "IT Controls", "Process Audit"]
+  }
 ];
 
 export default function ServicesOverview() {
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("ifrs");
 
   return (
-    // Compact Padding: pt-32 (for navbar) but tight pb-10
-    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 pt-32 pb-10">
+    // Preserved pt-32 to accommodate the Fixed Navbar
+    <div className="relative w-full max-w-5xl mx-auto px-6 pt-32 pb-16">
       
-      {/* Header - Compact */}
-      <div className="flex justify-between items-end mb-8">
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
         <div>
-          <h2 className="text-3xl font-serif font-medium text-[#FDFCF0]">
-            Financial <span className="text-[#D4AF37]">Mastery</span>
+          <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0]">
+            Our <span className="text-[#E5D095]">Expertise</span>
           </h2>
+          <p className="text-[#FDFCF0]/60 text-sm mt-2 max-w-xl">
+            Comprehensive financial solutions tailored for global compliance and strategic growth.
+          </p>
         </div>
-        <Link href="/services" className="text-[#D4AF37] text-xs font-bold uppercase hover:underline">
-          View All →
+        <Link 
+          href="/services" 
+          className="text-[#E5D095] text-xs font-bold uppercase tracking-widest hover:text-[#FDFCF0] transition-colors border-b border-[#E5D095] pb-1"
+        >
+          View All Services →
         </Link>
       </div>
 
-      {/* Grid - Reduced Gap and Height */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        {SERVICES.map((service, index) => {
-          const spanClass = index < 2 ? "md:col-span-3" : "md:col-span-2";
-          return (
+      {/* COMPACT TAB NAVIGATION */}
+      <div className="flex flex-wrap gap-2 mb-6 border-b border-[#FDFCF0]/10 pb-4">
+        {SERVICE_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${
+              activeTab === tab.id
+                ? "bg-[#E5D095] text-[#050505] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:text-[#E5D095] hover:bg-[#FDFCF0]/5"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* ACTIVE TAB CONTENT AREA */}
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-8 min-h-[240px] shadow-2xl">
+        <AnimatePresence mode="wait">
+          {SERVICE_TABS.map((tab) => activeTab === tab.id && (
             <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              viewport={{ once: true }}
-              onMouseEnter={() => setHovered(service.id)}
-              onMouseLeave={() => setHovered(null)}
-              // COMPACT STYLING: p-5 (was p-8), min-h-[140px] (was 180)
-              className={`${spanClass} group relative p-5 rounded-xl border border-[#FDFCF0]/10 bg-[#0a0a0a] hover:border-[#D4AF37]/50 transition-all duration-300 flex flex-col justify-between min-h-[140px]`}
+              key={tab.id}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.2 }}
+              className="flex flex-col h-full justify-between"
             >
-              <div className="flex justify-between items-start">
-                <div className="text-xl opacity-80">{service.icon}</div>
-                {hovered === service.id && <span className="text-[#D4AF37] text-sm">↗</span>}
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-[#FDFCF0] mb-3">
+                  {tab.headline}
+                </h3>
+                <p className="text-[#FDFCF0]/70 text-sm leading-relaxed max-w-3xl mb-6">
+                  {tab.content}
+                </p>
               </div>
 
-              <div>
-                <h3 className="text-lg font-bold text-[#FDFCF0] group-hover:text-[#D4AF37] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-[#FDFCF0]/50 text-[10px] font-bold tracking-widest uppercase mb-1">
-                  {service.short}
-                </p>
-                <p className="text-[#FDFCF0]/60 text-xs leading-snug">
-                  {service.details}
-                </p>
+              {/* Tags & Action */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto pt-6 border-t border-[#FDFCF0]/10">
+                <div className="flex flex-wrap gap-2">
+                  {tab.tags.map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="px-3 py-1 bg-[#E5D095]/10 text-[#E5D095] text-[10px] font-bold uppercase tracking-wide rounded border border-[#E5D095]/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                
+                <Link 
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#FDFCF0] hover:text-[#E5D095] transition-colors group"
+                >
+                  Book Consultation 
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
               </div>
             </motion.div>
-          );
-        })}
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -40,12 +40,12 @@ export default function AuditTransformation() {
         
         {/* Header - Source: 1067, 1100 */}
         <div className="max-w-3xl mb-16">
-          <h2 className="text-sm font-bold text-[#D4AF37] uppercase tracking-[0.2em] mb-4">
+          <h2 className="text-sm font-bold text-[#E5D095] uppercase tracking-[0.2em] mb-4">
             Hands-On Experience
           </h2>
           <h3 className="text-3xl md:text-5xl font-bold text-[#FDFCF0] mb-6 leading-tight">
             Internal Audit as a <br />
-            <span className="text-[#D4AF37]">Value-Creation Discipline</span>
+            <span className="text-[#E5D095]">Value-Creation Discipline</span>
           </h3>
           <p className="text-[#FDFCF0]/60 text-lg leading-relaxed">
             We don't just identify risks; we fix them. From correcting material misstatements to re-engineering liquidity ratios, our audits restore regulatory confidence and operational clarity.
@@ -61,12 +61,12 @@ export default function AuditTransformation() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-[#1a1a1a] border border-[#FDFCF0]/10 p-8 rounded-2xl group hover:border-[#D4AF37]/50 transition-all duration-300"
+              className="bg-[#1a1a1a] border border-[#FDFCF0]/10 p-8 rounded-2xl group hover:border-[#E5D095]/50 transition-all duration-300"
             >
-              <h4 className="text-2xl font-bold text-[#FDFCF0] mb-2 group-hover:text-[#D4AF37] transition-colors">
+              <h4 className="text-2xl font-bold text-[#FDFCF0] mb-2 group-hover:text-[#E5D095] transition-colors">
                 {item.title}
               </h4>
-              <p className="text-[#D4AF37] font-medium text-sm mb-6 italic border-l-2 border-[#D4AF37] pl-3">
+              <p className="text-[#E5D095] font-medium text-sm mb-6 italic border-l-2 border-[#E5D095] pl-3">
                 "{item.outcome}"
               </p>
               <p className="text-[#FDFCF0]/70 text-sm leading-relaxed mb-6">
@@ -87,7 +87,7 @@ export default function AuditTransformation() {
         {/* Closing Statement - Source: 1146 */}
         <div className="mt-16 text-center border-t border-[#FDFCF0]/10 pt-12">
           <p className="text-xl md:text-2xl text-[#FDFCF0] font-light max-w-4xl mx-auto">
-            "Hafsa Financials integrates Financial Architecture, IFRS Advisory, and Internal Controls into one coherent framework — <span className="text-[#D4AF37] font-normal">delivering financial truth that stands up to scrutiny.</span>"
+            "Hafsa Financials integrates Financial Architecture, IFRS Advisory, and Internal Controls into one coherent framework — <span className="text-[#E5D095] font-normal">delivering financial truth that stands up to scrutiny.</span>"
           </p>
         </div>
 
