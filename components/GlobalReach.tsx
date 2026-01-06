@@ -19,8 +19,8 @@ export default function GlobalReach() {
   const [activePin, setActivePin] = useState<string | null>(null);
 
   return (
-    // UPDATED: Added pt-32 to clear the navbar, and centered content
-    <div className="relative w-full h-full flex flex-col justify-start md:justify-center items-center overflow-hidden pt-32 md:pt-0">
+    // UPDATED: Added pt-32 to push content down below the Navbar
+    <div className="relative w-full h-full flex flex-col justify-center items-center overflow-hidden pt-32">
       
       {/* Local Atmosphere (Spotlight) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -31,7 +31,7 @@ export default function GlobalReach() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-6" // Reduced margin to make it tighter
+          className="mb-8"
         >
           <h2 className="text-4xl md:text-6xl font-bold text-[#FDFCF0]">
             Global <span className="text-[#D4AF37]">Impact</span>
@@ -41,7 +41,7 @@ export default function GlobalReach() {
           </p>
         </motion.div>
 
-        {/* MAP CONTAINER - UPDATED: Changed to max-w-4xl to make it smaller */}
+        {/* MAP CONTAINER - UPDATED: max-w-4xl makes the map area smaller/tighter */}
         <div className="relative w-full max-w-4xl mx-auto aspect-[1.8/1] mt-4 group">
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center transition-all duration-700 opacity-50 group-hover:opacity-70"
