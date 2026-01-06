@@ -7,11 +7,8 @@
   --gold-primary: #D4AF37;
 }
 
-/* --- SCROLL SNAP FIX --- */
 html {
-  /* CHANGED: 'mandatory' -> 'proximity' 
-     This prevents the page from aggressively snapping back up when you 
-     try to scroll to the footer. */
+  /* Relaxed snap to prevent sticking */
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   height: 100%;
@@ -21,7 +18,8 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: #050505;
   margin: 0;
-  min-h-screen;
+  /* FIXED: Changed from 'min-h-screen;' to standard CSS */
+  min-height: 100vh;
 }
 
 /* Background Layer 1: Radial Gradient */

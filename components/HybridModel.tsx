@@ -23,17 +23,12 @@ export default function HybridModel() {
       </div>
 
       {/* CARDS CONTAINER */}
-      {/* Fixed height ensures no vertical layout shift. Flex ensures they fill the width. */}
       <div className="relative w-full max-w-6xl h-[500px] flex gap-4 px-6 md:px-0">
         
         {/* === CARD 1: HUMAN EXPERT === */}
         <motion.div
           onHoverStart={() => setActive("human")}
           onHoverEnd={() => setActive(null)}
-          // ANIMATION LOGIC:
-          // Standard state: flex: 1 (50% width)
-          // Active state: flex: 2 (66% width)
-          // Inactive state: flex: 0.5 (33% width)
           animate={{
             flex: active === "human" ? 2 : active === "ai" ? 0.5 : 1,
             opacity: active === "ai" ? 0.5 : 1
@@ -138,4 +133,13 @@ export default function HybridModel() {
             </motion.div>
 
             {/* Hover Indicator */}
-            <div className="text-[#FDFCF0] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-10
+            <div className="text-[#FDFCF0] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+              Efficiency Engine
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
