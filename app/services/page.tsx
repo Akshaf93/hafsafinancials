@@ -1,17 +1,16 @@
 import ServicesOverview from "@/components/ServicesOverview";
-import AuditTransformation from "@/components/AuditTransformation"; // Import the new component
+import AuditTransformation from "@/components/AuditTabs"; // Renamed to fit the new component
 
 export default function ServicesPage() {
   return (
-    // UPDATED: Changed bg-slate-50 to bg-[#050505] to match global theme
     <main className="pt-20 pb-20 bg-[#050505] min-h-screen">
       
-      {/* 1. Services Overview (Bento Grid) */}
-      <section className="mb-20">
+      {/* 1. Compact Services Grid */}
+      <section className="mb-10">
          <ServicesOverview />
       </section>
 
-      {/* 2. NEW: Deep Dive into Internal Audit & Hands-On Experience */}
+      {/* 2. Compact Tabs: Internal Audit Case Study */}
       <section className="relative">
         <AuditTransformation />
       </section>
