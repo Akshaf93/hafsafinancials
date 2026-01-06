@@ -141,7 +141,7 @@ export default function Hero() {
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
             style={{ 
-              backgroundImage: "url('/world-map.png')",
+              backgroundImage: "url('/World_map_-_low_resolution.svg')",
             }}
           />
 
