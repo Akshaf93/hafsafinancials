@@ -40,7 +40,7 @@ export default function AuditTabs() {
   return (
     <div className="w-full max-w-4xl mx-auto px-6 py-16">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-[#FDFCF0]">Hands-On <span className="text-[#D4AF37]">Transformation</span></h2>
+        <h2 className="text-2xl font-bold text-[#FDFCF0]">Hands-On <span className="text-[#E5D095]">Transformation</span></h2>
         <p className="text-[#FDFCF0]/50 text-xs mt-2 uppercase tracking-widest">Real-World Case Study</p>
       </div>
 
@@ -52,8 +52,8 @@ export default function AuditTabs() {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all border ${
               activeTab === tab.id
-                ? "bg-[#D4AF37] text-[#050505] border-[#D4AF37] shadow-lg"
-                : "bg-[#1a1a1a] text-[#FDFCF0]/60 border-[#333] hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
+                ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-lg"
+                : "bg-[#1a1a1a] text-[#FDFCF0]/60 border-[#333] hover:border-[#E5D095]/50 hover:text-[#E5D095]"
             }`}
           >
             {tab.label}
@@ -62,7 +62,7 @@ export default function AuditTabs() {
       </div>
 
       {/* TAB CONTENT */}
-      <div className="relative bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 min-h-[200px]">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 min-h-[200px]">
         <AnimatePresence mode="wait">
           {TABS.map((tab) => activeTab === tab.id && (
             <motion.div
@@ -78,7 +78,7 @@ export default function AuditTabs() {
               </p>
               <div className="flex gap-2">
                 {tab.tags.map(tag => (
-                  <span key={tag} className="px-2 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] font-bold rounded border border-[#D4AF37]/20">
+                  <span key={tag} className="px-2 py-1 bg-[#E5D095]/10 text-[#E5D095] text-[10px] font-bold rounded border border-[#E5D095]/20">
                     {tag}
                   </span>
                 ))}

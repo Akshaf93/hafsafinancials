@@ -81,7 +81,7 @@ export default function ServicesOverview() {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${
               activeTab === tab.id
-                ? "bg-[#E5D095] text-[#050505] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                ? "bg-[#E5D095] text-[#050505] shadow-[0_0_15px_rgba(229,208,149,0.4)]"
                 : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:text-[#E5D095] hover:bg-[#FDFCF0]/5"
             }`}
           >
