@@ -3,27 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 253, 252, 240; /* Ivory */
-  --background-start-rgb: 5, 5, 5; /* Obsidian */
-  --background-end-rgb: 10, 10, 10; /* Darker Obsidian */
+  --foreground-rgb: 253, 252, 240; /* Ivory text */
+  --gold-rgb: 212, 175, 55;        /* Metallic Gold */
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 100%);
+  /* New Background Strategy:
+     Instead of flat #050505, we use a very deep radial gradient.
+     Center: Dark Slate/Charcoal (#111) -> Edges: Deep Obsidian (#000)
+     This adds "simulated lighting" to the screen center.
+  */
+  background: radial-gradient(circle at 50% 10%, #121212 0%, #000000 100%);
   min-height: 100vh;
 }
 
-/* Add a subtle grain texture to make it feel like premium paper/stone */
-body::before {
+/* Noise Texture:
+   This adds a very faint "film grain" or "paper texture"
+   It makes the dark background feel solid and expensive, not empty.
+*/
+body::after {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
-  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* Custom Scrollbar for Chrome/Safari/Edge */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505; 
+}
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37; 
 }
