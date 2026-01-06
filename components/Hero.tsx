@@ -4,22 +4,25 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-// --- MAP LOCATIONS ---
+// --- GLOBAL REACH LOCATIONS ---
+// Added 'align' property to help position labels so they don't overlap
 const LOCATIONS = [
-  { name: "United States", top: 28, left: 20, align: "bottom" },
-  { name: "Canada", top: 12, left: 18, align: "top" },
-  { name: "United Kingdom", top: 18, left: 47, align: "top" },
-  { name: "UAE", top: 40, left: 62, align: "bottom" },
-  { name: "Saudi Arabia", top: 38, left: 59, align: "top" },
-  { name: "Pakistan", top: 35, left: 66, align: "top" },
-  { name: "Australia", top: 72, left: 85, align: "top" },
-  { name: "New Zealand", top: 82, left: 93, align: "top" },
+  { name: "United States", top: 28, left: 22, align: "bottom" },
+  { name: "Canada", top: 15, left: 20, align: "top" },
+  { name: "United Kingdom", top: 20, left: 48, align: "top" },
+  { name: "UAE", top: 42, left: 63, align: "bottom" },
+  { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
+  { name: "Pakistan", top: 35, left: 68, align: "top" },
+  { name: "Australia", top: 70, left: 85, align: "top" },
+  { name: "New Zealand", top: 82, left: 95, align: "top" },
 ];
 
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
+    {/* Deep Obsidian Base */}
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
-    {/* Texture */}
+    
+    {/* Soft Gold Grid - Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -38,15 +41,16 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full flex items-center overflow-hidden pt-20"
+      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10"
     >
       <ObsidianBackground />
 
-      {/* --- LEFT CONTENT (Text) --- */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full h-full flex items-center pointer-events-none">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
+        
+        {/* --- LEFT COLUMN: TEXT CONTENT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="w-full lg:w-[45%] flex flex-col items-start text-left pointer-events-auto"
+          className="flex flex-col items-start text-left z-20" // z-20 ensures text stays above map overlap
         >
           {/* Badge */}
           <motion.div 
@@ -125,70 +129,58 @@ export default function Hero() {
               </div>
           </motion.div>
         </motion.div>
+
+        {/* --- RIGHT COLUMN: WORLD MAP --- */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          // UPDATED: Added a mask-image to fade top/bottom edges, removing the "box" look
+          className="relative w-full h-[800px] flex items-center justify-center [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+        >
+          {/* Map Base - Scaled up slightly to fill space */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
+            style={{ 
+              backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
+              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+            }}
+          />
+
+          {/* Locations */}
+          {LOCATIONS.map((loc, i) => (
+            <motion.div
+              key={loc.name}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
+              className="absolute w-4 h-4 -ml-2 -mt-2 z-20"
+              style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
+            >
+              {/* Dot - UPDATED: Added thick border-[#050505] to make the Gold pop against the Grey map */}
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
+              <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
+
+              {/* Label - UPDATED: Solid black bg with gold border for max readability */}
+              <div 
+                className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
+                  ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
+                `}
+              >
+                <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
+                   {/* Optional: Tiny indicator inside label */}
+                   <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                   {loc.name}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
 
-
-      {/* --- MAP CONTAINER --- */}
-      {/* 1. h-screen: Spans full viewport height.
-         2. flex items-center: Ensures map is Vertically Centered.
-         3. right-[-x%]: Offsets it to the right.
-      */}
-      <motion.div 
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="absolute top-0 right-[-20%] md:right-[-10%] lg:right-[-5%] h-screen w-[60vw] md:w-[50vw] flex items-center justify-center z-10 pointer-events-none"
-      >
-        {/* Map Wrapper with Aspect Ratio */}
-        <div className="relative w-full h-[85vh] md:h-[90vh]">
-            
-            {/* The Map Image */}
-            <div 
-                className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
-                style={{ 
-                  backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
-                  filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
-                }}
-            />
-
-            {/* --- THE FIX: GRADIENT OVERLAYS (Reflections) --- */}
-            {/* Top Fade */}
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#050505] to-transparent z-20" />
-            {/* Bottom Fade */}
-            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-20" />
-
-            {/* Interactive Pins */}
-            {LOCATIONS.map((loc, i) => (
-                <motion.div
-                key={loc.name}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-                className="absolute w-5 h-5 -ml-2.5 -mt-2.5 z-30 pointer-events-auto"
-                style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
-                >
-                {/* Dot */}
-                <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
-                <span className="relative inline-flex rounded-full h-5 w-5 bg-[#D4AF37] border-[4px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
-
-                {/* Label */}
-                <div 
-                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap z-40
-                    ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
-                    `}
-                >
-                    <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-xl flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                      {loc.name}
-                    </div>
-                </div>
-                </motion.div>
-            ))}
-        </div>
-      </motion.div>
-
-      {/* Hero Bottom Fade (Separate from map, for page continuity) */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
+      {/* Gradient Fade for Bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
 }
