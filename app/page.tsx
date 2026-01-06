@@ -4,6 +4,7 @@ import ServicesOverview from "@/components/ServicesOverview";
 import InsightsPreview from "@/components/InsightsPreview";
 import Testimonials from "@/components/Testimonials";
 import TeamPreview from "@/components/TeamPreview";
+import Link from "next/link";
 
 export default function Home() {
   return (
