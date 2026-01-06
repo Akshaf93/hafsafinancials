@@ -15,16 +15,18 @@ export default function HybridModel() {
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row h-[50vh] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10">
+      <div 
+        className="flex flex-col md:flex-row h-[50vh] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        onMouseLeave={() => setActiveSide(null)}
+      >
         
         {/* HUMAN SIDE */}
         <motion.div 
-          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500
-            ${activeSide === "ai" ? "md:w-[25%] opacity-50" : "md:w-[75%]"}
+          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
+            ${activeSide === "ai" ? "md:w-[25%] opacity-50" : activeSide === "human" ? "md:w-[75%]" : "md:w-[50%]"}
             bg-[#1a1a1a] border-r border-[#333]
           `}
           onMouseEnter={() => setActiveSide("human")}
-          onMouseLeave={() => setActiveSide(null)}
         >
           <div className="relative z-10">
             <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-8 -left-4">70%</h3>
@@ -47,12 +49,11 @@ export default function HybridModel() {
 
         {/* AI SIDE */}
         <motion.div 
-          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500
-            ${activeSide === "human" ? "md:w-[25%] opacity-50" : "md:w-[75%]"}
+          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
+            ${activeSide === "human" ? "md:w-[25%] opacity-50" : activeSide === "ai" ? "md:w-[75%]" : "md:w-[50%]"}
             bg-[#0a0a0a]
           `}
           onMouseEnter={() => setActiveSide("ai")}
-          onMouseLeave={() => setActiveSide(null)}
         >
           <div className="relative z-10">
             <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-8 -left-4">30%</h3>
