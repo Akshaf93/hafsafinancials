@@ -5,112 +5,63 @@ import Link from "next/link";
 import { useState } from "react";
 
 const SERVICES = [
-  { 
-    id: "ifrs", 
-    title: "IFRS Advisory", 
-    icon: "📊", 
-    short: "Implementation & Transition", 
-    details: "Full IFRS conversion, policy alignment, and complex standard advisory (IFRS 9, 15, 16, 17)." 
-  },
-  { 
-    id: "arch", 
-    title: "Financial Architect", 
-    icon: "🏛️", 
-    short: "Modeling & Strategy", 
-    details: "CFO-level 3-statement modeling, valuation (DCF), stress testing, and strategic planning." 
-  },
-  { 
-    id: "risk", 
-    title: "Risk & Controls", 
-    icon: "🛡️", 
-    short: "Audit & Compliance", 
-    details: "Internal audit frameworks, gap analysis, cyber-risk assessment, and ICFR." 
-  },
-  { 
-    id: "analysis", 
-    title: "Business Analysis", 
-    icon: "📈", 
-    short: "KPIs & Dashboards", 
-    details: "Power BI dashboards, balanced scorecards, and performance optimization strategies." 
-  },
-  { 
-    id: "tax", 
-    title: "Tax Advisory", 
-    icon: "⚖️", 
-    short: "UK, UAE & Pakistan", 
-    details: "Cross-border tax structuring, corporate filing, and compliance optimization." 
-  },
+  { id: "ifrs", title: "IFRS Advisory", icon: "📊", short: "Implementation", details: "IFRS 9, 15, 16 & 17 Advisory." },
+  { id: "arch", title: "Financial Architect", icon: "🏛️", short: "Modeling", details: "3-Statement models & Valuation." },
+  { id: "risk", title: "Risk & Controls", icon: "🛡️", short: "Compliance", details: "Internal Audit & Cyber Risk." },
+  { id: "analysis", title: "Business Analysis", icon: "📈", short: "KPIs", details: "Power BI & Strategy Dashboards." },
+  { id: "tax", title: "Tax Advisory", icon: "⚖️", short: "Cross-Border", details: "UK, UAE & Pakistan Tax Filing." },
 ];
 
 export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    // UPDATED: Added 'pt-32' (128px) to push content down below the Fixed Navbar.
-    // 'pb-20' adds spacing at the bottom.
-    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 pt-32 pb-20">
+    // Compact Padding: pt-32 (for navbar) but tight pb-10
+    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 pt-32 pb-10">
       
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div className="max-w-2xl">
-          <h2 className="text-4xl md:text-5xl font-serif font-medium text-[#FDFCF0] mb-4">
+      {/* Header - Compact */}
+      <div className="flex justify-between items-end mb-8">
+        <div>
+          <h2 className="text-3xl font-serif font-medium text-[#FDFCF0]">
             Financial <span className="text-[#D4AF37]">Mastery</span>
           </h2>
-          <p className="text-[#FDFCF0]/60 text-lg font-light leading-relaxed">
-            We don’t just report numbers; we architect them. From complex IFRS transitions to board-level strategic modeling.
-          </p>
         </div>
-        <Link 
-          href="/services" 
-          className="group flex items-center gap-2 text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:border-[#D4AF37] transition-all"
-        >
-          <span className="text-sm font-bold uppercase tracking-wider">View Full Scope</span>
-          <span className="group-hover:translate-x-1 transition-transform">→</span>
+        <Link href="/services" className="text-[#D4AF37] text-xs font-bold uppercase hover:underline">
+          View All →
         </Link>
       </div>
 
-      {/* BENTO GRID LAYOUT (Premium) */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-6 h-full md:h-auto">
+      {/* Grid - Reduced Gap and Height */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
         {SERVICES.map((service, index) => {
-          // Span logic: First 2 items span 3 cols (half width), others span 2 cols (third width)
           const spanClass = index < 2 ? "md:col-span-3" : "md:col-span-2";
-          
           return (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: index * 0.05 }}
               viewport={{ once: true }}
               onMouseEnter={() => setHovered(service.id)}
               onMouseLeave={() => setHovered(null)}
-              className={`${spanClass} group relative p-8 rounded-2xl border border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden hover:border-[#D4AF37]/50 transition-all duration-500 flex flex-col`}
+              // COMPACT STYLING: p-5 (was p-8), min-h-[140px] (was 180)
+              className={`${spanClass} group relative p-5 rounded-xl border border-[#FDFCF0]/10 bg-[#0a0a0a] hover:border-[#D4AF37]/50 transition-all duration-300 flex flex-col justify-between min-h-[140px]`}
             >
-              {/* Hover Gradient Effect (Lantern) */}
-              <div 
-                className={`absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} 
-              />
-              
-              {/* Content */}
-              <div className="relative z-10 flex flex-col h-full justify-between min-h-[160px]">
-                <div className="flex justify-between items-start">
-                  <div className="p-3 rounded-lg bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 text-2xl group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                  </div>
-                  <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-2xl">↗</span>
-                </div>
+              <div className="flex justify-between items-start">
+                <div className="text-xl opacity-80">{service.icon}</div>
+                {hovered === service.id && <span className="text-[#D4AF37] text-sm">↗</span>}
+              </div>
 
-                <div className="mt-6">
-                  <h3 className="text-xl font-bold text-[#FDFCF0] mb-1 group-hover:text-[#D4AF37] transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-[#FDFCF0]/50 text-xs font-bold tracking-widest uppercase mb-3">
-                    {service.short}
-                  </p>
-                  <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
-                    {service.details}
-                  </p>
-                </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#FDFCF0] group-hover:text-[#D4AF37] transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-[#FDFCF0]/50 text-[10px] font-bold tracking-widest uppercase mb-1">
+                  {service.short}
+                </p>
+                <p className="text-[#FDFCF0]/60 text-xs leading-snug">
+                  {service.details}
+                </p>
               </div>
             </motion.div>
           );
