@@ -8,12 +8,12 @@ import { useRef } from "react";
 const LOCATIONS = [
   { name: "United States", top: 28, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
-  { name: "United Kingdom", top: 20, left: 48, align: "top" },
-  { name: "UAE", top: 46, left: 63, align: "bottom" },
+  { name: "United Kingdom", top: 38, left: 48, align: "top" },
+  { name: "UAE", top: 50, left: 63, align: "bottom" },
   { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
-  { name: "Pakistan", top: 33, left: 67, align: "top" },
-  { name: "Australia", top: 68, left: 85, align: "top" },
-  { name: "New Zealand", top: 78, left: 95, align: "top" },
+  { name: "Pakistan", top: 32, left: 67, align: "top" },
+  { name: "Australia", top: 65, left: 85, align: "top" },
+  { name: "New Zealand", top: 75, left: 89, align: "top" },
 ];
 
 // REMOVED: ObsidianBackground component (It is now in globals.css for consistency)
