@@ -16,15 +16,15 @@ export default function HybridModel() {
       </div>
 
       <div 
-        className="flex flex-col md:flex-row h-[50vh] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        className="w-full flex flex-col md:flex-row h-[50vh] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
         onMouseLeave={() => setActiveSide(null)}
       >
         
         {/* HUMAN SIDE */}
         <motion.div 
           className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "ai" ? "md:w-[25%] opacity-50" : activeSide === "human" ? "md:w-[75%]" : "md:w-[50%]"}
-            bg-[#1a1a1a] border-r border-[#333]
+            ${activeSide === "ai" ? "md:flex-[1] opacity-50" : activeSide === "human" ? "md:flex-[3]" : "md:flex-[1]"}
+            bg-[#1a1a1a] border-r border-[#333] min-w-0
           `}
           onMouseEnter={() => setActiveSide("human")}
         >
@@ -50,8 +50,8 @@ export default function HybridModel() {
         {/* AI SIDE */}
         <motion.div 
           className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "human" ? "md:w-[25%] opacity-50" : activeSide === "ai" ? "md:w-[75%]" : "md:w-[50%]"}
-            bg-[#0a0a0a]
+            ${activeSide === "human" ? "md:flex-[1] opacity-50" : activeSide === "ai" ? "md:flex-[3]" : "md:flex-[1]"}
+            bg-[#0a0a0a] min-w-0
           `}
           onMouseEnter={() => setActiveSide("ai")}
         >
