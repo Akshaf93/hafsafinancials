@@ -32,7 +32,9 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-20 pb-32"
+      // UPDATED: Changed pt-20 to pt-48. 
+      // This pushes the text down to account for the floating navbar while keeping the background full-screen.
+      className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden pt-48 pb-32"
     >
       <ObsidianBackground />
 
@@ -42,7 +44,7 @@ export default function Hero() {
         className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center"
       >
         
-        {/* 70/30 Philosophy Badge - Source: 490 */}
+        {/* 70/30 Philosophy Badge */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,7 +65,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Headlines - Source: 4 & 551 */}
+        {/* Headlines */}
         <div className="space-y-4 mb-10 relative">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -88,7 +90,7 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* Buttons - Source: 5 */}
+        {/* Buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -107,7 +109,7 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* Trust Signals / Footer Grid - Source: 8, 262, 10 */}
+        {/* Trust Signals / Footer Grid */}
         <motion.div 
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
@@ -121,13 +123,11 @@ export default function Hero() {
             
             <div className="text-center px-4 md:border-l md:border-r border-[#FDFCF0]/10 group hover:bg-[#FDFCF0]/5 p-4 rounded transition-colors duration-500">
                <h4 className="text-[#FDFCF0] font-bold text-xs uppercase tracking-[0.2em] mb-2">Global Reach</h4>
-               {/* Source: 262 */}
                <p className="text-[#FDFCF0]/50 text-sm font-light">UAE, UK, USA, KSA, Canada & Pakistan</p>
             </div>
 
             <div className="text-center md:text-right px-4 group hover:bg-[#FDFCF0]/5 p-4 rounded transition-colors duration-500">
                <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-2">Expert Team</h4>
-               {/* Source: 10 */}
                <p className="text-[#FDFCF0]/50 text-sm font-light">CAs, CFAs, FRMs & IT Auditors</p>
             </div>
         </motion.div>
