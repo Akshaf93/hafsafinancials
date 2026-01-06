@@ -1,141 +1,124 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function HybridModel() {
-  const [active, setActive] = useState<"human" | "ai" | null>(null);
+  const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
   return (
-    <div className="w-full h-full bg-[#050505] flex flex-col justify-center items-center py-24 relative overflow-hidden">
+    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
       
       {/* HEADER */}
-      <div className="relative z-10 text-center mb-12 px-6">
-        <h2 className="text-sm font-bold text-[#D4AF37] uppercase tracking-[0.2em] mb-4">
-          Our Philosophy
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
+          Delivery Philosophy
         </h2>
-        <h3 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0]">
-          70% Human. <span className="text-[#D4AF37]">30% AI.</span>
-        </h3>
-        <p className="text-[#FDFCF0]/60 mt-4 max-w-2xl mx-auto">
-          "Financial judgment remains human. Intelligence is accelerated by AI."
+        <p className="text-xl text-[#FDFCF0]/60 font-light mt-4">
+          "Human Judgment. AI Intelligence. Financial Excellence."
         </p>
       </div>
 
       {/* CARDS CONTAINER */}
-      <div className="relative w-full max-w-6xl h-[500px] flex gap-4 px-6 md:px-0">
+      {/* Fixed height ensures layout stability during animation */}
+      <div 
+        className="w-full flex flex-col md:flex-row h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        onMouseLeave={() => setActiveSide(null)}
+      >
         
-        {/* === CARD 1: HUMAN EXPERT === */}
-        <motion.div
-          onHoverStart={() => setActive("human")}
-          onHoverEnd={() => setActive(null)}
+        {/* === HUMAN SIDE === */}
+        <motion.div 
+          onMouseEnter={() => setActiveSide("human")}
           animate={{
-            flex: active === "human" ? 2 : active === "ai" ? 0.5 : 1,
-            opacity: active === "ai" ? 0.5 : 1
+            // ANIMATION LOGIC:
+            // If Human is active: Grow to 2.5
+            // If AI is active: Shrink to 0.5
+            // Default: Equal share (1)
+            flex: activeSide === "human" ? 2.5 : activeSide === "ai" ? 0.5 : 1,
+            opacity: activeSide === "ai" ? 0.5 : 1
           }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="relative h-full rounded-2xl overflow-hidden border border-[#D4AF37]/20 bg-[#111] cursor-pointer group"
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] overflow-hidden"
         >
-          {/* Dark Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-[#050505]" />
-
-          {/* Content */}
-          <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
-            {/* Top Label */}
-            <div className="border-l-2 border-[#D4AF37] pl-4">
-              <h4 className="text-lg font-bold text-[#FDFCF0] uppercase tracking-widest">
-                70% Human Expert
-              </h4>
-            </div>
-
-            {/* Description Text */}
-            <motion.div 
-               animate={{ opacity: active === "ai" ? 0 : 1 }} 
-               className="space-y-6"
-            >
-               <h3 className="text-4xl font-serif text-[#D4AF37]">
-                 Strategic Judgment
-               </h3>
-               <p className="text-[#FDFCF0]/80 leading-relaxed max-w-md text-sm md:text-base">
-                 Led by CAs, CFAs, and FRMs. We handle complex IFRS interpretations, valuation logic, and board-level negotiations. AI supports, but never decides.
-               </p>
-               
-               {/* Bullet Points */}
-               <div className="space-y-2">
-                 {["IFRS Policy Decisions", "M&A Structuring", "Audit Defense"].map((item) => (
-                   <div key={item} className="flex items-center gap-3 text-sm text-[#FDFCF0]/60">
-                     <div className="w-1 h-1 bg-[#D4AF37] rounded-full" />
-                     {item}
-                   </div>
-                 ))}
-               </div>
-            </motion.div>
+          {/* Content Wrapper - ensures text doesn't wrap weirdly when shrunk */}
+          <div className="relative z-10 min-w-[300px]">
+            <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-10 -left-4 select-none">
+              70%
+            </h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative">
+              Human-Led
+            </h3>
             
-            {/* Hover Indicator */}
-            <div className="text-[#D4AF37] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-              Core Value Driver
-            </div>
+            <motion.div 
+              animate={{ opacity: activeSide === "ai" ? 0 : 1 }} 
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+                Complex judgments, ethical strategy, and board-level negotiation.
+              </p>
+              <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  IFRS Interpretation
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  Valuation Logic
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  Negotiation
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* === CARD 2: AI DRIVEN === */}
-        <motion.div
-          onHoverStart={() => setActive("ai")}
-          onHoverEnd={() => setActive(null)}
+        {/* === AI SIDE === */}
+        <motion.div 
+          onMouseEnter={() => setActiveSide("ai")}
           animate={{
-            flex: active === "ai" ? 2 : active === "human" ? 0.5 : 1,
-            opacity: active === "human" ? 0.5 : 1
+            // ANIMATION LOGIC:
+            // If AI is active: Grow to 2.5
+            // If Human is active: Shrink to 0.5
+            // Default: Equal share (1)
+            flex: activeSide === "ai" ? 2.5 : activeSide === "human" ? 0.5 : 1,
+            opacity: activeSide === "human" ? 0.5 : 1
           }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="relative h-full rounded-2xl overflow-hidden border border-[#FDFCF0]/10 bg-[#0a0a0a] cursor-pointer group"
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] overflow-hidden"
         >
-          {/* Dark Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] to-[#050505] opacity-80" />
-          {/* Subtle Grid Overlay */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{ 
-                backgroundImage: `linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)`, 
-                backgroundSize: '40px 40px' 
-            }}
-          />
+          {/* Content Wrapper */}
+          <div className="relative z-10 min-w-[300px]">
+            <h3 className="text-6xl font-bold text-[#FDFCF0]/10 absolute -top-10 -left-4 select-none">
+              30%
+            </h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative">
+              AI-Driven
+            </h3>
 
-          {/* Content */}
-          <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
-            {/* Top Label */}
-            <div className="border-l-2 border-[#FDFCF0]/30 pl-4">
-              <h4 className="text-lg font-bold text-[#FDFCF0] uppercase tracking-widest">
-                30% AI Driven
-              </h4>
-            </div>
-
-            {/* Description Text */}
             <motion.div 
-               animate={{ opacity: active === "human" ? 0 : 1 }} 
-               className="space-y-6"
+              animate={{ opacity: activeSide === "human" ? 0 : 1 }} 
+              transition={{ duration: 0.3 }}
             >
-               <h3 className="text-4xl font-serif text-[#FDFCF0]">
-                 Speed & Scale
-               </h3>
-               <p className="text-[#FDFCF0]/80 leading-relaxed max-w-md text-sm md:text-base">
-                 Our engines scan contracts for IFRS indicators, run thousands of stress-test scenarios, and detect anomalies instantly. Efficiency without error.
-               </p>
-
-               {/* Bullet Points */}
-               <div className="space-y-2">
-                 {["Anomaly Detection", "Scenario Simulations", "Data Cleansing"].map((item) => (
-                   <div key={item} className="flex items-center gap-3 text-sm text-[#FDFCF0]/60">
-                     <div className="w-1 h-1 bg-[#FDFCF0] rounded-full" />
-                     {item}
-                   </div>
-                 ))}
-               </div>
+              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+                Accelerated data processing, scenario testing, and anomaly detection.
+              </p>
+              <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Auto-Cleansing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Stress Testing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Draft Generation
+                </li>
+              </ul>
             </motion.div>
-
-            {/* Hover Indicator */}
-            <div className="text-[#FDFCF0] text-xs font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-              Efficiency Engine
-            </div>
           </div>
         </motion.div>
 
