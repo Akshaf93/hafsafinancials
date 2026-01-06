@@ -5,14 +5,14 @@ import { useState } from "react";
 
 // MOVED: UP (Top decreases) and RIGHT (Left increases)
 const LOCATIONS = [
-  { name: "United States", top: 28, left: 22 },
+  { name: "United States", top: 32, left: 27 },
   { name: "Canada", top: 18, left: 20 },
   { name: "United Kingdom", top: 22, left: 49 },
   { name: "UAE", top: 40, left: 63 },
   { name: "Saudi Arabia", top: 41, left: 61 },
-  { name: "Pakistan", top: 38, left: 67 },
-  { name: "Australia", top: 70, left: 85 },
-  { name: "New Zealand", top: 82, left: 95 },
+  { name: "Pakistan", top: 38, left: 60 },
+  { name: "Australia", top: 70, left: 75 },
+  { name: "New Zealand", top: 82, left: 80 },
 ];
 
 export default function GlobalReach() {
