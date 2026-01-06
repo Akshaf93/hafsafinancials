@@ -5,9 +5,10 @@ import Link from "next/link";
 import React, { useRef } from "react";
 
 // --- GLOBAL REACH LOCATIONS ---
+// Coordinates calibrated for the map
 const LOCATIONS = [
-  { name: "United States", top: 28, left: 20, align: "bottom" }, // Adjusted Left
-  { name: "Canada", top: 12, left: 18, align: "top" }, // Adjusted Top
+  { name: "United States", top: 28, left: 20, align: "bottom" },
+  { name: "Canada", top: 12, left: 18, align: "top" },
   { name: "United Kingdom", top: 18, left: 47, align: "top" },
   { name: "UAE", top: 40, left: 62, align: "bottom" },
   { name: "Saudi Arabia", top: 38, left: 59, align: "top" },
@@ -19,6 +20,7 @@ const LOCATIONS = [
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
+    {/* Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -37,17 +39,18 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      // FIXED: Reduced pt-32 to pt-20 to pull content up
-      className="relative h-screen w-full flex items-center overflow-hidden pt-20 pb-10"
+      className="relative h-screen w-full flex items-center overflow-hidden pt-20"
     >
       <ObsidianBackground />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
+      {/* --- CONTENT LAYER (Text) --- */}
+      {/* We keep the text in the container, but leave the right side empty for the map */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full pointer-events-none">
         
-        {/* --- LEFT COLUMN: TEXT CONTENT --- */}
+        {/* Left Column: Text (Pointer events auto to allow clicking buttons) */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left z-20"
+          className="flex flex-col items-start text-left pointer-events-auto pl-4 md:pl-0"
         >
           {/* Badge */}
           <motion.div 
@@ -126,58 +129,61 @@ export default function Hero() {
               </div>
           </motion.div>
         </motion.div>
-
-        {/* --- RIGHT COLUMN: WORLD MAP --- */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          // FIXED: 
-          // 1. Removed h-[800px] which was causing the "sinking" issue.
-          // 2. Used aspect-[2/1] to perfectly match world map dimensions.
-          // 3. Removed mask-image if it was cutting things off too much, or tweaked it to be softer.
-          className="relative w-full aspect-[2/1] flex items-center justify-center"
-        >
-          {/* Map Base */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
-            style={{ 
-              backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
-              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
-            }}
-          />
-
-          {/* Locations */}
-          {LOCATIONS.map((loc, i) => (
-            <motion.div
-              key={loc.name}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-              className="absolute w-4 h-4 -ml-2 -mt-2 z-20"
-              style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
-            >
-              {/* Dot */}
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
-
-              {/* Label */}
-              <div 
-                className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
-                  ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
-                `}
-              >
-                <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
-                   {loc.name}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
+
+      {/* --- MAP LAYER (Positioned Absolutely to Right) --- */}
+      {/* 1. h-[85vh]: Forces the map to be tall (spanning vertically).
+          2. right-[-5%]: Pulls it slightly off-screen to create a dynamic look.
+          3. mask-image: Adds the requested gradient reflection/fade at top & bottom.
+      */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.4 }}
+        className="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-2%] h-[60vh] md:h-[85vh] aspect-[1.8/1] z-10 pointer-events-none"
+      >
+        <div className="w-full h-full relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+            {/* Map Image */}
+            <div 
+                className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
+                style={{ 
+                backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
+                filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+                }}
+            />
+
+            {/* Interactive Pins (Pointer Events Auto to allow hover/clicks) */}
+            {LOCATIONS.map((loc, i) => (
+                <motion.div
+                key={loc.name}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
+                className="absolute w-4 h-4 -ml-2 -mt-2 z-20 pointer-events-auto"
+                style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
+                >
+                {/* Dot with Border */}
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
+
+                {/* Always Visible Label */}
+                <div 
+                    className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
+                    ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
+                    `}
+                >
+                    <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
+                    {loc.name}
+                    </div>
+                </div>
+                </motion.div>
+            ))}
+        </div>
+      </motion.div>
+
+      {/* Bottom Fade */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
