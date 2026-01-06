@@ -18,10 +18,7 @@ const LOCATIONS = [
 
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
-    {/* Deep Obsidian Base */}
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
-    
-    {/* Soft Gold Grid - Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -134,11 +131,12 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="relative w-full aspect-[1.6/1]"
+          // FIX: Replaced manual gradient divs with 'mask-image'. 
+          // This fades the image to transparent at the top and bottom, revealing the TRUE background.
+          className="relative w-full aspect-[1.6/1] 
+            [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] 
+            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]"
         >
-          {/* UPDATED: Top Fade (The Reflection) - Added z-10 to sit above map image */}
-          <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#050505] to-transparent z-10 pointer-events-none" />
-
           {/* Map Base */}
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
@@ -147,9 +145,6 @@ export default function Hero() {
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
           />
-
-          {/* UPDATED: Bottom Fade (The Reflection) - Added z-10 to sit above map image */}
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
 
           {/* Locations */}
           {LOCATIONS.map((loc, i) => (
@@ -181,7 +176,7 @@ export default function Hero() {
 
       </div>
 
-      {/* Gradient Fade */}
+      {/* Gradient Fade for Bottom of Section */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
