@@ -46,9 +46,7 @@ export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    // UPDATED: Changed 'py-20' to 'pt-32 pb-20'.
-    // pt-32 (128px) creates enough space for the Fixed Navbar so it doesn't cover the title.
-    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 pt-32 pb-20">
+    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20">
       
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">

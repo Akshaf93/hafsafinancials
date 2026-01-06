@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 // --- LOCATIONS ---
 const LOCATIONS = [
@@ -44,7 +44,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.1)]"
+            className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(229,208,149,0.1)]"
           >
             <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#E5D095]/20">
               70% Human Expert
@@ -90,7 +90,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
-            <button className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all transform hover:-translate-y-0.5">
+            <button className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
               Get a Consultation
             </button>
             <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#E5D095]/50 text-[#FDFCF0] hover:text-[#E5D095] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
@@ -128,9 +128,6 @@ export default function Hero() {
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-100"
             style={{ 
-              // IMPORTANT: Make sure 'world-map.png' is in your /public folder
-              // If you don't have it yet, switch this URL back to the online svg.
-              // backgroundImage: "url('/world-map.png')",
               backgroundImage: "url('/World_map_-_low_resolution.svg')",
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
@@ -161,7 +158,7 @@ export default function Hero() {
               )}
 
               {/* DOT */}
-              <div className="w-2 h-2 rounded-full bg-[#E5D095] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
+              <div className="w-2 h-2 rounded-full bg-[#E5D095] shadow-[0_0_5px_rgba(229,208,149,0.8)] border border-[#050505]"></div>
 
               {/* BOTTOM ALIGN */}
               {loc.align === 'bottom' && (

@@ -4,7 +4,6 @@ import ServicesOverview from "@/components/ServicesOverview";
 import InsightsPreview from "@/components/InsightsPreview";
 import Testimonials from "@/components/Testimonials";
 import TeamPreview from "@/components/TeamPreview";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -59,10 +58,10 @@ export default function Home() {
         <div className="py-12 bg-[#FDFCF0]/5 border-t border-[#FDFCF0]/10 text-center backdrop-blur-sm">
           <h2 className="text-2xl font-bold text-[#FDFCF0] mb-4">Ready to Start?</h2>
           <div className="flex justify-center gap-4">
-            <Link href="/pricing" className="bg-[#D4AF37] text-[#050505] px-8 py-3 rounded-sm font-bold hover:bg-[#FDFCF0] transition-colors shadow-lg">
+            <Link href="/pricing" className="bg-[#E5D095] text-[#050505] px-8 py-3 rounded-sm font-bold hover:bg-[#FDFCF0] transition-colors shadow-lg">
               View Pricing
             </Link>
-            <Link href="/contact" className="border border-[#FDFCF0]/20 text-[#FDFCF0] px-8 py-3 rounded-sm font-bold hover:border-[#D4AF37] transition-colors">
+            <Link href="/contact" className="border border-[#FDFCF0]/20 text-[#FDFCF0] px-8 py-3 rounded-sm font-bold hover:border-[#E5D095] transition-colors">
               Contact Us
             </Link>
           </div>

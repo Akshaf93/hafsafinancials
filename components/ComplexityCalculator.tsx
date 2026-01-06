@@ -26,6 +26,7 @@ const SERVICE_DATA = {
 
 type ServiceKey = keyof typeof SERVICE_DATA;
 type ComplexityLevel = "standard" | "intermediate" | "advanced";
+const SERVICE_KEYS = Object.keys(SERVICE_DATA) as ServiceKey[];
 
 export default function ComplexityCalculator() {
   const [service, setService] = useState<ServiceKey>("ifrs");
@@ -54,7 +55,7 @@ export default function ComplexityCalculator() {
         <div className="space-y-3">
           <label className="text-sm font-semibold text-[#FDFCF0]/60 uppercase tracking-wide">Select Service</label>
           <div className="grid grid-cols-3 gap-2">
-            {(Object.keys(SERVICE_DATA) as ServiceKey[]).map((key) => (
+            {SERVICE_KEYS.map((key) => (
               <button
                 key={key}
                 onClick={() => setService(key)}
