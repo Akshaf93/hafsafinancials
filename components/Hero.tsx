@@ -5,24 +5,20 @@ import Link from "next/link";
 import React, { useRef } from "react";
 
 // --- GLOBAL REACH LOCATIONS ---
-// Added 'align' property to help position labels so they don't overlap
 const LOCATIONS = [
-  { name: "United States", top: 28, left: 22, align: "bottom" },
-  { name: "Canada", top: 15, left: 20, align: "top" },
-  { name: "United Kingdom", top: 20, left: 48, align: "top" },
-  { name: "UAE", top: 42, left: 63, align: "bottom" },
-  { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
-  { name: "Pakistan", top: 35, left: 68, align: "top" },
-  { name: "Australia", top: 70, left: 85, align: "top" },
-  { name: "New Zealand", top: 82, left: 95, align: "top" },
+  { name: "United States", top: 28, left: 20, align: "bottom" }, // Adjusted Left
+  { name: "Canada", top: 12, left: 18, align: "top" }, // Adjusted Top
+  { name: "United Kingdom", top: 18, left: 47, align: "top" },
+  { name: "UAE", top: 40, left: 62, align: "bottom" },
+  { name: "Saudi Arabia", top: 38, left: 59, align: "top" },
+  { name: "Pakistan", top: 35, left: 66, align: "top" },
+  { name: "Australia", top: 72, left: 85, align: "top" },
+  { name: "New Zealand", top: 82, left: 93, align: "top" },
 ];
 
 const ObsidianBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
-    {/* Deep Obsidian Base */}
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
-    
-    {/* Soft Gold Grid - Texture */}
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
@@ -41,7 +37,8 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10"
+      // FIXED: Reduced pt-32 to pt-20 to pull content up
+      className="relative h-screen w-full flex items-center overflow-hidden pt-20 pb-10"
     >
       <ObsidianBackground />
 
@@ -50,7 +47,7 @@ export default function Hero() {
         {/* --- LEFT COLUMN: TEXT CONTENT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left z-20" // z-20 ensures text stays above map overlap
+          className="flex flex-col items-start text-left z-20"
         >
           {/* Badge */}
           <motion.div 
@@ -135,10 +132,13 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          // UPDATED: Added a mask-image to fade top/bottom edges, removing the "box" look
-          className="relative w-full h-[800px] flex items-center justify-center [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+          // FIXED: 
+          // 1. Removed h-[800px] which was causing the "sinking" issue.
+          // 2. Used aspect-[2/1] to perfectly match world map dimensions.
+          // 3. Removed mask-image if it was cutting things off too much, or tweaked it to be softer.
+          className="relative w-full aspect-[2/1] flex items-center justify-center"
         >
-          {/* Map Base - Scaled up slightly to fill space */}
+          {/* Map Base */}
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
             style={{ 
@@ -157,19 +157,17 @@ export default function Hero() {
               className="absolute w-4 h-4 -ml-2 -mt-2 z-20"
               style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
             >
-              {/* Dot - UPDATED: Added thick border-[#050505] to make the Gold pop against the Grey map */}
+              {/* Dot */}
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
               <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
 
-              {/* Label - UPDATED: Solid black bg with gold border for max readability */}
+              {/* Label */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
                   ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
                 `}
               >
                 <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
-                   {/* Optional: Tiny indicator inside label */}
-                   <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
                    {loc.name}
                 </div>
               </div>
@@ -179,7 +177,6 @@ export default function Hero() {
 
       </div>
 
-      {/* Gradient Fade for Bottom */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
