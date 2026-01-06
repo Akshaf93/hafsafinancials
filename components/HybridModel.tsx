@@ -22,10 +22,12 @@ export default function HybridModel() {
         
         {/* HUMAN SIDE */}
         <motion.div 
-          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "ai" ? "md:flex-[1] opacity-50" : activeSide === "human" ? "md:flex-[3]" : "md:flex-[2]"}
-            bg-[#1a1a1a] border-r border-[#333] min-w-0
-          `}
+          animate={{
+            flex: activeSide === "ai" ? 1 : activeSide === "human" ? 3 : 2,
+            opacity: activeSide === "ai" ? 0.5 : 1
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] min-w-0 basis-0"
           onMouseEnter={() => setActiveSide("human")}
         >
           <div className="relative z-10">
@@ -49,10 +51,12 @@ export default function HybridModel() {
 
         {/* AI SIDE */}
         <motion.div 
-          className={`relative p-8 md:p-12 flex flex-col justify-center cursor-pointer transition-all duration-500 ease-in-out
-            ${activeSide === "human" ? "md:flex-[1] opacity-50" : activeSide === "ai" ? "md:flex-[3]" : "md:flex-[2]"}
-            bg-[#0a0a0a] min-w-0
-          `}
+          animate={{
+            flex: activeSide === "human" ? 1 : activeSide === "ai" ? 3 : 2,
+            opacity: activeSide === "human" ? 0.5 : 1
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] min-w-0 basis-0"
           onMouseEnter={() => setActiveSide("ai")}
         >
           <div className="relative z-10">
