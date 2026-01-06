@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useRef } from "react";
 
 // --- GLOBAL REACH LOCATIONS ---
-// Added 'align' property to help position labels so they don't overlap
 const LOCATIONS = [
   { name: "United States", top: 28, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
@@ -50,7 +49,7 @@ export default function Hero() {
         {/* --- LEFT COLUMN: TEXT CONTENT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left z-20" // z-20 ensures text stays above map overlap
+          className="flex flex-col items-start text-left z-20"
         >
           {/* Badge */}
           <motion.div 
@@ -135,10 +134,12 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          // UPDATED: Added a mask-image to fade top/bottom edges, removing the "box" look
-          className="relative w-full h-[800px] flex items-center justify-center [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+          className="relative w-full aspect-[1.6/1]"
         >
-          {/* Map Base - Scaled up slightly to fill space */}
+          {/* UPDATED: Top Fade (The Reflection) - Added z-10 to sit above map image */}
+          <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#050505] to-transparent z-10 pointer-events-none" />
+
+          {/* Map Base */}
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
             style={{ 
@@ -147,6 +148,9 @@ export default function Hero() {
             }}
           />
 
+          {/* UPDATED: Bottom Fade (The Reflection) - Added z-10 to sit above map image */}
+          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
+
           {/* Locations */}
           {LOCATIONS.map((loc, i) => (
             <motion.div
@@ -154,23 +158,21 @@ export default function Hero() {
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-              className="absolute w-4 h-4 -ml-2 -mt-2 z-20"
+              className="absolute w-3 h-3 -ml-1.5 -mt-1.5 z-20"
               style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
             >
-              {/* Dot - UPDATED: Added thick border-[#050505] to make the Gold pop against the Grey map */}
+              {/* Dot */}
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]" />
 
-              {/* Label - UPDATED: Solid black bg with gold border for max readability */}
+              {/* Label */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
-                  ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
+                  ${loc.align === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'}
                 `}
               >
-                <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
-                   {/* Optional: Tiny indicator inside label */}
-                   <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                   {loc.name}
+                <div className="bg-[#FDFCF0]/10 backdrop-blur-sm border border-[#FDFCF0]/10 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded shadow-lg">
+                  {loc.name}
                 </div>
               </div>
             </motion.div>
@@ -179,7 +181,7 @@ export default function Hero() {
 
       </div>
 
-      {/* Gradient Fade for Bottom */}
+      {/* Gradient Fade */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
