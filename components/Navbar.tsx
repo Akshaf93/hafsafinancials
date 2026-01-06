@@ -41,7 +41,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-tight flex items-center gap-1">
           <span className="text-[#FDFCF0]">Hafsa</span>
-          <span className="text-[#D4AF37]">Financials</span>
+          <span className="text-[#E5D095]">Financials</span>
         </Link>
 
         {/* Desktop Links */}
@@ -50,8 +50,8 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#D4AF37] 
-                ${pathname === link.href ? "text-[#D4AF37]" : "text-[#FDFCF0]/70"}
+              className={`text-sm font-medium transition-colors hover:text-[#E5D095] 
+                ${pathname === link.href ? "text-[#E5D095]" : "text-[#FDFCF0]/70"}
               `}
             >
               {link.name}
@@ -60,7 +60,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <button className="px-6 py-2.5 rounded-sm text-sm font-bold bg-[#D4AF37] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+        <button className="px-6 py-2.5 rounded-sm text-sm font-bold bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(229,208,149,0.2)]">
           Book Consultation
         </button>
       </div>

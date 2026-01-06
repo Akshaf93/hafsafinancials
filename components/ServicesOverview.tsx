@@ -31,7 +31,7 @@ export default function ServicesOverview() {
             onMouseLeave={() => setHovered(null)}
             className={`rounded-xl p-6 border relative overflow-hidden cursor-pointer transition-colors duration-300
               ${hovered === service.id 
-                ? "bg-[#D4AF37] border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.4)] z-10" 
+                ? "bg-[#E5D095] border-[#E5D095] shadow-[0_0_30px_rgba(229,208,149,0.4)] z-10" 
                 : "bg-[#FDFCF0]/5 border-[#FDFCF0]/10 hover:bg-[#FDFCF0]/10"
               }
             `}

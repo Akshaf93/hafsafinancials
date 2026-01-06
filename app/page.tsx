@@ -3,16 +3,15 @@ import HybridModel from "@/components/HybridModel";
 import ServicesOverview from "@/components/ServicesOverview";
 import InsightsPreview from "@/components/InsightsPreview";
 import Testimonials from "@/components/Testimonials";
-import GlobalReach from "@/components/GlobalReach";
+// REMOVED: import GlobalReach from "@/components/GlobalReach";
 import TeamPreview from "@/components/TeamPreview";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    // UPDATED: No 'overflow-y-scroll' here. We let the Window scroll (enabled by globals.css)
     <main className="w-full">
       
-      {/* SECTION 1: HERO */}
+      {/* SECTION 1: HERO (Now includes World Map) */}
       <section className="h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
         <Hero />
       </section>
@@ -22,37 +21,29 @@ export default function Home() {
         <ServicesOverview />
       </section>
 
-      {/* SECTION 3: GLOBAL REACH */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
-        <GlobalReach />
-      </section>
-
-      {/* SECTION 4: HYBRID MODEL */}
+      {/* REMOVED: SECTION 3: GLOBAL REACH */}
+      
+      {/* SECTION 3: HYBRID MODEL */}
       <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <HybridModel />
       </section>
 
-      {/* SECTION 5: TEAM */}
+      {/* SECTION 4: TEAM */}
       <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <TeamPreview />
       </section>
 
-      {/* SECTION 6: INSIGHTS */}
+      {/* SECTION 5: INSIGHTS */}
       <section className="h-screen w-full snap-start relative flex flex-col justify-center">
         <InsightsPreview />
       </section>
 
-      {/* SECTION 7: TESTIMONIALS & CTA */}
+      {/* SECTION 6: TESTIMONIALS & CTA */}
       <section className="min-h-screen w-full snap-start relative flex flex-col justify-between">
-        {/* Top Spacer */}
         <div />
-        
-        {/* Content Centered */}
         <div className="flex-grow flex flex-col justify-center py-20">
             <Testimonials />
         </div>
-        
-        {/* Footer CTA */}
         <div className="py-12 bg-[#FDFCF0]/5 border-t border-[#FDFCF0]/10 text-center backdrop-blur-sm">
           <h2 className="text-2xl font-bold text-[#FDFCF0] mb-4">Ready to Start?</h2>
           <div className="flex justify-center gap-4">
