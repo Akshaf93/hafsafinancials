@@ -11,7 +11,7 @@ const LOCATIONS = [
   { name: "Canada", top: 15, left: 20, align: "top" },
   { name: "United Kingdom", top: 20, left: 48, align: "top" },
   { name: "UAE", top: 42, left: 63, align: "bottom" },
-  { name: "Saudi Arabia", top: 38, left: 58, align: "top" }, // Slightly adjusted to avoid UAE overlap
+  { name: "Saudi Arabia", top: 38, left: 58, align: "top" },
   { name: "Pakistan", top: 35, left: 68, align: "top" },
   { name: "Australia", top: 70, left: 85, align: "top" },
   { name: "New Zealand", top: 82, left: 95, align: "top" },
@@ -26,7 +26,7 @@ const ObsidianBackground = () => (
     <div 
       className="absolute inset-0 opacity-[0.03]" 
       style={{ 
-        backgroundImage: `linear-gradient(#E5D095 1px, transparent 1px), linear-gradient(90deg, #E5D095 1px, transparent 1px)`, 
+        backgroundImage: `linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)`, 
         backgroundSize: '50px 50px' 
       }} 
     />
@@ -45,28 +45,28 @@ export default function Hero() {
     >
       <ObsidianBackground />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
         
         {/* --- LEFT COLUMN: TEXT CONTENT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left"
+          className="flex flex-col items-start text-left z-20" // z-20 ensures text stays above map overlap
         >
           {/* Badge */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(229,208,149,0.1)]"
+            className="flex items-center gap-0 mb-6 rounded-full border border-[#D4AF37]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.1)]"
           >
-            <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#E5D095]/20">
+            <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#D4AF37]/20">
               70% Human Expert
             </div>
-            <div className="px-4 py-2 bg-[#E5D095]/10 text-[#E5D095] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-2">
+            <div className="px-4 py-2 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-2">
               <span>30% AI Driven</span>
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E5D095] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E5D095]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
               </span>
             </div>
           </motion.div>
@@ -80,7 +80,7 @@ export default function Hero() {
               className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl"
             >
               Strategic <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#D4AF37] to-[#8a7035]">
                 Financial Excellence
               </span>
             </motion.h1>
@@ -91,7 +91,7 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 1 }}
               className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide"
             >
-              Human Judgment. <span className="text-[#E5D095] font-normal">AI Intelligence.</span> 
+              Human Judgment. <span className="text-[#D4AF37] font-normal">AI Intelligence.</span> 
               <br />Global Advisory across 8+ Jurisdictions.
             </motion.p>
           </div>
@@ -103,16 +103,16 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
-            <button className="px-8 py-4 bg-[#E5D095] hover:bg-[#efe0b5] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
+            <button className="px-8 py-4 bg-[#D4AF37] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all transform hover:-translate-y-0.5">
               Get a Consultation
             </button>
-            <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#E5D095]/50 text-[#FDFCF0] hover:text-[#E5D095] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
+            <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#D4AF37]/50 text-[#FDFCF0] hover:text-[#D4AF37] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
               <span>Explore Services</span>
-              <span className="group-hover:translate-x-1 transition-transform text-[#E5D095]">→</span>
+              <span className="group-hover:translate-x-1 transition-transform text-[#D4AF37]">→</span>
             </Link>
           </motion.div>
 
-          {/* Mini Footer Grid (Integrated into Left Column) */}
+          {/* Mini Footer Grid */}
           <motion.div 
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
@@ -120,7 +120,7 @@ export default function Hero() {
              className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6"
           >
               <div className="text-left">
-                 <h4 className="text-[#E5D095] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
+                 <h4 className="text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
                  <p className="text-[#FDFCF0]/50 text-xs font-light">IFRS & Architecture</p>
               </div>
               <div className="text-left">
@@ -135,9 +135,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="relative w-full aspect-[1.6/1]"
+          // UPDATED: Added a mask-image to fade top/bottom edges, removing the "box" look
+          className="relative w-full h-[800px] flex items-center justify-center [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
         >
-          {/* Map Base */}
+          {/* Map Base - Scaled up slightly to fill space */}
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
             style={{ 
@@ -153,22 +154,23 @@ export default function Hero() {
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.8 + (i * 0.1), type: "spring", stiffness: 200 }}
-              className="absolute w-3 h-3 -ml-1.5 -mt-1.5 z-20"
+              className="absolute w-4 h-4 -ml-2 -mt-2 z-20"
               style={{ top: `${loc.top}%`, left: `${loc.left}%` }}
             >
-              {/* Dot */}
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[#E5D095] opacity-40 animate-ping" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E5D095] shadow-[0_0_10px_#E5D095]" />
+              {/* Dot - UPDATED: Added thick border-[#050505] to make the Gold pop against the Grey map */}
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-40 animate-ping" />
+              <span className="relative inline-flex rounded-full h-4 w-4 bg-[#D4AF37] border-[3px] border-[#050505] shadow-[0_0_15px_#D4AF37]" />
 
-              {/* Label (Always Visible) */}
-              {/* Logic: If align='top', show above dot. Else show below. */}
+              {/* Label - UPDATED: Solid black bg with gold border for max readability */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap
-                  ${loc.align === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'}
+                  ${loc.align === 'top' ? 'bottom-full mb-3' : 'top-full mt-3'}
                 `}
               >
-                <div className="bg-[#FDFCF0]/10 backdrop-blur-sm border border-[#FDFCF0]/10 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded shadow-lg">
-                  {loc.name}
+                <div className="bg-[#050505] border border-[#D4AF37]/40 px-3 py-1.5 text-[#FDFCF0] text-[11px] font-bold uppercase tracking-wider rounded-sm shadow-2xl flex items-center gap-2">
+                   {/* Optional: Tiny indicator inside label */}
+                   <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                   {loc.name}
                 </div>
               </div>
             </motion.div>
@@ -177,7 +179,7 @@ export default function Hero() {
 
       </div>
 
-      {/* Gradient Fade */}
+      {/* Gradient Fade for Bottom */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
