@@ -52,39 +52,32 @@ export default function ServicesOverview() {
   const [activeTab, setActiveTab] = useState("ifrs");
 
   return (
-    // Reduced padding and max-width as requested
-    <div className="relative w-full max-w-6xl mx-auto px-6 pt-24 pb-12">
+    // Reduced padding and max-width further to make it compact
+    <div className="relative w-full max-w-5xl mx-auto px-6 pt-16 pb-8">
       
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-10">
-        <div className="max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-8">
+        <div className="max-w-3xl">
+          <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0] mb-4">
             Our <span className="text-[#E5D095]">Expertise</span>
           </h2>
-          <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed text-[#FDFCF0]/80">
-            <p>
-              Hafsa Financials delivers hands-on IFRS advisory, financial architecture, internal audit, and control solutions grounded in real engagements — not theory.
-            </p>
-            <p className="text-[#FDFCF0]/60">
-              We help organizations uncover hidden risks, correct misstatements, strengthen governance, and convert compliance into decision-ready insight. Our work enables Boards, CFOs, and stakeholders to rely on financial information that is accurate, defensible, and audit-ready.
-            </p>
-          </div>
+         
         </div>
         <Link 
           href="/services" 
-          className="hidden md:block text-[#E5D095] text-sm font-bold uppercase tracking-widest hover:text-[#FDFCF0] transition-colors border-b border-[#E5D095] pb-1 mt-4"
+          className="hidden md:block text-[#E5D095] text-xs font-bold uppercase tracking-widest hover:text-[#FDFCF0] transition-colors border-b border-[#E5D095] pb-1 mt-2"
         >
           View All Services →
         </Link>
       </div>
 
       {/* COMPACT TAB NAVIGATION */}
-      <div className="flex flex-wrap gap-4 mb-8 border-b border-[#FDFCF0]/10 pb-6">
+      <div className="flex flex-wrap gap-3 mb-6 border-b border-[#FDFCF0]/10 pb-4">
         {SERVICE_TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all ${
+            className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${
               activeTab === tab.id
                 ? "bg-[#E5D095] text-[#050505] shadow-[0_0_15px_rgba(229,208,149,0.4)]"
                 : "bg-[#1a1a1a] text-[#FDFCF0]/60 hover:text-[#E5D095] hover:bg-[#FDFCF0]/5"
@@ -96,7 +89,7 @@ export default function ServicesOverview() {
       </div>
 
       {/* ACTIVE TAB CONTENT AREA */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-8 md:p-10 min-h-[300px] shadow-2xl flex flex-col justify-center">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 md:p-8 min-h-[250px] shadow-2xl flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {SERVICE_TABS.map((tab) => activeTab === tab.id && (
             <motion.div
@@ -108,21 +101,21 @@ export default function ServicesOverview() {
               className="flex flex-col h-full justify-between"
             >
               <div>
-                <h3 className="text-2xl md:text-3xl font-serif font-medium text-[#FDFCF0] mb-4">
+                <h3 className="text-xl md:text-2xl font-serif font-medium text-[#FDFCF0] mb-3">
                   {tab.headline}
                 </h3>
-                <p className="text-[#FDFCF0]/70 text-lg leading-relaxed max-w-4xl mb-8">
+                <p className="text-[#FDFCF0]/70 text-base leading-relaxed max-w-3xl mb-6">
                   {tab.content}
                 </p>
               </div>
 
               {/* Tags & Action */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mt-auto pt-8 border-t border-[#FDFCF0]/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto pt-6 border-t border-[#FDFCF0]/10">
                 <div className="flex flex-wrap gap-2">
                   {tab.tags.map((tag) => (
                     <span 
                       key={tag} 
-                      className="px-4 py-2 bg-[#E5D095]/10 text-[#E5D095] text-xs font-bold uppercase tracking-wide rounded border border-[#E5D095]/20"
+                      className="px-3 py-1 bg-[#E5D095]/10 text-[#E5D095] text-[10px] font-bold uppercase tracking-wide rounded border border-[#E5D095]/20"
                     >
                       {tag}
                     </span>
@@ -131,7 +124,7 @@ export default function ServicesOverview() {
                 
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#FDFCF0] hover:text-[#E5D095] transition-colors group"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#FDFCF0] hover:text-[#E5D095] transition-colors group"
                 >
                   Book Consultation 
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
