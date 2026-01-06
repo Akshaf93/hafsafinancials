@@ -34,8 +34,10 @@ export default function Navbar() {
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
 
+  const navPosition = isHome ? "fixed" : "sticky";
+
   return (
-    <nav className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground}`}>
+    <nav className={`${navPosition} top-0 z-50 w-full transition-all duration-500 ${navBackground}`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}
