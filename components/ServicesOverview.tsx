@@ -3,109 +3,66 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Content from Source [11, 12]
 const SERVICES = [
-  {
-    id: "ifrs",
-    title: "IFRS Advisory",
-    icon: "📊",
-    short: "Implementation & Transition",
-    details: "Full IFRS conversion, policy development, and complex standard advisory (IFRS 9, 15, 16, 17).",
-  },
-  {
-    id: "arch",
-    title: "Financial Architecture",
-    icon: "🏛️",
-    short: "Modeling & Strategy",
-    details: "CFO-level financial modeling, stress testing, multi-year forecasting, and strategic planning.",
-  },
-  {
-    id: "analysis",
-    title: "Business Analysis",
-    icon: "📈",
-    short: "KPIs & Dashboards",
-    details: "Tailor-made ratio analysis, Balanced Scorecard implementation, and Power BI dashboards.",
-  },
-  {
-    id: "tax",
-    title: "Tax Advisory",
-    icon: "⚖️",
-    short: "UK & Pakistan",
-    details: "Corporate and individual tax planning, compliance, filing, and cross-border advisory.",
-  },
-  {
-    id: "audit",
-    title: "Internal Controls",
-    icon: "🛡️",
-    short: "Audit & Compliance",
-    details: "Gap analysis, IT & business process controls, and internal audit framework design.",
-  },
+  { id: "ifrs", title: "IFRS Advisory", icon: "📊", short: "Implementation & Transition", details: "Full IFRS conversion and complex standard advisory." },
+  { id: "arch", title: "Financial Architect", icon: "🏛️", short: "Modeling & Strategy", details: "CFO-level modeling, stress testing, and planning." },
+  { id: "analysis", title: "Business Analysis", icon: "📈", short: "KPIs & Dashboards", details: "Ratio analysis, Balanced Scorecards, and Power BI." },
+  { id: "tax", title: "Tax Advisory", icon: "⚖️", short: "UK & Pakistan", details: "Corporate tax planning and cross-border filing." },
+  { id: "audit", title: "Internal Controls", icon: "🛡️", short: "Audit & Compliance", details: "Gap analysis and internal audit frameworks." },
 ];
 
 export default function ServicesOverview() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="relative py-20 bg-[#050505]">
-      {/* Subtle Grain/Grid Texture for immersion */}
-      <div 
-        className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-        style={{ 
-          backgroundImage: `radial-gradient(#D4AF37 1px, transparent 1px)`, 
-          backgroundSize: '30px 30px' 
-        }} 
-      />
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#FDFCF0]">Our Expertise</h2>
-          <p className="text-gray-400 mt-2">Comprehensive financial solutions for every stage of growth.</p>
-        </div>
-
-        {/* Using 'items-start' prevents the grid from stretching other cards 
-           when one expands, which causes that "jittery" layout jump.
-        */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start">
-          {SERVICES.map((service) => (
-            <motion.div
-              key={service.id}
-              layout // <--- This is the magic prop for smooth resizing
-              onMouseEnter={() => setHovered(service.id)}
-              onMouseLeave={() => setHovered(null)}
-              transition={{ layout: { duration: 0.3, type: "spring", stiffness: 200, damping: 25 } }}
-              className={`rounded-xl p-6 shadow-lg border relative overflow-hidden transition-all duration-300
-                ${hovered === service.id ? "bg-[#D4AF37] text-[#050505] z-10 scale-105 border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.3)]" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20"}
-              `}
-            >
-              {/* Content Wrapper to ensure text doesn't jump */}
-              <motion.div layout="position">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#050505]" : "text-[#FDFCF0]"}`}>
-                  {service.title}
-                </h3>
-                <p className={`text-sm ${hovered === service.id ? "text-[#050505]/80" : "text-gray-400"}`}>
-                  {service.short}
-                </p>
-              </motion.div>
-
-              <AnimatePresence mode="wait">
-                {hovered === service.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="overflow-hidden"
-                  >
-                    <p className="mt-4 pt-4 border-t border-[#050505]/20 text-sm text-[#050505]/80 leading-relaxed">
-                      {service.details}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
+    // Removed bg color, using h-full to fill the snap section
+    <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-12">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-[#FDFCF0]">Our Expertise</h2>
+        <p className="text-[#FDFCF0]/50 mt-2 text-lg">Comprehensive financial solutions for every stage.</p>
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start">
+        {SERVICES.map((service) => (
+          <motion.div
+            key={service.id}
+            layout
+            onMouseEnter={() => setHovered(service.id)}
+            onMouseLeave={() => setHovered(null)}
+            className={`rounded-xl p-6 border relative overflow-hidden cursor-pointer transition-colors duration-300
+              ${hovered === service.id 
+                ? "bg-[#D4AF37] border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.4)] z-10" 
+                : "bg-[#FDFCF0]/5 border-[#FDFCF0]/10 hover:bg-[#FDFCF0]/10"
+              }
+            `}
+          >
+            <motion.div layout="position">
+              <div className="text-3xl mb-4">{service.icon}</div>
+              <h3 className={`font-bold text-lg mb-2 ${hovered === service.id ? "text-[#050505]" : "text-[#FDFCF0]"}`}>
+                {service.title}
+              </h3>
+              <p className={`text-xs ${hovered === service.id ? "text-[#050505]/80" : "text-[#FDFCF0]/60"}`}>
+                {service.short}
+              </p>
+            </motion.div>
+
+            <AnimatePresence>
+              {hovered === service.id && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="overflow-hidden"
+                >
+                  <p className="mt-4 pt-4 border-t border-[#050505]/20 text-xs text-[#050505] leading-relaxed font-medium">
+                    {service.details}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }

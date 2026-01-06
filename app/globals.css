@@ -3,48 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 253, 252, 240; /* Ivory text */
-  --gold-rgb: 212, 175, 55;        /* Metallic Gold */
+  --foreground-rgb: 253, 252, 240;
+  --gold-primary: #D4AF37;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* New Background Strategy:
-     Instead of flat #050505, we use a very deep radial gradient.
-     Center: Dark Slate/Charcoal (#111) -> Edges: Deep Obsidian (#000)
-     This adds "simulated lighting" to the screen center.
-  */
-  background: radial-gradient(circle at 50% 10%, #121212 0%, #000000 100%);
-  min-height: 100vh;
+  /* deeply rich radial gradient: Obsidian -> Midnight Blue -> Void */
+  background: radial-gradient(circle at 50% 30%, #1a1e29 0%, #050505 60%, #000000 100%);
+  background-attachment: fixed; /* Keeps the glow in place while scrolling */
 }
 
-/* Noise Texture:
-   This adds a very faint "film grain" or "paper texture"
-   It makes the dark background feel solid and expensive, not empty.
-*/
-body::after {
+/* Subtle texture overlay */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+  opacity: 0.5;
   mix-blend-mode: overlay;
 }
 
-/* Custom Scrollbar for Chrome/Safari/Edge */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505; 
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333; 
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37; 
+  background: #333;
+  border-radius: 10px;
 }

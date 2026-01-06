@@ -3,47 +3,59 @@ import HybridModel from "@/components/HybridModel";
 import ServicesOverview from "@/components/ServicesOverview";
 import InsightsPreview from "@/components/InsightsPreview";
 import Testimonials from "@/components/Testimonials";
-import GlobalReach from "@/components/GlobalReach"; // New
-import TeamPreview from "@/components/TeamPreview"; // New
+import GlobalReach from "@/components/GlobalReach";
+import TeamPreview from "@/components/TeamPreview";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-[#050505]">
+    // 1. SCROLL SNAP CONTAINER
+    <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-transparent">
       
-      {/* 1. HERO SECTION */}
-      <Hero />
+      {/* SECTION 1: HERO */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
+        <Hero />
+      </section>
 
-      {/* 2. SERVICES OVERVIEW (Interactive Tiles) */}
-      <ServicesOverview />
+      {/* SECTION 2: SERVICES */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <ServicesOverview />
+      </section>
 
-      {/* 3. GLOBAL REACH (New: Visualizes Country List) */}
-      <GlobalReach />
+      {/* SECTION 3: GLOBAL REACH */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <GlobalReach />
+      </section>
 
-      {/* 4. HYBRID DELIVERY MODEL (70/30 Philosophy) */}
-      <HybridModel />
+      {/* SECTION 4: HYBRID MODEL */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <HybridModel />
+      </section>
 
-      {/* 5. TEAM PREVIEW (New: Founder & Credentials) */}
-      <TeamPreview />
+      {/* SECTION 5: TEAM */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <TeamPreview />
+      </section>
 
-      {/* 6. INSIGHTS & NEWSLETTERS */}
-      <InsightsPreview />
+      {/* SECTION 6: INSIGHTS */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <InsightsPreview />
+      </section>
 
-      {/* 7. SOCIAL PROOF */}
-      <Testimonials />
-      
-      {/* 8. FINAL CTA */}
-      <section className="py-24 px-6 bg-[#FDFCF0] text-center border-t border-[#D4AF37]/20">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl font-bold text-[#050505]">Ready to Optimize Your Financial Strategy?</h2>
-          <p className="text-[#050505]/70">
-            Join businesses in UAE, UK, and USA trusting Hafsa Financials for their IFRS and Strategic needs.
-          </p>
+      {/* SECTION 7: TESTIMONIALS & CTA (Combined to fit 1 screen or split if needed) */}
+      <section className="h-screen w-full snap-start relative flex flex-col justify-center bg-transparent">
+        <div className="flex-grow flex flex-col justify-center">
+            <Testimonials />
+        </div>
+        
+        {/* Footer CTA Mini-Section */}
+        <div className="py-12 bg-[#FDFCF0]/5 border-t border-[#FDFCF0]/10 text-center backdrop-blur-sm">
+          <h2 className="text-2xl font-bold text-[#FDFCF0] mb-4">Ready to Start?</h2>
           <div className="flex justify-center gap-4">
-            <Link href="/pricing" className="bg-[#050505] text-[#D4AF37] px-8 py-3 rounded-sm font-bold hover:bg-[#1a1a1a] transition-colors shadow-lg">
-              View Pricing Bundles
+            <Link href="/pricing" className="bg-[#D4AF37] text-[#050505] px-8 py-3 rounded font-bold hover:bg-[#FDFCF0] transition-colors">
+              View Pricing
             </Link>
-            <Link href="/contact" className="border border-[#050505]/20 text-[#050505] px-8 py-3 rounded-sm font-bold hover:border-[#050505] transition-colors">
+            <Link href="/contact" className="border border-[#FDFCF0]/20 text-[#FDFCF0] px-8 py-3 rounded font-bold hover:border-[#D4AF37] transition-colors">
               Contact Us
             </Link>
           </div>
