@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-// --- GLOBAL REACH LOCATIONS ---
+// --- LOCATIONS ---
 const LOCATIONS = [
   { name: "United States", top: 28, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
@@ -16,21 +16,7 @@ const LOCATIONS = [
   { name: "New Zealand", top: 82, left: 95, align: "top" },
 ];
 
-const ObsidianBackground = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050505]">
-    {/* Deep Obsidian Radial Base */}
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#050505] to-[#000000]" />
-    
-    {/* Optional: Subtle Grid Texture */}
-    <div 
-      className="absolute inset-0 opacity-[0.03]" 
-      style={{ 
-        backgroundImage: `linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)`, 
-        backgroundSize: '50px 50px' 
-      }} 
-    />
-  </div>
-);
+// REMOVED: ObsidianBackground component (It is now in globals.css for consistency)
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -42,14 +28,16 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10"
     >
-      <ObsidianBackground />
+      {/* Background is now handled by globals.css <body>.
+        This ensures Hero matches Services/Team sections 100%.
+      */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
         
-        {/* --- LEFT COLUMN: TEXT CONTENT --- */}
+        {/* --- LEFT COLUMN: TEXT --- */}
         <motion.div 
           style={{ y: y1 }}
-          className="flex flex-col items-start text-left z-20" // z-20 keeps text on TOP of the big map
+          className="flex flex-col items-start text-left z-20"
         >
           {/* Badge */}
           <motion.div 
@@ -132,21 +120,23 @@ export default function Hero() {
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1.35 }} // SCALED UP TO 1.35 (Make it Bigger)
-          transition={{ duration: 1.2, delay: 0.4 }}
-          // REMOVED: No 'mask-image' classes here, so the fade is gone.
+          animate={{ opacity: 1, scale: 1.2 }} 
+          transition={{ duration: 1, delay: 0.4 }}
           className="relative w-full aspect-[1.6/1]"
         >
-          {/* Map Base - Using your uploaded 'world-map.png' */}
+          {/* MAP IMAGE */}
           <div 
-            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-80"
+            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-100"
             style={{ 
+              // IMPORTANT: Make sure 'world-map.png' is in your /public folder
+              // If you don't have it yet, switch this URL back to the online svg.
+              // backgroundImage: "url('/world-map.png')",
               backgroundImage: "url('/World_map_-_low_resolution.svg')",
-              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)"
+              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
           />
 
-          {/* Locations - Callout Style */}
+          {/* LOCATIONS (Callout Style) */}
           {LOCATIONS.map((loc, i) => (
             <motion.div
               key={loc.name}
@@ -170,7 +160,7 @@ export default function Hero() {
                 </>
               )}
 
-              {/* THE DOT */}
+              {/* DOT */}
               <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)] border border-[#050505]"></div>
 
               {/* BOTTOM ALIGN */}
@@ -187,9 +177,6 @@ export default function Hero() {
         </motion.div>
 
       </div>
-
-      {/* Hero Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-0 pointer-events-none" />
     </section>
   );
 }
