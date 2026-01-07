@@ -7,7 +7,7 @@ export default function HybridModel() {
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
   return (
-    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
+    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden snap-start snap-always">
       
       {/* HEADER */}
       <div className="text-center mb-12">

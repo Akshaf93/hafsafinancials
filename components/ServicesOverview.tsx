@@ -52,7 +52,7 @@ export default function ServicesOverview() {
   const [activeTab, setActiveTab] = useState("ifrs");
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-6 py-24">
+    <div className="relative w-full max-w-7xl mx-auto px-6 py-24 snap-start snap-always">
       
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-8">

@@ -9,10 +9,7 @@
 
 /* --- SCROLL SNAP FIX --- */
 html {
-  /* CHANGED: 'mandatory' -> 'proximity' 
-     This prevents the page from aggressively snapping back up when you 
-     try to scroll to the footer. */
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   height: 100%;
 }
@@ -51,3 +48,9 @@ body::after {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+/* Ensure footer is accessible with mandatory snapping */
+footer {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+}

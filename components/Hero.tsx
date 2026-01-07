@@ -6,9 +6,9 @@ import { useRef } from "react";
 
 // --- LOCATIONS ---
 const LOCATIONS = [
-  { name: "United States", top: 28, left: 22, align: "bottom" },
+  { name: "United States", top: 32, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
-  { name: "United Kingdom", top: 38, left: 48, align: "top" },
+  { name: "United Kingdom", top: 24, left: 46, align: "top" },
   { name: "UAE", top: 50, left: 63, align: "bottom" },
   { name: "Saudi Arabia", top: 36, left: 60, align: "top" },
   { name: "Pakistan", top: 32, left: 67, align: "top" },
@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10"
+      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10 snap-start snap-always"
     >
       {/* Background is now handled by globals.css <body>.
         This ensures Hero matches Services/Team sections 100%.
