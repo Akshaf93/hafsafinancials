@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import FounderSignature from "@/components/FounderSignature";
 
 export default function OwnersMessage() {
   return (
@@ -23,18 +24,12 @@ export default function OwnersMessage() {
           <span className="text-[#E5D095]">The Founder</span>
         </h1>
         
-        <div className="mt-8 pt-8 border-t border-[#E5D095]/20">
-            <div className="text-3xl md:text-5xl text-[#E5D095] opacity-90 mb-6 font-serif italic -rotate-3 origin-left select-none">
-              Mirza Bilal
+                <div className="mt-10 mb-8 -rotate-2 origin-bottom-left select-none">
+                <FounderSignature />
             </div>
             <h3 className="text-xl font-serif text-[#FDFCF0]">Mirza Muhammad <br/> Bilal Qasim Barlas</h3>
             <p className="text-[#E5D095] text-xs uppercase tracking-widest mt-2">Founder & President</p>
             <p className="text-[#FDFCF0]/40 text-xs mt-1">Hafsa Financials</p>
-
-            <div className="mt-8">
-              <Link href="/contact" className="px-8 py-3 border border-[#E5D095] text-[#E5D095] hover:bg-[#E5D095] hover:text-[#050505] transition-all duration-300 uppercase tracking-widest text-xs font-bold inline-block">
-                Contact Founder
-              </Link>
             </div>
         </div>
       </motion.div>
