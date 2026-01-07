@@ -2,82 +2,29 @@ import ComplexityCalculator from "@/components/ComplexityCalculator";
 
 export default function PricingPage() {
   return (
-    <main className="pt-10 pb-20 bg-[#050505] min-h-screen">
+    <main className="pt-32 pb-24 bg-[#050505] min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#FDFCF0]">Transparent Pricing</h1>
-          <p className="text-xl text-[#FDFCF0]/60 mt-4">
-            From "Starter" packages for micro-businesses to "Enterprise" solutions for multinationals.
+          <h1 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-6">
+            Transparent <span className="text-[#E5D095]">Investment</span>
+          </h1>
+          <p className="text-[#FDFCF0]/60 text-lg max-w-2xl mx-auto font-light">
+            Clear, upfront pricing based on engagement complexity and scope. No hidden fees, just value-driven results.
           </p>
         </div>
 
-        {/* 1. The Calculator (Dynamic) */}
-        <div className="mb-20">
-             <ComplexityCalculator />
+        {/* Calculator Component */}
+        <ComplexityCalculator />
+        
+        {/* Additional Context */}
+        <div className="mt-16 text-center">
+          <p className="text-xs text-[#FDFCF0]/30 uppercase tracking-widest">
+            * Final quote subject to detailed scoping session
+          </p>
         </div>
 
-        {/* 2. The Bundles Table (Static Source: 58) */}
-        <div className="bg-[#0a0a0a] rounded-2xl shadow-xl overflow-hidden border border-[#333]">
-          <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#333]">
-            
-            {/* Starter */}
-            <div className="p-8 hover:bg-[#1a1a1a] transition-colors group">
-              <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Starter</h3>
-              <p className="text-sm text-[#FDFCF0]/60 mb-6">Sole Proprietor / Micro</p>
-              <div className="text-3xl font-bold text-[#E5D095] mb-6">$1.5k - $3k</div>
-              <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
-                <li>IFRS Advisory Lite</li>
-                <li>Basic Ratio Analysis</li>
-                <li>Tax Filing Support</li>
-              </ul>
-              <button className="w-full py-2 border border-[#E5D095] text-[#E5D095] font-bold rounded-lg group-hover:bg-[#E5D095] group-hover:text-[#050505] transition-all">Choose Starter</button>
-            </div>
-
-            {/* Growth */}
-            <div className="p-8 hover:bg-[#1a1a1a] transition-colors group relative">
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#E5D095]"></div>
-              <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Growth</h3>
-              <p className="text-sm text-[#FDFCF0]/60 mb-6">SMEs</p>
-              <div className="text-3xl font-bold text-[#E5D095] mb-6">$5k - $10k</div>
-              <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
-                <li>Full IFRS Advisory</li>
-                <li>Business Analysis</li>
-                <li>Risk Assessment</li>
-                <li>KPI Dashboards</li>
-              </ul>
-              <button className="w-full py-2 bg-[#E5D095] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Choose Growth</button>
-            </div>
-
-            {/* Professional */}
-            <div className="p-8 hover:bg-[#1a1a1a] transition-colors group">
-              <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">Professional</h3>
-              <p className="text-sm text-[#FDFCF0]/60 mb-6">Medium Enterprises</p>
-              <div className="text-3xl font-bold text-[#E5D095] mb-6">$12k - $25k</div>
-              <ul className="space-y-3 text-sm text-[#FDFCF0]/70 mb-8">
-                <li>Financial Architect Services</li>
-                <li>Stress Testing</li>
-                <li>Internal Controls</li>
-                <li>Tax Advisory</li>
-              </ul>
-              <button className="w-full py-2 border border-[#E5D095] text-[#E5D095] font-bold rounded-lg group-hover:bg-[#E5D095] group-hover:text-[#050505] transition-all">Choose Pro</button>
-            </div>
-
-            {/* Enterprise */}
-            <div className="p-8 bg-[#151515] text-[#FDFCF0]">
-              <h3 className="text-xl font-bold text-[#E5D095] mb-2">Enterprise</h3>
-              <p className="text-sm text-[#FDFCF0]/60 mb-6">Large Corporates</p>
-              <div className="text-3xl font-bold text-[#FDFCF0] mb-6">$30k+</div>
-              <ul className="space-y-3 text-[#FDFCF0]/70 mb-8">
-                <li>Tailored Consultancy</li>
-                <li>Custom Financial Models</li>
-                <li>Multi-location Risk</li>
-                <li>Strategic Advisory</li>
-              </ul>
-              <button className="w-full py-2 bg-[#E5D095] text-[#050505] font-bold rounded-lg hover:bg-[#FDFCF0] transition-all">Contact Us</button>
-            </div>
-
-          </div>
-        </div>
       </div>
     </main>
   );

@@ -74,10 +74,10 @@ const DETAILED_SERVICES = [
 
 export default function ServicesDetailed() {
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 py-24">
+    <div className="w-full max-w-7xl mx-auto px-6 pt-8 pb-24">
       {/* Header for the detailed section */}
       <div className="mb-12 text-center md:text-left">
-        <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0]">
+        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
           Comprehensive <span className="text-[#E5D095]">Service Suite</span>
         </h2>
         <p className="text-[#FDFCF0]/60 mt-2 max-w-2xl">
