@@ -1,13 +1,18 @@
 import React from 'react';
 import ComplexityCalculator from "@/components/ComplexityCalculator";
+import Footer from "@/components/Footer";
 
 export default function PricingPage() {
   return (
     <main className="fixed inset-0 bg-[#050505] overflow-y-scroll snap-y snap-mandatory scroll-smooth z-0">
       <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-24 pb-12">
         
+        {/* Background Grid & Spotlight */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] pointer-events-none z-0" style={{ backgroundSize: "24px 24px" }} />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(229,208,149,0.15),_transparent_50%)] pointer-events-none z-0" />
+
         {/* Header */}
-        <div className="max-w-4xl mx-auto w-full text-center mb-10">
+        <div className="relative z-10 max-w-4xl mx-auto w-full text-center mb-10">
            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-4">
              Transparent Engagement
            </h2>
@@ -20,12 +25,12 @@ export default function PricingPage() {
         </div>
         
         {/* Calculator */}
-        <div className="w-full flex justify-center mb-16">
+        <div className="relative z-10 w-full flex justify-center mb-16">
             <ComplexityCalculator />
         </div>
 
         {/* Value Props */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
+        <div className="relative z-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
             <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#FDFCF0]/10">
                 <h3 className="text-[#E5D095] font-serif text-xl mb-2">01. Scope-Driven</h3>
                 <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
@@ -46,6 +51,11 @@ export default function PricingPage() {
             </div>
         </div>
 
+      </section>
+
+      {/* Footer Section */}
+      <section className="snap-start snap-always w-full">
+        <Footer />
       </section>
     </main>
   );
