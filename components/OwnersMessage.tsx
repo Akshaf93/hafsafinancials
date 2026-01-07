@@ -24,13 +24,13 @@ export default function OwnersMessage() {
           <span className="text-[#E5D095]">The Founder</span>
         </h1>
         
-                <div className="mt-10 mb-8 -rotate-2 origin-bottom-left select-none">
+        <div className="mt-8 pt-8 border-t border-[#E5D095]/20">
+            <div className="mt-10 mb-8 -rotate-2 origin-bottom-left select-none">
                 <FounderSignature />
             </div>
             <h3 className="text-xl font-serif text-[#FDFCF0]">Mirza Muhammad <br/> Bilal Qasim Barlas</h3>
             <p className="text-[#E5D095] text-xs uppercase tracking-widest mt-2">Founder & President</p>
             <p className="text-[#FDFCF0]/40 text-xs mt-1">Hafsa Financials</p>
-            </div>
         </div>
       </motion.div>
 
