@@ -12,18 +12,18 @@ export default function AboutHero() {
         viewport={{ once: true }}
       >
         <h2 className="text-[#E5D095] text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-6">
-          Our Vision
+          About Hafsa Financials
         </h2>
         <h1 className="text-5xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[1.1]">
-          Beyond the <br />
-          <span className="text-[#E5D095]">Balance Sheet</span>
+          Built for <br />
+          <span className="text-[#E5D095]">Complexity</span>
         </h1>
         <div className="w-24 h-[1px] bg-[#E5D095] mx-auto mb-8 opacity-50"></div>
-        <p className="text-xl md:text-2xl text-[#FDFCF0]/70 font-light max-w-3xl mx-auto leading-relaxed">
-          Hafsa Financials was founded on a singular belief: that financial clarity is the ultimate competitive advantage.
+        <p className="text-xl md:text-2xl text-[#FDFCF0]/70 font-light max-w-4xl mx-auto leading-relaxed">
+          An independent financial advisory firm established to support organizations navigating complex accounting standards, financial risk, regulatory change, and strategic transformation.
         </p>
-        <p className="text-[#FDFCF0]/50 mt-6 text-sm md:text-base max-w-2xl mx-auto font-light">
-          We don't just audit numbers; we audit the logic, strategy, and future viability of your business.
+        <p className="text-[#FDFCF0]/50 mt-6 text-sm md:text-base max-w-3xl mx-auto font-light leading-relaxed">
+          We work with clients ranging from SMEs and founder-led businesses to growing enterprises and group structures, delivering solutions that are technically rigorous, commercially grounded, and execution-focused.
         </p>
       </motion.div>
     </div>
