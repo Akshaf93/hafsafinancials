@@ -16,7 +16,7 @@ export default function ServicesPage() {
 
       {/* 2. GLOBAL REACH (Trust & Scale) */}
       {/* Source: HAFSA FINANCIALS.pdf (Page 13 - "Global Presence") */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#0a0a0a] border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#050505] border-t border-[#FDFCF0]/10">
         <GlobalReach />
       </section>
 
@@ -30,7 +30,7 @@ export default function ServicesPage() {
 
       {/* 4. INTERACTIVE PRICING (Engagement Tool) */}
       {/* Source: HAFSA FINANCIALS.pdf (Page 14 - "Complexity-Based Pricing") */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#0a0a0a] border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#050505] border-t border-[#FDFCF0]/10">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0]">

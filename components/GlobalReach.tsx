@@ -22,9 +22,6 @@ export default function GlobalReach() {
     // UPDATED: Added pt-32 to push content down below the Navbar
     <div className="relative w-full h-full flex flex-col justify-center items-center overflow-hidden pt-32">
       
-      {/* Local Atmosphere (Spotlight) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[#E5D095]/5 rounded-full blur-[120px] pointer-events-none" />
-
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

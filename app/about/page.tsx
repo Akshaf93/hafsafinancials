@@ -14,7 +14,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section 2: Philosophy */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#0a0a0a] border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#050505] border-t border-[#FDFCF0]/10">
         <AboutPhilosophy />
       </section>
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section 4: Owner's Message */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#0a0a0a] border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#050505] border-t border-[#FDFCF0]/10">
         <OwnersMessage />
       </section>
 
