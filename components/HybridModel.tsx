@@ -80,7 +80,7 @@ export default function HybridModel() {
         >
           {/* Content Wrapper */}
           <div className="relative z-10 min-w-[300px]">
-            <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-10 -left-4 select-none group-hover:text-[#D4AF37]/40 transition-colors duration-500">
+            <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-10 -left-4 select-none group-hover:text-[#E5D095]/40 transition-colors duration-500">
               70%
             </h3>
             
@@ -96,17 +96,17 @@ export default function HybridModel() {
               <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
                 Complex judgments, ethical strategy, and board-level negotiation.
               </p>
-              <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
+              <ul className="space-y-3 text-sm text-[#E5D095] font-medium">
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  <span className="w-1.5 h-1.5 bg-[#E5D095] rounded-full"></span>
                   IFRS Interpretation
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  <span className="w-1.5 h-1.5 bg-[#E5D095] rounded-full"></span>
                   Valuation Logic
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  <span className="w-1.5 h-1.5 bg-[#E5D095] rounded-full"></span>
                   Negotiation
                 </li>
               </ul>

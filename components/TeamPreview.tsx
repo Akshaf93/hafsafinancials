@@ -14,6 +14,7 @@ export default function TeamPreview() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="md:w-1/2 space-y-6"
         >
           <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
@@ -26,8 +27,17 @@ export default function TeamPreview() {
             We combine the precision of Chartered Accountants (CA) with the strategic foresight of CFAs and the rigorous risk management of FRMs.
           </p>
           <div className="flex gap-3 pt-4">
-             {["ACCA", "CFA", "FRM", "ICAEW", "CA"].map(badge => (
-               <span key={badge} className="px-3 py-1 border border-[#E5D095]/30 text-[#E5D095] text-xs font-bold rounded">{badge}</span>
+             {["ACCA", "CFA", "FRM", "ICAEW", "CA"].map((badge, i) => (
+               <motion.span 
+                 key={badge} 
+                 initial={{ opacity: 0, y: 10 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: i * 0.1 + 0.5 }}
+                 className="px-3 py-1 border border-[#E5D095]/30 text-[#E5D095] text-xs font-bold rounded"
+               >
+                 {badge}
+               </motion.span>
              ))}
           </div>
           <div className="pt-6">
@@ -37,44 +47,65 @@ export default function TeamPreview() {
           </div>
         </motion.div>
 
-        {/* RIGHT SIDE: IMAGES (Strategy & Compliance) */}
+        {/* RIGHT SIDE: ANIMATED VISUALS */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="md:w-1/2"
+          className="md:w-1/2 w-full"
         >
-          <div className="grid grid-cols-2 gap-4 opacity-80">
+          <div className="grid grid-cols-2 gap-4 opacity-100">
             
             {/* CARD 1: STRATEGY (Chess Piece) */}
-            <div className="relative h-40 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-4 overflow-hidden group">
-               {/* Background Image */}
-               <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 overflow-hidden"
+            >
+               {/* Animated Background Image - AUTO SCALE ON ENTRY */}
+               <motion.div 
+                 initial={{ scale: 1.2, opacity: 0 }}
+                 whileInView={{ scale: 1, opacity: 0.6 }} // Visible by default, no hover needed
+                 viewport={{ once: true }}
+                 transition={{ duration: 1.5, ease: "easeOut" }}
+                 className="absolute inset-0"
+               >
                  <Image 
                    src="/strategy-icon.png" 
                    alt="Strategy Abstract" 
                    fill 
                    className="object-cover object-center"
                  />
-               </div>
+               </motion.div>
                {/* Label */}
                <span className="relative z-10 text-[#E5D095] font-bold text-lg drop-shadow-md">Strategy</span>
-            </div>
+            </motion.div>
 
             {/* CARD 2: COMPLIANCE (Shield) */}
-            <div className="relative h-40 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-4 mt-8 overflow-hidden group">
-               {/* Background Image */}
-               <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 mt-8 overflow-hidden"
+            >
+               {/* Animated Background Image - AUTO SCALE ON ENTRY */}
+               <motion.div 
+                 initial={{ scale: 1.2, opacity: 0 }}
+                 whileInView={{ scale: 1, opacity: 0.6 }} // Visible by default, no hover needed
+                 viewport={{ once: true }}
+                 transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                 className="absolute inset-0"
+               >
                  <Image 
                    src="/shield-icon.jpg" 
                    alt="Compliance Abstract" 
                    fill 
                    className="object-cover object-center"
                  />
-               </div>
+               </motion.div>
                {/* Label */}
                <span className="relative z-10 text-[#E5D095] font-bold text-lg drop-shadow-md">Compliance</span>
-            </div>
+            </motion.div>
 
           </div>
         </motion.div>
