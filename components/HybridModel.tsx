@@ -1,24 +1,42 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function HybridModel() {
   const containerRef = useRef(null);
-  // Animation triggers every time you scroll to the section
-  const isInView = useInView(containerRef, { amount: 0.6, once: false });
+  const isInView = useInView(containerRef, { amount: 0.6 }); // amount: 0.6 = triggers when 60% visible
+  
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Handle the 2s Delay Logic separately
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (isInView) {
+      // When scrolled into view, wait 2s then expand
+      timer = setTimeout(() => {
+        setIsExpanded(true);
+      }, 2000); // 2000ms = 2s Delay
+    } else {
+      // When scrolled out, reset immediately to 50/50
+      setIsExpanded(false);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isInView]);
 
   // --- FLEX LOGIC ---
   const getFlex = (side: "human" | "ai") => {
-    // 1. Hover Interactions (User Intent)
+    // 1. Hover State (Highest Priority - Immediate)
     if (activeSide === "human") return side === "human" ? 8 : 2;
     if (activeSide === "ai") return side === "ai" ? 8 : 2;
 
-    // 2. Resting State (70/30) when visible
-    if (isInView) return side === "human" ? 7 : 3;
+    // 2. Auto-Expanded State (After 2s delay) -> 70/30
+    if (isExpanded) return side === "human" ? 7 : 3;
 
-    // 3. Initial State (50/50) hidden
+    // 3. Initial State (Before delay or when scrolled out) -> 50/50
     return 5;
   };
 
@@ -50,29 +68,28 @@ export default function HybridModel() {
         {/* === HUMAN SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("human")}
+          // Explicitly set initial for server-side match
+          initial={{ flex: 5 }}
           animate={{ flex: humanFlex }}
           transition={{ 
-            duration: 1, 
-            ease: [0.16, 1, 0.3, 1], 
-            // 2s Delay only for the auto-slide, immediate for hover
-            delay: activeSide ? 0 : 2 
+            duration: 0.8, 
+            ease: [0.16, 1, 0.3, 1], // Smooth Apple-style spring
+            // No delay here because the delay is now handled by the State change
           }}
           className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] overflow-hidden group"
         >
           {/* Content Wrapper */}
           <div className="relative z-10 min-w-[300px]">
-            {/* NUMBER: Restored exact positioning & style */}
             <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-10 -left-4 select-none group-hover:text-[#D4AF37]/40 transition-colors duration-500">
               70%
             </h3>
             
-            {/* TITLE: Restored exact spacing (mt-4) */}
             <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
               Human-Led
             </h3>
             
-            {/* CONTENT: Fades in/out based on active state */}
             <motion.div 
+               // Show content if flex > 4 (i.e. not the shrunk state)
                animate={{ opacity: humanFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
             >
@@ -100,27 +117,24 @@ export default function HybridModel() {
         {/* === AI SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("ai")}
+          initial={{ flex: 5 }}
           animate={{ flex: aiFlex }}
           transition={{ 
-            duration: 1, 
-            ease: [0.16, 1, 0.3, 1],
-            delay: activeSide ? 0 : 2 
+            duration: 0.8, 
+            ease: [0.16, 1, 0.3, 1] 
           }}
           className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] overflow-hidden group"
         >
           {/* Content Wrapper */}
           <div className="relative z-10 min-w-[300px]">
-            {/* NUMBER: Restored exact positioning & style */}
             <h3 className="text-6xl font-bold text-[#FDFCF0]/10 absolute -top-10 -left-4 select-none group-hover:text-[#FDFCF0]/30 transition-colors duration-500">
               30%
             </h3>
             
-            {/* TITLE: Restored exact spacing (mt-4) */}
             <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
               AI-Driven
             </h3>
 
-            {/* CONTENT */}
             <motion.div 
                animate={{ opacity: aiFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
