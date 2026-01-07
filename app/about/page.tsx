@@ -1,26 +1,27 @@
 import React from 'react';
-import AboutContent from "@/components/AboutContent";
+import AboutHero from "@/components/AboutHero";
+import AboutPhilosophy from "@/components/AboutPhilosophy";
+import AboutValues from "@/components/AboutValues";
 
 export default function AboutPage() {
   return (
-    <main className="pt-8 pb-20 bg-[#050505] min-h-screen text-[#FDFCF0]">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Hero Section */}
-        <section className="mb-32 pt-0 border-b border-[#FDFCF0]/10 pb-20">
-          <h1 className="text-5xl md:text-8xl font-serif font-medium mb-10 tracking-tight">
-            About <span className="text-[#E5D095]">Us</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-[#FDFCF0]/60 font-light max-w-4xl leading-relaxed">
-            We are a collective of financial architects dedicated to bringing structure to chaos. 
-            Founded on the belief that clarity is the ultimate competitive advantage.
-          </p>
-        </section>
+    <main className="bg-[#050505] h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth text-[#FDFCF0]">
+      
+      {/* Section 1: Vision (Hero) */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6">
+        <AboutHero />
+      </section>
 
-        {/* Main Content */}
-        <AboutContent />
+      {/* Section 2: Philosophy */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 bg-[#0a0a0a] border-t border-[#FDFCF0]/10">
+        <AboutPhilosophy />
+      </section>
 
-      </div>
+      {/* Section 3: Values */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
+        <AboutValues />
+      </section>
+
     </main>
   );
 }
