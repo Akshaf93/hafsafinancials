@@ -6,13 +6,13 @@ import { useState } from "react";
 // MOVED: UP (Top decreases) and RIGHT (Left increases)
 const LOCATIONS = [
   { name: "United States", top: 32, left: 25 },
-  { name: "Canada", top: 18, left: 22 },
+  { name: "Canada", top: 18, left: 25 },
   { name: "United Kingdom", top: 22, left: 49 },
-  { name: "UAE", top: 40, left: 63 },
-  { name: "Saudi Arabia", top: 41, left: 61 },
+  { name: "UAE", top: 41, left: 61 },
+  { name: "Saudi Arabia", top: 41, left: 64 },
   { name: "Pakistan", top: 38, left: 65 },
   { name: "Australia", top: 70, left: 80 },
-  { name: "New Zealand", top: 82, left: 85 },
+  { name: "New Zealand", top: 82, left: 87 },
 ];
 
 export default function GlobalReach() {
@@ -46,7 +46,7 @@ export default function GlobalReach() {
           <div 
             className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center transition-all duration-700 opacity-50 group-hover:opacity-70"
             style={{ 
-              backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')",
+              backgroundImage: "url('/World_map_-_low_resolution.svg')",
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
           />
