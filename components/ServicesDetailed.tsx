@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-[cite_start]// Detailed Data Source from HAFSA FINANCIALS.pdf (Pages 2-3) [cite: 20-56]
+// Detailed Data Source sourced from HAFSA FINANCIALS.pdf (Pages 2-3)
 const DETAILED_SERVICES = [
   {
     id: "ifrs",
