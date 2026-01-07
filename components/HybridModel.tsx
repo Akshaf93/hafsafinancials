@@ -1,20 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useRef } from "react";
 
 export default function HybridModel() {
+  const containerRef = useRef(null);
+  // once: false ensures it resets every time you scroll away
+  const isInView = useInView(containerRef, { amount: 0.6, once: false });
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
-  // LOGIC:
-  // 1. If Human is hovered: Human = 8, AI = 2
-  // 2. If AI is hovered: Human = 2, AI = 8
-  // 3. Resting State (No hover): Human = 7, AI = 3
-  const humanFlex = activeSide === "human" ? 8 : activeSide === "ai" ? 2 : 7;
-  const aiFlex = activeSide === "ai" ? 8 : activeSide === "human" ? 2 : 3;
+  // --- FLEX LOGIC ---
+  const getFlex = (side: "human" | "ai") => {
+    // 1. Hover Interactions (Highest Priority)
+    if (activeSide === "human") return side === "human" ? 8 : 2;
+    if (activeSide === "ai") return side === "ai" ? 8 : 2;
+
+    // 2. Resting State (When visible in viewport) -> 70/30
+    if (isInView) return side === "human" ? 7 : 3;
+
+    // 3. Initial State (Hidden/Reset) -> 50/50
+    return 5;
+  };
+
+  const humanFlex = getFlex("human");
+  const aiFlex = getFlex("ai");
 
   return (
-    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden snap-start snap-always">
+    <div 
+      ref={containerRef} 
+      className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden snap-start snap-always"
+    >
       
       {/* HEADER */}
       <div className="text-center mb-12">
@@ -35,51 +50,53 @@ export default function HybridModel() {
         {/* === HUMAN SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("human")}
-          // START at 50/50
-          initial={{ flex: 5 }}
-          // ANIMATE to calculated state (Resting: 7, Hover: 8 or 2)
           animate={{ flex: humanFlex }}
           transition={{ 
-            duration: 0.8, 
-            ease: [0.16, 1, 0.3, 1], // Smooth Apple-style spring
-            delay: 0.2 // Pause briefly at 50/50 before sliding to 70/30
+            duration: 1, 
+            ease: [0.16, 1, 0.3, 1], 
+            // Only apply delay if we are NOT hovering (i.e., the initial slide effect)
+            delay: activeSide ? 0 : 0.5 
           }}
           className="relative flex flex-col justify-center bg-[#1a1a1a] border-r border-[#333] overflow-hidden cursor-pointer group"
         >
-          {/* Content Wrapper */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-            {/* BRIGHTER NUMBER */}
-            <h3 className="text-7xl md:text-8xl font-bold text-[#D4AF37] opacity-50 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105">
+          {/* Background Texture */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-50" />
+          
+          {/* CONTENT WRAPPER with min-width to prevent squashing */}
+          <div className="relative z-10 p-8 md:p-12 min-w-[400px]">
+            
+            {/* BIG NUMBER - BRIGHTER */}
+            <h3 className="text-8xl font-bold text-[#D4AF37] opacity-40 absolute -top-10 -left-6 select-none transition-all duration-500 group-hover:opacity-100 group-hover:scale-105 group-hover:translate-x-2">
               70%
             </h3>
             
-            <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
+            <div className="mt-12 relative">
+              <h3 className="text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 Human-Led
               </h3>
               
-              {/* Only show details if this side is expanded (flex > 4) */}
+              {/* Opacity transition based on flex size */}
               <motion.div 
                  animate={{ opacity: humanFlex > 4 ? 1 : 0 }}
-                 transition={{ duration: 0.3 }}
+                 transition={{ duration: 0.4 }}
                  className="space-y-6"
               >
-                <p className="text-[#FDFCF0]/70 max-w-md text-sm md:text-base leading-relaxed">
+                <p className="text-[#FDFCF0]/80 max-w-md text-base leading-relaxed">
                   Complex judgments, ethical strategy, and board-level negotiation.
                 </p>
                 
                 <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    IFRS Interpretation
+                    [cite_start]IFRS Interpretation [cite: 588]
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    Valuation Logic
+                    [cite_start]Valuation Logic [cite: 589]
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    Negotiation
+                    [cite_start]Board Negotiation [cite: 592]
                   </li>
                 </ul>
               </motion.div>
@@ -90,50 +107,53 @@ export default function HybridModel() {
         {/* === AI SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("ai")}
-          // START at 50/50
-          initial={{ flex: 5 }}
-          // ANIMATE to calculated state (Resting: 3, Hover: 8 or 2)
           animate={{ flex: aiFlex }}
           transition={{ 
-            duration: 0.8, 
+            duration: 1, 
             ease: [0.16, 1, 0.3, 1],
-            delay: 0.2 
+            delay: activeSide ? 0 : 0.5 
           }}
           className="relative flex flex-col justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer group"
         >
-          {/* Content Wrapper */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-             {/* BRIGHTER NUMBER */}
-            <h3 className="text-7xl md:text-8xl font-bold text-[#FDFCF0] opacity-40 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:opacity-70 group-hover:scale-105">
+           {/* Background Grid */}
+           <div 
+             className="absolute inset-0 opacity-20"
+             style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
+          />
+
+          {/* CONTENT WRAPPER with min-width */}
+          <div className="relative z-10 p-8 md:p-12 min-w-[400px]">
+             
+             {/* BIG NUMBER - BRIGHTER */}
+            <h3 className="text-8xl font-bold text-[#FDFCF0] opacity-30 absolute -top-10 -left-6 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105 group-hover:translate-x-2">
               30%
             </h3>
 
-            <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
+            <div className="mt-12 relative">
+              <h3 className="text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 AI-Driven
               </h3>
 
-              {/* Only show details if this side is expanded (flex > 4) */}
               <motion.div 
                  animate={{ opacity: aiFlex > 4 ? 1 : 0 }}
-                 transition={{ duration: 0.3 }}
+                 transition={{ duration: 0.4 }}
                  className="space-y-6"
               >
-                <p className="text-[#FDFCF0]/70 max-w-md text-sm md:text-base leading-relaxed">
+                <p className="text-[#FDFCF0]/80 max-w-md text-base leading-relaxed">
                   Accelerated data processing, scenario testing, and anomaly detection.
                 </p>
                 <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Auto-Cleansing
+                    [cite_start]Auto-Cleansing [cite: 599]
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Stress Testing
+                    [cite_start]Stress Testing [cite: 600]
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Draft Generation
+                    [cite_start]Anomaly Detection [cite: 600]
                   </li>
                 </ul>
               </motion.div>
