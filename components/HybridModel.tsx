@@ -5,20 +5,20 @@ import { useState, useRef } from "react";
 
 export default function HybridModel() {
   const containerRef = useRef(null);
-  // once: false ensures it resets every time you scroll away
+  // once: false ensures the animation plays every time you scroll to this section
   const isInView = useInView(containerRef, { amount: 0.6, once: false });
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
   // --- FLEX LOGIC ---
   const getFlex = (side: "human" | "ai") => {
-    // 1. Hover Interactions (Highest Priority)
+    // 1. Hover Interactions
     if (activeSide === "human") return side === "human" ? 8 : 2;
     if (activeSide === "ai") return side === "ai" ? 8 : 2;
 
-    // 2. Resting State (When visible in viewport) -> 70/30
+    // 2. Resting State (70/30) when visible
     if (isInView) return side === "human" ? 7 : 3;
 
-    // 3. Initial State (Hidden/Reset) -> 50/50
+    // 3. Initial State (50/50) before scrolling in
     return 5;
   };
 
@@ -54,28 +54,28 @@ export default function HybridModel() {
           transition={{ 
             duration: 1, 
             ease: [0.16, 1, 0.3, 1], 
-            // Only apply delay if we are NOT hovering (i.e., the initial slide effect)
-            delay: activeSide ? 0 : 0.5 
+            // Delay only applied when auto-sliding, not hovering
+            delay: activeSide ? 0 : 1 
           }}
           className="relative flex flex-col justify-center bg-[#1a1a1a] border-r border-[#333] overflow-hidden cursor-pointer group"
         >
           {/* Background Texture */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-50" />
           
-          {/* CONTENT WRAPPER with min-width to prevent squashing */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[400px]">
+          {/* Content Wrapper - Fixed min-width to prevent text squashing */}
+          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
             
-            {/* BIG NUMBER - BRIGHTER */}
-            <h3 className="text-8xl font-bold text-[#D4AF37] opacity-40 absolute -top-10 -left-6 select-none transition-all duration-500 group-hover:opacity-100 group-hover:scale-105 group-hover:translate-x-2">
+            {/* NUMBER 70% - Positioning Fixed as requested */}
+            <h3 className="text-6xl md:text-7xl font-bold text-[#D4AF37] opacity-50 absolute -top-10 -left-4 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105">
               70%
             </h3>
             
-            <div className="mt-12 relative">
-              <h3 className="text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
+            <div className="mt-8 relative">
+              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 Human-Led
               </h3>
               
-              {/* Opacity transition based on flex size */}
+              {/* Fade content based on flex size */}
               <motion.div 
                  animate={{ opacity: humanFlex > 4 ? 1 : 0 }}
                  transition={{ duration: 0.4 }}
@@ -88,15 +88,15 @@ export default function HybridModel() {
                 <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    [cite_start]IFRS Interpretation [cite: 588]
+                    IFRS Interpretation
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    [cite_start]Valuation Logic [cite: 589]
+                    Valuation Logic
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    [cite_start]Board Negotiation [cite: 592]
+                    Negotiation
                   </li>
                 </ul>
               </motion.div>
@@ -111,7 +111,7 @@ export default function HybridModel() {
           transition={{ 
             duration: 1, 
             ease: [0.16, 1, 0.3, 1],
-            delay: activeSide ? 0 : 0.5 
+            delay: activeSide ? 0 : 1 
           }}
           className="relative flex flex-col justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer group"
         >
@@ -121,16 +121,16 @@ export default function HybridModel() {
              style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
           />
 
-          {/* CONTENT WRAPPER with min-width */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[400px]">
+          {/* Content Wrapper */}
+          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
              
-             {/* BIG NUMBER - BRIGHTER */}
-            <h3 className="text-8xl font-bold text-[#FDFCF0] opacity-30 absolute -top-10 -left-6 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105 group-hover:translate-x-2">
+             {/* NUMBER 30% - Positioning Fixed as requested */}
+            <h3 className="text-6xl md:text-7xl font-bold text-[#FDFCF0] opacity-40 absolute -top-10 -left-4 select-none transition-all duration-500 group-hover:opacity-70 group-hover:scale-105">
               30%
             </h3>
 
-            <div className="mt-12 relative">
-              <h3 className="text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
+            <div className="mt-8 relative">
+              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 AI-Driven
               </h3>
 
@@ -145,15 +145,15 @@ export default function HybridModel() {
                 <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    [cite_start]Auto-Cleansing [cite: 599]
+                    Auto-Cleansing
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    [cite_start]Stress Testing [cite: 600]
+                    Stress Testing
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    [cite_start]Anomaly Detection [cite: 600]
+                    Draft Generation
                   </li>
                 </ul>
               </motion.div>
