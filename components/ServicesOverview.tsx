@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 // Service Data sourced directly from HAFSA FINANCIALS.pdf (Pages 2-3)
-const SERVICE_TABS = [
+export const SERVICE_TABS = [
   {
     id: "ifrs",
     label: "IFRS Advisory",
