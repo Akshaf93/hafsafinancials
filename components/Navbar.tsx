@@ -30,11 +30,12 @@ export default function Navbar() {
   // 1. If we are on the Home page ('/') AND not scrolled yet -> Transparent
   // 2. Otherwise (Scrolled OR different page) -> Solid Dark
   const isHome = pathname === "/";
+  const isSnapPage = pathname?.toLowerCase() === "/team" || pathname?.toLowerCase() === "/about";
   const navBackground = isHome && !isScrolled 
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
 
-  const navPosition = isHome ? "fixed" : "sticky";
+  const navPosition = (isHome || isSnapPage) ? "fixed" : "sticky";
   const hideNavbar = isHome && isScrolled;
 
   return (

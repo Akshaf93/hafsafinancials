@@ -5,10 +5,10 @@ import AboutValues from "@/components/AboutValues";
 
 export default function AboutPage() {
   return (
-    <main className="bg-[#050505] h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth text-[#FDFCF0]">
+    <main className="fixed inset-0 bg-[#050505] overflow-y-scroll snap-y snap-mandatory scroll-smooth text-[#FDFCF0] z-0">
       
       {/* Section 1: Vision (Hero) */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-20">
         <AboutHero />
       </section>
 
