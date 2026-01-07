@@ -9,5 +9,6 @@ export default function TeamPage() {
       <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-20">
          <FounderSpotlight />
       </section>
+    </main>
   );
 }
