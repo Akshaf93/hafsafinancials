@@ -41,7 +41,7 @@ export default function TeamPreview() {
           viewport={{ once: true }}
           className="md:w-1/2"
         >
-          {/* Abstract Team ual */}
+          {/* Abstract Teual */}
           <div className="grid grid-cols-2 gap-4 opacity-80">
             <div className="h-40 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-4">
                <span className="text-[#E5D095] font-bold text-lg">Strategy</span>
