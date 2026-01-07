@@ -5,20 +5,20 @@ import { useState, useRef } from "react";
 
 export default function HybridModel() {
   const containerRef = useRef(null);
-  // once: false ensures the animation plays every time you scroll to this section
+  // Animation triggers every time you scroll to the section
   const isInView = useInView(containerRef, { amount: 0.6, once: false });
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
   // --- FLEX LOGIC ---
   const getFlex = (side: "human" | "ai") => {
-    // 1. Hover Interactions
+    // 1. Hover Interactions (User Intent)
     if (activeSide === "human") return side === "human" ? 8 : 2;
     if (activeSide === "ai") return side === "ai" ? 8 : 2;
 
     // 2. Resting State (70/30) when visible
     if (isInView) return side === "human" ? 7 : 3;
 
-    // 3. Initial State (50/50) before scrolling in
+    // 3. Initial State (50/50) hidden
     return 5;
   };
 
@@ -54,53 +54,46 @@ export default function HybridModel() {
           transition={{ 
             duration: 1, 
             ease: [0.16, 1, 0.3, 1], 
-            // Delay only applied when auto-sliding, not hovering
-            delay: activeSide ? 0 : 1 
+            // 2s Delay only for the auto-slide, immediate for hover
+            delay: activeSide ? 0 : 2 
           }}
-          className="relative flex flex-col justify-center bg-[#1a1a1a] border-r border-[#333] overflow-hidden cursor-pointer group"
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] overflow-hidden group"
         >
-          {/* Background Texture */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-50" />
-          
-          {/* Content Wrapper - Fixed min-width to prevent text squashing */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-            
-            {/* NUMBER 70% - Positioning Fixed as requested */}
-            <h3 className="text-6xl md:text-7xl font-bold text-[#D4AF37] opacity-50 absolute -top-10 -left-4 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105">
+          {/* Content Wrapper */}
+          <div className="relative z-10 min-w-[300px]">
+            {/* NUMBER: Restored exact positioning & style */}
+            <h3 className="text-6xl font-bold text-[#D4AF37]/20 absolute -top-10 -left-4 select-none group-hover:text-[#D4AF37]/40 transition-colors duration-500">
               70%
             </h3>
             
-            <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
-                Human-Led
-              </h3>
-              
-              {/* Fade content based on flex size */}
-              <motion.div 
-                 animate={{ opacity: humanFlex > 4 ? 1 : 0 }}
-                 transition={{ duration: 0.4 }}
-                 className="space-y-6"
-              >
-                <p className="text-[#FDFCF0]/80 max-w-md text-base leading-relaxed">
-                  Complex judgments, ethical strategy, and board-level negotiation.
-                </p>
-                
-                <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    IFRS Interpretation
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    Valuation Logic
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
-                    Negotiation
-                  </li>
-                </ul>
-              </motion.div>
-            </div>
+            {/* TITLE: Restored exact spacing (mt-4) */}
+            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
+              Human-Led
+            </h3>
+            
+            {/* CONTENT: Fades in/out based on active state */}
+            <motion.div 
+               animate={{ opacity: humanFlex > 4 ? 1 : 0 }} 
+               transition={{ duration: 0.3 }}
+            >
+              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+                Complex judgments, ethical strategy, and board-level negotiation.
+              </p>
+              <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  IFRS Interpretation
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  Valuation Logic
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                  Negotiation
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -111,53 +104,45 @@ export default function HybridModel() {
           transition={{ 
             duration: 1, 
             ease: [0.16, 1, 0.3, 1],
-            delay: activeSide ? 0 : 1 
+            delay: activeSide ? 0 : 2 
           }}
-          className="relative flex flex-col justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer group"
+          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] overflow-hidden group"
         >
-           {/* Background Grid */}
-           <div 
-             className="absolute inset-0 opacity-20"
-             style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
-          />
-
           {/* Content Wrapper */}
-          <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-             
-             {/* NUMBER 30% - Positioning Fixed as requested */}
-            <h3 className="text-6xl md:text-7xl font-bold text-[#FDFCF0] opacity-40 absolute -top-10 -left-4 select-none transition-all duration-500 group-hover:opacity-70 group-hover:scale-105">
+          <div className="relative z-10 min-w-[300px]">
+            {/* NUMBER: Restored exact positioning & style */}
+            <h3 className="text-6xl font-bold text-[#FDFCF0]/10 absolute -top-10 -left-4 select-none group-hover:text-[#FDFCF0]/30 transition-colors duration-500">
               30%
             </h3>
+            
+            {/* TITLE: Restored exact spacing (mt-4) */}
+            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
+              AI-Driven
+            </h3>
 
-            <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
-                AI-Driven
-              </h3>
-
-              <motion.div 
-                 animate={{ opacity: aiFlex > 4 ? 1 : 0 }}
-                 transition={{ duration: 0.4 }}
-                 className="space-y-6"
-              >
-                <p className="text-[#FDFCF0]/80 max-w-md text-base leading-relaxed">
-                  Accelerated data processing, scenario testing, and anomaly detection.
-                </p>
-                <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Auto-Cleansing
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Stress Testing
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
-                    Draft Generation
-                  </li>
-                </ul>
-              </motion.div>
-            </div>
+            {/* CONTENT */}
+            <motion.div 
+               animate={{ opacity: aiFlex > 4 ? 1 : 0 }} 
+               transition={{ duration: 0.3 }}
+            >
+              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+                Accelerated data processing, scenario testing, and anomaly detection.
+              </p>
+              <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Auto-Cleansing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Stress Testing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                  Draft Generation
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
 
