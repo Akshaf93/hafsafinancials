@@ -9,9 +9,13 @@
 
 /* --- SCROLL SNAP FIX --- */
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   height: 100%;
+}
+
+/* Only enable magnetic snapping on the homepage (when Hero is present) */
+html:has(.home-snap-trigger) {
+  scroll-snap-type: y mandatory;
 }
 
 body {

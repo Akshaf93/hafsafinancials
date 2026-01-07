@@ -59,7 +59,7 @@ export default function TeamPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 overflow-hidden"
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 overflow-hidden"
             >
                {/* Animated Background Image - AUTO SCALE ON ENTRY */}
                <motion.div 
@@ -86,7 +86,7 @@ export default function TeamPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 mt-8 overflow-hidden"
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 mt-8 overflow-hidden"
             >
                {/* Animated Background Image - AUTO SCALE ON ENTRY */}
                <motion.div 

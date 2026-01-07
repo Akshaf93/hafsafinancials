@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10 snap-start snap-always"
+      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-10 snap-start snap-always home-snap-trigger"
     >
       {/* Background is now handled by globals.css <body>.
         This ensures Hero matches Services/Team sections 100%.
