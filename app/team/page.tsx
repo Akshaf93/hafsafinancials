@@ -19,9 +19,6 @@ export default function TeamPage() {
               <p className="text-[#FDFCF0]/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 leading-relaxed">
                   We are always looking for exceptional talent to join our global network of financial experts. If you share our commitment to precision and transparency, we invite you to connect.
               </p>
-              <button className="px-12 py-5 border border-[#E5D095] text-[#E5D095] hover:bg-[#E5D095] hover:text-[#050505] transition-all duration-300 uppercase tracking-widest text-sm font-bold">
-                  View Career Opportunities
-              </button>
           </div>
       </section>
 
