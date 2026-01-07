@@ -1,22 +1,20 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function HybridModel() {
   const [activeSide, setActiveSide] = useState<"human" | "ai" | null>(null);
 
-  // Animation Variants for the Flex Ratios
-  // Initial: 50/50
-  // Resting (Default): 70/30 (Human/AI)
-  // Hover Human: 75/25 (Slight expand to show info)
-  // Hover AI: 25/75 (AI takes over to show info)
-  
-  const humanFlex = activeSide === "human" ? 7.5 : activeSide === "ai" ? 2.5 : 7;
-  const aiFlex = activeSide === "ai" ? 7.5 : activeSide === "human" ? 2.5 : 3;
+  // LOGIC:
+  // 1. If Human is hovered: Human = 8, AI = 2
+  // 2. If AI is hovered: Human = 2, AI = 8
+  // 3. Resting State (No hover): Human = 7, AI = 3
+  const humanFlex = activeSide === "human" ? 8 : activeSide === "ai" ? 2 : 7;
+  const aiFlex = activeSide === "ai" ? 8 : activeSide === "human" ? 2 : 3;
 
   return (
-    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
+    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden snap-start snap-always">
       
       {/* HEADER */}
       <div className="text-center mb-12">
@@ -24,82 +22,67 @@ export default function HybridModel() {
           Delivery Philosophy
         </h2>
         <p className="text-xl text-[#FDFCF0]/60 font-light mt-4">
-          "Financial judgment remains human. Intelligence is accelerated by AI."
+          "Human Judgment. AI Intelligence. Financial Excellence."
         </p>
       </div>
 
       {/* CARDS CONTAINER */}
       <div 
-        className="w-full flex flex-col md:flex-row h-[550px] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        className="w-full flex flex-col md:flex-row h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
         onMouseLeave={() => setActiveSide(null)}
       >
         
         {/* === HUMAN SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("human")}
-          // 1. Start at 50% (flex: 5)
+          // START at 50/50
           initial={{ flex: 5 }}
-          // 2. Animate to calculated flex (Resting: 7, Hover: 7.5 or 2.5)
+          // ANIMATE to calculated state (Resting: 7, Hover: 8 or 2)
           animate={{ flex: humanFlex }}
-          // 3. Smooth transition with delay for the initial "Transform" effect
           transition={{ 
             duration: 0.8, 
-            ease: [0.16, 1, 0.3, 1], // Apple-style spring ease
-            delay: 0.2 // Wait a bit before transforming from 50/50 to 70/30
+            ease: [0.16, 1, 0.3, 1], // Smooth Apple-style spring
+            delay: 0.2 // Pause briefly at 50/50 before sliding to 70/30
           }}
           className="relative flex flex-col justify-center bg-[#1a1a1a] border-r border-[#333] overflow-hidden cursor-pointer group"
         >
-          {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-50" />
-          
+          {/* Content Wrapper */}
           <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-            {/* BRIGHTER NUMBER: Opacity bumped to 0.6 and 0.8 on hover */}
-            <h3 className="text-7xl md:text-8xl font-bold text-[#D4AF37]/60 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:text-[#D4AF37]/80 group-hover:scale-105">
+            {/* BRIGHTER NUMBER */}
+            <h3 className="text-7xl md:text-8xl font-bold text-[#D4AF37] opacity-50 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:opacity-80 group-hover:scale-105">
               70%
             </h3>
             
             <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2">
+              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 Human-Led
               </h3>
-              <p className="text-[#D4AF37] font-mono text-sm uppercase tracking-widest mb-6">
-                Strategic Judgment
-              </p>
-
-              {/* Description */}
-              <p className="text-[#FDFCF0]/80 text-lg leading-relaxed max-w-md">
-                We handle complex IFRS interpretations, valuation logic, and board-level negotiations.
-              </p>
-
-              {/* EXPANDABLE INFO */}
-              <div className="overflow-hidden">
-                <AnimatePresence>
-                  {activeSide === "human" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginTop: 24 }}
-                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="border-l-2 border-[#D4AF37] pl-4 space-y-3"
-                    >
-                       <p className="text-[#FDFCF0]/60 text-sm">
-                         AI cannot defend an audit opinion or negotiate a merger. Our CAs and CFAs retain full control over:
-                       </p>
-                       <ul className="grid grid-cols-1 gap-2 text-sm text-[#FDFCF0] font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#D4AF37]">→</span> Ethical Strategy
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#D4AF37]">→</span> Final Policy Sign-off
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#D4AF37]">→</span> Investor Relations
-                        </li>
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              
+              {/* Only show details if this side is expanded (flex > 4) */}
+              <motion.div 
+                 animate={{ opacity: humanFlex > 4 ? 1 : 0 }}
+                 transition={{ duration: 0.3 }}
+                 className="space-y-6"
+              >
+                <p className="text-[#FDFCF0]/70 max-w-md text-sm md:text-base leading-relaxed">
+                  Complex judgments, ethical strategy, and board-level negotiation.
+                </p>
+                
+                <ul className="space-y-3 text-sm text-[#D4AF37] font-medium">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                    IFRS Interpretation
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                    Valuation Logic
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
+                    Negotiation
+                  </li>
+                </ul>
+              </motion.div>
             </div>
           </div>
         </motion.div>
@@ -107,11 +90,10 @@ export default function HybridModel() {
         {/* === AI SIDE === */}
         <motion.div 
           onMouseEnter={() => setActiveSide("ai")}
-          // 1. Start at 50% (flex: 5)
+          // START at 50/50
           initial={{ flex: 5 }}
-          // 2. Animate to calculated flex (Resting: 3, Hover: 7.5 or 2.5)
+          // ANIMATE to calculated state (Resting: 3, Hover: 8 or 2)
           animate={{ flex: aiFlex }}
-          // 3. Smooth transition matching the Human side
           transition={{ 
             duration: 0.8, 
             ease: [0.16, 1, 0.3, 1],
@@ -119,59 +101,42 @@ export default function HybridModel() {
           }}
           className="relative flex flex-col justify-center bg-[#0a0a0a] overflow-hidden cursor-pointer group"
         >
-          {/* Background */}
-          <div 
-             className="absolute inset-0 opacity-20"
-             style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
-          />
-
+          {/* Content Wrapper */}
           <div className="relative z-10 p-8 md:p-12 min-w-[320px]">
-             {/* BRIGHTER NUMBER: Opacity bumped to 0.5 and 0.7 on hover */}
-            <h3 className="text-7xl md:text-8xl font-bold text-[#FDFCF0]/50 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:text-[#FDFCF0]/70 group-hover:scale-105">
+             {/* BRIGHTER NUMBER */}
+            <h3 className="text-7xl md:text-8xl font-bold text-[#FDFCF0] opacity-40 absolute -top-12 -left-6 select-none transition-all duration-500 group-hover:opacity-70 group-hover:scale-105">
               30%
             </h3>
 
             <div className="mt-8 relative">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2">
+              <h3 className="text-3xl md:text-4xl font-bold text-[#FDFCF0] mb-2 whitespace-nowrap">
                 AI-Driven
               </h3>
-              <p className="text-blue-400 font-mono text-sm uppercase tracking-widest mb-6">
-                Speed & Scale
-              </p>
 
-              <p className="text-[#FDFCF0]/80 text-lg leading-relaxed max-w-md">
-                Our engines scan contracts for anomalies, run stress tests, and process data instantly.
-              </p>
-
-              {/* EXPANDABLE INFO */}
-              <div className="overflow-hidden">
-                <AnimatePresence>
-                  {activeSide === "ai" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginTop: 24 }}
-                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="border-l-2 border-blue-400 pl-4 space-y-3"
-                    >
-                       <p className="text-[#FDFCF0]/60 text-sm">
-                         We use AI as an accelerator, not a decision maker. It handles the heavy lifting for:
-                       </p>
-                       <ul className="grid grid-cols-1 gap-2 text-sm text-[#FDFCF0] font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="text-blue-400">⚡</span> 1000+ Scenario Runs
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-blue-400">⚡</span> Anomaly Detection
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-blue-400">⚡</span> Auto-Drafting Reports
-                        </li>
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              {/* Only show details if this side is expanded (flex > 4) */}
+              <motion.div 
+                 animate={{ opacity: aiFlex > 4 ? 1 : 0 }}
+                 transition={{ duration: 0.3 }}
+                 className="space-y-6"
+              >
+                <p className="text-[#FDFCF0]/70 max-w-md text-sm md:text-base leading-relaxed">
+                  Accelerated data processing, scenario testing, and anomaly detection.
+                </p>
+                <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                    Auto-Cleansing
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                    Stress Testing
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
+                    Draft Generation
+                  </li>
+                </ul>
+              </motion.div>
             </div>
           </div>
         </motion.div>
