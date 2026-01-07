@@ -74,7 +74,7 @@ const DETAILED_SERVICES = [
 
 export default function ServicesDetailed() {
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 pt-8 pb-24">
+    <div className="w-full max-w-7xl mx-auto px-6 pt-0 pb-24">
       {/* Header for the detailed section */}
       <div className="mb-12 text-center md:text-left">
         <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
@@ -93,14 +93,14 @@ export default function ServicesDetailed() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="group relative bg-[#1a1a1a] border border-[#FDFCF0]/10 rounded-xl p-8 hover:border-[#E5D095]/50 transition-colors flex flex-col h-full"
+            className="group relative bg-[#1a1a1a] border border-[#FDFCF0]/10 rounded-xl p-6 hover:border-[#E5D095]/50 transition-colors flex flex-col h-full min-h-[320px]"
           >
             {/* Hover Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#E5D095]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col h-full">
               {/* Header */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <h3 className="text-[#E5D095] text-xs font-bold uppercase tracking-widest mb-2">
                   {service.label}
                 </h3>
@@ -110,12 +110,12 @@ export default function ServicesDetailed() {
               </div>
 
               {/* Description */}
-              <p className="text-[#FDFCF0]/70 text-sm leading-relaxed mb-6">
+              <p className="text-[#FDFCF0]/70 text-sm leading-relaxed mb-4">
                 {service.description}
               </p>
 
               {/* Bullet Points (Offerings) */}
-              <ul className="space-y-2 mb-8 flex-grow">
+              <ul className="space-y-2 mb-6 flex-grow">
                 {service.offerings.map((offering) => (
                   <li key={offering} className="flex items-start gap-2 text-xs md:text-sm text-[#FDFCF0]/60">
                     <span className="text-[#E5D095] mt-1">▹</span>
@@ -125,7 +125,7 @@ export default function ServicesDetailed() {
               </ul>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-6 pt-4 border-t border-[#FDFCF0]/10">
+              <div className="flex flex-wrap gap-2 mb-4 pt-4 border-t border-[#FDFCF0]/10">
                 {service.tags.map((tag) => (
                   <span 
                     key={tag} 

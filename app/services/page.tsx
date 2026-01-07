@@ -6,7 +6,7 @@ import InsightsPreview from "@/components/InsightsPreview"; // Newsletters (Doc 
 
 export default function ServicesPage() {
   return (
-    <main className="pt-16 pb-20 bg-[#050505] min-h-screen">
+    <main className="pt-8 pb-20 bg-[#050505] min-h-screen">
       
       {/* 1. CORE SERVICES (Detailed Grid) */}
       {/* Source: HAFSA FINANCIALS.pdf (Pages 2-3) */}

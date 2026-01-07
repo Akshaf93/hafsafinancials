@@ -88,7 +88,7 @@ export default function ServicesOverview() {
       </div>
 
       {/* ACTIVE TAB CONTENT AREA */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-8 md:p-12 min-h-[400px] shadow-2xl flex flex-col justify-center">
+      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 md:p-10 min-h-[350px] shadow-2xl flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {SERVICE_TABS.map((tab) => activeTab === tab.id && (
             <motion.div

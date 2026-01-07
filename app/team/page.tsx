@@ -3,7 +3,7 @@ import FounderSpotlight from "@/components/FounderSpotlight";
 
 export default function TeamPage() {
   return (
-    <main className="pt-16 pb-20 bg-[#050505] min-h-screen text-[#FDFCF0]">
+    <main className="pt-8 pb-20 bg-[#050505] min-h-screen text-[#FDFCF0]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Page Header */}
