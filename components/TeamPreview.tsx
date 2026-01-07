@@ -66,7 +66,7 @@ export default function TeamPreview() {
                {/* Background Image */}
                <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500">
                  <Image 
-                   src="/shield-icon.png" 
+                   src="/shield-icon.jpg" 
                    alt="Compliance Abstract" 
                    fill 
                    className="object-cover object-center"
