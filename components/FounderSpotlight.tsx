@@ -85,6 +85,7 @@ export default function FounderSpotlight() {
 
            <p className="text-[#FDFCF0]/70 font-light leading-relaxed text-lg max-w-md">
              Bringing deep expertise in financial transformation, exemplified by the end-to-end IFRS restructuring and internal audit of Navisco Freight Forwarding. Specializing in complex frameworks like IFRS 9 and IAS 16, the focus extends beyond compliance to sustainable capacity building—empowering finance teams with the tools and training to maintain international standards independently.
+           </p>
         </motion.div>
       </div>
 
