@@ -59,7 +59,9 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <InsightCard article={article} />
+                  <div className="h-full backdrop-blur-md bg-[#1a1a1a]/20 rounded-lg overflow-hidden">
+                    <InsightCard article={article} />
+                  </div>
                 </motion.div>
               ))
             ) : (

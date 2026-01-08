@@ -31,13 +31,13 @@ export default async function InsightsPage() {
 
       {/* --- SECTION 2: THE FEED (Snap Start) --- */}
       {/* Fixed height + internal scroll for "always in view" feel */}
-      <section className="h-screen w-full snap-start snap-always pt-24 pb-12 bg-[#050505]">
+      <section className="h-screen w-full snap-start snap-always pt-24 pb-12">
         <InsightsFeed articles={feedArticles} />
       </section>
 
 
       {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
-      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
+      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10">
          <div className="max-w-5xl mx-auto w-full text-center">
             <NewsletterSection />
          </div>
