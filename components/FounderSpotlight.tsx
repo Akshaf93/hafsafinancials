@@ -49,7 +49,7 @@ const EXPERIENCE_TABS = [
 
 export default function FounderSpotlight() {
   const [activeTab, setActiveTab] = useState("audit");
-  const qualifications = ["ACCA Finalist", "OBU Finalist", "ICAEW"];
+  const qualifications = ["ACCA Finalist", "OBU Finalist"];
 
   return (
     <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full">
