@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import FounderSignature from "@/components/FounderSignature"; // Ensure you have this file from previous steps
+import FoundersSignature from "@/components/FoundersSignature"; // Ensure you have this file from previous steps
 
 export default function OwnersMessage() {
   return (
