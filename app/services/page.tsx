@@ -1,19 +1,19 @@
 import AuditTransformation from "@/components/AuditTabs"; 
 import ServicesDetailed from "@/components/ServicesDetailed"; 
-import ComplexityCalculator from "@/components/ComplexityCalculator"; 
+// Removed ComplexityCalculator import
 import Link from "next/link";
 
 export default function ServicesPage() {
   return (
-    // UPDATED: Added 'home-snap-trigger' to enable global scroll snapping
     <main className="w-full home-snap-trigger">
       
-      {/* SECTION 1: Services List - Renders multiple h-screen sections directly */}
+      {/* SECTION 1: Service Offerings (Handles its own snap sections) */}
       <ServicesDetailed />
 
       {/* SECTION 2: Case Study */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
-        <div className="w-full">
+      {/* UPDATED: Changed min-h-screen to h-screen and added overflow-hidden to fix 'peeking' */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden">
+        <div className="w-full h-full flex items-center justify-center">
           <AuditTransformation />
         </div>
       </section>
@@ -25,15 +25,20 @@ export default function ServicesPage() {
                 Defensible <span className="text-[#E5D095]">Pricing</span>
             </h2>
             
-            <div className="max-w-3xl mx-auto mb-12">
-                <ComplexityCalculator />
-            </div>
+            <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto mb-12 text-lg">
+              We operate on a transparency-first model. Explore our complexity-based pricing tiers or get a custom quote for your specific jurisdiction.
+            </p>
 
-            <div className="flex flex-col items-center gap-4">
-              <p className="text-[#FDFCF0]/60 text-sm">Ready to structure your financial future?</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <Link 
+                href="/pricing"
+                className="px-8 py-4 bg-[#E5D095] text-[#050505] font-bold uppercase tracking-widest hover:bg-[#FDFCF0] transition-colors min-w-[200px]"
+              >
+                View Pricing Model
+              </Link>
               <Link 
                 href="/contact"
-                className="px-8 py-4 bg-[#E5D095] text-[#050505] font-bold uppercase tracking-widest hover:bg-[#FDFCF0] transition-colors"
+                className="px-8 py-4 border border-[#FDFCF0]/20 text-[#FDFCF0] font-bold uppercase tracking-widest hover:border-[#E5D095] hover:text-[#E5D095] transition-colors min-w-[200px]"
               >
                 Start Engagement
               </Link>
