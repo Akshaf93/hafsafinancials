@@ -1,6 +1,7 @@
 import React from 'react';
 import FounderSpotlight from "@/components/FounderSpotlight";
 
+
 export default function TeamPage() {
   return (
     <main className="w-full home-snap-trigger">

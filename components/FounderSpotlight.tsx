@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -61,11 +62,22 @@ export default function FounderSpotlight() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative"
+        
         >
+            
+            <Image
+              src="/founder.jpg"
+              alt="Founder"
+              width={200}
+              height={200}
+              className="rounded-full mb-4"
+            />
+
            <h2 className="text-5xl md:text-7xl font-serif text-[#FDFCF0] leading-[0.9] mb-6">
               Mirza <br/><span className="text-[#E5D095]">Bilal Qasim</span>
            </h2>
            <p className="text-[#FDFCF0]/60 text-sm uppercase tracking-[0.2em] mb-8 border-l-2 border-[#E5D095] pl-4">
+        
              President & Founder
            </p>
            
