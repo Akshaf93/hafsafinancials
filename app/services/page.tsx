@@ -1,48 +1,43 @@
-import AuditTransformation from "@/components/AuditTabs"; // Case Study
-import ServicesDetailed from "@/components/ServicesDetailed"; // Core Offerings
-import GlobalReach from "@/components/GlobalReach"; // International Scope (Doc Page 13)
-import ComplexityCalculator from "@/components/ComplexityCalculator"; // Pricing Tool (Doc Page 14)
-import InsightsPreview from "@/components/InsightsPreview"; // Newsletters (Doc Page 7)
+import AuditTransformation from "@/components/AuditTabs"; 
+import ServicesDetailed from "@/components/ServicesDetailed"; 
+import GlobalReach from "@/components/GlobalReach"; 
+import ComplexityCalculator from "@/components/ComplexityCalculator"; 
+import InsightsPreview from "@/components/InsightsPreview"; 
 
 export default function ServicesPage() {
   return (
-    // UPDATED: Removed fixed/bg-black. Added 'home-snap-trigger' to enable global snapping.
     <main className="w-full home-snap-trigger">
       
-      {/* 1. CORE SERVICES (Detailed Grid) */}
+      {/* 1. CORE SERVICES */}
       <section className="min-h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-24 pb-12">
          <ServicesDetailed />
       </section>
 
-      {/* 2. GLOBAL REACH (Trust & Scale) */}
-      {/* Removed bg-[#0a0a0a] to show global background */}
+      {/* 2. GLOBAL REACH */}
       <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <GlobalReach />
       </section>
 
-      {/* 3. CASE STUDY (Proof of Competence) */}
+      {/* 3. CASE STUDY */}
       <section className="min-h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <div className="w-full">
           <AuditTransformation />
         </div>
       </section>
 
-      {/* 4. INTERACTIVE PRICING (Engagement Tool) */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
-        <div className="w-full max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0]">
-            Transparent <span className="text-[#E5D095]">Investment</span>
-          </h2>
-          <p className="text-[#FDFCF0]/60 mt-4 text-lg font-light max-w-2xl mx-auto">
-            "We believe in defensible pricing based on complexity, not ambiguity."
-          </p>
-        </div>
-        <ComplexityCalculator />
+      {/* 4. PRICING TEASER (Calculator Only) */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50">
+        <div className="w-full max-w-7xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0] mb-8">
+                Defensible <span className="text-[#E5D095]">Pricing</span>
+            </h2>
+            <div className="max-w-3xl mx-auto">
+                <ComplexityCalculator />
+            </div>
         </div>
       </section>
 
-       {/* 5. THOUGHT LEADERSHIP (Newsletters) */}
+       {/* 5. INSIGHTS */}
       <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <InsightsPreview />
       </section>
