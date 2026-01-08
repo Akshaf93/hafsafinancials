@@ -152,7 +152,9 @@ export default function NewsletterSection() {
                 key={tier.name}
                 className={`relative p-8 rounded-2xl border flex flex-col ${
                   tier.popular 
-                    ? 'bg-[#1a1a1a]/
+                    ? 'bg-[#1a1a1a]/60 backdrop-blur-md border-[#E5D095]/50 shadow-[0_0_30px_rgba(229,208,149,0.1)]' 
+                    : 'bg-[#1a1a1a]/20 backdrop-blur-md border-[#FDFCF0]/10'
+                }`}
               >
                 {tier.popular && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#E5D095] text-[#050505] text-[10px] font-bold uppercase px-3 py-1 rounded-full tracking-wider">
