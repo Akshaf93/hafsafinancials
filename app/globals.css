@@ -10,7 +10,6 @@
 /* --- SCROLL SNAP FIX --- */
 html {
   scroll-behavior: smooth;
-  background-color: #050505;
 }
 
 /* Only enable magnetic snapping on the homepage (when Hero is present) */
@@ -20,32 +19,17 @@ html:has(.home-snap-trigger) {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: transparent;
   margin: 0;
   min-height: 100vh;
-}
-
-/* Background Layer 1: Radial Gradient */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #050505 60%, #000000 100%);
-}
-
-/* Background Layer 2: Texture */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.03;
-  pointer-events: none;
+  background-color: #050505;
   background-image: 
-    linear-gradient(#D4AF37 1px, transparent 1px), 
-    linear-gradient(90deg, #D4AF37 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at center, #1a1a1a 0%, #050505 60%, #000000 100%);
+  background-size: 50px 50px, 50px 50px, cover;
+  background-position: 0 0, 0 0, center center;
+  background-repeat: repeat, repeat, no-repeat;
+  background-attachment: fixed;
 }
 
 /* Scrollbar Styling */
