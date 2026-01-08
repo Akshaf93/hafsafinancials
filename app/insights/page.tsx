@@ -17,20 +17,22 @@ async function getArticles() {
 }
 export default async function InsightsPage() {
   const articles = await getArticles();
+  const featuredArticle = articles[0];
+  const feedArticles = articles.slice(1);
 
   return (
     <main className="w-full home-snap-trigger">
       
       {/* --- SECTION 1: HERO (Snap Start) --- */}
-      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 relative border-b border-[#FDFCF0]/10">
-        <InsightsHero />
+      <section className="h-screen w-full snap-start snap-always flex items-center justify-center px-6 relative border-b border-[#FDFCF0]/10 overflow-hidden">
+        <InsightsHero featuredArticle={featuredArticle} />
       </section>
 
 
       {/* --- SECTION 2: THE FEED (Snap Start) --- */}
-      {/* We use h-screen so it snaps perfectly, but the inner Feed handles scrolling */}
-      <section className="min-h-screen w-full snap-start snap-always pt-24">
-        <InsightsFeed articles={articles} />
+      {/* Fixed height + internal scroll for "always in view" feel */}
+      <section className="h-screen w-full snap-start snap-always pt-24 pb-12 bg-[#050505]">
+        <InsightsFeed articles={feedArticles} />
       </section>
 
 

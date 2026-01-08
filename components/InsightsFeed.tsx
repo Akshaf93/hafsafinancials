@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { InsightCard, FeaturedCard } from "@/components/InsightCards";
+import { InsightCard } from "@/components/InsightCards";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FILTERS = [
@@ -16,20 +16,17 @@ const FILTERS = [
 export default function InsightsFeed({ articles }: { articles: any[] }) {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // Safety checks
-  const featuredArticle = articles && articles.length > 0 ? articles[0] : null;
-  const remainingArticles = articles && articles.length > 1 ? articles.slice(1) : [];
-
   const filteredArticles = activeFilter === "All" 
-    ? remainingArticles 
-    : remainingArticles.filter((a) => a.fields.category === activeFilter);
+    ? articles 
+    : articles.filter((a) => a.fields.category === activeFilter);
 
   return (
-    <div className="w-full flex flex-col max-w-7xl mx-auto px-6 pb-20">
+    <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
       
-      {/* 1. STICKY HEADER (Filter Bar) */}
-      <div className="sticky top-20 py-6 border-b border-[#FDFCF0]/10 bg-[#050505]/80 backdrop-blur-md z-20 flex-shrink-0">
-        <div className="flex overflow-x-auto no-scrollbar gap-3 md:justify-center">
+      {/* 1. HEADER (Filter Bar) */}
+      <div className="py-6 border-b border-[#FDFCF0]/10 z-20 flex-shrink-0 flex flex-col md:flex-row justify-between items-center gap-4">
+        <h3 className="text-[#FDFCF0] font-serif text-xl">Recent Analysis</h3>
+        <div className="flex overflow-x-auto no-scrollbar gap-3 w-full md:w-auto">
           {FILTERS.map((filter) => (
             <button
               key={filter}
@@ -47,14 +44,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
       </div>
 
       {/* 2. SCROLLABLE CONTENT AREA */}
-      <div className="pt-8">
-        
-        {/* Featured (Only show if 'All' is selected to keep it clean) */}
-        {activeFilter === "All" && featuredArticle && (
-           <div className="mb-12">
-              <FeaturedCard article={featuredArticle} />
-           </div>
-        )}
+      <div className="flex-grow overflow-y-auto no-scrollbar pt-8 pb-20">
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
