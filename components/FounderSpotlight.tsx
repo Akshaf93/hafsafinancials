@@ -83,7 +83,7 @@ export default function FounderSpotlight() {
                 </p>
                 
                 <a 
-                  href="https://www.linkedin.com/in/mirza-bilal-qasim-barlas-aca-finalist-aaa0a6133/" 
+                  href="https://www.linkedin.com/in/muhammad-bilal-qasim-mirza-223230168/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[#E5D095] text-xs font-bold uppercase tracking-widest hover:text-[#FDFCF0] transition-colors border-b border-[#E5D095]/30 pb-1"
