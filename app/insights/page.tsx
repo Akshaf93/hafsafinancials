@@ -6,7 +6,7 @@ import NewsletterSection from "@/components/NewsletterSection";
 async function getArticles() {
   const res = await client.getEntries({
     content_type: "article",
-    order: "-fields.date",
+    order: ["-fields.date"],
   });
   return res.items;
 }
