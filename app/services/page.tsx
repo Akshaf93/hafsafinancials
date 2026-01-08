@@ -5,11 +5,10 @@ import Link from "next/link";
 
 export default function ServicesPage() {
   return (
-    // Main container just holds the content
-    <main className="w-full">
+    // UPDATED: Added 'home-snap-trigger' to enable global scroll snapping
+    <main className="w-full home-snap-trigger">
       
       {/* SECTION 1: Services List */}
-      {/* Added 'snap-start' to engage with global snapping */}
       <section className="min-h-screen w-full flex items-start justify-center snap-start snap-always relative px-6 pt-24 pb-12">
          <ServicesDetailed />
       </section>
