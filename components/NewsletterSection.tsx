@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const PLANS = {
   ifrs: {
@@ -95,6 +96,16 @@ export default function NewsletterSection() {
 
   return (
     <div className="w-full">
+      {/* HEADER */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] mb-6">
+            Direct to <span className="text-[#E5D095]">Inbox</span>
+        </h2>
+        <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto text-lg">
+            Subscribe to our specialized streams. Get models, regulatory alerts, and case studies delivered monthly.
+        </p>
+      </div>
+
       {/* TABS */}
       <div className="flex justify-center mb-12">
         <div className="bg-[#1a1a1a] border border-[#FDFCF0]/10 rounded-full p-1 flex">
@@ -180,6 +191,13 @@ export default function NewsletterSection() {
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* FOOTER */}
+      <div className="mt-12 pt-12 border-t border-[#FDFCF0]/5 text-center">
+        <Link href="/" className="text-[#FDFCF0]/40 hover:text-[#E5D095] text-xs font-bold uppercase tracking-widest transition-colors">
+            ← Return Home
+        </Link>
+      </div>
     </div>
   );
 }

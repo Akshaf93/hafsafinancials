@@ -1,7 +1,7 @@
 import { client } from "@/lib/contentful";
 import InsightsFeed from "@/components/InsightsFeed";
 import NewsletterSection from "@/components/NewsletterSection";
-import Link from "next/link";
+import InsightsHero from "@/components/InsightsHero";
 
 // Force Dynamic Rendering to ensure fresh content on every visit
 export const dynamic = 'force-dynamic';
@@ -23,24 +23,7 @@ export default async function InsightsPage() {
       
       {/* --- SECTION 1: HERO (Snap Start) --- */}
       <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 relative border-b border-[#FDFCF0]/10">
-        
-        <div className="relative z-10 text-center max-w-4xl">
-            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-8">
-                Global Intelligence Unit
-            </h2>
-            <h1 className="text-6xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[0.9]">
-                The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] to-[#E5D095]">Ledger</span>
-            </h1>
-            <p className="text-[#FDFCF0]/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
-                Defensible analysis across IFRS, M&A Strategy, and Financial Architecture.
-                <br/> <span className="text-[#E5D095]/60 text-sm mt-4 block">Read. Analyze. Execute.</span>
-            </p>
-
-            <div className="mt-12 flex flex-col items-center gap-2 text-[#E5D095]/50 text-xs uppercase tracking-widest">
-                <span>Scroll for Feed</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-[#E5D095]/50 to-transparent"></div>
-            </div>
-        </div>
+        <InsightsHero />
       </section>
 
 
@@ -54,19 +37,7 @@ export default async function InsightsPage() {
       {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
       <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
          <div className="max-w-5xl mx-auto w-full text-center">
-            <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] mb-6">
-                Direct to <span className="text-[#E5D095]">Inbox</span>
-            </h2>
-            <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto mb-16 text-lg">
-                Subscribe to our specialized streams. Get models, regulatory alerts, and case studies delivered monthly.
-            </p>
             <NewsletterSection />
-            
-            <div className="mt-12 pt-12 border-t border-[#FDFCF0]/5">
-                <Link href="/" className="text-[#FDFCF0]/40 hover:text-[#E5D095] text-xs font-bold uppercase tracking-widest transition-colors">
-                    ← Return Home
-                </Link>
-            </div>
          </div>
       </section>
 
