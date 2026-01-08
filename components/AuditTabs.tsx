@@ -62,7 +62,6 @@ export default function AuditTabs() {
       </div>
 
       {/* TAB CONTENT */}
-      <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
       <div className="relative bg-[#0a0a0a]/50 backdrop-blur-sm border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {TABS.map((tab) => activeTab === tab.id && (
