@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FILTERS = [
   "All",
-  "IFRS & Financial Reporting",
+  "IFRS Updates",
   "Financial Architect",
   "Business Analysis",
   "Tax Advisory",
@@ -25,10 +25,10 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
     : remainingArticles.filter((a) => a.fields.category === activeFilter);
 
   return (
-    <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
+    <div className="w-full flex flex-col max-w-7xl mx-auto px-6 pb-20">
       
       {/* 1. STICKY HEADER (Filter Bar) */}
-      <div className="py-6 border-b border-[#FDFCF0]/10 bg-[#050505]/80 backdrop-blur-md z-20 flex-shrink-0">
+      <div className="sticky top-20 py-6 border-b border-[#FDFCF0]/10 bg-[#050505]/80 backdrop-blur-md z-20 flex-shrink-0">
         <div className="flex overflow-x-auto no-scrollbar gap-3 md:justify-center">
           {FILTERS.map((filter) => (
             <button
@@ -47,7 +47,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
       </div>
 
       {/* 2. SCROLLABLE CONTENT AREA */}
-      <div className="flex-grow overflow-y-auto no-scrollbar pb-20 pt-8">
+      <div className="pt-8">
         
         {/* Featured (Only show if 'All' is selected to keep it clean) */}
         {activeFilter === "All" && featuredArticle && (

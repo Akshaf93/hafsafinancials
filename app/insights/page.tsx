@@ -25,7 +25,7 @@ export default async function InsightsPage() {
       <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 relative border-b border-[#FDFCF0]/10">
         
         <div className="relative z-10 text-center max-w-4xl">
-            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-8 animate-pulse">
+            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-8">
                 Global Intelligence Unit
             </h2>
             <h1 className="text-6xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[0.9]">
@@ -36,8 +36,9 @@ export default async function InsightsPage() {
                 <br/> <span className="text-[#E5D095]/60 text-sm mt-4 block">Read. Analyze. Execute.</span>
             </p>
 
-            <div className="animate-bounce mt-10">
-               <span className="text-[#FDFCF0]/30 text-xs uppercase tracking-widest">Scroll for Feed ↓</span>
+            <div className="mt-12 flex flex-col items-center gap-2 text-[#E5D095]/50 text-xs uppercase tracking-widest">
+                <span>Scroll for Feed</span>
+                <div className="w-[1px] h-12 bg-gradient-to-b from-[#E5D095]/50 to-transparent"></div>
             </div>
         </div>
       </section>
@@ -45,7 +46,7 @@ export default async function InsightsPage() {
 
       {/* --- SECTION 2: THE FEED (Snap Start) --- */}
       {/* We use h-screen so it snaps perfectly, but the inner Feed handles scrolling */}
-      <section className="h-screen w-full snap-start snap-always pt-24">
+      <section className="min-h-screen w-full snap-start snap-always pt-24">
         <InsightsFeed articles={articles} />
       </section>
 
