@@ -27,7 +27,7 @@ export default function OwnersMessage() {
         <div className="mt-8 pt-8 border-t border-[#E5D095]/20">
             {/* REPLACED: Static text with Animated Signature */}
             <div className="mb-6 -ml-4 -rotate-2 origin-bottom-left select-none">
-              <FounderSignature />
+              <FoundersSignature />
             </div>
             
             <h3 className="text-xl font-serif text-[#FDFCF0]">Mirza Muhammad <br/> Bilal Qasim Barlas</h3>
