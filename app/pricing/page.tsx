@@ -1,14 +1,14 @@
 import React from 'react';
 import ComplexityCalculator from "@/components/ComplexityCalculator";
-import Footer from "@/components/Footer";
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen w-full">
+    // UPDATED: Standard flow, global background, global scroll
+    <main className="w-full home-snap-trigger">
       <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-24 pb-12">
-
+        
         {/* Header */}
-        <div className="relative z-10 max-w-4xl mx-auto w-full text-center mb-10">
+        <div className="max-w-4xl mx-auto w-full text-center mb-10">
            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-4">
              Transparent Engagement
            </h2>
@@ -21,25 +21,25 @@ export default function PricingPage() {
         </div>
         
         {/* Calculator */}
-        <div className="relative z-10 w-full flex justify-center mb-16">
+        <div className="w-full flex justify-center mb-16">
             <ComplexityCalculator />
         </div>
 
         {/* Value Props */}
-        <div className="relative z-10 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
-            <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#FDFCF0]/10">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl border border-[#FDFCF0]/10">
                 <h3 className="text-[#E5D095] font-serif text-xl mb-2">01. Scope-Driven</h3>
                 <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
                     Investment is calculated based on the technical complexity (Standard, Intermediate, Advanced) and jurisdictional reach of the project.
                 </p>
             </div>
-            <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#FDFCF0]/10">
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl border border-[#FDFCF0]/10">
                 <h3 className="text-[#E5D095] font-serif text-xl mb-2">02. Fixed Ranges</h3>
                 <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
                     We provide a clear estimated range upfront. This ensures budget certainty and aligns our focus on delivery, not time-tracking.
                 </p>
             </div>
-            <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#FDFCF0]/10">
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl border border-[#FDFCF0]/10">
                 <h3 className="text-[#E5D095] font-serif text-xl mb-2">03. Value Aligned</h3>
                 <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
                     You pay for the defensibility and strategic value of the outcome, leveraging our hybrid Human-AI delivery model for maximum efficiency.
@@ -47,11 +47,6 @@ export default function PricingPage() {
             </div>
         </div>
 
-      </section>
-
-      {/* Footer Section */}
-      <section className="snap-start snap-always w-full">
-        <Footer />
       </section>
     </main>
   );
