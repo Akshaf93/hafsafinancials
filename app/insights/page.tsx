@@ -19,18 +19,10 @@ export default async function InsightsPage() {
   const articles = await getArticles();
 
   return (
-    <main className="w-full home-snap-trigger bg-[#050505]">
+    <main className="w-full home-snap-trigger">
       
       {/* --- SECTION 1: HERO (Snap Start) --- */}
       <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 relative border-b border-[#FDFCF0]/10">
-        {/* Background Texture */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none" 
-           style={{ 
-             backgroundImage: "linear-gradient(#E5D095 1px, transparent 1px), linear-gradient(90deg, #E5D095 1px, transparent 1px)", 
-             backgroundSize: "40px 40px",
-             backgroundPosition: "center center"
-           }} 
-        />
         
         <div className="relative z-10 text-center max-w-4xl">
             <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-8 animate-pulse">
@@ -53,13 +45,13 @@ export default async function InsightsPage() {
 
       {/* --- SECTION 2: THE FEED (Snap Start) --- */}
       {/* We use h-screen so it snaps perfectly, but the inner Feed handles scrolling */}
-      <section className="h-screen w-full snap-start snap-always pt-24 bg-[#050505]">
+      <section className="h-screen w-full snap-start snap-always pt-24">
         <InsightsFeed articles={articles} />
       </section>
 
 
       {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
-      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10 bg-[#1a1a1a]/30">
+      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
          <div className="max-w-5xl mx-auto w-full text-center">
             <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] mb-6">
                 Direct to <span className="text-[#E5D095]">Inbox</span>

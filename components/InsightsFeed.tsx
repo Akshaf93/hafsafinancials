@@ -28,7 +28,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
     <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
       
       {/* 1. STICKY HEADER (Filter Bar) */}
-      <div className="py-6 border-b border-[#FDFCF0]/10 bg-[#050505] z-20 flex-shrink-0">
+      <div className="py-6 border-b border-[#FDFCF0]/10 bg-[#050505]/80 backdrop-blur-md z-20 flex-shrink-0">
         <div className="flex overflow-x-auto no-scrollbar gap-3 md:justify-center">
           {FILTERS.map((filter) => (
             <button
