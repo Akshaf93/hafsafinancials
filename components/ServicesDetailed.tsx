@@ -7,42 +7,33 @@ const DETAILED_SERVICES = [
   {
     id: "ifrs",
     label: "IFRS Advisory",
+    target: "Sole Proprietors → Large Enterprises",
     headline: "Technical Compliance & Transition",
-    description: "We provide specialized advisory for complex standards (IFRS 9, 15, 16 & 17), ensuring your financial statements withstand regulatory scrutiny.",
+    description: "Full IFRS implementation and specialized advisory for complex standards (IFRS 9, 15, 16 & 17). We ensure your financial statements are defensible and audit-ready.",
     offerings: [
       "Accounting Policy Development",
-      "Financial Statement Preparation",
       "Gap Analysis & Transition Support",
-      "ECL Modeling & Impairment"
-    ]
-  },
-  {
-    id: "arch",
-    label: "Financial Architect",
-    headline: "CFO-Level Modeling & Strategy",
-    description: "Advanced 3-statement modeling and stress testing to guide capital allocation. We turn static data into dynamic, multi-year forecasting tools.",
-    offerings: [
-      "3-Statement Financial Modeling",
-      "Stress Testing & Scenario Analysis",
-      "PPE & Asset Schedules",
-      "Strategic Financial Planning"
+      "ECL Modeling (IFRS 9) & Impairment",
+      "Risk Assessment (Financial, Cyber, Business)" // Added from PDF
     ]
   },
   {
     id: "analysis",
-    label: "Business Analysis",
+    label: "Business Analysis & Advisory", // Updated Title
+    target: "SMEs → Large Enterprises",
     headline: "Strategic Insight & Visualization",
-    description: "Moving beyond basic reporting. We implement Balanced Scorecards and interactive Power BI dashboards to track real-time performance.",
+    description: "Turning data into decision-useful intelligence. We implement Balanced Scorecards and interactive Power BI dashboards to track real-time performance.",
     offerings: [
       "Ratio Analysis with Commentary",
       "Balanced Scorecard Implementation",
       "KPI Dashboards (Power BI)",
-      "Margin Trend Analysis"
+      "Strategy Consulting & Optimization" // Updated from PDF
     ]
   },
   {
     id: "tax",
     label: "Tax Advisory",
+    target: "UK & Pakistan Entities",
     headline: "Cross-Border Optimization",
     description: "Comprehensive tax planning for entities operating in the UK and Pakistan, ensuring efficiency and full compliance across jurisdictions.",
     offerings: [
@@ -53,15 +44,29 @@ const DETAILED_SERVICES = [
     ]
   },
   {
+    id: "arch",
+    label: "Financial Architect",
+    target: "Growing Enterprises & Groups",
+    headline: "CFO-Level Modeling & Strategy",
+    description: "Advanced 3-statement modeling and stress testing to guide capital allocation. We turn static data into dynamic, multi-year forecasting tools.",
+    offerings: [
+      "3-Statement Financial Modeling",
+      "Stress Testing & Scenario Analysis",
+      "KPI Dashboards & Forecasting",
+      "Strategic Financial Planning"
+    ]
+  },
+  {
     id: "controls",
-    label: "Internal Controls",
+    label: "Internal Control Advisory", // Updated Title
+    target: "Organizations with Risk Exposure",
     headline: "Governance & Risk Mitigation",
     description: "Designing robust internal control frameworks to protect assets and ensure the integrity of financial reporting systems.",
     offerings: [
       "Internal Control Gap Analysis",
       "IT & Business Process Controls",
       "Internal Audit Framework",
-      "SOP Design & Implementation"
+      "Custom Control Implementation"
     ]
   }
 ];
@@ -133,19 +138,36 @@ export default function ServicesDetailed() {
                     </span>
                   </div>
 
-                  <h3 className="text-3xl md:text-5xl font-serif text-[#FDFCF0] leading-tight mb-6">
+                  <h3 className="text-3xl md:text-5xl font-serif text-[#FDFCF0] leading-tight mb-4">
                     {service.headline}
                   </h3>
+                  
+                  {/* NEW: Target Audience Badge */}
+                  <div className={`mb-6 flex ${!isEven && 'lg:justify-end'} justify-center lg:justify-start`}>
+                    <span className="px-3 py-1 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded text-[10px] text-[#E5D095] uppercase tracking-wider font-bold">
+                        Target: {service.target}
+                    </span>
+                  </div>
+
                   <p className="text-[#FDFCF0]/70 text-base md:text-lg font-light leading-relaxed mb-8">
                     {service.description}
                   </p>
 
-                  <Link 
-                    href="/contact"
-                    className={`inline-flex items-center gap-2 text-xs font-bold text-[#E5D095] uppercase tracking-widest hover:text-[#FDFCF0] transition-colors group ${!isEven && 'lg:flex-row-reverse'}`}
-                  >
-                    Discuss Requirement <span className="text-lg leading-none mb-[2px] group-hover:translate-x-1 transition-transform">→</span>
-                  </Link>
+                  <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start ${!isEven && 'lg:justify-end'}`}>
+                    <Link 
+                        href="/contact"
+                        className="px-6 py-3 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded hover:bg-[#FDFCF0] transition-colors"
+                    >
+                        Start Engagement
+                    </Link>
+                    {/* NEW: Link to Pricing Calculator */}
+                    <Link 
+                        href="/pricing"
+                        className="px-6 py-3 border border-[#FDFCF0]/20 text-[#FDFCF0] text-xs font-bold uppercase tracking-widest rounded hover:border-[#E5D095] hover:text-[#E5D095] transition-colors"
+                    >
+                        View Pricing Tier
+                    </Link>
+                  </div>
                 </motion.div>
 
                 {/* Card / Visual */}
