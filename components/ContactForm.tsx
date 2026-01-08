@@ -56,7 +56,7 @@ export default function ContactForm() {
                 <h3 className="text-[#FDFCF0] font-bold text-sm uppercase tracking-wide mb-1">Global HQ</h3>
                 <p className="text-[#FDFCF0]/60">
                   Serving Clients in UK, UAE, USA & Pakistan.<br />
-                  Based in Lahore, Pakistan.
+                  Based in Karachi, Pakistan.
                 </p>
               </div>
             </div>

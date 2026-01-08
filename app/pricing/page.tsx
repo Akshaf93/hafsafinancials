@@ -4,12 +4,8 @@ import Footer from "@/components/Footer";
 
 export default function PricingPage() {
   return (
-    <main className="fixed inset-0 bg-[#050505] overflow-y-scroll snap-y snap-mandatory scroll-smooth z-0">
+    <main className="min-h-screen w-full">
       <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-24 pb-12">
-        
-        {/* Background Grid & Spotlight */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] pointer-events-none z-0" style={{ backgroundSize: "24px 24px" }} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(229,208,149,0.15),_transparent_50%)] pointer-events-none z-0" />
 
         {/* Header */}
         <div className="relative z-10 max-w-4xl mx-auto w-full text-center mb-10">
