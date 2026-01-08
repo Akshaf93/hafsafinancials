@@ -67,7 +67,7 @@ export default function FounderSpotlight() {
            <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
               <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden border border-[#E5D095]/20 shadow-[0_0_15px_rgba(229,208,149,0.1)] group">
                 <Image
-                  src="/founder.jpg"
+                  src="/founder.jpeg"
                   alt="Mirza Bilal Qasim"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
