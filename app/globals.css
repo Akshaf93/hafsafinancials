@@ -3,34 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: #050505;
-  --foreground: #FDFCF0;
+  --foreground-rgb: 253, 252, 240;
+  --gold-primary: #D4AF37;
 }
 
-/* 1. Global Scroll Snapping on the HTML element */
+/* --- SCROLL SNAP FIX --- */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory; /* Forces snapping */
-  overflow-y: scroll; /* Allow vertical scrolling */
-  height: 100%;
 }
 
-/* 2. Body inherits the height and allows content to flow */
+/* Only enable magnetic snapping on the homepage (when Hero is present) */
+html:has(.home-snap-trigger) {
+  scroll-snap-type: y mandatory;
+}
+
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
-  min-height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  color: rgb(var(--foreground-rgb));
+  margin: 0;
+  min-height: 100vh;
   
-  /* Add the texture/gradient globally here */
+  background-color: #050505;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(229, 208, 149, 0.08), transparent 40%),
-    url("https://www.transparenttextures.com/patterns/cubes.png");
+    linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at center, #1a1a1a 0%, #050505 60%, #000000 100%);
+  background-size: 50px 50px, 50px 50px, cover;
+  background-repeat: repeat, repeat, no-repeat;
+  background-attachment: fixed;
 }
 
-/* 3. Utility to ensure sections snap correctly */
-.snap-section {
-  scroll-snap-align: start;
+/* Scrollbar Styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+/* Ensure footer is accessible with mandatory snapping */
+footer {
+  scroll-snap-align: end;
   scroll-snap-stop: always;
 }

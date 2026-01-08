@@ -1,24 +1,24 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer"; // Import Footer
 
-// ... fonts and metadata ...
+export const metadata: Metadata = {
+  title: "Hafsa Financials | Global Advisory",
+  description: "IFRS Advisory, Financial Modeling & Risk Management",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      {/* UPDATED: Removed 'overflow-hidden' or 'fixed' if they were there */}
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+      <body className="antialiased flex flex-col min-h-screen">
         <Navbar />
-        {children}
-        <Footer />
+        <div className="flex-grow">{children}</div>
+        <Footer /> {/* Add Footer Here */}
       </body>
     </html>
   );
