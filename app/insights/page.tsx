@@ -6,14 +6,15 @@ import Link from "next/link";
 // Force Dynamic Rendering to ensure fresh content on every visit
 export const dynamic = 'force-dynamic';
 
+// app/insights/page.tsx
 async function getArticles() {
   const res = await client.getEntries({
     content_type: "article",
-    order: "-fields.date",
+    // CHANGE THIS LINE: Wrap the string in [ ]
+    order: ["-fields.date"], 
   });
   return res.items;
 }
-
 export default async function InsightsPage() {
   const articles = await getArticles();
 

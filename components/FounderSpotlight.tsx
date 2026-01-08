@@ -56,32 +56,45 @@ export default function FounderSpotlight() {
     <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full">
       
       {/* LEFT: PROFILE */}
-      <div className="flex flex-col justify-center space-y-8">
+      <div className="flex flex-col justify-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative"
-        
         >
-            
-            <Image
-              src="/founder.jpg"
-              alt="Founder"
-              width={200}
-              height={200}
-              className="rounded-full mb-4"
-            />
+           {/* NEW LAYOUT: Compact Header with Image & Name side-by-side */}
+           <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden border border-[#E5D095]/20 shadow-[0_0_15px_rgba(229,208,149,0.1)] group">
+                <Image
+                  src="/founder.jpg"
+                  alt="Mirza Bilal Qasim"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
 
-           <h2 className="text-5xl md:text-7xl font-serif text-[#FDFCF0] leading-[0.9] mb-6">
-              Mirza <br/><span className="text-[#E5D095]">Bilal Qasim</span>
-           </h2>
-           <p className="text-[#FDFCF0]/60 text-sm uppercase tracking-[0.2em] mb-8 border-l-2 border-[#E5D095] pl-4">
-        
-             President & Founder
-           </p>
+              <div className="flex-1 pt-2">
+                <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] leading-tight mb-2">
+                    Mirza <br/><span className="text-[#E5D095]">Bilal Qasim</span>
+                </h2>
+                <p className="text-[#FDFCF0]/60 text-xs uppercase tracking-[0.2em] mb-4">
+                    President & Founder
+                </p>
+                
+                <a 
+                  href="https://www.linkedin.com/in/mirza-bilal-qasim-barlas-aca-finalist-aaa0a6133/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#E5D095] text-xs font-bold uppercase tracking-widest hover:text-[#FDFCF0] transition-colors border-b border-[#E5D095]/30 pb-1"
+                >
+                  <span>Connect on LinkedIn</span>
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+              </div>
+           </div>
            
-           <div className="flex flex-wrap gap-2 mb-8">
+           <div className="flex flex-wrap gap-2 mb-6">
               {qualifications.map((q, i) => (
                 <motion.span 
                   key={q} 
