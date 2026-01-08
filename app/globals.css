@@ -11,6 +11,7 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
+  background-color: #050505;
 }
 
 /* Only enable magnetic snapping on the homepage (when Hero is present) */
@@ -20,7 +21,7 @@ html:has(.home-snap-trigger) {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #050505;
+  background-color: transparent;
   margin: 0;
   min-height: 100vh;
 }
