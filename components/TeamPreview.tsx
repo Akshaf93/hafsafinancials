@@ -57,14 +57,16 @@ export default function TeamPreview() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5, borderColor: "rgba(229, 208, 149, 0.4)", transition: { duration: 0.3 } }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 overflow-hidden"
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 overflow-hidden cursor-pointer group"
             >
                {/* Animated Background Image - AUTO SCALE ON ENTRY */}
                <motion.div 
                  initial={{ scale: 1.2, opacity: 0 }}
                  whileInView={{ scale: 1, opacity: 0.6 }} // Visible by default, no hover needed
+                 whileHover={{ scale: 1.1, opacity: 0.8, transition: { duration: 0.5 } }}
                  viewport={{ once: true }}
                  transition={{ duration: 1.5, ease: "easeOut" }}
                  className="absolute inset-0"
@@ -84,14 +86,16 @@ export default function TeamPreview() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5, borderColor: "rgba(229, 208, 149, 0.4)", transition: { duration: 0.3 } }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 mt-8 overflow-hidden"
+              className="relative h-48 bg-[#FDFCF0]/5 border border-[#FDFCF0]/10 rounded flex items-end p-6 pb-2 mt-8 overflow-hidden cursor-pointer group"
             >
                {/* Animated Background Image - AUTO SCALE ON ENTRY */}
                <motion.div 
                  initial={{ scale: 1.2, opacity: 0 }}
                  whileInView={{ scale: 1, opacity: 0.6 }} // Visible by default, no hover needed
+                 whileHover={{ scale: 1.1, opacity: 0.8, transition: { duration: 0.5 } }}
                  viewport={{ once: true }}
                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
                  className="absolute inset-0"

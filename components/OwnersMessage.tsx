@@ -19,13 +19,13 @@ export default function OwnersMessage() {
         <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-6">
           Owner's Message
         </h2>
-        <h1 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-8 leading-tight">
+        <h1 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-4 leading-tight">
           A Note from <br />
           <span className="text-[#E5D095]">The Founder</span>
         </h1>
         
-        <div className="mt-8 pt-8 border-t border-[#E5D095]/20">
-            <div className="mt-10 mb-8 -rotate-2 origin-bottom-left select-none">
+        <div className="mt-4 pt-4 border-t border-[#E5D095]/20">
+            <div className="mt-6 mb-6 -rotate-2 origin-bottom-left select-none">
                 <FounderSignature />
             </div>
             <h3 className="text-xl font-serif text-[#FDFCF0]">Mirza Muhammad <br/> Bilal Qasim Barlas</h3>

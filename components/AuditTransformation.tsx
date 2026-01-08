@@ -32,10 +32,6 @@ const TRANSFORMATIONS = [
 export default function AuditTransformation() {
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Background Texture */}
-      <div className="absolute inset-0 bg-[#050505] z-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(229,208,149,0.05),_transparent_70%)] z-0" />
-
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
         {/* Header - Source: 1067, 1100 */}
