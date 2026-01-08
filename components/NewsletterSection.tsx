@@ -30,7 +30,7 @@ const PLANS = {
           "Access to full archive",
           "Bi-weekly delivery"
         ],
-        cta: "Start Trial"
+        cta: "Coming Soon"
       },
       {
         name: "Enterprise",
@@ -42,7 +42,7 @@ const PLANS = {
           "Direct access to IFRS experts",
           "PDF downloads & charts"
         ],
-        cta: "Get Enterprise"
+        cta: "Coming Soon"
       }
     ]
   },
@@ -72,7 +72,7 @@ const PLANS = {
           "Archive access",
           "Early invites to webinars"
         ],
-        cta: "Start Trial"
+        cta: "Coming Soon"
       },
       {
         name: "Enterprise",
@@ -84,7 +84,7 @@ const PLANS = {
           "Priority Q&A with founder",
           "Advanced strategic insights"
         ],
-        cta: "Get Enterprise"
+        cta: "Coming Soon"
       }
     ]
   }

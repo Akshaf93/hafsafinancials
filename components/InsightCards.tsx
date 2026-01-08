@@ -3,74 +3,64 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-// --- 1. FEATURED HERO CARD (McKinsey Style) ---
-// Large, impactful, sits at the top.
+// --- 1. FEATURED TEXT CARD (The "Headline") ---
+// No images. Just big, bold Serif typography.
 export function FeaturedCard({ article }: { article: any }) {
-  const { title, slug, date, excerpt, category, coverImage } = article.fields;
+  const { title, slug, date, excerpt, category } = article.fields;
 
   return (
-    <Link href={`/insights/${slug}`} className="group relative w-full block h-[500px] rounded-2xl overflow-hidden border border-[#FDFCF0]/10">
-      {/* Background Image */}
-      <div className="absolute inset-0 bg-[#050505]">
-        {coverImage ? (
-           <img 
-             src={'https:' + coverImage.fields.file.url} 
-             alt={title} 
-             className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" 
-           />
-        ) : (
-           <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#050505]" />
-        )}
-        {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+    <Link href={`/insights/${slug}`} className="group relative w-full block bg-[#1a1a1a] border border-[#FDFCF0]/10 p-8 md:p-12 hover:border-[#E5D095]/50 transition-all duration-500">
+      {/* Decorative Top Line */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5D095] to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+      
+      <div className="flex flex-col md:flex-row gap-6 md:items-start justify-between mb-8">
+         <span className="px-3 py-1 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded-sm inline-block">
+            Featured Analysis
+         </span>
+         <span className="text-[#FDFCF0]/40 text-xs font-mono tracking-wide">
+            {new Date(date).toDateString()}
+         </span>
       </div>
 
-      {/* Content */}
-      <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full max-w-4xl">
-        <span className="px-3 py-1 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded-sm mb-4 inline-block">
-          Featured Analysis
-        </span>
-        <h2 className="text-3xl md:text-5xl font-serif text-[#FDFCF0] mb-4 leading-tight group-hover:text-[#E5D095] transition-colors">
-          {title}
-        </h2>
-        <p className="text-[#FDFCF0]/80 text-lg line-clamp-2 max-w-2xl font-light mb-6">
-          {excerpt}
-        </p>
-        <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/60">
-           <span className="text-[#E5D095]">{category}</span>
-           <span>•</span>
-           <span>{new Date(date).toLocaleDateString()}</span>
-        </div>
+      <h2 className="text-3xl md:text-5xl font-serif text-[#FDFCF0] mb-6 leading-tight group-hover:text-[#E5D095] transition-colors max-w-4xl">
+        {title}
+      </h2>
+      
+      <p className="text-[#FDFCF0]/70 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-8 border-l-2 border-[#E5D095]/20 pl-6">
+        {excerpt}
+      </p>
+
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E5D095]">
+         Read Full Briefing <span>→</span>
       </div>
     </Link>
   );
 }
 
-// --- 2. STANDARD INTELLIGENCE CARD (J.P. Morgan Style) ---
-// Clean, data-rich, fits in a grid.
+// --- 2. STANDARD FEED CARD (The "Brief") ---
+// Compact, border-based, high density.
 export function InsightCard({ article }: { article: any }) {
   const { title, slug, date, category, excerpt } = article.fields;
 
-  // Dynamic Color accent based on category logic could go here if desired
-  
   return (
     <Link href={`/insights/${slug}`} className="block group h-full">
       <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="h-full bg-[#1a1a1a]/40 border border-[#FDFCF0]/10 p-6 rounded-xl hover:border-[#E5D095]/50 hover:bg-[#1a1a1a] transition-all flex flex-col"
+        whileHover={{ y: -5 }}
+        className="h-full bg-[#1a1a1a]/40 border border-[#FDFCF0]/10 p-8 hover:border-[#E5D095]/50 hover:bg-[#1a1a1a] transition-all flex flex-col relative overflow-hidden"
       >
-        <div className="flex justify-between items-start mb-4">
+        {/* Corner Accent */}
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#E5D095]/5 to-transparent -mr-8 -mt-8 rounded-full blur-xl group-hover:opacity-100 transition-opacity opacity-0" />
+
+        <div className="flex justify-between items-start mb-6">
           <span className="text-[10px] font-bold text-[#E5D095] uppercase tracking-widest border border-[#E5D095]/20 px-2 py-1 rounded">
             {category}
           </span>
-          <span className="text-[10px] text-[#FDFCF0]/40 font-mono">
+          <span className="text-[10px] text-[#FDFCF0]/30 font-mono">
             {new Date(date).toLocaleDateString()}
           </span>
         </div>
 
-        <h3 className="text-xl font-serif text-[#FDFCF0] mb-3 leading-snug group-hover:text-[#E5D095] transition-colors">
+        <h3 className="text-xl font-serif text-[#FDFCF0] mb-4 leading-snug group-hover:text-[#E5D095] transition-colors">
           {title}
         </h3>
         
@@ -78,8 +68,8 @@ export function InsightCard({ article }: { article: any }) {
           {excerpt}
         </p>
 
-        <div className="pt-4 border-t border-[#FDFCF0]/10 mt-auto flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FDFCF0]/40 group-hover:text-[#FDFCF0] transition-colors">
-           Read Article <span className="text-[#E5D095]">→</span>
+        <div className="pt-6 border-t border-[#FDFCF0]/5 mt-auto flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#FDFCF0]/40 group-hover:text-[#FDFCF0] transition-colors">
+           Read Analysis
         </div>
       </motion.div>
     </Link>

@@ -1,12 +1,15 @@
 import { client } from "@/lib/contentful";
 import InsightsFeed from "@/components/InsightsFeed";
 import NewsletterSection from "@/components/NewsletterSection";
+import Link from "next/link";
 
-// Fetch from Contentful
+// Force Dynamic Rendering to ensure fresh content on every visit
+export const dynamic = 'force-dynamic';
+
 async function getArticles() {
   const res = await client.getEntries({
     content_type: "article",
-    order: ["-fields.date"],
+    order: "-fields.date",
   });
   return res.items;
 }
@@ -15,30 +18,61 @@ export default async function InsightsPage() {
   const articles = await getArticles();
 
   return (
-    <main className="w-full min-h-screen bg-[#050505] pt-32">
+    <main className="w-full home-snap-trigger bg-[#050505]">
       
-      {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-        <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-6">
-            Global Intelligence
-        </h2>
-        <h1 className="text-5xl md:text-7xl font-serif font-medium text-[#FDFCF0] mb-6">
-            The <span className="text-[#E5D095]">Knowledge Hub</span>
-        </h1>
-        <p className="text-[#FDFCF0]/60 text-lg font-light max-w-2xl mx-auto">
-            Defensible analysis across our 5 core pillars: IFRS, Architecture, Analysis, Tax, and Controls.
-        </p>
-      </div>
+      {/* --- SECTION 1: HERO (Snap Start) --- */}
+      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 relative border-b border-[#FDFCF0]/10">
+        {/* Background Texture */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none" 
+           style={{ 
+             backgroundImage: "linear-gradient(#E5D095 1px, transparent 1px), linear-gradient(90deg, #E5D095 1px, transparent 1px)", 
+             backgroundSize: "40px 40px",
+             backgroundPosition: "center center"
+           }} 
+        />
+        
+        <div className="relative z-10 text-center max-w-4xl">
+            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-8 animate-pulse">
+                Global Intelligence Unit
+            </h2>
+            <h1 className="text-6xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[0.9]">
+                The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] to-[#E5D095]">Ledger</span>
+            </h1>
+            <p className="text-[#FDFCF0]/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
+                Defensible analysis across IFRS, M&A Strategy, and Financial Architecture.
+                <br/> <span className="text-[#E5D095]/60 text-sm mt-4 block">Read. Analyze. Execute.</span>
+            </p>
 
-      {/* THE INTERACTIVE FEED (Handles 5 Categories) */}
-      <InsightsFeed articles={articles} />
+            <div className="animate-bounce mt-10">
+               <span className="text-[#FDFCF0]/30 text-xs uppercase tracking-widest">Scroll for Feed ↓</span>
+            </div>
+        </div>
+      </section>
 
-      {/* FOOTER CTA */}
-      <section className="bg-[#1a1a1a]/30 border-t border-[#FDFCF0]/10 py-20 px-6 mt-20">
-         <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-serif text-[#FDFCF0] mb-4">Deep Dive Analysis</h2>
-            <p className="text-[#FDFCF0]/60 mb-8">Unlock full access to our case study archive and models.</p>
+
+      {/* --- SECTION 2: THE FEED (Snap Start) --- */}
+      {/* We use h-screen so it snaps perfectly, but the inner Feed handles scrolling */}
+      <section className="h-screen w-full snap-start snap-always pt-24 bg-[#050505]">
+        <InsightsFeed articles={articles} />
+      </section>
+
+
+      {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
+      <section className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10 bg-[#1a1a1a]/30">
+         <div className="max-w-5xl mx-auto w-full text-center">
+            <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] mb-6">
+                Direct to <span className="text-[#E5D095]">Inbox</span>
+            </h2>
+            <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto mb-16 text-lg">
+                Subscribe to our specialized streams. Get models, regulatory alerts, and case studies delivered monthly.
+            </p>
             <NewsletterSection />
+            
+            <div className="mt-12 pt-12 border-t border-[#FDFCF0]/5">
+                <Link href="/" className="text-[#FDFCF0]/40 hover:text-[#E5D095] text-xs font-bold uppercase tracking-widest transition-colors">
+                    ← Return Home
+                </Link>
+            </div>
          </div>
       </section>
 
