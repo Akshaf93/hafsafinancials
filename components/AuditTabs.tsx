@@ -38,8 +38,8 @@ export default function AuditTabs() {
   const [activeTab, setActiveTab] = useState("arch");
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 py-24">
-      <div className="text-center mb-16">
+    <div className="w-full max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">Hands-On <span className="text-[#E5D095]">Transformation</span></h2>
         <p className="text-[#FDFCF0]/50 text-sm mt-4 uppercase tracking-[0.2em]">Real-World Case Study</p>
       </div>
@@ -63,6 +63,7 @@ export default function AuditTabs() {
 
       {/* TAB CONTENT */}
       <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
+      <div className="relative bg-[#0a0a0a]/50 backdrop-blur-sm border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {TABS.map((tab) => activeTab === tab.id && (
             <motion.div
