@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
@@ -35,12 +35,12 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
         
         {/* --- LEFT COLUMN: TEXT --- */}
-        <motion.div 
+        <m.div 
           style={{ y: y1 }}
           className="flex flex-col items-start text-left z-20"
         >
           {/* Badge */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -56,11 +56,11 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E5D095]"></span>
               </span>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Headlines */}
           <div className="space-y-4 mb-8">
-            <motion.h1 
+            <m.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -70,9 +70,9 @@ export default function Hero() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
                 Financial Excellence
               </span>
-            </motion.h1>
+            </m.h1>
             
-            <motion.p 
+            <m.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
@@ -80,11 +80,11 @@ export default function Hero() {
             >
               Human Judgment. <span className="text-[#E5D095] font-normal">AI Intelligence.</span> 
               <br />Global Advisory across 8+ Jurisdictions.
-            </motion.p>
+            </m.p>
           </div>
 
           {/* Buttons */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
@@ -97,10 +97,10 @@ export default function Hero() {
               <span>Explore Services</span>
               <span className="group-hover:translate-x-1 transition-transform text-[#E5D095]">→</span>
             </Link>
-          </motion.div>
+          </m.div>
           
           {/* Mini Footer Grid */}
-          <motion.div 
+          <m.div 
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              transition={{ delay: 1, duration: 1 }}
@@ -114,11 +114,11 @@ export default function Hero() {
                  <h4 className="text-[#FDFCF0] font-bold text-xs uppercase tracking-[0.2em] mb-1">Expert Team</h4>
                  <p className="text-[#FDFCF0]/50 text-xs font-light">CAs, CFAs & FRMs</p>
               </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1.2 }} 
           transition={{ duration: 1, delay: 0.4 }}
@@ -138,7 +138,7 @@ export default function Hero() {
 
           {/* LOCATIONS (Callout Style) */}
           {LOCATIONS.map((loc, i) => (
-            <motion.div
+            <m.div
               key={loc.name}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -172,9 +172,9 @@ export default function Hero() {
                   </div>
                 </>
               )}
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
       </div>
     </section>
