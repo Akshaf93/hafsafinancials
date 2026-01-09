@@ -11,6 +11,8 @@ const FILTERS = [
   "Financial Architect",
   "Business Analysis",
   "Tax Advisory",
+  "Internal Audit & Controls",
+  "Risk Assessment",
   "Case Studies",
   "AI in Business"
 ];
@@ -29,12 +31,12 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
       
       {/* 1. HEADER (Filter Bar) */}
       <div className="py-6 border-b border-[#FDFCF0]/10 z-20 flex-shrink-0 flex justify-center items-center">
-        <div className="flex flex-wrap justify-center gap-3 w-full">
+        <div className="flex flex-wrap justify-center gap-2 w-full">
           {FILTERS.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`whitespace-nowrap px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-sm transition-all border ${
+              className={`whitespace-nowrap px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-sm transition-all border ${
                 activeFilter === filter
                   ? "bg-[#E5D095] text-[#050505] border-[#E5D095]"
                   : filter === "Featured"
