@@ -17,7 +17,8 @@
     "tailwind-merge": "^2.0.0",
     "contentful": "latest",
     "@contentful/rich-text-react-renderer": "latest",
-    "@vercel/speed-insights": "latest"
+    "@vercel/speed-insights": "latest",
+    "@contentful/rich-text-types": "latest"
   },
   "devDependencies": {
     "typescript": "^5",
