@@ -16,11 +16,23 @@ const LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Detect scroll to toggle transparency
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setIsScrolled(currentScrollY > 50);
+      lastScrollY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -35,7 +47,7 @@ export default function Navbar() {
     : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
 
   const navPosition = "fixed";
-  const hideNavbar = isHome && isScrolled;
+  const hideNavbar = !isVisible;
 
   return (
     <nav className={`${navPosition} top-0 z-50 w-full transition-all duration-500 ${navBackground} ${hideNavbar ? "-translate-y-full" : "translate-y-0"}`}>
