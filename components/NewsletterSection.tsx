@@ -181,13 +181,6 @@ export default function NewsletterSection() {
           </div>
         </motion.div>
       </AnimatePresence>
-
-      {/* FOOTER */}
-      <div className="mt-12 pt-12 border-t border-[#FDFCF0]/5 text-center">
-        <Link href="/" className="text-[#FDFCF0]/40 hover:text-[#E5D095] text-xs font-bold uppercase tracking-widest transition-colors">
-            ← Return Home
-        </Link>
-      </div>
     </div>
   );
 }
