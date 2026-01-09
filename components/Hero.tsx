@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 
 // --- LOCATIONS ---
@@ -124,10 +125,13 @@ export default function Hero() {
           className="relative w-full aspect-[1.6/1]"
         >
           {/* MAP IMAGE */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center opacity-100"
+          <Image
+            src="/World_map_-_low_resolution.svg"
+            alt="World Map"
+            fill
+            className="object-contain object-center opacity-100"
+            priority
             style={{ 
-              backgroundImage: "url('/World_map_-_low_resolution.svg')",
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
           />

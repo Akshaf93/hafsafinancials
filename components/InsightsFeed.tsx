@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { InsightCard } from "@/components/InsightCards";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -18,11 +18,11 @@ const FILTERS = [
 export default function InsightsFeed({ articles }: { articles: any[] }) {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredArticles = articles.filter((a) => {
+  const filteredArticles = useMemo(() => articles.filter((a) => {
     if (activeFilter === "All") return true;
     if (activeFilter === "Featured") return a.fields.isFeatured;
     return a.fields.category?.trim() === activeFilter;
-  });
+  }), [articles, activeFilter]);
 
   return (
     <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">

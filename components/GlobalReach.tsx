@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 // MOVED: UP (Top decreases) and RIGHT (Left increases)
 const LOCATIONS = [
@@ -40,10 +41,12 @@ export default function GlobalReach() {
 
         {/* MAP CONTAINER - UPDATED: max-w-4xl makes the map area smaller/tighter */}
         <div className="relative w-full max-w-4xl mx-auto aspect-[1.8/1] mt-4 group">
-          <div 
-            className="absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center transition-all duration-700 opacity-50 group-hover:opacity-70"
+          <Image
+            src="/World_map_-_low_resolution.svg"
+            alt="Global Reach Map"
+            fill
+            className="object-contain object-center transition-all duration-700 opacity-50 group-hover:opacity-70"
             style={{ 
-              backgroundImage: "url('/World_map_-_low_resolution.svg')",
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}
           />
