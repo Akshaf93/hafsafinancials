@@ -40,7 +40,7 @@ export function FeaturedCard({ article }: { article: any }) {
 // --- 2. STANDARD FEED CARD (The "Brief") ---
 // Compact, border-based, high density.
 export function InsightCard({ article }: { article: any }) {
-  const { title, slug, date, category, excerpt } = article.fields;
+  const { title, slug, date, category, excerpt, isFeatured } = article.fields;
 
   return (
     <Link href={`/insights/${slug}`} className="block group h-full">
@@ -52,9 +52,16 @@ export function InsightCard({ article }: { article: any }) {
         <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#E5D095]/5 to-transparent -mr-8 -mt-8 rounded-full blur-xl group-hover:opacity-100 transition-opacity opacity-0" />
 
         <div className="flex justify-between items-start mb-6">
-          <span className="text-[10px] font-bold text-[#E5D095] uppercase tracking-widest border border-[#E5D095]/20 px-2 py-1 rounded">
-            {category}
-          </span>
+          <div className="flex flex-wrap gap-2">
+            {isFeatured && (
+              <span className="text-[10px] font-bold bg-[#E5D095] text-[#050505] uppercase tracking-widest px-2 py-1 rounded">
+                Featured
+              </span>
+            )}
+            <span className="text-[10px] font-bold text-[#E5D095] uppercase tracking-widest border border-[#E5D095]/20 px-2 py-1 rounded">
+              {category}
+            </span>
+          </div>
           <span className="text-[10px] text-[#FDFCF0]/30 font-mono">
             {new Date(date).toLocaleDateString()}
           </span>

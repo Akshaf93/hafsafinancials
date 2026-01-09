@@ -6,19 +6,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FILTERS = [
   "All",
+  "Featured",
   "IFRS Updates",
   "Financial Architect",
   "Business Analysis",
   "Tax Advisory",
-  "Internal Controls"
+  "Case Studies",
+  "AI in Business"
 ];
 
 export default function InsightsFeed({ articles }: { articles: any[] }) {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredArticles = activeFilter === "All" 
-    ? articles 
-    : articles.filter((a) => a.fields.category === activeFilter);
+  const filteredArticles = articles.filter((a) => {
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Featured") return a.fields.isFeatured;
+    return a.fields.category?.trim() === activeFilter;
+  });
 
   return (
     <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
@@ -34,6 +38,8 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
               className={`whitespace-nowrap px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-sm transition-all border ${
                 activeFilter === filter
                   ? "bg-[#E5D095] text-[#050505] border-[#E5D095]"
+                  : filter === "Featured"
+                  ? "bg-transparent text-[#E5D095] border-[#E5D095]/50 hover:border-[#E5D095] hover:bg-[#E5D095]/10"
                   : "bg-transparent text-[#FDFCF0]/60 border-transparent hover:border-[#FDFCF0]/20 hover:text-[#E5D095]"
               }`}
             >
