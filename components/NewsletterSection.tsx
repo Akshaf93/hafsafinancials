@@ -154,7 +154,24 @@ export default function NewsletterSection() {
                     : 'bg-[#1a1a1a]/40 border-[#FDFCF0]/10'
                 }`}
               >
-                {/* ... (Keep Header & Features code same) ... */}
+                {/* HEADER */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">{tier.name}</h3>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-serif text-[#E5D095]">{tier.price}</span>
+                    <span className="text-[#FDFCF0]/60 text-sm">{tier.period}</span>
+                  </div>
+                </div>
+
+                {/* FEATURES */}
+                <ul className="space-y-4 mb-8 flex-grow">
+                  {tier.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-[#FDFCF0]/80 font-light">
+                      <span className="text-[#E5D095] mt-1">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
 
                 {/* DYNAMIC BUTTON LOGIC */}
                 <div className="mt-auto">
