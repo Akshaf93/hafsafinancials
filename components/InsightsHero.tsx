@@ -22,7 +22,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
   }, [articles.length, isPaused]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center pt-12">
         
         {/* LEFT: Text Content */}
         <div className="text-center lg:text-left relative z-10">
