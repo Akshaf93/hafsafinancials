@@ -6,7 +6,6 @@ import Link from "next/link";
 import SubscribeForm from "./SubscribeForm"; // <--- Import the new component
 
 const PLANS = {
-  // ... (Keep your existing PLANS object exactly the same) ...
   ifrs: {
     title: "The IFRS & Amendments",
     description: "For finance professionals, auditors, and CFOs needing technical clarity.",
@@ -22,10 +21,33 @@ const PLANS = {
         ],
         cta: "Sign Up Free",
         link: "/contact?plan=ifrs_free",
-        isFree: true,
-        popular: false
+        isFree: true
       },
-      // ... keep other tiers same ...
+      {
+        name: "Professional",
+        price: "$15",
+        period: "/month",
+        popular: true,
+        features: [
+          "Full newsletter content",
+          "Expert commentary & examples",
+          "Access to full archive",
+          "Bi-weekly delivery"
+        ],
+        cta: "Coming Soon"
+      },
+      {
+        name: "Enterprise",
+        price: "$50",
+        period: "/month",
+        features: [
+          "Priority email support for queries",
+          "Deep-dive analysis & case studies",
+          "Direct access to IFRS experts",
+          "PDF downloads & charts"
+        ],
+        cta: "Coming Soon"
+      }
     ]
   },
   ma: {
@@ -43,10 +65,34 @@ const PLANS = {
         ],
         cta: "Sign Up Free",
         link: "/contact?plan=ma_free",
-        isFree: true,
-        popular: false
+        isFree: true // <--- Add this flag to Free tiers
       },
-      // ... keep other tiers same ...
+
+      {
+        name: "Professional",
+        price: "$20",
+        period: "/month",
+        popular: true,
+        features: [
+          "Full expert analysis",
+          "Deep-dive case studies",
+          "Archive access",
+          "Early invites to webinars"
+        ],
+        cta: "Coming Soon"
+      },
+      {
+        name: "Enterprise",
+        price: "$60",
+        period: "/month",
+        features: [
+          "Executive interviews",
+          "AI-driven modeling tips",
+          "Priority Q&A with founder",
+          "Advanced strategic insights"
+        ],
+        cta: "Coming Soon"
+      }
     ]
   }
 };
@@ -90,7 +136,7 @@ export default function NewsletterSection() {
                     // If Paid, show the Link to Contact Page (Sales Lead)
                     <Link 
                       href={tier.link || "/contact"}
-                      className={`block w-full text-center py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${ 
+                      className={`block w-full text-center py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${
                       tier.popular
                         ? 'bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0]'
                         : 'border border-[#FDFCF0]/20 text-[#FDFCF0] hover:border-[#E5D095] hover:text-[#E5D095]'
