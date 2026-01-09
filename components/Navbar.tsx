@@ -75,9 +75,9 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <button className="px-6 py-2.5 rounded-sm text-sm font-bold bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(229,208,149,0.2)]">
+        <Link href="/contact" className="px-6 py-2.5 rounded-sm text-sm font-bold bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(229,208,149,0.2)]">
           Book Consultation
-        </button>
+        </Link>
       </div>
     </nav>
   );
