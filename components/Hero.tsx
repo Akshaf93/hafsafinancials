@@ -89,9 +89,9 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
-            <button className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
+            <Link href="/contact" className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
               Get a Consultation
-            </button>
+            </Link>
             <Link href="/services" className="px-8 py-4 border border-[#FDFCF0]/20 hover:border-[#E5D095]/50 text-[#FDFCF0] hover:text-[#E5D095] font-medium text-sm tracking-wider uppercase rounded-sm backdrop-blur-sm transition-all flex items-center gap-2 group">
               <span>Explore Services</span>
               <span className="group-hover:translate-x-1 transition-transform text-[#E5D095]">→</span>

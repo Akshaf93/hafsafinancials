@@ -169,13 +169,13 @@ export default function NewsletterSection() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${
+                <Link href="/contact" className={`block text-center w-full py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${
                   tier.popular
                     ? 'bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0]'
                     : 'border border-[#FDFCF0]/20 text-[#FDFCF0] hover:border-[#E5D095] hover:text-[#E5D095]'
                 }`}>
                   {tier.cta}
-                </button>
+                </Link>
               </div>
             ))}
           </div>
