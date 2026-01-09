@@ -103,27 +103,29 @@ export default function NewsletterSection() {
   return (
     <div className="w-full">
       {/* TABS */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="flex justify-center mb-16">
+        <div className="inline-flex bg-[#1a1a1a] p-1 rounded-lg border border-[#FDFCF0]/10">
         <button
           onClick={() => setActiveTab('ifrs')}
-          className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all border ${
+          className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-md transition-all ${
             activeTab === 'ifrs'
-              ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-[0_0_20px_rgba(229,208,149,0.3)]"
-              : "bg-transparent text-[#FDFCF0]/60 border-[#FDFCF0]/20 hover:border-[#E5D095] hover:text-[#E5D095]"
+              ? "bg-[#E5D095] text-[#050505] shadow-lg"
+              : "text-[#FDFCF0]/60 hover:text-[#FDFCF0]"
           }`}
         >
           IFRS & Amendments
         </button>
         <button
           onClick={() => setActiveTab('ma')}
-          className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all border ${
+          className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-md transition-all ${
             activeTab === 'ma'
-              ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-[0_0_20px_rgba(229,208,149,0.3)]"
-              : "bg-transparent text-[#FDFCF0]/60 border-[#FDFCF0]/20 hover:border-[#E5D095] hover:text-[#E5D095]"
+              ? "bg-[#E5D095] text-[#050505] shadow-lg"
+              : "text-[#FDFCF0]/60 hover:text-[#FDFCF0]"
           }`}
         >
           M&A & AI Strategy
         </button>
+        </div>
       </div>
       
       {/* CONTENT */}
@@ -144,30 +146,43 @@ export default function NewsletterSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {PLANS[activeTab].tiers.map((tier) => (
-              <div 
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+            {PLANS[activeTab].tiers.map((tier, index) => (
+              <motion.div 
                 key={tier.name}
-                className={`relative p-8 rounded-2xl border flex flex-col ${
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative p-8 rounded-2xl border flex flex-col transition-all duration-500 group h-full ${
                   tier.popular 
-                    ? 'bg-[#1a1a1a]/80 border-[#E5D095]/50 shadow-[0_0_30px_rgba(229,208,149,0.1)]' 
-                    : 'bg-[#1a1a1a]/40 border-[#FDFCF0]/10'
+                    ? 'bg-[#1a1a1a] border-[#E5D095] shadow-[0_0_50px_rgba(229,208,149,0.15)] md:scale-105 z-10' 
+                    : 'bg-[#0a0a0a]/40 border-[#FDFCF0]/10 hover:border-[#FDFCF0]/30 hover:bg-[#1a1a1a]'
                 }`}
               >
+                {tier.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#E5D095] to-[#bfa15f] text-[#050505] text-[10px] font-bold uppercase tracking-widest px-6 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                    Most Popular
+                  </div>
+                )}
+
                 {/* HEADER */}
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold text-[#FDFCF0] mb-2">{tier.name}</h3>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-serif text-[#E5D095]">{tier.price}</span>
-                    <span className="text-[#FDFCF0]/60 text-sm">{tier.period}</span>
+                <div className="mb-8 text-center">
+                  <h3 className={`text-xs font-bold uppercase tracking-[0.2em] mb-4 ${tier.popular ? 'text-[#E5D095]' : 'text-[#FDFCF0]/60'}`}>{tier.name}</h3>
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="text-5xl font-serif text-[#FDFCF0]">{tier.price}</span>
+                    <span className="text-[#FDFCF0]/40 text-sm self-end mb-2">{tier.period}</span>
                   </div>
                 </div>
+
+                <div className={`w-full h-px mb-8 ${tier.popular ? 'bg-gradient-to-r from-transparent via-[#E5D095]/50 to-transparent' : 'bg-[#FDFCF0]/10'}`} />
 
                 {/* FEATURES */}
                 <ul className="space-y-4 mb-8 flex-grow">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-[#FDFCF0]/80 font-light">
-                      <span className="text-[#E5D095] mt-1">✓</span>
+                      <span className={`mt-1 flex-shrink-0 ${tier.popular ? 'text-[#E5D095]' : 'text-[#FDFCF0]/40'}`}>
+                        {tier.popular ? '✦' : '✓'}
+                      </span>
                       {feature}
                     </li>
                   ))}
@@ -182,9 +197,9 @@ export default function NewsletterSection() {
                     // If Paid, show the Link to Contact Page (Sales Lead)
                     <Link 
                       href={tier.link || "/contact"}
-                      className={`block w-full text-center py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${
+                      className={`block w-full text-center py-4 rounded text-xs font-bold uppercase tracking-widest transition-all ${
                       tier.popular
-                        ? 'bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0]'
+                        ? 'bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] shadow-[0_0_20px_rgba(229,208,149,0.3)]'
                         : 'border border-[#FDFCF0]/20 text-[#FDFCF0] hover:border-[#E5D095] hover:text-[#E5D095]'
                     }`}>
                       {tier.cta}
@@ -192,7 +207,7 @@ export default function NewsletterSection() {
                   )}
                 </div>
 
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
