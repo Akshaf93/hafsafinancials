@@ -9,7 +9,7 @@ export function FeaturedCard({ article }: { article: any }) {
   const { title, slug, date, excerpt, category } = article.fields;
 
   return (
-    <Link href={`/insights/${slug}`} className="group relative w-full flex flex-col bg-[#1a1a1a] border border-[#FDFCF0]/10 p-5 md:p-8 hover:border-[#E5D095]/50 transition-all duration-500 max-h-[400px] overflow-hidden">
+    <Link href={`/insights/${slug}`} className="group relative w-full flex flex-col bg-[#1a1a1a] border border-[#FDFCF0]/10 p-5 md:p-8 hover:border-[#E5D095]/50 transition-all duration-500 max-h-[500px] overflow-hidden">
       {/* Decorative Top Line */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5D095] to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
       

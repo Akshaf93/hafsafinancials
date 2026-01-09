@@ -22,7 +22,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
   }, [articles.length, isPaused]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center pt-32">
+    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center pt-20">
         
         {/* LEFT: Text Content */}
         <div className="text-center lg:text-left relative z-10">
@@ -47,7 +47,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
 
         {/* RIGHT: Featured Article Carousel */}
         <div 
-            className="w-full max-w-md mx-auto lg:mx-0 relative group"
+            className="w-full max-w-lg mx-auto relative group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >

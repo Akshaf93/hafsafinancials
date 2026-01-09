@@ -95,7 +95,7 @@ export default function NewsletterSection() {
   const [activeTab, setActiveTab] = useState<'ifrs' | 'ma'>('ifrs');
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-24">
       {/* TABS */}
       <div className="flex justify-center mb-12">
         <div className="bg-[#1a1a1a] border border-[#FDFCF0]/10 rounded-full p-1 flex">
