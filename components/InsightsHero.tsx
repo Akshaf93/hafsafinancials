@@ -52,7 +52,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
 
         {/* RIGHT: Featured Article Carousel */}
         <div 
-            className="w-full max-w-lg mx-auto lg:mx-0 relative group"
+            className="w-full max-w-md mx-auto lg:mx-0 relative group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >

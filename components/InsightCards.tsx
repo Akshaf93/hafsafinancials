@@ -9,11 +9,11 @@ export function FeaturedCard({ article }: { article: any }) {
   const { title, slug, date, excerpt, category } = article.fields;
 
   return (
-    <Link href={`/insights/${slug}`} className="group relative w-full block bg-[#1a1a1a] border border-[#FDFCF0]/10 p-6 md:p-10 hover:border-[#E5D095]/50 transition-all duration-500">
+    <Link href={`/insights/${slug}`} className="group relative w-full block bg-[#1a1a1a] border border-[#FDFCF0]/10 p-5 md:p-8 hover:border-[#E5D095]/50 transition-all duration-500">
       {/* Decorative Top Line */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5D095] to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
       
-      <div className="flex flex-col md:flex-row gap-6 md:items-start justify-between mb-8">
+      <div className="flex flex-col md:flex-row gap-4 md:items-start justify-between mb-6">
          <span className="px-3 py-1 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded-sm inline-block">
             Featured Analysis
          </span>
@@ -22,11 +22,11 @@ export function FeaturedCard({ article }: { article: any }) {
          </span>
       </div>
 
-      <h2 className="text-2xl md:text-4xl font-serif text-[#FDFCF0] mb-6 leading-tight group-hover:text-[#E5D095] transition-colors max-w-4xl">
+      <h2 className="text-xl md:text-3xl font-serif text-[#FDFCF0] mb-4 leading-tight group-hover:text-[#E5D095] transition-colors max-w-4xl">
         {title}
       </h2>
       
-      <p className="text-[#FDFCF0]/70 text-base md:text-lg font-light leading-relaxed max-w-3xl mb-8 border-l-2 border-[#E5D095]/20 pl-6">
+      <p className="text-[#FDFCF0]/70 text-sm md:text-base font-light leading-relaxed max-w-3xl mb-6 border-l-2 border-[#E5D095]/20 pl-4">
         {excerpt}
       </p>
 
