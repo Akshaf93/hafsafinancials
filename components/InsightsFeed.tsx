@@ -28,9 +28,8 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
     <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
       
       {/* 1. HEADER (Filter Bar) */}
-      <div className="py-6 border-b border-[#FDFCF0]/10 z-20 flex-shrink-0 flex flex-col md:flex-row justify-between items-center gap-4">
-        <h3 className="text-[#FDFCF0] font-serif text-xl">Recent Analysis</h3>
-        <div className="flex overflow-x-auto no-scrollbar gap-3 w-full md:w-auto">
+      <div className="py-6 border-b border-[#FDFCF0]/10 z-20 flex-shrink-0 flex justify-center items-center">
+        <div className="flex flex-wrap justify-center gap-3 w-full">
           {FILTERS.map((filter) => (
             <button
               key={filter}
