@@ -17,7 +17,11 @@ async function getArticles() {
 }
 export default async function InsightsPage() {
   const articles = await getArticles();
-  const featuredArticle = articles[0];
+
+  // Filter for "isFeatured" or fallback to the most recent article
+  const featuredArticles = articles.filter((article: any) => article.fields.isFeatured);
+  const heroArticles = featuredArticles.length > 0 ? featuredArticles : (articles.length > 0 ? [articles[0]] : []);
+
   const feedArticles = articles.slice(1);
 
   return (
@@ -25,7 +29,7 @@ export default async function InsightsPage() {
       
       {/* --- SECTION 1: HERO (Snap Start) --- */}
       <section className="h-screen w-full snap-start snap-always flex items-center justify-center px-6 relative border-b border-[#FDFCF0]/10 overflow-hidden">
-        <InsightsHero featuredArticle={featuredArticle} />
+        <InsightsHero featuredArticles={heroArticles} />
       </section>
 
 
