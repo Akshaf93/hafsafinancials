@@ -42,11 +42,6 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
                     Defensible analysis across IFRS, M&A Strategy, and Financial Architecture.
                     <span className="text-[#E5D095]/60 text-sm mt-2 block">Read. Analyze. Execute.</span>
                 </p>
-                
-                <div className="hidden lg:flex items-center gap-4 text-[#E5D095]/40 text-xs uppercase tracking-widest">
-                   <div className="h-[1px] w-12 bg-[#E5D095]/40"></div>
-                   <span>Latest Briefing</span>
-                </div>
             </motion.div>
         </div>
 
