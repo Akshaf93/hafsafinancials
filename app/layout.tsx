@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer"; // Import Footer
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import FramerLazyMotion from "@/components/FramerLazyMotion";
 
 export const metadata: Metadata = {
