@@ -102,7 +102,29 @@ export default function NewsletterSection() {
 
   return (
     <div className="w-full">
-      {/* ... (Keep your existing TABS code exactly the same) ... */}
+      {/* TABS */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <button
+          onClick={() => setActiveTab('ifrs')}
+          className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all border ${
+            activeTab === 'ifrs'
+              ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-[0_0_20px_rgba(229,208,149,0.3)]"
+              : "bg-transparent text-[#FDFCF0]/60 border-[#FDFCF0]/20 hover:border-[#E5D095] hover:text-[#E5D095]"
+          }`}
+        >
+          IFRS & Amendments
+        </button>
+        <button
+          onClick={() => setActiveTab('ma')}
+          className={`px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-md transition-all border ${
+            activeTab === 'ma'
+              ? "bg-[#E5D095] text-[#050505] border-[#E5D095] shadow-[0_0_20px_rgba(229,208,149,0.3)]"
+              : "bg-transparent text-[#FDFCF0]/60 border-[#FDFCF0]/20 hover:border-[#E5D095] hover:text-[#E5D095]"
+          }`}
+        >
+          M&A & AI Strategy
+        </button>
+      </div>
       
       {/* CONTENT */}
       <AnimatePresence mode="wait">
@@ -113,7 +135,14 @@ export default function NewsletterSection() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
         >
-          {/* ... (Keep title section same) ... */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-4">
+              {PLANS[activeTab].title}
+            </h2>
+            <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto">
+              {PLANS[activeTab].description}
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {PLANS[activeTab].tiers.map((tier) => (
