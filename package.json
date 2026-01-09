@@ -16,7 +16,8 @@
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.0.0",
     "contentful": "latest",
-    "@contentful/rich-text-react-renderer": "latest"
+    "@contentful/rich-text-react-renderer": "latest",
+    "@vercel/speed-insights": "latest"
   },
   "devDependencies": {
     "typescript": "^5",
