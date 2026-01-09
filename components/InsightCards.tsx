@@ -9,7 +9,7 @@ export function FeaturedCard({ article }: { article: any }) {
   const { title, slug, date, excerpt, category } = article.fields;
 
   return (
-    <Link href={`/insights/${slug}`} className="group relative w-full block bg-[#1a1a1a] border border-[#FDFCF0]/10 p-8 md:p-12 hover:border-[#E5D095]/50 transition-all duration-500">
+    <Link href={`/insights/${slug}`} className="group relative w-full block bg-[#1a1a1a] border border-[#FDFCF0]/10 p-6 md:p-10 hover:border-[#E5D095]/50 transition-all duration-500">
       {/* Decorative Top Line */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5D095] to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
       
@@ -22,11 +22,11 @@ export function FeaturedCard({ article }: { article: any }) {
          </span>
       </div>
 
-      <h2 className="text-3xl md:text-5xl font-serif text-[#FDFCF0] mb-6 leading-tight group-hover:text-[#E5D095] transition-colors max-w-4xl">
+      <h2 className="text-2xl md:text-4xl font-serif text-[#FDFCF0] mb-6 leading-tight group-hover:text-[#E5D095] transition-colors max-w-4xl">
         {title}
       </h2>
       
-      <p className="text-[#FDFCF0]/70 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-8 border-l-2 border-[#E5D095]/20 pl-6">
+      <p className="text-[#FDFCF0]/70 text-base md:text-lg font-light leading-relaxed max-w-3xl mb-8 border-l-2 border-[#E5D095]/20 pl-6">
         {excerpt}
       </p>
 

@@ -94,18 +94,6 @@ const PLANS = {
 export default function NewsletterSection() {
   const [activeTab, setActiveTab] = useState<'ifrs' | 'ma'>('ifrs');
 
-  return (
-    <div className="w-full">
-      {/* HEADER */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-serif text-[#FDFCF0] mb-6">
-            Direct to <span className="text-[#E5D095]">Inbox</span>
-        </h2>
-        <p className="text-[#FDFCF0]/60 max-w-2xl mx-auto text-lg">
-            Subscribe to our specialized streams. Get models, regulatory alerts, and case studies delivered monthly.
-        </p>
-      </div>
-
       {/* TABS */}
       <div className="flex justify-center mb-12">
         <div className="bg-[#1a1a1a] border border-[#FDFCF0]/10 rounded-full p-1 flex">

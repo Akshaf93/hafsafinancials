@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,6 +6,7 @@ import { FeaturedCard } from "@/components/InsightCards";
 
 export default function InsightsHero({ featuredArticles }: { featuredArticles: any[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Ensure we have an array
   const articles = Array.isArray(featuredArticles) ? featuredArticles : [];
@@ -13,12 +14,12 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
 
   // Auto-rotate every 6 seconds
   useEffect(() => {
-    if (articles.length <= 1) return;
+    if (articles.length <= 1 || isPaused) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % articles.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [articles.length]);
+  }, [articles.length, isPaused]);
 
   return (
     <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center h-full pt-20">
@@ -50,7 +51,31 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
         </div>
 
         {/* RIGHT: Featured Article Carousel */}
-        <div className="w-full max-w-xl mx-auto lg:mx-0 relative">
+        <div 
+            className="w-full max-w-lg mx-auto lg:mx-0 relative group"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+        >
+            {/* Navigation Arrows */}
+            {articles.length > 1 && (
+                <>
+                    <button 
+                        onClick={() => setCurrentIndex((prev) => (prev - 1 + articles.length) % articles.length)}
+                        className="absolute left-0 lg:-left-12 top-1/2 -translate-y-1/2 z-20 p-2 text-[#E5D095] hover:text-[#FDFCF0] transition-colors bg-[#050505]/50 lg:bg-transparent rounded-full lg:rounded-none opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Previous Slide"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button 
+                        onClick={() => setCurrentIndex((prev) => (prev + 1) % articles.length)}
+                        className="absolute right-0 lg:-right-12 top-1/2 -translate-y-1/2 z-20 p-2 text-[#E5D095] hover:text-[#FDFCF0] transition-colors bg-[#050505]/50 lg:bg-transparent rounded-full lg:rounded-none opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Next Slide"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </>
+            )}
+
             <AnimatePresence mode="wait">
                 {currentArticle && (
                     <motion.div 
