@@ -22,8 +22,8 @@ export default function InsightsPreview() {
             <span className="bg-[#E5D095] text-[#050505] text-[10px] font-bold px-2 py-1 rounded">MONTHLY</span>
           </div>
           <p className="text-[#FDFCF0]/60 mb-8">Critical updates on IFRS 9, 15, 16, and 17. Audit-ready summaries.</p>
-          <Link href="/contact" className="block text-center w-full py-3 border border-[#E5D095] text-[#E5D095] font-bold rounded hover:bg-[#E5D095] hover:text-[#050505] transition-all">
-            Subscribe
+          <Link href="/insights#newsletter" className="block text-center w-full py-3 border border-[#E5D095] text-[#E5D095] font-bold rounded hover:bg-[#E5D095] hover:text-[#050505] transition-all">
+            View Access Plans
           </Link>
         </motion.div>
 
@@ -37,8 +37,8 @@ export default function InsightsPreview() {
             <span className="bg-[#E5D095] text-[#050505] text-[10px] font-bold px-2 py-1 rounded">MONTHLY</span>
           </div>
           <p className="text-[#FDFCF0]/60 mb-8">Valuation trends, AI modeling techniques, and transaction advice.</p>
-          <Link href="/contact" className="block text-center w-full py-3 bg-[#E5D095] text-[#050505] font-bold rounded hover:bg-[#FDFCF0] transition-all">
-            Subscribe
+          <Link href="/insights#newsletter" className="block text-center w-full py-3 bg-[#E5D095] text-[#050505] font-bold rounded hover:bg-[#FDFCF0] transition-all">
+            View Access Plans
           </Link>
         </motion.div>
       </div>
