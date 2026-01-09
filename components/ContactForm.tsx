@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
-export default function ContactForm() {
+function ContactFormContent() {
   const searchParams = useSearchParams();
   
   // State for form fields
@@ -197,5 +197,13 @@ export default function ContactForm() {
 
       </div>
     </div>
+  );
+}
+
+export default function ContactForm() {
+  return (
+    <Suspense fallback={null}>
+      <ContactFormContent />
+    </Suspense>
   );
 }
