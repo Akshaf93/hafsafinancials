@@ -100,9 +100,9 @@ export default function NewsletterSection() {
           <button
             onClick={() => setActiveTab('ifrs')}
             className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-              activeTab === 'ifrs' 
-                ? 'bg-[#E5D095] text-[#050505] shadow-[0_0_20px_rgba(229,208,149,0.3)]' 
-                : 'text-[#FDFCF0]/60 hover:text-[#FDFCF0]'
+                activeTab === 'ifrs'
+                    ? 'bg-[#E5D095] text-[#050505] shadow-[0_0_20px_rgba(229,208,149,0.3)]'
+                    : 'text-[#FDFCF0]/60 hover:text-[#FDFCF0]'
             }`}
           >
             IFRS & Amendments
@@ -110,9 +110,9 @@ export default function NewsletterSection() {
           <button
             onClick={() => setActiveTab('ma')}
             className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-              activeTab === 'ma' 
-                ? 'bg-[#E5D095] text-[#050505] shadow-[0_0_20px_rgba(229,208,149,0.3)]' 
-                : 'text-[#FDFCF0]/60 hover:text-[#FDFCF0]'
+                activeTab === 'ma'
+                    ? 'bg-[#E5D095] text-[#050505] shadow-[0_0_20px_rgba(229,208,149,0.3)]'
+                    : 'text-[#FDFCF0]/60 hover:text-[#FDFCF0]'
             }`}
           >
             M&A & AI Strategy
