@@ -22,7 +22,8 @@ const PLANS = {
         ],
         cta: "Sign Up Free",
         link: "/contact?plan=ifrs_free",
-        isFree: true // <--- Add this flag to Free tiers
+        isFree: true,
+        popular: false
       },
       // ... keep other tiers same ...
     ]
@@ -42,7 +43,8 @@ const PLANS = {
         ],
         cta: "Sign Up Free",
         link: "/contact?plan=ma_free",
-        isFree: true // <--- Add this flag to Free tiers
+        isFree: true,
+        popular: false
       },
       // ... keep other tiers same ...
     ]
