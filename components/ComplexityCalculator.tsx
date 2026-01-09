@@ -100,7 +100,7 @@ export default function ComplexityCalculator() {
           <label htmlFor="multiCountry" className="text-sm text-[#FDFCF0]/80 font-medium cursor-pointer">
             Multi-Country / Cross-Border Scope? <span className="text-xs text-[#E5D095]">(+20%)</span>
           </label>
-        </div>
+        </div> 
         <div className="bg-[#000000] rounded-xl p-6 text-center text-white relative overflow-hidden border border-[#333]">
           <div className="relative z-10">
             <p className="text-[#FDFCF0]/40 text-xs uppercase tracking-widest mb-2">Estimated Investment</p>
