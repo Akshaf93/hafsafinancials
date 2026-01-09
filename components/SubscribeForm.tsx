@@ -11,7 +11,7 @@ export default function SubscribeForm({ plan }: { plan: string }) {
     setStatus("loading");
 
     // 1. Get these from your ConvertKit Dashboard
-    const FORM_ID = "56bbf02909"; 
+    const FORM_ID = "8955603"; 
     const API_KEY = "T_YUI7IpB745Op8JKWdHzw";
     const API_URL = `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe`;
 
