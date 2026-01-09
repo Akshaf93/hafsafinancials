@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { m } from "framer-motion";
 
 const LINKS = [
   { name: "Services", href: "/services" },
@@ -50,7 +51,11 @@ export default function Navbar() {
   const hideNavbar = !isVisible;
 
   return (
-    <nav className={`${navPosition} top-0 z-50 w-full transition-all duration-500 ${navBackground} ${hideNavbar ? "-translate-y-full" : "translate-y-0"}`}>
+    <m.nav
+      animate={{ y: hideNavbar ? "-100%" : 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className={`${navPosition} top-0 z-50 w-full transition-colors duration-500 ${navBackground}`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}
@@ -79,6 +84,6 @@ export default function Navbar() {
           Book Consultation
         </Link>
       </div>
-    </nav>
+    </m.nav>
   );
 }
