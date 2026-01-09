@@ -16,7 +16,6 @@ const LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   // Detect scroll to toggle transparency
@@ -32,7 +31,6 @@ export default function Navbar() {
         setIsVisible(true);
       }
 
-      setIsScrolled(currentScrollY > 50);
       lastScrollY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll);
@@ -43,9 +41,7 @@ export default function Navbar() {
   // 1. If we are on the Home page ('/') AND not scrolled yet -> Transparent
   // 2. Otherwise (Scrolled OR different page) -> Solid Dark
   const isHome = pathname === "/";
-  const navBackground = !isScrolled 
-    ? "bg-transparent border-transparent" 
-    : "bg-[#050505]/90 backdrop-blur-md border-[#FDFCF0]/10 shadow-sm";
+  const navBackground = "bg-transparent border-transparent";
 
   const navPosition = "fixed";
   const hideNavbar = !isVisible;
