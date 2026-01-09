@@ -88,7 +88,7 @@ export default function NewsletterSection() {
                     // If Paid, show the Link to Contact Page (Sales Lead)
                     <Link 
                       href={tier.link || "/contact"}
-                      className={`block w-full text-center py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${
+                      className={`block w-full text-center py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors ${ 
                       tier.popular
                         ? 'bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0]'
                         : 'border border-[#FDFCF0]/20 text-[#FDFCF0] hover:border-[#E5D095] hover:text-[#E5D095]'
