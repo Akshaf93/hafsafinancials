@@ -55,10 +55,10 @@ const renderOptions = {
       <h3 className="text-xl font-bold text-[#E5D095] mt-8 mb-4">{children}</h3>
     ),
     [BLOCKS.PARAGRAPH]: (node: any, children: any) => (
-      <p className="text-[#FDFCF0]/80 text-lg leading-relaxed mb-6 font-light">{children}</p>
+      <p className="text-[#FDFCF0]/90 text-lg leading-8 mb-8 font-light tracking-wide">{children}</p>
     ),
     [BLOCKS.UL_LIST]: (node: any, children: any) => (
-      <ul className="list-disc pl-6 space-y-2 mb-8 text-[#FDFCF0]/80">{children}</ul>
+      <ul className="list-disc pl-6 space-y-3 mb-8 text-[#FDFCF0]/90 text-lg leading-8 font-light">{children}</ul>
     ),
     [BLOCKS.QUOTE]: (node: any, children: any) => (
       <blockquote className="border-l-2 border-[#E5D095] pl-6 py-2 my-10 bg-[#E5D095]/5 italic text-[#FDFCF0] text-xl">
@@ -72,7 +72,8 @@ const renderOptions = {
 };
 
 // 4. THE PAGE COMPONENT
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const article: any = await getArticle(params.slug);
 
   if (!article) {
@@ -112,7 +113,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       </header>
 
       {/* ARTICLE BODY */}
-      <article className="max-w-4xl mx-auto px-6 py-20">
+      <article className="max-w-3xl mx-auto px-6 py-20">
         {/* Cover Image (Only if exists) */}
         {coverImage && (
           <div className="relative w-full h-[300px] md:h-[500px] mb-16 rounded-xl overflow-hidden border border-[#FDFCF0]/10 shadow-2xl">
