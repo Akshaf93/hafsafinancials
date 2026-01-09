@@ -1,9 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FeaturedCard } from "@/components/InsightCards";
 
-export default function InsightsHero({ featuredArticle }: { featuredArticle: any }) {
+export default function InsightsHero({ featuredArticles }: { featuredArticles: any[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Ensure we have an array
+  const articles = Array.isArray(featuredArticles) ? featuredArticles : [];
+  const currentArticle = articles[currentIndex];
+
+  // Auto-rotate every 6 seconds
+  useEffect(() => {
+    if (articles.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % articles.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [articles.length]);
+
   return (
     <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center h-full pt-20">
         
@@ -33,20 +49,40 @@ export default function InsightsHero({ featuredArticle }: { featuredArticle: any
             </motion.div>
         </div>
 
-        {/* RIGHT: Featured Article Card */}
-        <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full max-w-xl mx-auto lg:mx-0"
-        >
-            {featuredArticle && (
-                <div className="shadow-2xl shadow-[#E5D095]/5">
-                    <FeaturedCard article={featuredArticle} />
+        {/* RIGHT: Featured Article Carousel */}
+        <div className="w-full max-w-xl mx-auto lg:mx-0 relative">
+            <AnimatePresence mode="wait">
+                {currentArticle && (
+                    <motion.div 
+                        key={currentArticle.sys.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5 }}
+                        className="shadow-2xl shadow-[#E5D095]/5"
+                    >
+                        <FeaturedCard article={currentArticle} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Indicators */}
+            {articles.length > 1 && (
+                <div className="flex justify-center gap-3 mt-8">
+                    {articles.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`h-1 rounded-full transition-all duration-300 ${
+                                idx === currentIndex 
+                                    ? "w-8 bg-[#E5D095]" 
+                                    : "w-2 bg-[#FDFCF0]/20 hover:bg-[#FDFCF0]/40"
+                            }`}
+                        />
+                    ))}
                 </div>
             )}
-        </motion.div>
+        </div>
     </div>
   );
 }
