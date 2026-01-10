@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 // --- 1. FEATURED TEXT CARD (The "Headline") ---
 // No images. Just big, bold Serif typography.
@@ -44,7 +44,7 @@ export function InsightCard({ article }: { article: any }) {
 
   return (
     <Link href={`/insights/${slug}`} className="block group h-full">
-      <motion.div 
+      <m.div 
         whileHover={{ y: -5 }}
         className="h-full bg-[#1a1a1a]/40 border border-[#FDFCF0]/10 p-8 hover:border-[#E5D095]/50 hover:bg-[#1a1a1a] transition-all flex flex-col relative overflow-hidden"
       >
@@ -78,7 +78,7 @@ export function InsightCard({ article }: { article: any }) {
         <div className="pt-6 border-t border-[#FDFCF0]/5 mt-auto flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#FDFCF0]/40 group-hover:text-[#FDFCF0] transition-colors">
            Read Analysis
         </div>
-      </motion.div>
+      </m.div>
     </Link>
   );
 }

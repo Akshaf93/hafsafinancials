@@ -3,8 +3,8 @@ import InsightsFeed from "@/components/InsightsFeed";
 import NewsletterSection from "@/components/NewsletterSection";
 import InsightsHero from "@/components/InsightsHero";
 
-// Force Dynamic Rendering to ensure fresh content on every visit
-export const dynamic = 'force-dynamic';
+// Revalidate every hour (ISR) instead of forcing dynamic rendering on every request
+export const revalidate = 3600;
 
 // app/insights/page.tsx
 async function getArticles() {

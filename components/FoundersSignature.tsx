@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 
 export default function FounderSignature() {
   // Animation variants for the "Write-on" effect
@@ -36,7 +36,7 @@ export default function FounderSignature() {
         </defs>
 
         {/* 1. "Mirza" - The 'M' is large and looping */}
-        <motion.path
+        <m.path
           d="M 20 70 C 20 70, 25 30, 40 30 C 50 30, 50 80, 50 80 C 50 80, 60 40, 75 40 C 85 40, 85 70, 90 70 C 95 70, 100 60, 105 50"
           stroke="#E5D095"
           strokeWidth="3.5"
@@ -49,7 +49,7 @@ export default function FounderSignature() {
         />
         
         {/* "irza" - Fast scribbles connecting */}
-        <motion.path
+        <m.path
           d="M 105 50 C 110 45, 115 55, 120 55 C 125 55, 130 50, 135 50 C 140 50, 140 60, 145 60 C 150 60, 160 50, 165 45"
           stroke="#E5D095"
           strokeWidth="3.5"
@@ -63,7 +63,7 @@ export default function FounderSignature() {
         />
 
         {/* 2. "Bilal" - Distinct 'B' with a strong vertical */}
-        <motion.path
+        <m.path
           d="M 180 20 L 180 80 M 180 50 C 180 50, 200 40, 205 50 C 210 60, 190 65, 185 65 C 185 65, 215 65, 220 75 C 225 85, 200 90, 180 90"
           stroke="#E5D095"
           strokeWidth="3.5"
@@ -77,7 +77,7 @@ export default function FounderSignature() {
         />
 
         {/* "ilal" - The finish */}
-        <motion.path
+        <m.path
           d="M 220 90 C 230 85, 235 70, 240 70 C 245 70, 250 80, 255 80 C 260 80, 260 60, 265 50 L 265 85 C 265 85, 275 90, 285 85"
           stroke="#E5D095"
           strokeWidth="3.5"
@@ -91,7 +91,7 @@ export default function FounderSignature() {
         />
 
         {/* 3. The Executive Underline - Fast and decisive */}
-        <motion.path
+        <m.path
           d="M 15 105 C 80 115, 200 95, 310 100"
           stroke="#E5D095"
           strokeWidth="2.5"
@@ -105,7 +105,7 @@ export default function FounderSignature() {
         />
 
         {/* Dot for the 'i' in Mirza */}
-        <motion.circle
+        <m.circle
           cx="118"
           cy="35"
           r="3"
@@ -117,7 +117,7 @@ export default function FounderSignature() {
         />
         
         {/* Dot for the 'i' in Bilal */}
-        <motion.circle
+        <m.circle
           cx="240"
           cy="55"
           r="3"

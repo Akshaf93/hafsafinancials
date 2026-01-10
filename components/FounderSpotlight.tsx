@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const EXPERIENCE_TABS = [
   {
@@ -57,7 +57,7 @@ export default function FounderSpotlight() {
       
       {/* LEFT: PROFILE */}
       <div className="flex flex-col justify-center">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -70,6 +70,7 @@ export default function FounderSpotlight() {
                   src="/founder.jpeg"
                   alt="Mirza Bilal Qasim"
                   fill
+                  sizes="(max-width: 768px) 128px, 160px"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -96,7 +97,7 @@ export default function FounderSpotlight() {
            
            <div className="flex flex-wrap gap-2 mb-6">
               {qualifications.map((q, i) => (
-                <motion.span 
+                <m.span 
                   key={q} 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -104,18 +105,18 @@ export default function FounderSpotlight() {
                   className="px-3 py-1 border border-[#E5D095]/30 text-[#E5D095] text-[10px] font-bold rounded uppercase hover:bg-[#E5D095] hover:text-[#050505] transition-colors cursor-default"
                 >
                   {q}
-                </motion.span>
+                </m.span>
               ))}
            </div>
 
            <p className="text-[#FDFCF0]/70 font-light leading-relaxed text-lg max-w-md">
              Bringing deep expertise in financial transformation, exemplified by the end-to-end IFRS restructuring and internal audit of Navisco Freight Forwarding. Specializing in complex frameworks like IFRS 9 and IAS 16, the focus extends beyond compliance to sustainable capacity building—empowering finance teams with the tools and training to maintain international standards independently.
            </p>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* RIGHT: EXPERIENCE TABS */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -151,7 +152,7 @@ export default function FounderSpotlight() {
          <div className="relative min-h-[220px] z-10">
             <AnimatePresence mode="wait">
                {EXPERIENCE_TABS.map(tab => activeTab === tab.id && (
-                  <motion.div
+                  <m.div
                     key={tab.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -167,11 +168,11 @@ export default function FounderSpotlight() {
                            </li>
                         ))}
                      </ul>
-                  </motion.div>
+                  </m.div>
                ))}
             </AnimatePresence>
          </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { InsightCard } from "@/components/InsightCards";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const FILTERS = [
   "All",
@@ -58,7 +58,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
           <AnimatePresence mode="popLayout">
             {filteredArticles.length > 0 ? (
               filteredArticles.map((article) => (
-                <motion.div
+                <m.div
                   key={article.sys.id}
                   layout
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -69,7 +69,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
                   <div className="h-full backdrop-blur-md bg-[#1a1a1a]/20 rounded-lg overflow-hidden">
                     <InsightCard article={article} />
                   </div>
-                </motion.div>
+                </m.div>
               ))
             ) : (
               <div className="col-span-full py-32 text-center border border-dashed border-[#FDFCF0]/10 rounded-xl">

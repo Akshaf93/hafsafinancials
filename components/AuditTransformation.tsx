@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const TRANSFORMATIONS = [
   {
@@ -52,7 +52,7 @@ export default function AuditTransformation() {
         {/* Grid Layout */}
         <div className="grid md:grid-cols-2 gap-6">
           {TRANSFORMATIONS.map((item, i) => (
-            <motion.div
+            <m.div
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +80,7 @@ export default function AuditTransformation() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

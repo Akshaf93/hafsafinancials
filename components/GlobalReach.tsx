@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -24,7 +24,7 @@ export default function GlobalReach() {
     <div className="relative w-full h-full flex flex-col justify-center items-center overflow-hidden pt-32">
       
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -37,7 +37,7 @@ export default function GlobalReach() {
           <p className="text-[#FDFCF0]/60 mt-4 text-xl font-light tracking-wide">
             8+ Jurisdictions. One Standard of Excellence.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* MAP CONTAINER - UPDATED: max-w-4xl makes the map area smaller/tighter */}
         <div className="relative w-full max-w-4xl mx-auto aspect-[1.8/1] mt-4 group">
@@ -45,6 +45,7 @@ export default function GlobalReach() {
             src="/World_map_-_low_resolution.svg"
             alt="Global Reach Map"
             fill
+            sizes="(max-width: 896px) 100vw, 896px"
             className="object-contain object-center transition-all duration-700 opacity-50 group-hover:opacity-70"
             style={{ 
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
@@ -52,7 +53,7 @@ export default function GlobalReach() {
           />
 
           {LOCATIONS.map((loc, i) => (
-            <motion.div
+            <m.div
               key={loc.name}
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -72,7 +73,7 @@ export default function GlobalReach() {
               >
                 {loc.name}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

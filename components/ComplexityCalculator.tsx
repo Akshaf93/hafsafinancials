@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const SERVICE_DATA = {
   ifrs: {
@@ -104,14 +104,14 @@ export default function ComplexityCalculator() {
         <div className="bg-[#000000] rounded-xl p-6 text-center text-white relative overflow-hidden border border-[#333]">
           <div className="relative z-10">
             <p className="text-[#FDFCF0]/40 text-xs uppercase tracking-widest mb-2">Estimated Investment</p>
-            <motion.div
+            <m.div
               key={`${min}-${max}`}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               className="text-4xl font-bold text-[#E5D095]"
             >
               ${min.toLocaleString()} - ${max.toLocaleString()}
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

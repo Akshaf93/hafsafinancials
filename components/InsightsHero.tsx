@@ -1,7 +1,7 @@
  "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { FeaturedCard } from "@/components/InsightCards";
 
 export default function InsightsHero({ featuredArticles }: { featuredArticles: any[] }) {
@@ -26,7 +26,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
         
         {/* LEFT: Text Content */}
         <div className="text-center lg:text-left relative z-10">
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -42,7 +42,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
                     Defensible analysis across IFRS, M&A Strategy, and Financial Architecture.
                     <span className="text-[#E5D095]/60 text-sm mt-2 block">Read. Analyze. Execute.</span>
                 </p>
-            </motion.div>
+            </m.div>
         </div>
 
         {/* RIGHT: Featured Article Carousel */}
@@ -73,7 +73,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
 
             <AnimatePresence mode="wait">
                 {currentArticle && (
-                    <motion.div 
+                    <m.div 
                         key={currentArticle.sys.id}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -82,7 +82,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
                         className="shadow-2xl shadow-[#E5D095]/5"
                     >
                         <FeaturedCard article={currentArticle} />
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
 

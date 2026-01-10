@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function AboutPhilosophy() {
   return (
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
       
       {/* LEFT: Headline */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -22,10 +22,10 @@ export default function AboutPhilosophy() {
                 "Every engagement must withstand regulatory, audit, and strategic review."
             </p>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* RIGHT: Content */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, x: 30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -57,7 +57,7 @@ export default function AboutPhilosophy() {
             We operate as a technical reference point, a risk and controls advisor, and a financial intelligence partner — supporting leadership teams where financial clarity directly influences strategic outcomes.
           </p>
         </div>
-      </motion.div>
+      </m.div>
 
     </div>
   );

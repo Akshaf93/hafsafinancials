@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const TABS = [
   {
@@ -65,7 +65,7 @@ export default function AuditTabs() {
       <div className="relative bg-[#0a0a0a]/50 backdrop-blur-sm border border-[#E5D095]/20 rounded-2xl p-10 md:p-16 min-h-[300px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {TABS.map((tab) => activeTab === tab.id && (
-            <motion.div
+            <m.div
               key={tab.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function AuditTabs() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
       </div>

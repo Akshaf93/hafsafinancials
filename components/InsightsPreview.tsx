@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 
 export default function InsightsPreview() {
@@ -13,7 +13,7 @@ export default function InsightsPreview() {
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Card 1 */}
-        <motion.div 
+        <m.div 
           whileHover={{ y: -5 }}
           className="bg-[#FDFCF0]/5 p-10 rounded-2xl border border-[#FDFCF0]/10 hover:border-[#E5D095]/50 transition-colors group"
         >
@@ -25,10 +25,10 @@ export default function InsightsPreview() {
           <Link href="/insights#newsletter" className="block text-center w-full py-3 border border-[#E5D095] text-[#E5D095] font-bold rounded hover:bg-[#E5D095] hover:text-[#050505] transition-all">
             View Access Plans
           </Link>
-        </motion.div>
+        </m.div>
 
         {/* Card 2 */}
-        <motion.div 
+        <m.div 
           whileHover={{ y: -5 }}
           className="bg-[#FDFCF0]/5 p-10 rounded-2xl border border-[#FDFCF0]/10 hover:border-[#E5D095]/50 transition-colors group"
         >
@@ -40,7 +40,7 @@ export default function InsightsPreview() {
           <Link href="/insights#newsletter" className="block text-center w-full py-3 bg-[#E5D095] text-[#050505] font-bold rounded hover:bg-[#FDFCF0] transition-all">
             View Access Plans
           </Link>
-        </motion.div>
+        </m.div>
       </div>
     </div>
   );

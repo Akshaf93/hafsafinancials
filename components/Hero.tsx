@@ -129,6 +129,7 @@ export default function Hero() {
             src="/World_map_-_low_resolution.svg"
             alt="World Map"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-contain object-center opacity-100"
             priority
             style={{ 

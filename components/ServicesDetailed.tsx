@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 
 const DETAILED_SERVICES = [
@@ -77,7 +77,7 @@ export default function ServicesDetailed() {
       {/* SECTION: HERO / TITLE */}
       <section className="h-screen w-full flex flex-col justify-center items-center px-6 snap-start snap-always border-b border-[#FDFCF0]/10 relative overflow-hidden">
         <div className="max-w-4xl mx-auto w-full text-center relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,7 +93,7 @@ export default function ServicesDetailed() {
               From technical IFRS compliance to strategic financial architecture, we provide the clarity needed for high-stakes decision making.
             </p>
             
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1 }}
@@ -101,8 +101,8 @@ export default function ServicesDetailed() {
             >
                 <span>Scroll to Explore</span>
                 <div className="w-[1px] h-12 bg-gradient-to-b from-[#E5D095]/50 to-transparent"></div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
@@ -123,7 +123,7 @@ export default function ServicesDetailed() {
               <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-24`}>
                 
                 {/* Text Content */}
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -168,10 +168,10 @@ export default function ServicesDetailed() {
                         View Pricing Tier
                     </Link>
                   </div>
-                </motion.div>
+                </m.div>
 
                 {/* Card / Visual */}
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -195,7 +195,7 @@ export default function ServicesDetailed() {
                       ))}
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
 
               </div>
             </div>

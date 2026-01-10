@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 // Service Data sourced directly from HAFSA FINANCIALS.pdf (Pages 2-3)
@@ -91,7 +91,7 @@ export default function ServicesOverview() {
       <div className="relative bg-[#0a0a0a] border border-[#E5D095]/20 rounded-xl p-6 md:p-10 min-h-[350px] shadow-2xl flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {SERVICE_TABS.map((tab) => activeTab === tab.id && (
-            <motion.div
+            <m.div
               key={tab.id}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -129,7 +129,7 @@ export default function ServicesOverview() {
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
       </div>

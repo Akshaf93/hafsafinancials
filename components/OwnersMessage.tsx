@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import FoundersSignature from "@/components/FoundersSignature";
 
@@ -9,7 +9,7 @@ export default function OwnersMessage() {
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center h-full w-full">
       
       {/* LEFT: Headline & Signature */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -40,10 +40,10 @@ export default function OwnersMessage() {
             <p className="text-[#E5D095] text-xs uppercase tracking-widest mt-2">Founder & President</p>
             <p className="text-[#FDFCF0]/40 text-xs mt-1">Hafsa Financials</p>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* RIGHT: Message Content */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,7 +69,7 @@ export default function OwnersMessage() {
                 I welcome you to Hafsa Financials and look forward to building a relationship founded on clarity, confidence, and long-term value.
             </p>
          </div>
-      </motion.div>
+      </m.div>
 
     </div>
   );

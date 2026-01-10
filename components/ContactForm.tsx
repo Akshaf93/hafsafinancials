@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
 function ContactFormContent() {
@@ -74,7 +74,7 @@ function ContactFormContent() {
       <div className="grid lg:grid-cols-2 gap-16 items-start">
         
         {/* LEFT: INFO */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -103,10 +103,10 @@ function ContactFormContent() {
             </div>
             {/* Add more info items here if needed */}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT: FORM */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -193,7 +193,7 @@ function ContactFormContent() {
               )}
             </form>
           )}
-        </motion.div>
+        </m.div>
 
       </div>
     </div>

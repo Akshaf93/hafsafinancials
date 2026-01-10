@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
 export default function HybridModel() {
@@ -66,7 +66,7 @@ export default function HybridModel() {
       >
         
         {/* === HUMAN SIDE === */}
-        <motion.div 
+        <m.div 
           onMouseEnter={() => setActiveSide("human")}
           // Explicitly set initial for server-side match
           initial={{ flex: 5 }}
@@ -88,7 +88,7 @@ export default function HybridModel() {
               Human-Led
             </h3>
             
-            <motion.div 
+            <m.div 
                // Show content if flex > 4 (i.e. not the shrunk state)
                animate={{ opacity: humanFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
@@ -110,12 +110,12 @@ export default function HybridModel() {
                   Negotiation
                 </li>
               </ul>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* === AI SIDE === */}
-        <motion.div 
+        <m.div 
           onMouseEnter={() => setActiveSide("ai")}
           initial={{ flex: 5 }}
           animate={{ flex: aiFlex }}
@@ -135,7 +135,7 @@ export default function HybridModel() {
               AI-Driven
             </h3>
 
-            <motion.div 
+            <m.div 
                animate={{ opacity: aiFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
             >
@@ -156,9 +156,9 @@ export default function HybridModel() {
                   Draft Generation
                 </li>
               </ul>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
 
       </div>
     </div>

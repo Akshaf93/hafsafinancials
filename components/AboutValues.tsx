@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const VALUES = [
   {
@@ -34,7 +34,7 @@ export default function AboutValues() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {VALUES.map((item, index) => (
-          <motion.div
+          <m.div
             key={item.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,12 +55,12 @@ export default function AboutValues() {
                 {item.desc}
               </p>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
 
       {/* Commitment Footer */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
@@ -77,7 +77,7 @@ export default function AboutValues() {
                 "Measured not by presentation, but by accuracy, resilience, and results."
             </p>
          </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import SubscribeForm from "./SubscribeForm"; // <--- Import the new component
 
@@ -130,7 +130,7 @@ export default function NewsletterSection() {
       
       {/* CONTENT */}
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={activeTab}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ export default function NewsletterSection() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
             {PLANS[activeTab].tiers.map((tier, index) => (
-              <motion.div 
+              <m.div 
                 key={tier.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -207,10 +207,10 @@ export default function NewsletterSection() {
                   )}
                 </div>
 
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </AnimatePresence>
     </div>
   );
