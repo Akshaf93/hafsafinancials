@@ -22,6 +22,18 @@ const SERVICE_DATA = {
     complexityMultipliers: { standard: 1, intermediate: 1.20, advanced: 1.45 },
     description: "Financial, Cyber, and Business risk heat maps.",
   },
+  audit: {
+    name: "Internal Audit & Controls",
+    base: 3500,
+    complexityMultipliers: { standard: 1, intermediate: 1.30, advanced: 1.60 },
+    description: "Gap analysis, SOP design, and control testing.",
+  },
+  tax: {
+    name: "Tax Strategy",
+    base: 2800,
+    complexityMultipliers: { standard: 1, intermediate: 1.25, advanced: 1.50 },
+    description: "Cross-border structuring and compliance planning.",
+  },
 };
 
 type ServiceKey = keyof typeof SERVICE_DATA;
@@ -29,11 +41,12 @@ type ComplexityLevel = "standard" | "intermediate" | "advanced";
 const SERVICE_KEYS = Object.keys(SERVICE_DATA) as ServiceKey[];
 
 export default function ComplexityCalculator() {
-  const [service, setService] = useState<ServiceKey>("ifrs");
+  const [service, setService] = useState<ServiceKey | null>(null);
   const [complexity, setComplexity] = useState<ComplexityLevel>("standard");
   const [isMultiCountry, setIsMultiCountry] = useState(false);
 
   const calculatePrice = () => {
+    if (!service) return { min: 0, max: 0 };
     const data = SERVICE_DATA[service];
     let multiplier = data.complexityMultipliers[complexity];
     if (isMultiCountry) multiplier += 0.20; // [Source: 384]
@@ -54,7 +67,7 @@ export default function ComplexityCalculator() {
       <div className="p-8 space-y-8">
         <div className="space-y-3">
           <label className="text-sm font-semibold text-[#FDFCF0]/60 uppercase tracking-wide">Select Service</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {SERVICE_KEYS.map((key) => (
               <button
                 key={key}
@@ -104,14 +117,18 @@ export default function ComplexityCalculator() {
         <div className="bg-[#000000] rounded-xl p-6 text-center text-white relative overflow-hidden border border-[#333]">
           <div className="relative z-10">
             <p className="text-[#FDFCF0]/40 text-xs uppercase tracking-widest mb-2">Estimated Investment</p>
-            <m.div
-              key={`${min}-${max}`}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="text-4xl font-bold text-[#E5D095]"
-            >
-              ${min.toLocaleString()} - ${max.toLocaleString()}
-            </m.div>
+            {service ? (
+              <m.div
+                key={`${min}-${max}`}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="text-4xl font-bold text-[#E5D095]"
+              >
+                ${min.toLocaleString()} - ${max.toLocaleString()}
+              </m.div>
+            ) : (
+              <p className="text-[#FDFCF0]/30 text-lg italic">Select a service to view estimate</p>
+            )}
           </div>
         </div>
       </div>
