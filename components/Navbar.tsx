@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -51,9 +52,19 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold tracking-tight flex items-center gap-1">
-          <span className="text-[#FDFCF0]">Hafsa</span>
-          <span className="text-[#E5D095]">Financials</span>
+        <Link href="/" className="flex items-center gap-3">
+          <div className="relative w-8 h-8 md:w-10 md:h-10">
+            <Image
+              src="/logo.jpeg"
+              alt="Hafsa Financials Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <div className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-1">
+            <span className="text-[#FDFCF0]">Hafsa</span>
+            <span className="text-[#E5D095]">Financials</span>
+          </div>
         </Link>
 
         {/* Desktop Links */}

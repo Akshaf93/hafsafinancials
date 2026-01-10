@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,9 +8,19 @@ export default function Footer() {
         
         {/* Brand */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Hafsa<span className="text-[#E5D095]">Financials</span>
-          </h2>
+          <div className="flex items-center gap-3">
+            <div className="relative w-8 h-8 md:w-10 md:h-10">
+              <Image
+                src="/logo.jpeg"
+                alt="Hafsa Financials Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Hafsa<span className="text-[#E5D095]">Financials</span>
+            </h2>
+          </div>
           <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
             Global financial advisory combining human judgment with AI intelligence. Serving UK, UAE, USA, and Pakistan.
           </p>
