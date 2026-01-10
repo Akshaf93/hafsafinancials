@@ -1,7 +1,6 @@
 "use client";
 
 import { m } from "framer-motion";
-import Link from "next/link";
 import FoundersSignature from "@/components/FoundersSignature";
 
 export default function OwnersMessage() {
