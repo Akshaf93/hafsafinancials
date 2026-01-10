@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all articles to generate URLs for them
   const response = await client.getEntries({
     content_type: 'article',
+    select: ['fields.slug', 'sys.updatedAt'],
   })
 
   const dynamicRoutes = response.items.map((item: any) => ({

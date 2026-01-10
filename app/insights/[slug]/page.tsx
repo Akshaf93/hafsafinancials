@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 export async function generateStaticParams() {
   const res = await client.getEntries({
     content_type: "article",
+    select: ['fields.slug'],
   });
 
   return res.items.map((item: any) => ({
@@ -43,6 +44,7 @@ const renderOptions = {
             src={"https:" + file.url}
             alt={title || "Article Image"}
             fill
+            sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />
         </div>
@@ -121,6 +123,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
               src={"https:" + coverImage.fields.file.url}
               alt={title}
               fill
+              sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover"
               priority
             />

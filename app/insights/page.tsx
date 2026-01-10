@@ -12,6 +12,7 @@ async function getArticles() {
     content_type: "article",
     // CHANGE THIS LINE: Wrap the string in [ ]
     order: ["-fields.date"], 
+    select: ['sys.id', 'fields.title', 'fields.slug', 'fields.date', 'fields.excerpt', 'fields.category', 'fields.isFeatured'],
   });
   return res.items;
 }
