@@ -34,20 +34,20 @@ export default async function InsightsPage() {
     <main className="w-full home-snap-trigger">
       
       {/* --- SECTION 1: HERO (Snap Start) --- */}
-      <section className="h-screen w-full snap-start snap-always flex items-center justify-center px-6 relative border-b border-[#FDFCF0]/10 overflow-hidden">
+      <section className="min-h-screen w-full snap-start snap-always flex items-center justify-center px-6 py-20 relative border-b border-[#FDFCF0]/10 overflow-hidden">
         <InsightsHero featuredArticles={heroArticles} />
       </section>
 
 
       {/* --- SECTION 2: THE FEED (Snap Start) --- */}
       {/* Fixed height + internal scroll for "always in view" feel */}
-      <section className="h-screen w-full snap-start snap-always pt-24 pb-12">
+      <section className="min-h-screen md:h-screen w-full snap-start snap-always pt-24 pb-12">
         <InsightsFeed articles={feedArticles} />
       </section>
 
 
       {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
-      <section id="newsletter" className="h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 border-t border-[#FDFCF0]/10">
+      <section id="newsletter" className="min-h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 py-20 border-t border-[#FDFCF0]/10">
          <div className="max-w-5xl mx-auto w-full text-center">
             <NewsletterSection />
          </div>

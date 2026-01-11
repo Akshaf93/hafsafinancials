@@ -17,14 +17,14 @@ export default function ServicesPage() {
 
       {/* SECTION 2: Case Study */}
       {/* UPDATED: Changed min-h-screen to h-screen and added overflow-hidden to fix 'peeking' */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden">
+      <section className="min-h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden">
         <div className="w-full h-full flex items-center justify-center">
           <AuditTransformation />
         </div>
       </section>
 
       {/* SECTION 3: Pricing & CTA */}
-      <section className="h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50">
         <div className="w-full max-w-7xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0] mb-8">
                 Defensible <span className="text-[#E5D095]">Pricing</span>

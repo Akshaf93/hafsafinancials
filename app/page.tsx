@@ -14,27 +14,27 @@ export default function Home() {
       
       {/* SECTION 1: HERO */}
       {/* h-screen ensures it fills exactly one viewport for snapping */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
         <Hero />
       </section>
 
       {/* SECTION 2: SERVICES */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
         <ServicesOverview />
       </section>
 
       {/* SECTION 4: HYBRID MODEL */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
         <HybridModel />
       </section>
 
       {/* SECTION 5: TEAM */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
         <TeamPreview />
       </section>
 
       {/* SECTION 6: INSIGHTS */}
-      <section className="h-screen w-full snap-start relative flex flex-col justify-center">
+      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
         <InsightsPreview />
       </section>
 

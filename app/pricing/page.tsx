@@ -11,7 +11,7 @@ export default function PricingPage() {
     <main className="w-full home-snap-trigger">
       
       {/* SECTION 1: HERO / CTA */}
-      <section className="h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-20">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-20 pb-10">
         <div className="w-full max-w-4xl mx-auto text-center">
             
             <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-6">
@@ -44,7 +44,7 @@ export default function PricingPage() {
       </section>
 
       {/* SECTION 2: THE VALUE PROPS (Logic) */}
-      <section className="h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto w-full">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-serif text-[#FDFCF0]">The Logic of Value</h2>

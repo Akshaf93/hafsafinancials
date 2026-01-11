@@ -75,7 +75,7 @@ export default function ServicesDetailed() {
   return (
     <>
       {/* SECTION: HERO / TITLE */}
-      <section className="h-screen w-full flex flex-col justify-center items-center px-6 snap-start snap-always border-b border-[#FDFCF0]/10 relative overflow-hidden">
+      <section className="min-h-screen w-full flex flex-col justify-center items-center px-6 py-20 snap-start snap-always border-b border-[#FDFCF0]/10 relative overflow-hidden">
         <div className="max-w-4xl mx-auto w-full text-center relative z-10">
           <m.div
             initial={{ opacity: 0, y: 30 }}
@@ -114,7 +114,7 @@ export default function ServicesDetailed() {
         return (
           <section 
             key={service.id} 
-            className="h-screen w-full flex items-center justify-center px-6 snap-start snap-always border-b border-[#FDFCF0]/10 relative overflow-hidden"
+            className="min-h-screen w-full flex items-center justify-center px-6 py-20 snap-start snap-always border-b border-[#FDFCF0]/10 relative overflow-hidden"
           >
             {/* Background Glow */}
             <div className={`absolute w-[500px] h-[500px] bg-[#E5D095]/5 rounded-full blur-[100px] pointer-events-none ${isEven ? '-right-20 -bottom-20' : '-left-20 -top-20'}`} />
