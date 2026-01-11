@@ -2,6 +2,11 @@ import { client } from "@/lib/contentful";
 import InsightsFeed from "@/components/InsightsFeed";
 import NewsletterSection from "@/components/NewsletterSection";
 import InsightsHero from "@/components/InsightsHero";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Insights | Hafsa Financials",
+};
 
 // Revalidate every hour (ISR) instead of forcing dynamic rendering on every request
 export const revalidate = 3600;

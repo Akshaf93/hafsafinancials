@@ -2,6 +2,11 @@ import AuditTransformation from "@/components/AuditTabs";
 import ServicesDetailed from "@/components/ServicesDetailed"; 
 // Removed ComplexityCalculator import
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services | Hafsa Financials",
+};
 
 export default function ServicesPage() {
   return (
