@@ -1,31 +1,38 @@
 import React from 'react';
-import ComplexityCalculator from "@/components/ComplexityCalculator";
+import Link from "next/link";
 
 export default function PricingPage() {
   return (
     <main className="w-full home-snap-trigger">
       
-      {/* SECTION 1: THE CALCULATOR (Action) */}
+      {/* SECTION 1: HERO / CTA */}
       <section className="h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 pt-20">
-        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
+        <div className="w-full max-w-4xl mx-auto text-center">
             
-            {/* Left: Headline */}
-            <div className="text-center lg:text-left max-w-2xl">
-                <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-4">
-                    Transparent Engagement
-                </h2>
-                <h1 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0] mb-6 leading-tight">
-                    Complexity-Based <br/>
-                    <span className="text-[#E5D095]">Pricing</span>
-                </h1>
-                <p className="text-[#FDFCF0]/70 text-lg font-light leading-relaxed">
-                    We eliminate the ambiguity of hourly billing. Your investment is derived strictly from the technical rigor and jurisdictional scope of the engagement.
-                </p>
-            </div>
+            <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.3em] mb-6">
+                Transparent Engagement
+            </h2>
+            <h1 className="text-5xl md:text-7xl font-serif font-medium text-[#FDFCF0] mb-8 leading-tight">
+                Complexity-Based <br/>
+                <span className="text-[#E5D095]">Pricing</span>
+            </h1>
+            <p className="text-[#FDFCF0]/70 text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
+                We eliminate the ambiguity of hourly billing. Your investment is derived strictly from the technical rigor and jurisdictional scope of the engagement.
+            </p>
 
-            {/* Right: Calculator */}
-            <div className="w-full max-w-xl">
-                <ComplexityCalculator />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <Link 
+                    href="/contact"
+                    className="px-8 py-4 bg-[#E5D095] text-[#050505] font-bold uppercase tracking-widest hover:bg-[#FDFCF0] transition-colors min-w-[200px] rounded-sm shadow-[0_0_20px_rgba(229,208,149,0.2)]"
+                >
+                    Request Proposal
+                </Link>
+                <Link 
+                    href="/services"
+                    className="px-8 py-4 border border-[#FDFCF0]/20 text-[#FDFCF0] font-bold uppercase tracking-widest hover:border-[#E5D095] hover:text-[#E5D095] transition-colors min-w-[200px] rounded-sm"
+                >
+                    Our Services
+                </Link>
             </div>
 
         </div>
