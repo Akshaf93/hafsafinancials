@@ -46,7 +46,7 @@ export default function HybridModel() {
   return (
     <div 
       ref={containerRef} 
-      className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden snap-start snap-always"
+      className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden"
     >
       
       {/* HEADER */}

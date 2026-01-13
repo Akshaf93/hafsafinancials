@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function TeamPreview() {
   return (
-    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 snap-start snap-always">
+    <div className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6">
       <div className="flex flex-col md:flex-row items-center gap-16">
         
         {/* LEFT SIDE: TEXT CONTENT */}

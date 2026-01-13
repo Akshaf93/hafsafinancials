@@ -17,19 +17,13 @@ const LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Detect scroll to toggle transparency
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY < 50) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -39,16 +33,13 @@ export default function Navbar() {
   // 1. If we are on the Home page ('/') AND not scrolled yet -> Transparent
   // 2. Otherwise (Scrolled OR different page) -> Solid Dark
   const isHome = pathname === "/";
-  const navBackground = "bg-transparent border-transparent";
-
-  const navPosition = "fixed";
-  const hideNavbar = !isVisible;
+  const navBackground = isHome && !isScrolled 
+    ? "bg-transparent border-transparent" 
+    : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
   return (
     <m.nav
-      animate={{ y: hideNavbar ? "-100%" : 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={`${navPosition} top-0 z-50 w-full transition-colors duration-500 ${navBackground}`}
+      className={`fixed top-0 z-50 w-full transition-colors duration-500 ${navBackground}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-50">
         
