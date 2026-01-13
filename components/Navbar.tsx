@@ -53,7 +53,7 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <div className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-1">
+          <div className="text-xl md:text-2xl font-serif font-bold tracking-tight flex items-center gap-1">
             <span className="text-[#FDFCF0]">Hafsa</span>
             <span className="text-[#E5D095]">Financials</span>
           </div>
