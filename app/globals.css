@@ -12,7 +12,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Only enable magnetic snapping on the homepage (when Hero is present) */
+/* Enable magnetic snapping on pages with the trigger class */
 html:has(.home-snap-trigger) {
   scroll-snap-type: y mandatory;
 }

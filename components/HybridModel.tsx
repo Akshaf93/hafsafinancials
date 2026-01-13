@@ -46,22 +46,22 @@ export default function HybridModel() {
   return (
     <div 
       ref={containerRef} 
-      className="h-full flex flex-col justify-center max-w-7xl mx-auto px-6 py-20 relative overflow-hidden"
+      className="h-full flex flex-col justify-center max-w-5xl mx-auto px-6 py-12 relative overflow-hidden"
     >
       
       {/* HEADER */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-serif font-medium text-[#FDFCF0]">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#FDFCF0]">
           Delivery Philosophy
         </h2>
-        <p className="text-xl text-[#FDFCF0]/60 font-light mt-4">
+        <p className="text-lg text-[#FDFCF0]/60 font-light mt-3">
           "Human Judgment. AI Intelligence. Financial Excellence."
         </p>
       </div>
 
       {/* CARDS CONTAINER */}
       <div 
-        className="w-full flex flex-col md:flex-row h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        className="w-full flex flex-col md:flex-row h-[400px] rounded-xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
         onMouseLeave={() => setActiveSide(null)}
       >
         
@@ -76,15 +76,15 @@ export default function HybridModel() {
             ease: [0.16, 1, 0.3, 1], // Smooth Apple-style spring
             // No delay here because the delay is now handled by the State change
           }}
-          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] overflow-hidden group"
+          className="relative p-6 md:p-8 flex flex-col justify-center cursor-pointer bg-[#1a1a1a] border-r border-[#333] overflow-hidden group"
         >
           {/* Content Wrapper */}
-          <div className="relative z-10 min-w-[300px]">
-            <h3 className="text-6xl font-bold text-[#E5D095]/20 absolute -top-10 -left-4 select-none group-hover:text-[#E5D095]/40 transition-colors duration-500">
+          <div className="relative z-10 min-w-[250px]">
+            <h3 className="text-5xl font-bold text-[#E5D095]/20 absolute -top-8 -left-4 select-none group-hover:text-[#E5D095]/40 transition-colors duration-500">
               70%
             </h3>
             
-            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
+            <h3 className="text-xl md:text-2xl font-bold text-[#FDFCF0] mt-4 mb-3 relative z-20 whitespace-nowrap">
               Human-Led
             </h3>
             
@@ -93,10 +93,10 @@ export default function HybridModel() {
                animate={{ opacity: humanFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
             >
-              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+              <p className="text-[#FDFCF0]/70 mb-4 max-w-md text-xs md:text-sm leading-relaxed">
                 Complex judgments, ethical strategy, and board-level negotiation.
               </p>
-              <ul className="space-y-3 text-sm text-[#E5D095] font-medium">
+              <ul className="space-y-2 text-xs md:text-sm text-[#E5D095] font-medium">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-[#E5D095] rounded-full"></span>
                   IFRS Interpretation
@@ -123,15 +123,15 @@ export default function HybridModel() {
             duration: 0.8, 
             ease: [0.16, 1, 0.3, 1] 
           }}
-          className="relative p-8 md:p-12 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] overflow-hidden group"
+          className="relative p-6 md:p-8 flex flex-col justify-center cursor-pointer bg-[#0a0a0a] overflow-hidden group"
         >
           {/* Content Wrapper */}
-          <div className="relative z-10 min-w-[300px]">
-            <h3 className="text-6xl font-bold text-[#FDFCF0]/10 absolute -top-10 -left-4 select-none group-hover:text-[#FDFCF0]/30 transition-colors duration-500">
+          <div className="relative z-10 min-w-[250px]">
+            <h3 className="text-5xl font-bold text-[#FDFCF0]/10 absolute -top-8 -left-4 select-none group-hover:text-[#FDFCF0]/30 transition-colors duration-500">
               30%
             </h3>
             
-            <h3 className="text-2xl md:text-3xl font-bold text-[#FDFCF0] mt-4 mb-4 relative z-20 whitespace-nowrap">
+            <h3 className="text-xl md:text-2xl font-bold text-[#FDFCF0] mt-4 mb-3 relative z-20 whitespace-nowrap">
               AI-Driven
             </h3>
 
@@ -139,10 +139,10 @@ export default function HybridModel() {
                animate={{ opacity: aiFlex > 4 ? 1 : 0 }} 
                transition={{ duration: 0.3 }}
             >
-              <p className="text-[#FDFCF0]/70 mb-6 max-w-md text-sm md:text-base leading-relaxed">
+              <p className="text-[#FDFCF0]/70 mb-4 max-w-md text-xs md:text-sm leading-relaxed">
                 Accelerated data processing, scenario testing, and anomaly detection.
               </p>
-              <ul className="space-y-3 text-sm text-[#FDFCF0] font-medium">
+              <ul className="space-y-2 text-xs md:text-sm text-[#FDFCF0] font-medium">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-[#FDFCF0] rounded-full"></span>
                   Auto-Cleansing
