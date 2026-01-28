@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 md:w-10 md:h-10">
               <Image
-                src="/logo.jpeg"
+                src="/logo.svg"
                 alt="Hafsa Financials Logo"
                 fill
                 className="object-contain"
