@@ -18,6 +18,7 @@
     "contentful": "latest",
     "@contentful/rich-text-react-renderer": "latest",
     "@vercel/speed-insights": "latest",
+    "@vercel/analytics": "latest",
     "@contentful/rich-text-types": "latest"
   },
   "devDependencies": {

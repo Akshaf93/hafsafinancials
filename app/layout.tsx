@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer"; // Import Footer
 import FramerLazyMotion from "@/components/FramerLazyMotion"; 
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Hafsa Financials | Global Advisory",
@@ -27,6 +28,7 @@ export default function RootLayout({
           <Footer /> {/* Add Footer Here */}
         </FramerLazyMotion>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
