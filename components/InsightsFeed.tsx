@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { InsightCard } from "@/components/InsightCards";
-import { m, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence, Variants } from "framer-motion";
 
 const FILTERS = [
   "All",
@@ -17,7 +17,7 @@ const FILTERS = [
   "AI in Business"
 ];
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
@@ -25,7 +25,7 @@ const cardVariants = {
     transition: {
       delay: (i % 6) * 0.05, // Stagger relative to batch
       duration: 0.5,
-      ease: [0.215, 0.61, 0.355, 1], // Smooth cubic-bezier
+      ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number], // Smooth cubic-bezier
     },
   }),
   exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },

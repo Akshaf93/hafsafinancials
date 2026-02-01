@@ -53,14 +53,14 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <div className="text-xl md:text-2xl font-serif font-bold tracking-tight flex items-center gap-1">
+          <div className="text-xl md:text-2xl font-serif font-bold tracking-tight flex items-center gap-1 pt-1">
             <span className="text-[#FDFCF0]">Hafsa</span>
             <span className="text-[#E5D095]">Financials</span>
           </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-8 pt-1">
           {LINKS.map((link) => (
             <Link
               key={link.name}
@@ -75,7 +75,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <Link href="/contact" className="hidden md:block px-6 py-2.5 rounded-sm text-sm font-bold bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(229,208,149,0.2)]">
+        <Link href="/contact" className="hidden md:inline-flex items-center justify-center px-6 py-2.5 mt-1 rounded-sm text-sm font-bold bg-[#E5D095] text-[#050505] hover:bg-[#FDFCF0] transition-all shadow-[0_0_15px_rgba(229,208,149,0.2)]">
           Book Consultation
         </Link>
 

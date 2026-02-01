@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Hafsa Financials | Global Advisory",
   description: "IFRS Advisory, Financial Modeling & Risk Management",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.svg",
   },
 };
 
