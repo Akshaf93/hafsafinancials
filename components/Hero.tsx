@@ -1,6 +1,6 @@
 "use client";
 
-import { m, useScroll, useTransform } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
@@ -20,8 +20,6 @@ const LOCATIONS = [
 // REMOVED: ObsidianBackground component (It is now in globals.css for consistenc
 export default function Hero() {
   const containerRef = useRef(null);
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 100]); 
 
   return (
     <section 
@@ -35,15 +33,11 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
         
         {/* --- LEFT COLUMN: TEXT --- */}
-        <m.div 
-          style={{ y: y1 }}
+        <div 
           className="flex flex-col items-start text-left z-20"
         >
           {/* Badge */}
-          <m.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+          <div 
             className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(229,208,149,0.1)]"
           >
             <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#E5D095]/20">
@@ -56,38 +50,29 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E5D095]"></span>
               </span>
             </div>
-          </m.div>
+          </div>
 
           {/* Headlines */}
           <div className="space-y-4 mb-8">
-            <m.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <h1 
               className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl"
             >
               Strategic <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
                 Financial Excellence
               </span>
-            </m.h1>
+            </h1>
             
-            <m.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
+            <p 
               className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide"
             >
               Human Judgment. <span className="text-[#E5D095] font-normal">AI Intelligence.</span> 
               <br />Global Advisory across 8+ Jurisdictions.
-            </m.p>
+            </p>
           </div>
 
           {/* Buttons */}
-          <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
+          <div 
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
             <Link href="/contact" className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
@@ -97,13 +82,10 @@ export default function Hero() {
               <span>Explore Services</span>
               <span className="group-hover:translate-x-1 transition-transform text-[#E5D095]">→</span>
             </Link>
-          </m.div>
+          </div>
           
           {/* Mini Footer Grid */}
-          <m.div 
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             transition={{ delay: 1, duration: 1 }}
+          <div 
              className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6"
           >
               <div className="text-left">
@@ -114,14 +96,11 @@ export default function Hero() {
                  <h4 className="text-[#FDFCF0] font-bold text-xs uppercase tracking-[0.2em] mb-1">Expert Team</h4>
                  <p className="text-[#FDFCF0]/50 text-xs font-light">CAs, CFAs & FRMs</p>
               </div>
-          </m.div>
-        </m.div>
+          </div>
+        </div>
 
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
-        <m.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1.2 }} 
-          transition={{ duration: 1, delay: 0.4 }}
+        <div 
           className="relative w-full aspect-[1.6/1]"
         >
           {/* MAP IMAGE */}
@@ -175,7 +154,7 @@ export default function Hero() {
               )}
             </m.div>
           ))}
-        </m.div>
+        </div>
 
       </div>
     </section>

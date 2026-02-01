@@ -38,7 +38,7 @@ export default function Navbar() {
     : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
   return (
-    <m.nav
+    <nav
       className={`fixed top-0 z-50 w-full transition-colors duration-500 ${navBackground}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-50">
@@ -47,7 +47,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative w-8 h-8 md:w-10 md:h-10">
             <Image
-              src="/logo.svg"
+              src="/logo (2).svg"
               alt="Hafsa Financials Logo"
               fill
               className="object-contain"
@@ -140,6 +140,6 @@ export default function Navbar() {
           </m.div>
         )}
       </AnimatePresence>
-    </m.nav>
+    </nav>
   );
 }
