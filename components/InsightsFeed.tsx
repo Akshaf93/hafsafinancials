@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { InsightCard } from "@/components/InsightCards";
 import { m, AnimatePresence } from "framer-motion";
 
@@ -17,14 +17,37 @@ const FILTERS = [
   "AI in Business"
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: (i % 6) * 0.05, // Stagger relative to batch
+      duration: 0.5,
+      ease: [0.215, 0.61, 0.355, 1], // Smooth cubic-bezier
+    },
+  }),
+  exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
+};
+
 export default function InsightsFeed({ articles }: { articles: any[] }) {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const filteredArticles = useMemo(() => articles.filter((a) => {
     if (activeFilter === "All") return true;
     if (activeFilter === "Featured") return a.fields.isFeatured;
     return a.fields.category?.trim() === activeFilter;
   }), [articles, activeFilter]);
+
+  // Reset pagination when filter changes
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [activeFilter]);
+
+  const visibleArticles = filteredArticles.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredArticles.length;
 
   return (
     <div className="w-full h-full flex flex-col max-w-7xl mx-auto px-6">
@@ -56,15 +79,16 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredArticles.length > 0 ? (
-              filteredArticles.map((article) => (
+            {visibleArticles.length > 0 ? (
+              visibleArticles.map((article, index) => (
                 <m.div
                   key={article.sys.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="h-full backdrop-blur-md bg-[#1a1a1a]/20 rounded-lg overflow-hidden">
                     <InsightCard article={article} />
@@ -78,6 +102,18 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="px-8 py-3 border border-[#E5D095] text-[#E5D095] hover:bg-[#E5D095] hover:text-[#050505] text-xs font-bold uppercase tracking-widest rounded transition-all"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
       
     </div>

@@ -26,12 +26,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
         
         {/* LEFT: Text Content */}
         <div className="text-center lg:text-left relative z-10">
-            <m.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-            >
+            <div>
                 <h2 className="text-[#E5D095] text-xs font-bold uppercase tracking-[0.4em] mb-6">
                     Global Intelligence Unit
                 </h2>
@@ -42,7 +37,7 @@ export default function InsightsHero({ featuredArticles }: { featuredArticles: a
                     Defensible analysis across IFRS, M&A Strategy, and Financial Architecture.
                     <span className="text-[#E5D095]/60 text-sm mt-2 block">Read. Analyze. Execute.</span>
                 </p>
-            </m.div>
+            </div>
         </div>
 
         {/* RIGHT: Featured Article Carousel */}
