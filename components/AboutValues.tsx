@@ -1,7 +1,3 @@
-"use client";
-
-import { m } from "framer-motion";
-
 const VALUES = [
   {
     id: "01",
@@ -34,12 +30,8 @@ export default function AboutValues() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {VALUES.map((item, index) => (
-          <m.div
+          <div
             key={item.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true }}
             className="group relative bg-[#1a1a1a] border border-[#FDFCF0]/10 p-8 rounded-xl overflow-hidden hover:border-[#E5D095]/50 transition-colors duration-500 flex flex-col"
           >
             {/* Background Number */}
@@ -55,15 +47,12 @@ export default function AboutValues() {
                 {item.desc}
               </p>
             </div>
-          </m.div>
+          </div>
         ))}
       </div>
 
       {/* Commitment Footer */}
-      <m.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
+      <div 
         className="border-t border-[#FDFCF0]/10 pt-8 text-center md:text-left grid md:grid-cols-2 gap-8"
       >
          <div>
@@ -77,7 +66,7 @@ export default function AboutValues() {
                 "Measured not by presentation, but by accuracy, resilience, and results."
             </p>
          </div>
-      </m.div>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import AuditTransformation from "@/components/AuditTabs"; 
 import ServicesDetailed from "@/components/ServicesDetailed"; 
+import ServicesHero from "@/components/ServicesHero";
 // Removed ComplexityCalculator import
 import Link from "next/link";
 import { Metadata } from "next";
@@ -12,12 +13,15 @@ export default function ServicesPage() {
   return (
     <main className="w-full home-snap-trigger">
       
+      {/* SECTION 0: HERO */}
+      <ServicesHero />
+
       {/* SECTION 1: Service Offerings (Handles its own snap sections) */}
       <ServicesDetailed />
 
       {/* SECTION 2: Case Study */}
       {/* UPDATED: Changed min-h-screen to h-screen and added overflow-hidden to fix 'peeking' */}
-      <section className="min-h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a] overflow-hidden">
+      <section className="min-h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 overflow-hidden">
         <div className="w-full h-full flex items-center justify-center">
           <AuditTransformation />
         </div>

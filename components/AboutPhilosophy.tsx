@@ -1,18 +1,9 @@
-"use client";
-
-import { m } from "framer-motion";
-
 export default function AboutPhilosophy() {
   return (
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
       
       {/* LEFT: Headline */}
-      <m.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
+      <div>
         <h2 className="text-4xl md:text-7xl font-serif font-medium text-[#FDFCF0] leading-tight">
           Our Practice <br />
           <span className="text-[#E5D095]">Approach</span>
@@ -22,14 +13,10 @@ export default function AboutPhilosophy() {
                 "Every engagement must withstand regulatory, audit, and strategic review."
             </p>
         </div>
-      </m.div>
+      </div>
 
       {/* RIGHT: Content */}
-      <m.div
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
+      <div
         className="space-y-8 text-lg text-[#FDFCF0]/70 font-light leading-relaxed border-l border-[#E5D095]/20 pl-8 md:pl-12"
       >
         <p>
@@ -57,7 +44,7 @@ export default function AboutPhilosophy() {
             We operate as a technical reference point, a risk and controls advisor, and a financial intelligence partner — supporting leadership teams where financial clarity directly influences strategic outcomes.
           </p>
         </div>
-      </m.div>
+      </div>
 
     </div>
   );
