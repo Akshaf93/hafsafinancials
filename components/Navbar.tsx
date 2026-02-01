@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { m, AnimatePresence } from "framer-motion";
 
 const LINKS = [
@@ -19,11 +19,22 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
-  // Detect scroll to toggle transparency
+  // Detect scroll to toggle transparency and visibility
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setIsScrolled(currentScrollY > 50);
+      lastScrollY.current = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -37,9 +48,12 @@ export default function Navbar() {
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
+  const showNavbar = isVisible || isMobileMenuOpen;
+
   return (
+    <>
     <nav
-      className={`fixed top-0 z-50 w-full transition-colors duration-500 ${navBackground}`}
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground} ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-50">
         
@@ -141,5 +155,24 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
+
+    {/* Back to Top Button */}
+    <AnimatePresence>
+      {!isVisible && (
+        <m.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 z-40 p-3 bg-[#E5D095] text-[#050505] rounded-full shadow-[0_0_20px_rgba(229,208,149,0.3)] hover:bg-[#FDFCF0] transition-colors"
+          aria-label="Back to Top"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+        </m.button>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
