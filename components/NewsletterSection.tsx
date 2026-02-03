@@ -103,7 +103,7 @@ export default function NewsletterSection() {
   return (
     <div className="w-full">
       {/* TABS */}
-      <div className="flex justify-center mb-16">
+      <div className="flex justify-center mb-10">
         <div className="inline-flex bg-[#1a1a1a] p-1 rounded-lg border border-[#FDFCF0]/10">
         <button
           onClick={() => setActiveTab('ifrs')}
@@ -137,7 +137,7 @@ export default function NewsletterSection() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-4">
               {PLANS[activeTab].title}
             </h2>
@@ -146,14 +146,14 @@ export default function NewsletterSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto items-center">
             {PLANS[activeTab].tiers.map((tier, index) => (
               <m.div 
                 key={tier.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative p-8 rounded-2xl border flex flex-col transition-all duration-500 group h-full ${
+                className={`relative p-6 rounded-2xl border flex flex-col transition-all duration-500 group h-full ${
                   tier.popular 
                     ? 'bg-[#1a1a1a] border-[#E5D095] shadow-[0_0_50px_rgba(229,208,149,0.15)] md:scale-105 z-10' 
                     : 'bg-[#0a0a0a]/40 border-[#FDFCF0]/10 hover:border-[#FDFCF0]/30 hover:bg-[#1a1a1a]'
@@ -166,7 +166,7 @@ export default function NewsletterSection() {
                 )}
 
                 {/* HEADER */}
-                <div className="mb-8 text-center">
+                <div className="mb-6 text-center">
                   <h3 className={`text-xs font-bold uppercase tracking-[0.2em] mb-4 ${tier.popular ? 'text-[#E5D095]' : 'text-[#FDFCF0]/60'}`}>{tier.name}</h3>
                   <div className="flex items-center justify-center gap-1">
                     <span className="text-5xl font-serif text-[#FDFCF0]">{tier.price}</span>
@@ -174,10 +174,10 @@ export default function NewsletterSection() {
                   </div>
                 </div>
 
-                <div className={`w-full h-px mb-8 ${tier.popular ? 'bg-gradient-to-r from-transparent via-[#E5D095]/50 to-transparent' : 'bg-[#FDFCF0]/10'}`} />
+                <div className={`w-full h-px mb-6 ${tier.popular ? 'bg-gradient-to-r from-transparent via-[#E5D095]/50 to-transparent' : 'bg-[#FDFCF0]/10'}`} />
 
                 {/* FEATURES */}
-                <ul className="space-y-4 mb-8 flex-grow">
+                <ul className="space-y-3 mb-6 flex-grow">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-[#FDFCF0]/80 font-light">
                       <span className={`mt-1 flex-shrink-0 ${tier.popular ? 'text-[#E5D095]' : 'text-[#FDFCF0]/40'}`}>

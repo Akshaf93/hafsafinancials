@@ -47,7 +47,7 @@ export default async function InsightsPage() {
 
 
       {/* --- SECTION 3: NEWSLETTER (Snap Start) --- */}
-      <section id="newsletter" className="min-h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 py-20 border-t border-[#FDFCF0]/10">
+      <section id="newsletter" className="min-h-screen w-full snap-start snap-always flex flex-col justify-center items-center px-6 py-12 border-t border-[#FDFCF0]/10">
          <div className="max-w-5xl mx-auto w-full text-center">
             <NewsletterSection />
          </div>

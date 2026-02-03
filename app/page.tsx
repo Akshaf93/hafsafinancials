@@ -1,19 +1,21 @@
+import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
-import HybridModel from "@/components/HybridModel";
-import ServicesOverview from "@/components/ServicesOverview";
-import InsightsPreview from "@/components/InsightsPreview";
-import Testimonials from "@/components/Testimonials";
-import TeamPreview from "@/components/TeamPreview";
 import Link from "next/link";
+
+// Dynamically import components that are below the fold
+// This reduces the initial JavaScript payload significantly.
+const ServicesOverview = dynamic(() => import("@/components/ServicesOverview"));
+const HybridModel = dynamic(() => import("@/components/HybridModel"));
+const TeamPreview = dynamic(() => import("@/components/TeamPreview"));
+const InsightsPreview = dynamic(() => import("@/components/InsightsPreview"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
 
 export default function Home() {
   return (
-    // UPDATED: Removed fixed height & overflow-scroll. 
     // We let the 'html' tag in globals.css handle the snap scrolling.
     <main className="w-full">
       
-      {/* SECTION 1: HERO */}
-      {/* h-screen ensures it fills exactly one viewport for snapping */}
+      {/* SECTION 1: HERO - Keep Static for Immediate LCP */}
       <section className="min-h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden">
         <Hero />
       </section>

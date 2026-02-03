@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroMap from "@/components/HeroMap";
 
-// REMOVED: ObsidianBackground component (It is now in globals.css for consistenc
 export default function Hero() {
   return (
     <section 
@@ -11,13 +10,9 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center h-full">
         
         {/* --- LEFT COLUMN: TEXT --- */}
-        <div 
-          className="flex flex-col items-start text-left z-20"
-        >
+        <div className="flex flex-col items-start text-left z-20">
           {/* Badge */}
-          <div 
-            className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(229,208,149,0.1)]"
-          >
+          <div className="flex items-center gap-0 mb-6 rounded-full border border-[#E5D095]/20 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden shadow-[0_0_20px_rgba(229,208,149,0.1)]">
             <div className="px-4 py-2 bg-[#FDFCF0]/5 text-[#FDFCF0] text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase border-r border-[#E5D095]/20">
               70% Human Expert
             </div>
@@ -32,27 +27,21 @@ export default function Hero() {
 
           {/* Headlines */}
           <div className="space-y-4 mb-8">
-            <h1 
-              className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl"
-            >
+            <h1 className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl">
               Strategic <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
                 Financial Excellence
               </span>
             </h1>
             
-            <p 
-              className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide"
-            >
+            <p className="text-lg text-[#FDFCF0]/80 font-light max-w-xl mt-6 tracking-wide">
               Human Judgment. <span className="text-[#E5D095] font-normal">AI Intelligence.</span> 
               <br />Global Advisory across 8+ Jurisdictions.
             </p>
           </div>
 
           {/* Buttons */}
-          <div 
-            className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
-          >
+          <div className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
             <Link href="/contact" className="px-8 py-4 bg-[#E5D095] hover:bg-[#eac45f] text-[#050505] font-bold text-sm tracking-wider uppercase rounded-sm shadow-[0_0_30px_rgba(229,208,149,0.2)] transition-all transform hover:-translate-y-0.5">
               Get a Consultation
             </Link>
@@ -63,9 +52,7 @@ export default function Hero() {
           </div>
           
           {/* Mini Footer Grid */}
-          <div 
-             className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6"
-          >
+          <div className="mt-12 w-full grid grid-cols-2 gap-6 border-t border-[#FDFCF0]/10 pt-6">
               <div className="text-left">
                  <h4 className="text-[#E5D095] font-bold text-xs uppercase tracking-[0.2em] mb-1">Trusted Advisory</h4>
                  <p className="text-[#FDFCF0]/50 text-xs font-light">IFRS & Architecture</p>
@@ -78,9 +65,7 @@ export default function Hero() {
         </div>
 
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
-        <div 
-          className="relative w-full aspect-[1.6/1]"
-        >
+        <div className="relative w-full aspect-[1.6/1]">
           {/* MAP IMAGE */}
           <Image
             src="/World_map_-_low_resolution.svg"
@@ -88,7 +73,7 @@ export default function Hero() {
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-contain object-center opacity-100"
-            priority
+            priority={true} // <--- UPDATED: CRITICAL FOR LCP
             style={{ 
               filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
             }}

@@ -63,6 +63,7 @@ export default function Navbar() {
               alt="Hafsa Financials Logo"
               fill
               className="object-contain"
+              priority
             />
           </div>
           <div className="text-xl md:text-2xl font-serif font-bold tracking-tight flex items-center gap-1 pt-1">
