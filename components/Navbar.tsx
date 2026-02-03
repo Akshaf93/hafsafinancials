@@ -26,25 +26,40 @@ export default function Navbar() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // If sentinel is NOT intersecting (scrolled past top), set true
+        // If the sentinel (top 50px) is NO LONGER touching the viewport,
+        // it means we have scrolled down past 50px.
         setIsScrolled(!entry.isIntersecting);
       },
-      { threshold: 0, rootMargin: "-50px 0px 0px 0px" } // Trigger when 50px down
+      { 
+        // No complex margins needed. Just watch the element.
+        threshold: 0 
+      }
     );
 
     if (sentinelRef.current) observer.observe(sentinelRef.current);
+    
     return () => observer.disconnect();
   }, []);
 
+  // Define which pages should start transparent
   const isSnapPage = ["/", "/services", "/insights"].includes(pathname);
+  
+  // Logic: Transparent only if on a Snap Page AND not scrolled yet
   const navBackground = isSnapPage && !isScrolled 
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
   return (
     <>
-    {/* 1. Performance Sentinel: An invisible 1px div at the very top */}
-    <div ref={sentinelRef} className="absolute top-0 left-0 w-full h-[1px] pointer-events-none opacity-0" />
+    {/* PERFORMANCE SENTINEL:
+       This invisible div sits at the absolute top and is exactly 50px tall.
+       As soon as this div scrolls completely out of view, the navbar turns solid.
+       This mimics "if (window.scrollY > 50)" without running JS on every scroll frame.
+    */}
+    <div 
+        ref={sentinelRef} 
+        className="absolute top-0 left-0 w-full h-[50px] pointer-events-none opacity-0 z-[-1]" 
+    />
 
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground}`}
@@ -58,7 +73,6 @@ export default function Navbar() {
               src="/logo (2).svg"
               alt="Hafsa Financials Logo"
               fill
-              // 2. Optimization: Ensure logo loads eagerly
               priority
               className="object-contain"
             />
