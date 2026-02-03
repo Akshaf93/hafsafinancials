@@ -8,12 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // 1. Map the CSS variables from layout.tsx
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
+      },
       colors: {
         brand: {
-          blue: "#1e3a8a", // Royal Blue
-          gold: "#d4af37", // Metallic Gold
-          dark: "#0f172a", // Dark Slate
-          light: "#f8fafc", // Off-white
+          blue: "#1e3a8a", 
+          gold: "#d4af37", 
+          dark: "#0f172a", 
+          light: "#f8fafc", 
         },
       },
     },

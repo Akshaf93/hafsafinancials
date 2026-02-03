@@ -35,3 +35,14 @@ footer {
   scroll-snap-align: end;
   scroll-snap-stop: always;
 }
+
+/* Add this at the end of globals.css */
+@keyframes simple-fade-in {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.animate-map-dot {
+  opacity: 0; /* Start hidden */
+  animation: simple-fade-in 0.8s ease-out forwards;
+}

@@ -1,7 +1,3 @@
-"use client";
-
-import { m } from "framer-motion";
-
 const LOCATIONS = [
   { name: "United States", top: 40, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
@@ -17,16 +13,15 @@ export default function HeroMap() {
   return (
     <div className="absolute inset-0 z-20 pointer-events-none">
       {LOCATIONS.map((loc, i) => (
-        <m.div
+        <div
           key={loc.name}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
-          className="absolute flex flex-col items-center"
+          // CSS Animation class defined in globals.css
+          className="absolute flex flex-col items-center animate-map-dot"
           style={{ 
             top: `${loc.top}%`, 
             left: `${loc.left}%`,
-            transform: 'translate(-50%, -50%)' 
+            // Native CSS delay calculation
+            animationDelay: `${800 + (i * 100)}ms` 
           }}
         >
           {/* TOP ALIGN */}
@@ -51,7 +46,7 @@ export default function HeroMap() {
               </div>
             </>
           )}
-        </m.div>
+        </div>
       ))}
     </div>
   );
