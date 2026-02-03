@@ -46,3 +46,20 @@ footer {
   opacity: 0; /* Start hidden */
   animation: simple-fade-in 0.8s ease-out forwards;
 }
+
+/* Map Drawing Animation */
+@keyframes draw-map {
+  0% { stroke-dashoffset: 3000; fill-opacity: 0; opacity: 0; }
+  10% { opacity: 1; }
+  60% { fill-opacity: 0; }
+  100% { stroke-dashoffset: 0; fill-opacity: 1; opacity: 1; }
+}
+
+.animate-draw path {
+  stroke: #E5D095;
+  stroke-width: 0.5px;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  fill: #1a1a1a;
+  animation: draw-map 3s ease-out forwards;
+}
