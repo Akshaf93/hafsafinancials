@@ -61,7 +61,7 @@ export default function HybridModel() {
 
       {/* CARDS CONTAINER */}
       <div 
-        className="w-full flex flex-col md:flex-row h-[400px] rounded-xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
+        className="w-full flex flex-col md:flex-row h-[650px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl border border-[#FDFCF0]/10"
         onMouseLeave={() => setActiveSide(null)}
       >
         

@@ -77,7 +77,7 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <div className="text-xl md:text-2xl font-serif font-bold tracking-tight flex items-center gap-1 pt-1">
+          <div className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-1 pt-1">
             <span className="text-[#FDFCF0]">Hafsa</span>
             <span className="text-[#E5D095]">Financials</span>
           </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-2xl font-serif font-medium transition-colors ${
+                className={`text-2xl font-bold transition-colors ${
                   pathname === link.href ? "text-[#E5D095]" : "text-[#FDFCF0]/70"
                 }`}
               >

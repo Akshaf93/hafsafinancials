@@ -71,7 +71,7 @@ export default function ServicesOverview() {
       </div>
 
       {/* COMPACT TAB NAVIGATION */}
-      <div className="flex flex-wrap gap-3 mb-6 border-b border-[#FDFCF0]/10 pb-4">
+      <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-6 border-b border-[#FDFCF0]/10 pb-4">
         {SERVICE_TABS.map((tab) => (
           <button
             key={tab.id}

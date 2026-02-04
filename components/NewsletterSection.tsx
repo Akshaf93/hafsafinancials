@@ -147,8 +147,8 @@ export default function NewsletterSection() {
   return (
     <div className="w-full">
       {/* TABS */}
-      <div className="flex justify-center mb-10">
-        <div className="inline-flex bg-[#1a1a1a] p-1 rounded-lg border border-[#FDFCF0]/10">
+      <div className="flex justify-center mb-10 px-4">
+        <div className="inline-flex flex-col md:flex-row bg-[#1a1a1a] p-1 rounded-lg border border-[#FDFCF0]/10 w-full md:w-auto">
         <button
           onClick={() => setActiveTab('ifrs')}
           className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-md transition-all ${

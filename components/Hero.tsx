@@ -27,7 +27,7 @@ export default function Hero() {
 
           {/* Headlines */}
           <div className="space-y-4 mb-8">
-            <h1 className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl">
+            <h1 className="text-4xl md:text-7xl font-serif font-medium tracking-tight text-[#FDFCF0] leading-[1.1] drop-shadow-2xl">
               Strategic <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDFCF0] via-[#E5D095] to-[#8a7035]">
                 Financial Excellence
