@@ -85,7 +85,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
   const { title, date, category, body, coverImage } = article.fields;
 
   return (
-    <main className="w-full bg-[#050505] min-h-screen text-[#FDFCF0]">
+    <main className="w-full min-h-screen text-[#FDFCF0]">
       
       {/* PROGRESS BAR (Optional visual touch) */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5D095] to-[#050505] z-50 opacity-20" />

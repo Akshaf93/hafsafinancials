@@ -40,7 +40,7 @@ export default async function InsightsPage() {
   const feedArticles = articles.slice(1);
 
   return (
-    <main className="w-full home-snap-trigger bg-[#050505]">
+    <main className="w-full home-snap-trigger">
       
       {/* SECTION 1: HERO (Critical Path - Loaded Immediately) */}
       <section className="min-h-screen w-full snap-start snap-always flex items-center justify-center px-6 py-20 relative border-b border-[#FDFCF0]/10 overflow-hidden">
