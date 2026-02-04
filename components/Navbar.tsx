@@ -46,6 +46,9 @@ export default function Navbar() {
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
+  // Hide navbar when scrolled down, unless mobile menu is open
+  const isHidden = isScrolled && !isMobileMenuOpen;
+
   return (
     <>
     {/* PERFORMANCE SENTINEL:
@@ -59,7 +62,7 @@ export default function Navbar() {
     />
 
     <nav
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground}`}
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground} ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-50">
         
