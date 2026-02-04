@@ -145,7 +145,7 @@ export default function NewsletterSection() {
   const [activeTab, setActiveTab] = useState<'ifrs' | 'ma' | 'tax'>('ifrs');
 
   return (
-    <div className="w-full">
+    <div className="w-full min-h-[600px]">
       {/* TABS */}
       <div className="flex justify-center mb-10 px-4">
         <div className="inline-flex flex-col md:flex-row bg-[#1a1a1a] p-1 rounded-lg border border-[#FDFCF0]/10 w-full md:w-auto">
@@ -190,6 +190,7 @@ export default function NewsletterSection() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
+          className="w-full"
         >
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-[#FDFCF0] mb-4">
