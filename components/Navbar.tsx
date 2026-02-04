@@ -41,11 +41,8 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Define which pages should start transparent
-  const isSnapPage = ["/", "/services", "/insights"].includes(pathname);
-  
-  // Logic: Transparent only if on a Snap Page AND not scrolled yet
-  const navBackground = isSnapPage && !isScrolled 
+  // Logic: Transparent if not scrolled yet (on all pages)
+  const navBackground = !isScrolled 
     ? "bg-transparent border-transparent" 
     : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
 
@@ -149,6 +146,24 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
+
+    {/* Back to Top Button */}
+    <AnimatePresence>
+      {isHidden && (
+        <m.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 z-40 p-3 bg-[#E5D095] text-[#050505] rounded-full shadow-[0_0_20px_rgba(229,208,149,0.3)] hover:bg-[#FDFCF0] transition-colors"
+          aria-label="Back to Top"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+        </m.button>
+      )}
+    </AnimatePresence>
     </>
   );
 }
