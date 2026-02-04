@@ -8,7 +8,8 @@ export default function AboutHero() {
         </h2>
         
         {/* THIS H1 IS YOUR LCP ELEMENT */}
-        <h1 className="text-
+        <h1 className="text-4xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[1.1] will-change-transform">
+          Built for <br />
           <span className="text-[#E5D095]">Complexity</span>
         </h1>
         
