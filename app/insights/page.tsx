@@ -26,7 +26,7 @@ async function getArticles() {
     content_type: "article",
     order: ["-fields.date"], 
     // Select minimal fields to keep the HTML payload small
-    select: ['sys.id', 'fields.title', 'fields.slug', 'fields.date', 'fields.excerpt', 'fields.category', 'fields.isFeatured', 'fields.coverImage'],
+    select: ['sys.id', 'fields.title', 'fields.slug', 'fields.date', 'fields.excerpt', 'fields.category', 'fields.isFeatured'],
   });
   return res.items;
 }
