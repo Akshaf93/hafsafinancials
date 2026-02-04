@@ -94,11 +94,55 @@ const PLANS = {
         cta: "Coming Soon"
       }
     ]
+  },
+  tax: {
+    title: "Tax Updates & Risk Strategy",
+    description: "For entities operating in UK & Pakistan requiring strict compliance and efficiency.",
+    tiers: [
+      {
+        name: "Free",
+        price: "$0",
+        period: "/month",
+        features: [
+          "Key tax deadline alerts",
+          "Regulatory updates (UK/Pak)",
+          "Monthly compliance tips"
+        ],
+        cta: "Sign Up Free",
+        link: "/contact?plan=tax_free",
+        isFree: true
+      },
+      {
+        name: "Professional",
+        price: "$25",
+        period: "/month",
+        popular: true,
+        features: [
+          "In-depth tax impact analysis",
+          "Cross-border structuring guides",
+          "Risk mitigation strategies",
+          "Quarterly Q&A sessions"
+        ],
+        cta: "Coming Soon"
+      },
+      {
+        name: "Enterprise",
+        price: "$75",
+        period: "/month",
+        features: [
+          "Bespoke tax risk assessment",
+          "Priority filing advisory",
+          "Direct access to tax partners",
+          "Custom strategy workshops"
+        ],
+        cta: "Coming Soon"
+      }
+    ]
   }
 };
 
 export default function NewsletterSection() {
-  const [activeTab, setActiveTab] = useState<'ifrs' | 'ma'>('ifrs');
+  const [activeTab, setActiveTab] = useState<'ifrs' | 'ma' | 'tax'>('ifrs');
 
   return (
     <div className="w-full">
@@ -124,6 +168,16 @@ export default function NewsletterSection() {
           }`}
         >
           M&A & AI Strategy
+        </button>
+        <button
+          onClick={() => setActiveTab('tax')}
+          className={`px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-md transition-all ${
+            activeTab === 'tax'
+              ? "bg-[#E5D095] text-[#050505] shadow-lg"
+              : "text-[#FDFCF0]/60 hover:text-[#FDFCF0]"
+          }`}
+        >
+          Tax & Risk
         </button>
         </div>
       </div>
