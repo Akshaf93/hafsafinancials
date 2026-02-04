@@ -1,48 +1,28 @@
-"use client";
-
-import Image from "next/image";
-import { m } from "framer-motion";
-
 export default function AboutHero() {
   return (
-    <section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-      
-      {/* BACKGROUND IMAGE - LCP OPTIMIZED */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/about-hero.jpg" // Verify this path matches your actual file
-          alt="Hafsa Financials Office"
-          fill
-          // 1. CRITICAL: Priority tells the browser to load this ASAP
-          priority={true} 
-          // 2. Sizes helps the browser pick the right file size for mobile vs desktop
-          sizes="100vw"
-          className="object-cover opacity-60"
-          // 3. Ensure no 'framer-motion' or 'opacity-0' class is on this Image
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/50 to-[#050505]" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl px-6">
-        <m.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-serif text-[#FDFCF0] mb-6"
-        >
-          Our <span className="text-[#E5D095]">Legacy</span>
-        </m.h1>
+    <div className="max-w-5xl mx-auto text-center px-6">
+      {/* Use 'group' to ensure styles are grouped for painting */}
+      <div className="relative z-10">
+        <h2 className="text-[#E5D095] text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-6">
+          About Hafsa Financials
+        </h2>
         
-        <m.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg md:text-xl text-[#FDFCF0]/80 font-light max-w-2xl mx-auto"
-        >
-          Built on a foundation of integrity, precision, and global expertise.
-        </m.p>
+        {/* THIS H1 IS YOUR LCP ELEMENT */}
+        <h1 className="text-5xl md:text-8xl font-serif font-medium text-[#FDFCF0] mb-8 leading-[1.1] will-change-transform">
+          Built for <br />
+          <span className="text-[#E5D095]">Complexity</span>
+        </h1>
+        
+        <div className="w-24 h-[1px] bg-[#E5D095] mx-auto mb-8 opacity-50"></div>
+        
+        <p className="text-xl md:text-2xl text-[#FDFCF0]/70 font-light max-w-4xl mx-auto leading-relaxed">
+          An independent financial advisory firm established to support organizations navigating complex accounting standards, financial risk, regulatory change, and strategic transformation.
+        </p>
+        
+        <p className="text-[#FDFCF0]/50 mt-6 text-sm md:text-base max-w-3xl mx-auto font-light leading-relaxed">
+          We work with clients ranging from SMEs and founder-led businesses to growing enterprises and group structures, delivering solutions that are technically rigorous, commercially grounded, and execution-focused.
+        </p>
       </div>
-    </section>
+    </div>
   );
 }

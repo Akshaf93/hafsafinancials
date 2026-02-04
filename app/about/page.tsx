@@ -1,37 +1,38 @@
+import React from 'react';
+import dynamic from 'next/dynamic';
 import AboutHero from "@/components/AboutHero";
-import dynamic from "next/dynamic";
-import { Metadata } from "next";
 
-// 1. Defer loading of heavy below-the-fold components
-// We keep 'ssr: true' (default) because these contain text valuable for SEO,
-// but the JavaScript payload is split from the initial bundle.
+// Lazy load below-the-fold content to boost LCP and reduce bundle size
 const AboutPhilosophy = dynamic(() => import("@/components/AboutPhilosophy"));
 const AboutValues = dynamic(() => import("@/components/AboutValues"));
-const FounderSpotlight = dynamic(() => import("@/components/FounderSpotlight"));
-const GlobalReach = dynamic(() => import("@/components/GlobalReach"));
 const OwnersMessage = dynamic(() => import("@/components/OwnersMessage"));
-const NewsletterSection = dynamic(() => import("@/components/NewsletterSection"));
-
-export const metadata: Metadata = {
-  title: "About Us | Hafsa Financials",
-  description: "Our history, philosophy, and commitment to financial excellence.",
-};
 
 export default function AboutPage() {
   return (
-    <main className="w-full bg-[#050505]">
-      {/* 2. Load Hero Normally (Critical Path) */}
-      <AboutHero />
+    <main className="w-full home-snap-trigger">
+      
+      {/* Section 1: Vision (Hero) 
+          - Static Import (Not Dynamic) because we want this visible IMMEDIATELY.
+      */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-20">
+        <AboutHero />
+      </section>
 
-      {/* 3. Lazy Load the rest */}
-      <div className="flex flex-col gap-0">
+      {/* Section 2: Philosophy */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <AboutPhilosophy />
-        <FounderSpotlight />
+      </section>
+
+      {/* Section 3: Values */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <AboutValues />
-        <GlobalReach />
+      </section>
+
+      {/* Section 4: Owner's Message */}
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
         <OwnersMessage />
-        <NewsletterSection />
-      </div>
+      </section>
+
     </main>
   );
 }
