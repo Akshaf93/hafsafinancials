@@ -15,7 +15,7 @@ const NewsletterSection = dynamic(() => import("@/components/NewsletterSection")
 });
 
 export const metadata: Metadata = {
-  title: "Insights | Hafsa Financials",
+  title: "Insights | Hafsa Advisory and Solutions (LLP)",
   description: "Global Intelligence Unit: IFRS, M&A Strategy, and Financial Architecture.",
 };
 

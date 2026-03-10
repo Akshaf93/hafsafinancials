@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | Hafsa Financials",
+  title: "Services | Hafsa Advisory and Solutions (LLP)",
 };
 
 export default function ServicesPage() {

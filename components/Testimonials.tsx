@@ -7,7 +7,7 @@ export default function Testimonials() {
         
         <div className="space-y-4 text-base md:text-lg font-light leading-relaxed text-[#FDFCF0]/80">
                    <p>
-                     Hafsa Financials delivers hands-on IFRS advisory, financial architecture, internal audit, and control solutions grounded in real engagements — not theory.
+                     Hafsa Advisory and Solutions (LLP) delivers hands-on IFRS advisory, financial architecture, internal audit, and control solutions grounded in real engagements — not theory.
                    </p>
                    <p className="text-[#FDFCF0]/60">
                      We help organizations uncover hidden risks, correct misstatements, strengthen governance, and convert compliance into decision-ready insight. Our work enables Boards, CFOs, and stakeholders to rely on financial information that is accurate, defensible, and audit-ready.

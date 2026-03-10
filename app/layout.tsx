@@ -21,7 +21,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Hafsa Financials | Global Advisory",
+  title: "Hafsa Advisory and Solutions (LLP) | Global Advisory",
   description: "IFRS Advisory, Financial Modeling & Risk Management",
   icons: {
     icon: "/favicon.svg",

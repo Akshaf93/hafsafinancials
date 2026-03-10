@@ -10,7 +10,7 @@ export default function AboutContent() {
         </div>
         <div className="space-y-8 text-[#FDFCF0]/70 font-light text-lg leading-relaxed">
             <p>
-                In an era of financial ambiguity, Hafsa Financials stands for absolute clarity. We believe that every number tells a story, and every audit is an opportunity to uncover value.
+                In an era of financial ambiguity, Hafsa Advisory and Solutions (LLP) stands for absolute clarity. We believe that every number tells a story, and every audit is an opportunity to uncover value.
             </p>
             <p>
                 Our methodology is rooted in "Defensible Pricing" and "Radical Transparency." We reject the industry standard of opaque billing and generic advice. Instead, we offer complexity-based engagement models that align our incentives with your success.

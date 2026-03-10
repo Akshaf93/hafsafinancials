@@ -58,7 +58,7 @@ export default function AboutValues() {
          <div>
             <h3 className="text-[#E5D095] font-bold uppercase tracking-widest text-sm mb-2">Our Commitment</h3>
             <p className="text-[#FDFCF0]/70 text-sm font-light">
-                Hafsa Financials is committed to ethical advisory, technical excellence, regulatory discipline, and long-term client relationships.
+                Hafsa Advisory and Solutions (LLP) is committed to ethical advisory, technical excellence, regulatory discipline, and long-term client relationships.
             </p>
          </div>
          <div className="flex items-center md:justify-end">
