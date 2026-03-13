@@ -37,7 +37,7 @@ export default function OwnersMessage() {
             
             <h3 className="text-xl font-serif text-[#FDFCF0]">Mirza Muhammad <br/> Bilal Qasim Barlas</h3>
             <p className="text-[#E5D095] text-xs uppercase tracking-widest mt-2">Founder & President</p>
-            <p className="text-[#FDFCF0]/40 text-xs mt-1">Hafsa Advisory and Solutions (LLP)</p>
+            <p className="text-[#FDFCF0]/40 text-xs mt-1">Hafsa Advisors and Solutions (LLP)</p>
         </div>
       </m.div>
 
@@ -53,19 +53,19 @@ export default function OwnersMessage() {
 
          <div className="space-y-6 text-[#FDFCF0]/80 font-light text-sm md:text-base leading-relaxed pr-2 relative z-10">
             <p>
-                When I founded Hafsa Advisory and Solutions (LLP), the objective was clear: to build a financial advisory firm grounded in substance, integrity, and technical depth, not surface-level consultancy.
+                When I founded Hafsa Advisors and Solutions (LLP), the objective was clear: to build a financial advisory firm grounded in substance, integrity, and technical depth, not surface-level consultancy.
             </p>
             <p>
-                In today's environment, businesses face increasing complexity — evolving accounting standards, heightened regulatory scrutiny, financial risk, and rapidly changing technologies. In such conditions, decision-makers do not need opinions; they need clarity that can be defended. <strong>Hafsa Advisory and Solutions (LLP) was established to meet that need.</strong>
+                In today's environment, businesses face increasing complexity — evolving accounting standards, heightened regulatory scrutiny, financial risk, and rapidly changing technologies. In such conditions, decision-makers do not need opinions; they need clarity that can be defended. <strong>Hafsa Advisors and Solutions (LLP) was established to meet that need.</strong>
             </p>
             <p>
                 As an ACCA and Oxford Brookes University (OBU) finalist, my professional journey has been shaped by first-hand IFRS implementation, financial analysis, and advisory engagements. This experience has reinforced a core belief: <em>financial advice must be practical, judgment-driven, and execution-focused.</em>
             </p>
             <p>
-                At Hafsa Advisory and Solutions (LLP), we deliberately combine human expertise with intelligent systems. While technology and AI enhance efficiency and insight, professional judgment, ethics, and accountability remain at the center of every engagement.
+                At Hafsa Advisors and Solutions (LLP), we deliberately combine human expertise with intelligent systems. While technology and AI enhance efficiency and insight, professional judgment, ethics, and accountability remain at the center of every engagement.
             </p>
             <p className="text-[#E5D095] font-medium pt-4">
-                I welcome you to Hafsa Advisory and Solutions (LLP) and look forward to building a relationship founded on clarity, confidence, and long-term value.
+                I welcome you to Hafsa Advisors and Solutions (LLP) and look forward to building a relationship founded on clarity, confidence, and long-term value.
             </p>
          </div>
       </m.div>

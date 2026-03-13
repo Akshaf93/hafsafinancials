@@ -23,8 +23,8 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hafsafinancials.com"),
   title: {
-    default: "Hafsa Advisory and Solutions (LLP) | Global Advisory",
-    template: "%s | Hafsa Advisory and Solutions (LLP)",
+    default: "Hafsa Advisors and Solutions (LLP) | Global Advisory",
+    template: "%s | Hafsa Advisors and Solutions (LLP)",
   },
   description: "IFRS Advisory, Financial Modeling & Risk Management. Human Judgment. AI Intelligence. Global Advisory across 8+ jurisdictions.",
   keywords: ["IFRS advisory", "financial modeling", "risk management", "audit", "financial advisory", "tax planning"],
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Hafsa Advisory and Solutions (LLP) | Global Advisory",
+    title: "Hafsa Advisors and Solutions (LLP) | Global Advisory",
     description: "IFRS Advisory, Financial Modeling & Risk Management. Human Judgment. AI Intelligence.",
-    siteName: "Hafsa Advisory and Solutions (LLP)",
+    siteName: "Hafsa Advisors and Solutions (LLP)",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hafsa Advisory and Solutions (LLP) | Global Advisory",
+    title: "Hafsa Advisors and Solutions (LLP) | Global Advisory",
     description: "IFRS Advisory, Financial Modeling & Risk Management. Human Judgment. AI Intelligence.",
   },
 };

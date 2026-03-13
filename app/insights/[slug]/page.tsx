@@ -83,8 +83,8 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   if (!article) return {};
   const { title, excerpt, category } = article.fields;
   return {
-    title: `${title} | Hafsa Advisory and Solutions (LLP)`,
-    description: excerpt || `${category} insights from Hafsa Advisory and Solutions (LLP)`,
+    title: `${title} | Hafsa Advisors and Solutions (LLP)`,
+    description: excerpt || `${category} insights from Hafsa Advisors and Solutions (LLP)`,
   };
 }
 

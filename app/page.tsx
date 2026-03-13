@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hafsa Advisory and Solutions (LLP) | Global Financial Advisory",
+  title: "Hafsa Advisors and Solutions (LLP) | Global Financial Advisory",
   description: "Human Judgment. AI Intelligence. IFRS Advisory, Financial Modeling & Risk Management across 8+ jurisdictions.",
 };
 

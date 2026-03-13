@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pricing | Hafsa Advisory and Solutions (LLP)",
+  title: "Pricing | Hafsa Advisors and Solutions (LLP)",
 };
 
 export default function PricingPage() {

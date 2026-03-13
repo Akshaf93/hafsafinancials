@@ -71,7 +71,7 @@ export default function Navbar() {
           <div className="relative w-8 h-8 md:w-10 md:h-10">
             <Image
               src="/logo (2).svg"
-              alt="Hafsa Advisory and Solutions (LLP) Logo"
+              alt="Hafsa Advisors and Solutions (LLP) Logo"
               fill
               priority
               sizes="40px"
@@ -80,7 +80,7 @@ export default function Navbar() {
           </div>
           <div className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-1 pt-1">
             <span className="text-[#FDFCF0]">Hafsa</span>
-            <span className="text-[#E5D095]">Advisory and Solutions (LLP)</span>
+            <span className="text-[#E5D095]">Advisors and Solutions (LLP)</span>
           </div>
         </Link>
 

@@ -12,14 +12,14 @@ export default function Footer() {
             <div className="relative w-8 h-8 md:w-10 md:h-10">
               <Image
                 src="/logo (2).svg"
-                alt="Hafsa Advisory and Solutions (LLP) Logo"
+                alt="Hafsa Advisors and Solutions (LLP) Logo"
                 fill
                 sizes="40px"
                 className="object-contain"
               />
             </div>
             <h2 className="text-2xl font-bold tracking-tight">
-              Hafsa<span className="text-[#E5D095]">Advisory and Solutions (LLP)</span>
+              Hafsa<span className="text-[#E5D095]">Advisors and Solutions (LLP)</span>
             </h2>
           </div>
           <p className="text-[#FDFCF0]/60 text-sm leading-relaxed">
@@ -81,7 +81,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between text-xs text-[#FDFCF0]/40">
-        <p>&copy; 2026 Hafsa Advisory and Solutions (LLP). All rights reserved.</p>
+        <p>&copy; 2026 Hafsa Advisors and Solutions (LLP). All rights reserved.</p>
         <p>Privacy Policy | Terms of Engagement</p>
       </div>
     </footer>

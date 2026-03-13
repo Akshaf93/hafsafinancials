@@ -4,7 +4,7 @@ import AboutHero from "@/components/AboutHero";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Hafsa Advisory and Solutions (LLP)",
+  title: "About | Hafsa Advisors and Solutions (LLP)",
   description: "Our philosophy, values, and approach to global financial advisory.",
 };
 

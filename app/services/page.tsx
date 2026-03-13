@@ -11,7 +11,7 @@ const AuditTransformation = dynamic(() => import("@/components/AuditTabs"), {
 });
 
 export const metadata: Metadata = {
-  title: "Services | Hafsa Advisory and Solutions (LLP)",
+  title: "Services | Hafsa Advisors and Solutions (LLP)",
 };
 
 export default function ServicesPage() {

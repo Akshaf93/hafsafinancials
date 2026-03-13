@@ -2,7 +2,7 @@ import ContactForm from "@/components/ContactForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | Hafsa Advisory and Solutions (LLP)",
+  title: "Contact | Hafsa Advisors and Solutions (LLP)",
   description: "Get in touch for IFRS transition support, financial modeling, or internal control advisory.",
 };
 

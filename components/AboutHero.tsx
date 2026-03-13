@@ -4,7 +4,7 @@ export default function AboutHero() {
       {/* Use 'group' to ensure styles are grouped for painting */}
       <div className="relative z-10">
         <h2 className="text-[#E5D095] text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-6">
-          About Hafsa Advisory and Solutions (LLP)
+          About Hafsa Advisors and Solutions (LLP)
         </h2>
         
         {/* THIS H1 IS YOUR LCP ELEMENT */}
