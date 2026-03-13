@@ -4,6 +4,9 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+export const revalidate = 3600;
 
 // 1. GENERATE STATIC PARAMS (Crucial for Vercel Performance)
 // This tells Next.js to pre-build all your articles so they load instantly.
@@ -73,7 +76,19 @@ const renderOptions = {
   },
 };
 
-// 4. THE PAGE COMPONENT
+// 4. GENERATE METADATA
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const article: any = await getArticle(params.slug);
+  if (!article) return {};
+  const { title, excerpt, category } = article.fields;
+  return {
+    title: `${title} | Hafsa Advisory and Solutions (LLP)`,
+    description: excerpt || `${category} insights from Hafsa Advisory and Solutions (LLP)`,
+  };
+}
+
+// 5. THE PAGE COMPONENT
 export default async function ArticlePage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const article: any = await getArticle(params.slug);

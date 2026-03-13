@@ -31,7 +31,7 @@ function ContactFormContent() {
   }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   // 2. Handle Submission (Web3Forms)
@@ -40,7 +40,7 @@ function ContactFormContent() {
     setStatus("submitting");
 
     // REPLACE 'YOUR_ACCESS_KEY_HERE' WITH YOUR ACTUAL KEY
-    const accessKey = "85df1d04-883a-4090-86a4-6e57e1e1e77e"; 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "85df1d04-883a-4090-86a4-6e57e1e1e77e"; 
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

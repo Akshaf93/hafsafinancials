@@ -2,7 +2,8 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { InsightCard } from "@/components/InsightCards";
-import { m, AnimatePresence, Variants } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const FILTERS = [
   "All",
@@ -90,7 +91,7 @@ export default function InsightsFeed({ articles }: { articles: any[] }) {
                   animate="visible"
                   exit="exit"
                 >
-                  <div className="h-full backdrop-blur-md bg-[#1a1a1a]/20 rounded-lg overflow-hidden">
+                  <div className="h-full bg-[#1a1a1a]/20 rounded-lg overflow-hidden">
                     <InsightCard article={article} />
                   </div>
                 </m.div>

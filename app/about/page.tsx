@@ -1,6 +1,12 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import AboutHero from "@/components/AboutHero";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About | Hafsa Advisory and Solutions (LLP)",
+  description: "Our philosophy, values, and approach to global financial advisory.",
+};
 
 // Lazy load below-the-fold content to boost LCP and reduce bundle size
 const AboutPhilosophy = dynamic(() => import("@/components/AboutPhilosophy"));

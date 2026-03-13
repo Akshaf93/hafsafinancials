@@ -44,7 +44,7 @@ export default function Navbar() {
   // Logic: Transparent if not scrolled yet (on all pages)
   const navBackground = !isScrolled 
     ? "bg-transparent border-transparent" 
-    : "bg-[#050505]/90 backdrop-blur-md border-b border-[#FDFCF0]/10";
+    : "bg-[#050505]/95 border-b border-[#FDFCF0]/10";
 
   // Hide navbar when scrolled down, unless mobile menu is open
   const isHidden = isScrolled && !isMobileMenuOpen;
@@ -74,6 +74,7 @@ export default function Navbar() {
               alt="Hafsa Advisory and Solutions (LLP) Logo"
               fill
               priority
+              sizes="40px"
               className="object-contain"
             />
           </div>

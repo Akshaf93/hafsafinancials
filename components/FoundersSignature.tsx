@@ -1,6 +1,7 @@
 "use client";
 
-import { m, Variants } from "framer-motion";
+import { m } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export default function FounderSignature() {
   // Animation variants for the "Write-on" effect

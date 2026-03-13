@@ -15,10 +15,10 @@ const config: Config = {
       },
       colors: {
         brand: {
-          blue: "#1e3a8a", 
-          gold: "#d4af37", 
-          dark: "#0f172a", 
-          light: "#f8fafc", 
+          gold: "#E5D095",
+          cream: "#FDFCF0",
+          dark: "#050505",
+          muted: "#1a1a1a",
         },
       },
     },

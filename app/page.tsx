@@ -1,14 +1,30 @@
 import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hafsa Advisory and Solutions (LLP) | Global Financial Advisory",
+  description: "Human Judgment. AI Intelligence. IFRS Advisory, Financial Modeling & Risk Management across 8+ jurisdictions.",
+};
 
 // Dynamically import components that are below the fold
 // This reduces the initial JavaScript payload significantly.
-const ServicesOverview = dynamic(() => import("@/components/ServicesOverview"));
-const HybridModel = dynamic(() => import("@/components/HybridModel"));
-const TeamPreview = dynamic(() => import("@/components/TeamPreview"));
-const InsightsPreview = dynamic(() => import("@/components/InsightsPreview"));
-const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const ServicesOverview = dynamic(() => import("@/components/ServicesOverview"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
+});
+const HybridModel = dynamic(() => import("@/components/HybridModel"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
+});
+const TeamPreview = dynamic(() => import("@/components/TeamPreview"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
+});
+const InsightsPreview = dynamic(() => import("@/components/InsightsPreview"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
+});
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
+});
 
 export default function Home() {
   return (

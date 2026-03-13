@@ -1,9 +1,14 @@
-import AuditTransformation from "@/components/AuditTabs"; 
-import ServicesDetailed from "@/components/ServicesDetailed"; 
+import dynamic from "next/dynamic";
 import ServicesHero from "@/components/ServicesHero";
-// Removed ComplexityCalculator import
 import Link from "next/link";
 import { Metadata } from "next";
+
+const ServicesDetailed = dynamic(() => import("@/components/ServicesDetailed"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
+});
+const AuditTransformation = dynamic(() => import("@/components/AuditTabs"), {
+  loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
+});
 
 export const metadata: Metadata = {
   title: "Services | Hafsa Advisory and Solutions (LLP)",

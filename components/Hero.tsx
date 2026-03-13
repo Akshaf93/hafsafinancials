@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import HeroMap from "@/components/HeroMap";
 
 export default function Hero() {
@@ -67,15 +66,13 @@ export default function Hero() {
         {/* --- RIGHT COLUMN: WORLD MAP --- */}
         <div className="relative w-full aspect-[1.6/1]">
           {/* MAP IMAGE */}
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/World_map_-_low_resolution.svg"
             alt="World Map"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain object-center opacity-100"
-            priority={true}
-            style={{ 
-              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)" 
+            className="absolute inset-0 w-full h-full object-contain object-center"
+            style={{
+              filter: "invert(1) sepia(1) saturate(0.2) brightness(0.7)"
             }}
           />
 

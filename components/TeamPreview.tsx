@@ -3,6 +3,8 @@
 import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import strategyIcon from "@/public/strategy-icon.png";
+import shieldIcon from "@/public/shield-icon.jpg";
 
 export default function TeamPreview() {
   return (
@@ -71,11 +73,12 @@ export default function TeamPreview() {
                  transition={{ duration: 1.5, ease: "easeOut" }}
                  className="absolute inset-0"
                >
-                 <Image 
-                   src="/strategy-icon.png" 
-                   alt="Strategy Abstract" 
-                   fill 
+                 <Image
+                   src={strategyIcon}
+                   alt="Strategy Abstract"
+                   fill
                    sizes="(max-width: 768px) 50vw, 25vw"
+                   placeholder="blur"
                    className="object-cover object-center"
                  />
                </m.div>
@@ -101,11 +104,12 @@ export default function TeamPreview() {
                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
                  className="absolute inset-0"
                >
-                 <Image 
-                   src="/shield-icon.jpg" 
-                   alt="Compliance Abstract" 
-                   fill 
+                 <Image
+                   src={shieldIcon}
+                   alt="Compliance Abstract"
+                   fill
                    sizes="(max-width: 768px) 50vw, 25vw"
+                   placeholder="blur"
                    className="object-cover object-center"
                  />
                </m.div>

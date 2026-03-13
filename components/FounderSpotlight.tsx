@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import founderImg from "@/public/founder.jpeg";
 
 const EXPERIENCE_TABS = [
   {
@@ -67,10 +68,11 @@ export default function FounderSpotlight() {
            <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
               <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden border border-[#E5D095]/20 shadow-[0_0_15px_rgba(229,208,149,0.1)] group">
                 <Image
-                  src="/founder.jpeg"
+                  src={founderImg}
                   alt="Mirza Bilal Qasim"
                   fill
                   sizes="(max-width: 768px) 128px, 160px"
+                  placeholder="blur"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>

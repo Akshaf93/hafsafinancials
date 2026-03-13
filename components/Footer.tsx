@@ -14,6 +14,7 @@ export default function Footer() {
                 src="/logo (2).svg"
                 alt="Hafsa Advisory and Solutions (LLP) Logo"
                 fill
+                sizes="40px"
                 className="object-contain"
               />
             </div>
@@ -70,16 +71,12 @@ export default function Footer() {
           <p className="text-xs text-[#FDFCF0]/50 mb-4">
             Join 1,000+ professionals receiving our monthly IFRS & Strategy updates.
           </p>
-          <div className="flex gap-2">
-            <input 
-              type="email" 
-              placeholder="Email address" 
-              className="bg-[#1a1a1a] border-none text-[#FDFCF0] text-sm px-4 py-2 rounded-lg w-full focus:ring-1 focus:ring-[#E5D095]"
-            />
-            <button className="bg-[#E5D095] text-[#050505] font-bold px-4 py-2 rounded-lg hover:bg-[#FDFCF0] transition-colors">
-              Go
-            </button>
-          </div>
+          <Link
+            href="/insights#newsletter"
+            className="inline-block bg-[#E5D095] text-[#050505] font-bold px-6 py-2 rounded-lg hover:bg-[#FDFCF0] transition-colors text-sm"
+          >
+            Subscribe Now
+          </Link>
         </div>
       </div>
 

@@ -1,6 +1,11 @@
 import React from 'react';
 import FounderSpotlight from "@/components/FounderSpotlight";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Team | Hafsa Advisory and Solutions (LLP)",
+  description: "Meet the experts behind Hafsa Advisory — CAs, CFAs, and FRMs driving financial excellence.",
+};
 
 export default function TeamPage() {
   return (

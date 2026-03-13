@@ -8,13 +8,17 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
     ],
-    // 2. Aggressive caching for images
-    minimumCacheTTL: 60,
+    // 2. Aggressive caching for images (1 day)
+    minimumCacheTTL: 86400,
   },
   // 3. Tree-shake heavy libraries used in Client Components
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react', 'date-fns'],
+    optimizePackageImports: ['framer-motion'],
   },
 }
 
