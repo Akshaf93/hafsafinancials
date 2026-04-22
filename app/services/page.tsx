@@ -4,11 +4,16 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 const ServicesDetailed = dynamic(() => import("@/components/ServicesDetailed"), {
+  ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
 const AuditTransformation = dynamic(() => import("@/components/AuditTabs"), {
+  ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
+
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Services | Hafsa Advisors and Solutions (LLP)",

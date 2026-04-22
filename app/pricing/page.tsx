@@ -1,6 +1,8 @@
-import React from 'react';
 import Link from "next/link";
 import { Metadata } from "next";
+
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Pricing | Hafsa Advisors and Solutions (LLP)",
