@@ -44,7 +44,7 @@ export default function PricingPage() {
       </section>
 
       {/* SECTION 2: THE VALUE PROPS (Logic) */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/50 backdrop-blur-sm">
+        <section className="min-h-screen w-full flex flex-col items-center justify-center snap-start snap-always relative px-6 py-20 border-t border-[#FDFCF0]/10 bg-[#0a0a0a]/70 [content-visibility:auto]">
         <div className="max-w-7xl mx-auto w-full">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-serif text-[#FDFCF0]">The Logic of Value</h2>
