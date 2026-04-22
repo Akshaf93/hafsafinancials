@@ -4,11 +4,9 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 const ServicesDetailed = nextDynamic(() => import("@/components/ServicesDetailed"), {
-  ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
 const AuditTransformation = nextDynamic(() => import("@/components/AuditTabs"), {
-  ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
 
