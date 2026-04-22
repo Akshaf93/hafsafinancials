@@ -72,9 +72,9 @@ export default function RootLayout({
 
         <FramerLazyMotion>
           <Navbar />
+          <div className="flex-grow">{children}</div>
+          <Footer />
         </FramerLazyMotion>
-        <div className="flex-grow">{children}</div>
-        <Footer />
         <SpeedInsights />
         <Analytics />
       </body>

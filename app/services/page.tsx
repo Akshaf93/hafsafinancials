@@ -1,13 +1,13 @@
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import ServicesHero from "@/components/ServicesHero";
 import Link from "next/link";
 import { Metadata } from "next";
 
-const ServicesDetailed = dynamic(() => import("@/components/ServicesDetailed"), {
+const ServicesDetailed = nextDynamic(() => import("@/components/ServicesDetailed"), {
   ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
-const AuditTransformation = dynamic(() => import("@/components/AuditTabs"), {
+const AuditTransformation = nextDynamic(() => import("@/components/AuditTabs"), {
   ssr: false,
   loading: () => <div className="min-h-screen w-full bg-[#050505] animate-pulse" />,
 });
