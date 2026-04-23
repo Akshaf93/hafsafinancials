@@ -9,27 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.1.0",
+    "@contentful/rich-text-types": "^16.8.5",
+    "@supabase/ssr": "^0.1.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "@vercel/analytics": "^2.0.0",
+    "@vercel/speed-insights": "^2.0.0",
+    "clsx": "^2.0.0",
+    "contentful": "^11.3.0",
+    "framer-motion": "^12.0.0",
+    "next": "^15.1.0",
     "react": "^19",
     "react-dom": "^19",
-    "next": "^15.1.0",
-    "framer-motion": "^12.0.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
-    "contentful": "^11.3.0",
-    "@contentful/rich-text-react-renderer": "^16.1.0",
-    "@vercel/speed-insights": "^2.0.0",
-    "@vercel/analytics": "^2.0.0",
-    "@contentful/rich-text-types": "^16.8.5"
+    "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.0.1",
+    "browserslist": "^4.28.2",
+    "caniuse-lite": "^1.0.30001790",
+    "eslint": "^9",
+    "eslint-config-next": "^15.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "eslint": "^9",
-    "eslint-config-next": "^15.1.0"
+    "typescript": "^5"
   }
 }
