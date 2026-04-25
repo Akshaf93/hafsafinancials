@@ -25,6 +25,7 @@ export default function OptInWizard() {
   const [isReturning, setIsReturning] = useState(false); // Loyalty
   const [referralCount, setReferralCount] = useState(0);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // --- Fee & Discount Calculation Engine ---
   const calculations = useMemo(() => {
@@ -73,6 +74,44 @@ export default function OptInWizard() {
     const parsed = Number.parseInt(rawValue, 10);
     const safeValue = Number.isNaN(parsed) ? 0 : Math.max(0, Math.min(parsed, 20));
     setReferralCount(safeValue);
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const payload = {
+        clientDetails,
+        serviceMode,
+        selectedBundle,
+        discounts: {
+          isFirstTime,
+          isReturning,
+          referralCount,
+        },
+        financials: calculations,
+      };
+
+      const res = await fetch("/api/opt-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      
+      if (data.success) {
+        alert("Successfully created account and project!");
+        // Optionally, redirect to a dashboard or success page here:
+        // window.location.href = `/checkout?projectId=${data.projectId}`;
+      } else {
+        alert("Failed to submit: " + data.message + (data.error ? ` - ${data.error}` : ""));
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An unexpected error occurred while submitting.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
@@ -253,10 +292,11 @@ export default function OptInWizard() {
           <div className="flex justify-between mt-6">
             <button onClick={handleBack} className={navSecondaryClass}>Back</button>
             <button
-              disabled={!agreedToTerms}
+              onClick={handleSubmit}
+              disabled={!agreedToTerms || isSubmitting}
               className="px-8 py-3 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-[#FDFCF0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Pay 30% Spot & Create Account
+              {isSubmitting ? "Processing..." : "Pay 30% Spot & Create Account"}
             </button>
           </div>
         </div>
