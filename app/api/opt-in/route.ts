@@ -5,10 +5,19 @@ export async function POST(request: Request) {
   try {
     // Initialize the Supabase client inside the request handler
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseKey =
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
-      throw new Error("Missing Supabase environment variables. Please check your Vercel settings.");
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Missing Supabase environment variables",
+          error: "Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY).",
+        },
+        { status: 503 }
+      );
     }
     const supabase = createClient(supabaseUrl, supabaseKey);
 
