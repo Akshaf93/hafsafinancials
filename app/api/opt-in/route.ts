@@ -1,13 +1,17 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize the Supabase client using the environment variables you set up
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
-
 export async function POST(request: Request) {
   try {
+    // Initialize the Supabase client inside the request handler
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error("Missing Supabase environment variables. Please check your Vercel settings.");
+    }
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
     // 1. Parse the incoming JSON payload from the frontend
     const payload = await request.json();
     const { clientDetails, serviceMode, selectedBundle, discounts, financials } = payload;
