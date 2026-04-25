@@ -1,46 +1,33 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
+// Initialize the Supabase client using the environment variables you set up
+// Using the Service Role Key ensures the backend can securely insert data bypassing RLS
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export async function POST(request: Request) {
   try {
-    // Initialize the Supabase client inside the request handler
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey =
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Missing Supabase environment variables",
-          error: "Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY).",
-        },
-        { status: 503 }
-      );
-    }
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    // 1. Parse the incoming JSON payload from the frontend
+    // 1. Parse the incoming JSON payload (NOW INCLUDING receiptUrl)
     const payload = await request.json();
-    const { clientDetails, serviceMode, selectedBundle, discounts, financials } = payload;
+    const { clientDetails, serviceMode, selectedBundle, discounts, financials, receiptUrl } = payload;
 
     console.log("📥 Processing new opt-in for:", clientDetails.email);
+    if (receiptUrl) console.log("📎 Receipt URL received:", receiptUrl);
 
     // 2. Insert or Fetch the Client (CRM Domain)
-    // First, check if a client with this email already exists
     let { data: existingClient, error: fetchError } = await supabase
       .from('clients')
       .select('id')
       .eq('email', clientDetails.email)
-      .single();
+      .maybeSingle(); // maybeSingle returns null if no user is found, preventing a crash
 
     let clientId;
 
     if (existingClient) {
       clientId = existingClient.id;
     } else {
-      // If no client exists, create a new one
       const { data: newClient, error: insertClientError } = await supabase
         .from('clients')
         .insert([{
@@ -62,7 +49,7 @@ export async function POST(request: Request) {
       .insert([{
         client_id: clientId,
         service_mode: serviceMode,
-        selected_services: [selectedBundle], // Stored as a JSON array
+        selected_services: [selectedBundle], 
         project_status: 'pending_spot_payment',
         progress_percentage: 0
       }])
@@ -87,19 +74,20 @@ export async function POST(request: Request) {
 
     if (financeError) throw financeError;
 
-    // 5. Insert the Payment Transaction (The 30% Spot Payment)
+    // 5. Insert the Payment Transaction (NOW SAVING THE RECEIPT URL)
     const { error: paymentError } = await supabase
       .from('payment_transactions')
       .insert([{
         project_id: projectId,
         milestone_type: 'spot_30',
         amount_due: financials.spotPayment,
-        approval_status: 'awaiting_upload'
+        approval_status: receiptUrl ? 'under_admin_review' : 'awaiting_upload',
+        proof_file_url: receiptUrl || null
       }]);
 
     if (paymentError) throw paymentError;
 
-    // 6. Return a success response to the frontend with the new Project ID
+    // 6. Return a success response
     console.log("✅ Successfully created project:", projectId);
     
     return NextResponse.json(

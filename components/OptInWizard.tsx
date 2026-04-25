@@ -158,7 +158,8 @@ export default function OptInWizard() {
         selectedBundle,
         discounts: { isFirstTime, isReturning, referralCount, referralCode },
         financials: calculations,
-        receiptUrl
+        receiptUrl,
+        proof_file_url: receiptUrl
       };
 
       const response = await fetch('/api/opt-in', {
