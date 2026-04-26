@@ -4,9 +4,9 @@ import { useState, useMemo, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 // Initialize Supabase for client-side file uploads
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 const BUNDLES = [
   { id: "starter", name: "Starter Bundle", price: 2500, description: "Sole Proprietors / Micro" },
@@ -15,12 +15,17 @@ const BUNDLES = [
   { id: "enterprise", name: "Enterprise Bundle", price: 45000, description: "Large Corporates" },
 ];
 
-export default function OptInWizard() {
+interface OptInWizardProps {
+  defaultEmail?: string;
+  onSuccess?: () => void;
+}
+
+export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizardProps) {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   // States
-  const [clientDetails, setClientDetails] = useState({ fullName: "", company: "", email: "" });
+  const [clientDetails, setClientDetails] = useState({ fullName: "", company: "", email: defaultEmail });
   const [serviceMode, setServiceMode] = useState<"bundle" | "custom">("bundle");
   const [selectedBundle, setSelectedBundle] = useState(BUNDLES[0]);
   const [isFirstTime, setIsFirstTime] = useState(false);
@@ -44,6 +49,12 @@ export default function OptInWizard() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (defaultEmail && !clientDetails.email) {
+      setClientDetails(prev => ({ ...prev, email: defaultEmail }));
+    }
+  }, [defaultEmail]);
 
   const calculations = useMemo(() => {
     let originalFee = selectedBundle.price; 
@@ -130,6 +141,11 @@ export default function OptInWizard() {
       return;
     }
 
+    if (!supabase) {
+      alert("Supabase is not configured. Please check your environment variables.");
+      return;
+    }
+
     setIsSubmitting(true);
     let receiptUrl = "";
 
@@ -172,6 +188,7 @@ export default function OptInWizard() {
 
       if (result.success) {
         alert(`Success! Project initialized. Your receipt is under review.`);
+        onSuccess?.(); // Trigger the dashboard to reload and show the active project
       } else {
         alert(`Failed: ${result.message}`);
       }
@@ -191,7 +208,7 @@ export default function OptInWizard() {
     "px-6 py-3 border border-[#FDFCF0]/20 text-[#FDFCF0] text-xs font-bold uppercase tracking-widest rounded-sm hover:border-[#E5D095] hover:text-[#E5D095] transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
 
   return (
-    <div className="max-w-4xl mx-auto p-6 md:p-10 bg-[#121212]/90 rounded-2xl shadow-2xl border border-[#FDFCF0]/10 mt-10 backdrop-blur-sm">
+    <div className="max-w-4xl w-full mx-auto p-6 md:p-10 bg-[#121212]/90 rounded-2xl shadow-2xl border border-[#FDFCF0]/10 backdrop-blur-sm">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 border-b border-[#FDFCF0]/10 pb-6 mb-8">
         <div>
           <p className="text-[#E5D095] text-[10px] font-bold uppercase tracking-[0.25em] mb-2">Guided Onboarding</p>

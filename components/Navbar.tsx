@@ -49,6 +49,10 @@ export default function Navbar() {
   // Hide navbar when scrolled down, unless mobile menu is open
   const isHidden = isScrolled && !isMobileMenuOpen;
 
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/admin') || pathname?.startsWith('/opt-in')) {
+    return null;
+  }
+
   return (
     <>
     {/* PERFORMANCE SENTINEL:

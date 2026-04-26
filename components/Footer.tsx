@@ -1,7 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/admin') || pathname?.startsWith('/opt-in')) {
+    return null;
+  }
+
   return (
     <footer className="bg-[#050505] text-[#FDFCF0] pt-20 pb-10 border-t border-[#FDFCF0]/10 relative z-50">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 border-b border-[#FDFCF0]/10 pb-16">
