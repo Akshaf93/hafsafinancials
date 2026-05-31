@@ -251,7 +251,7 @@ export default function ClientDashboard() {
     <div className="flex h-screen w-full bg-[#050505] text-[#FDFCF0] overflow-hidden font-sans">
       
       {/* LEFT SIDEBAR */}
-      <aside className="w-64 bg-[#0a0a0a] border-r border-[#FDFCF0]/10 flex-col hidden md:flex z-20">
+      <aside className="w-72 bg-[#0a0a0a] border-r border-[#FDFCF0]/10 flex-col hidden md:flex z-20">
         <div className="h-20 flex items-center px-6 border-b border-[#FDFCF0]/10 flex-shrink-0">
           <div className="text-xl font-bold tracking-tight flex items-center gap-1">
             <span className="text-[#FDFCF0]">Hafsa</span><span className="text-[#E5D095]">Advisors</span>
@@ -277,10 +277,22 @@ export default function ClientDashboard() {
             Global Vault
           </div>
         </nav>
-        <div className="p-4 border-t border-[#FDFCF0]/10 flex-shrink-0">
-          <button onClick={handleSignOut} className="flex items-center gap-3 px-4 py-3 w-full text-left text-[#FDFCF0]/40 hover:text-[#E5D095] hover:bg-[#FDFCF0]/5 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            Sign Out
+        
+        <div className="p-4 border-t border-[#FDFCF0]/10 flex-shrink-0 bg-[#050505]/50">
+          <div className="flex items-center justify-between mb-4 px-2">
+            <div className="flex items-center gap-3 overflow-hidden">
+              <div className="w-9 h-9 rounded-full bg-[#E5D095] text-[#050505] flex items-center justify-center font-bold text-sm flex-shrink-0 shadow-[0_0_10px_rgba(229,208,149,0.2)]">
+                {clientData?.full_name?.charAt(0) || 'C'}
+              </div>
+              <div className="overflow-hidden">
+                <p className="text-xs font-bold text-[#FDFCF0] truncate">{clientData?.full_name}</p>
+                <p className="text-[10px] text-[#FDFCF0]/40 truncate">{clientData?.company_name}</p>
+              </div>
+            </div>
+          </div>
+          <button onClick={handleSignOut} className="flex items-center justify-center gap-2 px-4 py-2 w-full text-center border border-[#FDFCF0]/10 text-[#FDFCF0]/60 hover:text-[#E5D095] hover:border-[#E5D095]/30 hover:bg-[#E5D095]/5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            Secure Sign Out
           </button>
         </div>
       </aside>
@@ -295,20 +307,16 @@ export default function ClientDashboard() {
               <span className="text-[#FDFCF0]">Hafsa</span><span className="text-[#E5D095]">Advisors</span>
             </div>
           </div>
-          <div className="hidden md:block">
-            <h1 className="text-xl font-serif text-[#FDFCF0]">Welcome back, {clientData?.full_name?.split(' ')[0]}</h1>
+          <div className="hidden md:flex items-center text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/40">
+            {currentView === 'overview' ? 'Overview Dashboard' : 'Service Catalog'}
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-right hidden sm:block">
-              <div className="text-xs font-bold text-[#E5D095] uppercase tracking-widest">{clientData?.company_name}</div>
-              <div className="text-[10px] text-[#FDFCF0]/40 font-mono">{clientData?.email}</div>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-[#E5D095] text-[#050505] flex items-center justify-center font-bold text-lg shadow-[0_0_15px_rgba(229,208,149,0.3)]">
-              {clientData?.full_name?.charAt(0) || 'C'}
-            </div>
             <button onClick={handleSignOut} className="md:hidden text-[#FDFCF0]/40 hover:text-[#E5D095]">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
             </button>
+            <div className="md:hidden w-8 h-8 rounded-full bg-[#E5D095] text-[#050505] flex items-center justify-center font-bold text-sm shadow-[0_0_10px_rgba(229,208,149,0.3)]">
+              {clientData?.full_name?.charAt(0) || 'C'}
+            </div>
           </div>
         </header>
 
@@ -317,7 +325,7 @@ export default function ClientDashboard() {
           <div className="max-w-5xl mx-auto">
             
             {/* Mobile Welcome Title */}
-            <div className="md:hidden mb-8 border-b border-[#FDFCF0]/10 pb-4">
+            <div className="md:hidden mb-6 border-b border-[#FDFCF0]/10 pb-4 mt-2">
                <h1 className="text-3xl font-serif text-[#FDFCF0] tracking-tight">Welcome, {clientData?.full_name?.split(' ')[0]}</h1>
                <p className="text-[#E5D095] mt-2 uppercase tracking-[0.2em] text-[10px] font-bold">{clientData?.company_name}</p>
             </div>
@@ -339,139 +347,204 @@ export default function ClientDashboard() {
             </div>
 
             {currentView === 'overview' ? (
-              projects.length > 0 ? (
-                <div className="space-y-16">
-                  <h2 className="text-xl font-serif text-[#FDFCF0] border-b border-[#FDFCF0]/10 pb-4">Active Engagements</h2>
-                  {projects.map((project: any) => {
-                    const spotPayment = project?.payment_transactions?.find((tx: any) => tx.milestone_type === 'spot_30');
-                    return (
-                      <div key={project.id} className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                        
-                        {/* Left Column: Project Status */}
-                        <div className="xl:col-span-2 space-y-8">
-                          <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
-                            <div className="flex justify-between items-center mb-8">
-                              <h2 className="text-2xl font-serif text-[#FDFCF0]">{project.selected_services?.[0]?.name || "Current Engagement"}</h2>
-                              <span className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest ${
-                                project.project_status === 'active' 
-                                  ? 'bg-[#102719] text-[#95e6b8] border border-[#29573b]' 
-                                  : 'bg-[#332d10] text-[#E5D095] border border-[#E5D095]/30'
-                              }`}>
-                                {project.project_status.replace(/_/g, ' ')}
-                              </span>
-                            </div>
-                            
-                            {/* Progress Bar */}
-                            <div className="mb-3 flex justify-between text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/60">
-                              <span>Project Completion</span>
-                              <span className="text-[#E5D095]">{project.progress_percentage}%</span>
-                            </div>
-                            <div className="w-full bg-[#1a1a1a] rounded-full h-2 mb-8 overflow-hidden">
-                              <div 
-                                className="bg-[#E5D095] h-2 rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(229,208,149,0.5)]" 
-                                style={{ width: `${project.progress_percentage}%` }}
-                              ></div>
-                            </div>
-
-                            <p className="text-[#FDFCF0]/60 leading-relaxed font-light">
-                              {project.project_status === 'pending_spot_payment' && "We are awaiting your initial 30% spot payment to kick off the project."}
-                              {project.project_status === 'active' && "Your project is currently active. Our team is actively analyzing your requirements and structuring your financials."}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Right Column: Financials */}
-                        <div className="space-y-6">
-                          <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
-                            <h3 className="text-sm font-bold uppercase tracking-widest text-[#E5D095] mb-6">Financial Overview</h3>
-                            
-                            <div className="space-y-4 mb-8">
-                              <div className="flex justify-between text-sm text-[#FDFCF0]/60">
-                                <span>Total Engagement Fee</span>
-                                <span className="font-semibold text-[#FDFCF0]">${project.financials?.[0]?.final_project_fee?.toLocaleString() || 0}</span>
-                              </div>
-                              <div className="flex justify-between text-sm text-[#FDFCF0]/60">
-                                <span>Spot Payment (30%)</span>
-                                <span className="font-semibold text-[#FDFCF0]">${spotPayment?.amount_due?.toLocaleString() || 0}</span>
-                              </div>
-                            </div>
-
-                            <div className="pt-6 border-t border-[#FDFCF0]/10">
-                              <span className="block text-[10px] font-bold uppercase tracking-widest text-[#FDFCF0]/40 mb-2">Spot Payment Status</span>
-                              {spotPayment?.approval_status === 'approved' ? (
-                                <span className="text-[#95e6b8] font-bold text-sm tracking-wide flex items-center">
-                                  <span className="mr-2">✓</span> Received & Verified
-                                </span>
-                              ) : (
-                                <span className="text-[#E5D095] font-bold text-sm tracking-wide">
-                                  Under Admin Review
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    );
-                  })}
-
-                  {/* Global Document Vault for the Client */}
-                  <h2 className="text-xl font-serif text-[#FDFCF0] border-b border-[#FDFCF0]/10 pb-4 mt-16">Secure Document Vault</h2>
-                  <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10 flex flex-col">
-                    <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 border-b border-[#FDFCF0]/10 pb-6">
-                      <div>
-                        <h3 className="text-2xl font-serif text-[#FDFCF0]">Centralized Storage</h3>
-                        <p className="text-[#FDFCF0]/50 text-xs font-light mt-2">Manage your financial statements, trial balances, and identity docs across all engagements.</p>
-                      </div>
-                      <label className={`cursor-pointer px-6 py-3 border border-[#E5D095] text-[#E5D095] text-[10px] font-bold uppercase tracking-widest rounded hover:bg-[#E5D095] hover:text-[#050505] transition-colors text-center ${isUploadingDoc ? 'opacity-50 pointer-events-none' : ''}`}>
-                        {isUploadingDoc ? "Uploading..." : "+ Upload File"}
-                        <input type="file" className="hidden" onChange={handleDocumentUpload} disabled={isUploadingDoc} />
-                      </label>
-                    </div>
-
-                    <div className="space-y-3 max-h-60 overflow-y-auto pr-2 no-scrollbar">
-                      {documents.length === 0 ? (
-                        <div className="text-center py-8 border-2 border-dashed border-[#FDFCF0]/10 rounded-xl">
-                          <p className="text-[#FDFCF0]/40 text-sm font-light">No documents uploaded yet.</p>
-                        </div>
-                      ) : (
-                        documents.map((doc: any) => (
-                          <div key={doc.name} className="flex justify-between items-center p-4 bg-[#1a1a1a] rounded-xl border border-[#FDFCF0]/5 hover:border-[#E5D095]/30 transition-colors group">
-                            <div className="flex items-center gap-4 overflow-hidden">
-                              <div className="w-10 h-10 rounded bg-[#E5D095]/10 text-[#E5D095] flex items-center justify-center flex-shrink-0">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                              </div>
-                              <div className="flex flex-col overflow-hidden">
-                                <span className="text-sm text-[#FDFCF0] truncate font-medium">{doc.name.replace(/^\d+_/, '')}</span>
-                                <span className="text-[10px] text-[#FDFCF0]/40 uppercase tracking-widest mt-1">{((doc.metadata?.size || 0) / 1024 / 1024).toFixed(2)} MB • {new Date(doc.created_at).toLocaleDateString()}</span>
-                              </div>
-                            </div>
-                            <button onClick={() => downloadDocument(doc.name)} className="text-[10px] text-[#E5D095] font-bold uppercase tracking-widest hover:text-[#FDFCF0] whitespace-nowrap ml-4 opacity-0 group-hover:opacity-100 md:opacity-100 transition-opacity bg-[#E5D095]/10 px-4 py-2 rounded">
-                              Download
-                            </button>
-                          </div>
-                        ))
-                      )}
-                    </div>
+              <div className="space-y-12 md:space-y-16">
+                
+                {/* Welcome Header (Desktop) */}
+                <div className="hidden md:flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#FDFCF0]/10 pb-6">
+                  <div>
+                    <p className="text-[#E5D095] text-[10px] font-bold uppercase tracking-widest mb-2">
+                      {new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric' }).format(new Date())}
+                    </p>
+                    <h1 className="text-3xl font-serif text-[#FDFCF0]">
+                      {new Date().getHours() < 12 ? "Good morning" : new Date().getHours() < 18 ? "Good afternoon" : "Good evening"}, {clientData?.full_name?.split(' ')[0]}
+                    </h1>
                   </div>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-[#0a0a0a] rounded-2xl border border-[#FDFCF0]/10 text-center shadow-2xl mt-10">
-                  <div className="w-16 h-16 bg-[#E5D095]/10 text-[#E5D095] rounded-full flex items-center justify-center mb-6">
-                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                  </div>
-                  <h3 className="text-2xl font-serif text-[#FDFCF0] mb-4">No Active Engagements</h3>
-                  <p className="text-[#FDFCF0]/50 mb-8 max-w-md font-light leading-relaxed">
-                    You don&apos;t have any active projects yet. Start a new engagement to begin your financial transformation and access the document vault.
-                  </p>
-                  <button 
-                    onClick={() => setCurrentView('new_engagement')} 
-                    className="px-8 py-3.5 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded hover:bg-[#FDFCF0] transition-colors shadow-[0_0_15px_rgba(229,208,149,0.2)]"
-                  >
-                    Purchase Services
+                  <button onClick={() => setCurrentView('new_engagement')} className="px-6 py-2.5 bg-[#E5D095]/10 text-[#E5D095] border border-[#E5D095]/30 text-xs font-bold uppercase tracking-widest rounded hover:bg-[#E5D095] hover:text-[#050505] transition-colors">
+                    Start New Project
                   </button>
                 </div>
-              )
+
+                {/* KPI Metric Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-[#0a0a0a] border border-[#FDFCF0]/10 p-6 rounded-2xl shadow-lg relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <svg className="w-16 h-16 text-[#E5D095]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div className="text-[#FDFCF0]/40 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[#E5D095] animate-pulse"></div>
+                      Active Engagements
+                    </div>
+                    <div className="text-4xl font-serif text-[#FDFCF0]">{projects.length}</div>
+                  </div>
+                  <div className="bg-[#0a0a0a] border border-[#FDFCF0]/10 p-6 rounded-2xl shadow-lg relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <svg className="w-16 h-16 text-[#E5D095]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div className="text-[#FDFCF0]/40 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                      Pending Actions
+                    </div>
+                    <div className="text-4xl font-serif text-[#FDFCF0]">{projects.filter((p: any) => p.project_status === 'pending_spot_payment').length}</div>
+                  </div>
+                  <div className="bg-[#0a0a0a] border border-[#FDFCF0]/10 p-6 rounded-2xl shadow-lg relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <svg className="w-16 h-16 text-[#E5D095]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div className="text-[#FDFCF0]/40 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[#95e6b8]"></div>
+                      Vault Documents
+                    </div>
+                    <div className="text-4xl font-serif text-[#FDFCF0]">{documents.length}</div>
+                  </div>
+                </div>
+
+                {projects.length > 0 ? (
+                  <>
+                    <div className="space-y-8">
+                      <div className="flex items-center justify-between border-b border-[#FDFCF0]/10 pb-4">
+                        <h2 className="text-xl font-serif text-[#FDFCF0]">Current Engagements</h2>
+                      </div>
+                      
+                      {projects.map((project: any) => {
+                        const spotPayment = project?.payment_transactions?.find((tx: any) => tx.milestone_type === 'spot_30');
+                        return (
+                          <div key={project.id} className="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+                            
+                            {/* Left Column: Project Status */}
+                            <div className="xl:col-span-2 space-y-6">
+                              <div className="bg-[#0a0a0a] p-6 md:p-8 rounded-2xl shadow-xl border border-[#FDFCF0]/10">
+                                <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
+                                  <h2 className="text-2xl font-serif text-[#FDFCF0]">{project.selected_services?.[0]?.name || "Active Engagement"}</h2>
+                                  <span className={`px-3 py-1.5 rounded w-max text-[10px] font-bold uppercase tracking-widest ${
+                                    project.project_status === 'active' 
+                                      ? 'bg-[#102719] text-[#95e6b8] border border-[#29573b]' 
+                                      : 'bg-[#332d10] text-[#E5D095] border border-[#E5D095]/30'
+                                  }`}>
+                                    {project.project_status.replace(/_/g, ' ')}
+                                  </span>
+                                </div>
+                                
+                                {/* Progress Bar */}
+                                <div className="mb-3 flex justify-between text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/60">
+                                  <span>Project Completion Phase</span>
+                                  <span className="text-[#E5D095]">{project.progress_percentage}%</span>
+                                </div>
+                                <div className="w-full bg-[#1a1a1a] rounded-full h-2.5 mb-8 overflow-hidden">
+                                  <div 
+                                    className="bg-[#E5D095] h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(229,208,149,0.5)]" 
+                                    style={{ width: `${project.progress_percentage}%` }}
+                                  ></div>
+                                </div>
+
+                                <p className="text-[#FDFCF0]/60 leading-relaxed font-light text-sm">
+                                  {project.project_status === 'pending_spot_payment' && "We are awaiting your initial 30% spot payment to kick off the project. Once verified, our specialists will commence analysis."}
+                                  {project.project_status === 'active' && "Your project is currently active. Our team is actively analyzing your requirements and structuring your financials. We will update your vault with deliverables soon."}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Right Column: Financials */}
+                            <div className="space-y-6 h-full">
+                              <div className="bg-[#0a0a0a] p-6 md:p-8 rounded-2xl shadow-xl border border-[#FDFCF0]/10 h-full flex flex-col">
+                                <h3 className="text-xs font-bold uppercase tracking-widest text-[#E5D095] mb-6 flex items-center gap-2">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                  Financial Overview
+                                </h3>
+                                
+                                <div className="space-y-5 mb-auto">
+                                  <div className="flex flex-col gap-1 text-sm text-[#FDFCF0]/60">
+                                    <span>Total Engagement Fee</span>
+                                    <span className="font-serif text-xl text-[#FDFCF0]">${project.financials?.[0]?.final_project_fee?.toLocaleString() || 0}</span>
+                                  </div>
+                                  <div className="flex flex-col gap-1 text-sm text-[#FDFCF0]/60">
+                                    <span>Spot Payment (30%)</span>
+                                    <span className="font-serif text-xl text-[#FDFCF0]">${spotPayment?.amount_due?.toLocaleString() || 0}</span>
+                                  </div>
+                                </div>
+
+                                <div className="pt-6 border-t border-[#FDFCF0]/10 mt-6">
+                                  <span className="block text-[10px] font-bold uppercase tracking-widest text-[#FDFCF0]/40 mb-2">Spot Payment Status</span>
+                                  {spotPayment?.approval_status === 'approved' ? (
+                                    <span className="inline-flex items-center px-2.5 py-1 rounded bg-[#102719] text-[#95e6b8] border border-[#29573b] font-bold text-xs tracking-wide">
+                                      <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                      Received & Verified
+                                    </span>
+                                  ) : (
+                                    <span className="inline-flex items-center px-2.5 py-1 rounded bg-[#332d10] text-[#E5D095] border border-[#E5D095]/30 font-bold text-xs tracking-wide">
+                                      Under Admin Review
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Global Document Vault */}
+                    <div className="mt-8 pt-8 border-t border-[#FDFCF0]/10">
+                      <div className="flex items-center justify-between border-b border-[#FDFCF0]/10 pb-4 mb-6">
+                        <h2 className="text-xl font-serif text-[#FDFCF0]">Secure Document Vault</h2>
+                      </div>
+                      <div className="bg-[#0a0a0a] p-6 md:p-8 rounded-2xl shadow-xl border border-[#FDFCF0]/10 flex flex-col">
+                        <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 pb-6 border-b border-[#FDFCF0]/5">
+                          <div>
+                            <h3 className="text-lg font-medium text-[#FDFCF0]">Centralized Storage</h3>
+                            <p className="text-[#FDFCF0]/50 text-xs font-light mt-1">Manage financial statements and requested files across all engagements.</p>
+                          </div>
+                          <label className={`cursor-pointer px-6 py-2.5 border border-[#E5D095] text-[#E5D095] text-[10px] font-bold uppercase tracking-widest rounded hover:bg-[#E5D095] hover:text-[#050505] transition-colors text-center ${isUploadingDoc ? 'opacity-50 pointer-events-none' : ''}`}>
+                            {isUploadingDoc ? "Uploading..." : "+ Upload File"}
+                            <input type="file" className="hidden" onChange={handleDocumentUpload} disabled={isUploadingDoc} />
+                          </label>
+                        </div>
+
+                        <div className="space-y-3 max-h-72 overflow-y-auto pr-2 no-scrollbar">
+                          {documents.length === 0 ? (
+                            <div className="text-center py-10 border-2 border-dashed border-[#FDFCF0]/10 rounded-xl bg-[#050505]">
+                              <p className="text-[#FDFCF0]/40 text-sm font-light">Your vault is empty. Upload necessary documentation here.</p>
+                            </div>
+                          ) : (
+                            documents.map((doc: any) => (
+                              <div key={doc.name} className="flex justify-between items-center p-4 bg-[#141414] rounded-xl border border-[#FDFCF0]/5 hover:border-[#E5D095]/30 transition-colors group">
+                                <div className="flex items-center gap-4 overflow-hidden">
+                                  <div className="w-10 h-10 rounded bg-[#E5D095]/10 text-[#E5D095] flex items-center justify-center flex-shrink-0">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                  </div>
+                                  <div className="flex flex-col overflow-hidden">
+                                    <span className="text-sm text-[#FDFCF0] truncate font-medium">{doc.name.replace(/^\d+_/, '')}</span>
+                                    <span className="text-[10px] text-[#FDFCF0]/40 uppercase tracking-widest mt-1">{((doc.metadata?.size || 0) / 1024 / 1024).toFixed(2)} MB • {new Date(doc.created_at).toLocaleDateString()}</span>
+                                  </div>
+                                </div>
+                                <button onClick={() => downloadDocument(doc.name)} className="text-[10px] text-[#E5D095] font-bold uppercase tracking-widest hover:text-[#050505] hover:bg-[#E5D095] whitespace-nowrap ml-4 transition-colors border border-[#E5D095]/30 bg-[#E5D095]/5 px-4 py-2 rounded">
+                                  Download
+                                </button>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-[#0a0a0a] rounded-2xl border border-[#FDFCF0]/10 text-center shadow-2xl mt-4">
+                    <div className="w-16 h-16 bg-[#E5D095]/10 text-[#E5D095] rounded-full flex items-center justify-center mb-6 shadow-inner">
+                       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 className="text-2xl font-serif text-[#FDFCF0] mb-4">No Active Engagements</h3>
+                    <p className="text-[#FDFCF0]/50 mb-8 max-w-md font-light leading-relaxed">
+                      You don&apos;t have any active projects yet. Start a new engagement to begin your financial transformation and access the document vault.
+                    </p>
+                    <button 
+                      onClick={() => setCurrentView('new_engagement')} 
+                      className="px-8 py-3.5 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded hover:bg-[#FDFCF0] transition-colors shadow-[0_0_15px_rgba(229,208,149,0.2)]"
+                    >
+                      View Service Catalog
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="flex flex-col items-center">
                 <OptInWizard 
