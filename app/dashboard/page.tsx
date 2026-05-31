@@ -21,6 +21,7 @@ export default function ClientDashboard() {
   const [message, setMessage] = useState("");
   const [documents, setDocuments] = useState<any[]>([]);
   const [isUploadingDoc, setIsUploadingDoc] = useState(false);
+  const [currentView, setCurrentView] = useState<"overview" | "new_engagement">("overview");
 
   // Check for existing session on load
   useEffect(() => {
@@ -72,6 +73,13 @@ export default function ClientDashboard() {
       if (data) {
         setClientData(data);
         
+        // Auto-route based on active engagements
+        if (data.projects && data.projects.length > 0) {
+          setCurrentView("overview");
+        } else {
+          setCurrentView("new_engagement");
+        }
+        
         // Fetch client documents from the 'documents' storage bucket
         const { data: docs } = await supabase.storage.from('documents').list(data.id);
         if (docs) {
@@ -80,6 +88,7 @@ export default function ClientDashboard() {
       } else {
         // Brand new user who just created an account
         setClientData({ email: userEmail, full_name: "New Client", company_name: "Workspace" });
+        setCurrentView("new_engagement");
       }
       setIsAuthenticated(true);
     } catch (err: any) {
@@ -236,9 +245,7 @@ export default function ClientDashboard() {
   }
 
   // --- CLIENT PORTAL SCREEN ---
-  // Extracting the first project for display purposes
-  const project = clientData.projects?.[0];
-  const spotPayment = project?.payment_transactions?.find((tx: any) => tx.milestone_type === 'spot_30');
+  const projects = clientData?.projects || [];
 
   return (
     <div className="flex h-screen w-full bg-[#050505] text-[#FDFCF0] overflow-hidden font-sans">
@@ -251,13 +258,23 @@ export default function ClientDashboard() {
           </div>
         </div>
         <nav className="flex-1 py-6 px-4 space-y-2 overflow-y-auto no-scrollbar">
-          <div className="px-4 py-3 bg-[#E5D095]/10 text-[#E5D095] rounded-lg font-bold text-xs uppercase tracking-widest flex items-center gap-3">
+          <button 
+            onClick={() => setCurrentView('overview')} 
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center gap-3 transition-colors ${currentView === 'overview' ? 'bg-[#E5D095]/10 text-[#E5D095]' : 'text-[#FDFCF0]/40 hover:text-[#FDFCF0] hover:bg-[#FDFCF0]/5'}`}
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             Overview
-          </div>
+          </button>
+          <button 
+            onClick={() => setCurrentView('new_engagement')} 
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center gap-3 transition-colors ${currentView === 'new_engagement' ? 'bg-[#E5D095]/10 text-[#E5D095]' : 'text-[#FDFCF0]/40 hover:text-[#FDFCF0] hover:bg-[#FDFCF0]/5'}`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            Purchase Services
+          </button>
           <div className="px-4 py-3 text-[#FDFCF0]/40 hover:text-[#FDFCF0] hover:bg-[#FDFCF0]/5 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center gap-3 transition-colors cursor-not-allowed opacity-50" title="Available upon active engagement">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            Documents
+            Global Vault
           </div>
         </nav>
         <div className="p-4 border-t border-[#FDFCF0]/10 flex-shrink-0">
@@ -305,54 +322,106 @@ export default function ClientDashboard() {
                <p className="text-[#E5D095] mt-2 uppercase tracking-[0.2em] text-[10px] font-bold">{clientData?.company_name}</p>
             </div>
 
-            {project ? (
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                
-                {/* Left Column: Project Status */}
-                <div className="xl:col-span-2 space-y-8">
-                  <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
-                    <div className="flex justify-between items-center mb-8">
-                      <h2 className="text-2xl font-serif text-[#FDFCF0]">Current Engagement</h2>
-                      <span className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest ${
-                        project.project_status === 'active' 
-                          ? 'bg-[#102719] text-[#95e6b8] border border-[#29573b]' 
-                          : 'bg-[#332d10] text-[#E5D095] border border-[#E5D095]/30'
-                      }`}>
-                        {project.project_status.replace(/_/g, ' ')}
-                      </span>
-                    </div>
-                    
-                    {/* Progress Bar */}
-                    <div className="mb-3 flex justify-between text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/60">
-                      <span>Project Completion</span>
-                      <span className="text-[#E5D095]">{project.progress_percentage}%</span>
-                    </div>
-                    <div className="w-full bg-[#1a1a1a] rounded-full h-2 mb-8 overflow-hidden">
-                      <div 
-                        className="bg-[#E5D095] h-2 rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(229,208,149,0.5)]" 
-                        style={{ width: `${project.progress_percentage}%` }}
-                      ></div>
-                    </div>
+            {/* Mobile Navigation Tabs */}
+            <div className="md:hidden flex gap-2 mb-8 overflow-x-auto no-scrollbar">
+              <button 
+                onClick={() => setCurrentView('overview')} 
+                className={`px-4 py-2 text-[10px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-colors ${currentView === 'overview' ? 'bg-[#E5D095] text-[#050505]' : 'bg-[#1a1a1a] text-[#FDFCF0]/60 border border-[#FDFCF0]/10'}`}
+              >
+                Overview
+              </button>
+              <button 
+                onClick={() => setCurrentView('new_engagement')} 
+                className={`px-4 py-2 text-[10px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap transition-colors ${currentView === 'new_engagement' ? 'bg-[#E5D095] text-[#050505]' : 'bg-[#1a1a1a] text-[#FDFCF0]/60 border border-[#FDFCF0]/10'}`}
+              >
+                Purchase Services
+              </button>
+            </div>
 
-                    <p className="text-[#FDFCF0]/60 leading-relaxed font-light">
-                      {project.project_status === 'pending_spot_payment' && "We are awaiting your initial 30% spot payment to kick off the project."}
-                      {project.project_status === 'active' && "Your project is currently active. Our team is actively analyzing your requirements and structuring your financials."}
-                    </p>
-                  </div>
+            {currentView === 'overview' ? (
+              projects.length > 0 ? (
+                <div className="space-y-16">
+                  <h2 className="text-xl font-serif text-[#FDFCF0] border-b border-[#FDFCF0]/10 pb-4">Active Engagements</h2>
+                  {projects.map((project: any) => {
+                    const spotPayment = project?.payment_transactions?.find((tx: any) => tx.milestone_type === 'spot_30');
+                    return (
+                      <div key={project.id} className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                        
+                        {/* Left Column: Project Status */}
+                        <div className="xl:col-span-2 space-y-8">
+                          <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
+                            <div className="flex justify-between items-center mb-8">
+                              <h2 className="text-2xl font-serif text-[#FDFCF0]">{project.selected_services?.[0]?.name || "Current Engagement"}</h2>
+                              <span className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest ${
+                                project.project_status === 'active' 
+                                  ? 'bg-[#102719] text-[#95e6b8] border border-[#29573b]' 
+                                  : 'bg-[#332d10] text-[#E5D095] border border-[#E5D095]/30'
+                              }`}>
+                                {project.project_status.replace(/_/g, ' ')}
+                              </span>
+                            </div>
+                            
+                            {/* Progress Bar */}
+                            <div className="mb-3 flex justify-between text-xs font-bold uppercase tracking-widest text-[#FDFCF0]/60">
+                              <span>Project Completion</span>
+                              <span className="text-[#E5D095]">{project.progress_percentage}%</span>
+                            </div>
+                            <div className="w-full bg-[#1a1a1a] rounded-full h-2 mb-8 overflow-hidden">
+                              <div 
+                                className="bg-[#E5D095] h-2 rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(229,208,149,0.5)]" 
+                                style={{ width: `${project.progress_percentage}%` }}
+                              ></div>
+                            </div>
 
-                  {/* Document Vault Placeholder */}
-                  <div className="bg-[#050505] p-8 rounded-2xl border-2 border-[#E5D095]/20 border-dashed hover:border-[#E5D095]/50 transition-colors">
-                    <h3 className="text-xl font-serif text-[#FDFCF0] mb-2">Secure Document Vault</h3>
-                    <p className="text-[#FDFCF0]/50 text-sm mb-6 font-light">Upload requested financial statements and trial balances here.</p>
-                    <button className="px-6 py-3 bg-transparent border border-[#FDFCF0]/20 text-[#FDFCF0] text-xs font-bold uppercase tracking-widest rounded hover:border-[#E5D095] hover:text-[#E5D095] transition-colors">
-                      + Upload Document
-                    </button>
-                  {/* Document Vault */}
+                            <p className="text-[#FDFCF0]/60 leading-relaxed font-light">
+                              {project.project_status === 'pending_spot_payment' && "We are awaiting your initial 30% spot payment to kick off the project."}
+                              {project.project_status === 'active' && "Your project is currently active. Our team is actively analyzing your requirements and structuring your financials."}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Right Column: Financials */}
+                        <div className="space-y-6">
+                          <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-[#E5D095] mb-6">Financial Overview</h3>
+                            
+                            <div className="space-y-4 mb-8">
+                              <div className="flex justify-between text-sm text-[#FDFCF0]/60">
+                                <span>Total Engagement Fee</span>
+                                <span className="font-semibold text-[#FDFCF0]">${project.financials?.[0]?.final_project_fee?.toLocaleString() || 0}</span>
+                              </div>
+                              <div className="flex justify-between text-sm text-[#FDFCF0]/60">
+                                <span>Spot Payment (30%)</span>
+                                <span className="font-semibold text-[#FDFCF0]">${spotPayment?.amount_due?.toLocaleString() || 0}</span>
+                              </div>
+                            </div>
+
+                            <div className="pt-6 border-t border-[#FDFCF0]/10">
+                              <span className="block text-[10px] font-bold uppercase tracking-widest text-[#FDFCF0]/40 mb-2">Spot Payment Status</span>
+                              {spotPayment?.approval_status === 'approved' ? (
+                                <span className="text-[#95e6b8] font-bold text-sm tracking-wide flex items-center">
+                                  <span className="mr-2">✓</span> Received & Verified
+                                </span>
+                              ) : (
+                                <span className="text-[#E5D095] font-bold text-sm tracking-wide">
+                                  Under Admin Review
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    );
+                  })}
+
+                  {/* Global Document Vault for the Client */}
+                  <h2 className="text-xl font-serif text-[#FDFCF0] border-b border-[#FDFCF0]/10 pb-4 mt-16">Secure Document Vault</h2>
                   <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10 flex flex-col">
                     <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 border-b border-[#FDFCF0]/10 pb-6">
                       <div>
-                        <h3 className="text-2xl font-serif text-[#FDFCF0]">Secure Document Vault</h3>
-                        <p className="text-[#FDFCF0]/50 text-xs font-light mt-2">Manage your financial statements, trial balances, and identity docs.</p>
+                        <h3 className="text-2xl font-serif text-[#FDFCF0]">Centralized Storage</h3>
+                        <p className="text-[#FDFCF0]/50 text-xs font-light mt-2">Manage your financial statements, trial balances, and identity docs across all engagements.</p>
                       </div>
                       <label className={`cursor-pointer px-6 py-3 border border-[#E5D095] text-[#E5D095] text-[10px] font-bold uppercase tracking-widest rounded hover:bg-[#E5D095] hover:text-[#050505] transition-colors text-center ${isUploadingDoc ? 'opacity-50 pointer-events-none' : ''}`}>
                         {isUploadingDoc ? "Uploading..." : "+ Upload File"}
@@ -386,44 +455,31 @@ export default function ClientDashboard() {
                     </div>
                   </div>
                 </div>
-
-                {/* Right Column: Financials */}
-                <div className="space-y-6">
-                  <div className="bg-[#0a0a0a] p-8 rounded-2xl shadow-2xl border border-[#FDFCF0]/10">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-[#E5D095] mb-6">Financial Overview</h3>
-                    
-                    <div className="space-y-4 mb-8">
-                      <div className="flex justify-between text-sm text-[#FDFCF0]/60">
-                        <span>Total Engagement Fee</span>
-                        <span className="font-semibold text-[#FDFCF0]">${project.financials?.[0]?.final_project_fee?.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between text-sm text-[#FDFCF0]/60">
-                        <span>Spot Payment (30%)</span>
-                        <span className="font-semibold text-[#FDFCF0]">${spotPayment?.amount_due?.toLocaleString()}</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-6 border-t border-[#FDFCF0]/10">
-                      <span className="block text-[10px] font-bold uppercase tracking-widest text-[#FDFCF0]/40 mb-2">Spot Payment Status</span>
-                      {spotPayment?.approval_status === 'approved' ? (
-                        <span className="text-[#95e6b8] font-bold text-sm tracking-wide flex items-center">
-                          <span className="mr-2">✓</span> Received & Verified
-                        </span>
-                      ) : (
-                        <span className="text-[#E5D095] font-bold text-sm tracking-wide">
-                          Under Admin Review
-                        </span>
-                      )}
-                    </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center p-12 md:p-20 bg-[#0a0a0a] rounded-2xl border border-[#FDFCF0]/10 text-center shadow-2xl mt-10">
+                  <div className="w-16 h-16 bg-[#E5D095]/10 text-[#E5D095] rounded-full flex items-center justify-center mb-6">
+                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                   </div>
+                  <h3 className="text-2xl font-serif text-[#FDFCF0] mb-4">No Active Engagements</h3>
+                  <p className="text-[#FDFCF0]/50 mb-8 max-w-md font-light leading-relaxed">
+                    You don't have any active projects yet. Start a new engagement to begin your financial transformation and access the document vault.
+                  </p>
+                  <button 
+                    onClick={() => setCurrentView('new_engagement')} 
+                    className="px-8 py-3.5 bg-[#E5D095] text-[#050505] text-xs font-bold uppercase tracking-widest rounded hover:bg-[#FDFCF0] transition-colors shadow-[0_0_15px_rgba(229,208,149,0.2)]"
+                  >
+                    Purchase Services
+                  </button>
                 </div>
-
-              </div>
+              )
             ) : (
               <div className="flex flex-col items-center">
                 <OptInWizard 
                   defaultEmail={clientData?.email || email} 
-                  onSuccess={() => fetchClientData(clientData?.email || email)} 
+                  onSuccess={() => {
+                    fetchClientData(clientData?.email || email);
+                    setCurrentView('overview');
+                  }} 
                 />
               </div>
             )}
