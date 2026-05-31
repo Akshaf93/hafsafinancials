@@ -462,7 +462,7 @@ export default function ClientDashboard() {
                   </div>
                   <h3 className="text-2xl font-serif text-[#FDFCF0] mb-4">No Active Engagements</h3>
                   <p className="text-[#FDFCF0]/50 mb-8 max-w-md font-light leading-relaxed">
-                    You don't have any active projects yet. Start a new engagement to begin your financial transformation and access the document vault.
+                    You don&apos;t have any active projects yet. Start a new engagement to begin your financial transformation and access the document vault.
                   </p>
                   <button 
                     onClick={() => setCurrentView('new_engagement')} 

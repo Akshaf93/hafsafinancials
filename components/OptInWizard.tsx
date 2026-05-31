@@ -28,6 +28,7 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
   const [clientDetails, setClientDetails] = useState({ fullName: "", company: "", email: defaultEmail });
   const [serviceMode, setServiceMode] = useState<"bundle" | "custom">("bundle");
   const [selectedBundle, setSelectedBundle] = useState(BUNDLES[0]);
+  
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [isReturning, setIsReturning] = useState(false); 
   const [isVerifying, setIsVerifying] = useState(false);
@@ -58,6 +59,8 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
 
   const calculations = useMemo(() => {
     let originalFee = selectedBundle.price; 
+    let description = selectedBundle.name;
+
     let discountPercent = 0;
 
     if (isFirstTime && serviceMode === "bundle") discountPercent += 15;
@@ -75,8 +78,7 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
     const discountAmount = originalFee * (discountPercent / 100);
     const finalFee = originalFee - discountAmount;
     const spotPayment = finalFee * 0.30; 
-
-    return { originalFee, discountPercent, discountAmount, finalFee, spotPayment, capApplied };
+    return { originalFee, description, discountPercent, discountAmount, finalFee, spotPayment, capApplied };
   }, [selectedBundle, serviceMode, isFirstTime, isReturning, referralCount]);
 
   const handleNext = () => setStep(step + 1);
@@ -172,6 +174,9 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
         clientDetails,
         serviceMode,
         selectedBundle,
+        selectedServices: {
+          bundleId: selectedBundle.id
+        },
         discounts: { isFirstTime, isReturning, referralCount, referralCode },
         financials: calculations,
         receiptUrl,
@@ -317,7 +322,7 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
           
           <div className="bg-[#0a0a0a] p-6 rounded-xl border border-[#FDFCF0]/10">
             <div className="flex justify-between mb-2 text-[#FDFCF0]/70">
-              <span>Base Fee ({selectedBundle.name}):</span>
+              <span>Base Fee ({calculations.description}):</span>
               <span className="font-semibold text-[#FDFCF0]">${calculations.originalFee.toLocaleString()}</span>
             </div>
             
@@ -340,7 +345,7 @@ export default function OptInWizard({ defaultEmail = "", onSuccess }: OptInWizar
             <div className="bg-[#E5D095]/10 border border-[#E5D095]/35 p-4 rounded-lg mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <div>
                 <span className="block font-bold text-[#FDFCF0] text-lg">Spot Payment Required Now (30%)</span>
-                <span className="text-sm text-[#FDFCF0]/70">Please upload your transfer receipt to initiate the project.</span>
+                <span className="text-sm text-[#FDFCF0]/70">Please upload your transfer receipt to initiate the engagement.</span>
               </div>
               <span className="text-3xl font-serif text-[#E5D095]">${calculations.spotPayment.toLocaleString()}</span>
             </div>
