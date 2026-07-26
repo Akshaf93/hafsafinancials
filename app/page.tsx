@@ -19,9 +19,6 @@ const HybridModel = dynamic(() => import("@/components/HybridModel"), {
 const TeamPreview = dynamic(() => import("@/components/TeamPreview"), {
   loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
 });
-const InsightsPreview = dynamic(() => import("@/components/InsightsPreview"), {
-  loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
-});
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
   loading: () => <div className="min-h-screen w-full bg-[#050505]" />,
 });
@@ -49,11 +46,6 @@ export default function Home() {
       {/* SECTION 5: TEAM */}
       <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
         <TeamPreview />
-      </section>
-
-      {/* SECTION 6: INSIGHTS */}
-      <section className="min-h-screen w-full snap-start relative flex flex-col justify-center">
-        <InsightsPreview />
       </section>
 
       {/* SECTION 7: TESTIMONIALS & CTA */}

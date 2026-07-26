@@ -81,7 +81,7 @@ export default function Footer() {
             Join 1,000+ professionals receiving our monthly IFRS & Strategy updates.
           </p>
           <Link
-            href="/insights#newsletter"
+            href="/contact"
             className="inline-block bg-[#E5D095] text-[#050505] font-bold px-6 py-2 rounded-lg hover:bg-[#FDFCF0] transition-colors text-sm"
           >
             Subscribe Now
