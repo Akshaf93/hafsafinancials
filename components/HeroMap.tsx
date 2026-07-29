@@ -1,3 +1,6 @@
+"use client";
+
+// Preserved original global coordinates aligned with your SVG map
 const LOCATIONS = [
   { name: "United States", top: 40, left: 22, align: "bottom" },
   { name: "Canada", top: 15, left: 20, align: "top" },
@@ -11,40 +14,45 @@ const LOCATIONS = [
 
 export default function HeroMap() {
   return (
-    <div className="absolute inset-0 z-20 pointer-events-none">
+    <div className="absolute inset-0 z-20 pointer-events-none select-none">
       {LOCATIONS.map((loc, i) => (
         <div
           key={loc.name}
-          // CSS Animation class defined in globals.css
-          className="absolute flex flex-col items-center animate-map-dot"
+          className="absolute flex flex-col items-center animate-map-dot group"
           style={{ 
             top: `${loc.top}%`, 
             left: `${loc.left}%`,
-            // Native CSS delay calculation
-            animationDelay: `${800 + (i * 100)}ms` 
+            animationDelay: `${600 + (i * 150)}ms` 
           }}
         >
-          {/* TOP ALIGN */}
+          {/* TOP ALIGNED LABEL */}
           {loc.align === 'top' && (
-            <>
-              <div className="mb-1 bg-[#050505]/90 border border-[#E5D095]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+            <div className="flex flex-col items-center mb-1.5 transition-transform duration-300">
+              <div className="bg-[#050505]/80 backdrop-blur-md px-2 py-0.5 text-[#FDFCF0]/90 text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] rounded-sm border border-[#FDFCF0]/10 shadow-xl whitespace-nowrap">
                 {loc.name}
               </div>
-              <div className="w-[1px] h-6 bg-gradient-to-b from-[#E5D095] to-transparent opacity-50"></div>
-            </>
+              <div className="w-[1px] h-3 md:h-4 bg-gradient-to-b from-[#E5D095]/80 to-transparent" />
+            </div>
           )}
 
-          {/* DOT */}
-          <div className="w-2 h-2 rounded-full bg-[#E5D095] shadow-[0_0_5px_rgba(229,208,149,0.8)] border border-[#050505]"></div>
+          {/* TELEMETRY NODE (Glowing Dot) */}
+          <div className="relative flex items-center justify-center">
+            {/* Outer radar pulse */}
+            <div className="absolute w-4 h-4 rounded-full bg-[#E5D095]/20 animate-ping" style={{ animationDuration: '3s', animationDelay: `${i * 200}ms` }} />
+            {/* Inner glow */}
+            <div className="absolute w-2.5 h-2.5 rounded-full bg-[#E5D095]/40 blur-[1px]" />
+            {/* Solid core */}
+            <div className="relative w-1.5 h-1.5 rounded-full bg-[#E5D095] border border-[#050505] shadow-[0_0_8px_#E5D095]" />
+          </div>
 
-          {/* BOTTOM ALIGN */}
+          {/* BOTTOM ALIGNED LABEL */}
           {loc.align === 'bottom' && (
-            <>
-              <div className="w-[1px] h-6 bg-gradient-to-t from-[#E5D095] to-transparent opacity-50"></div>
-              <div className="mt-1 bg-[#050505]/90 border border-[#E5D095]/30 px-2 py-1 text-[#FDFCF0] text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-lg whitespace-nowrap backdrop-blur-sm">
+            <div className="flex flex-col items-center mt-1.5 transition-transform duration-300">
+              <div className="w-[1px] h-3 md:h-4 bg-gradient-to-t from-[#E5D095]/80 to-transparent" />
+              <div className="bg-[#050505]/80 backdrop-blur-md px-2 py-0.5 text-[#FDFCF0]/90 text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] rounded-sm border border-[#FDFCF0]/10 shadow-xl whitespace-nowrap">
                 {loc.name}
               </div>
-            </>
+            </div>
           )}
         </div>
       ))}
