@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 
 const LINKS = [
@@ -14,30 +14,12 @@ const LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  const sentinelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsScrolled(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    if (sentinelRef.current) observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
     return () => { document.body.style.overflow = "unset"; };
   }, [isMobileMenuOpen]);
-
-  const navBackground = !isScrolled 
-    ? "bg-transparent border-transparent" 
-    : "bg-[#050505]/95 backdrop-blur-md border-b border-[#FDFCF0]/10 shadow-2xl";
-
-  const isHidden = isScrolled && !isMobileMenuOpen;
 
   if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/admin') || pathname?.startsWith('/opt-in')) {
     return null;
@@ -45,9 +27,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div ref={sentinelRef} className="absolute top-0 left-0 w-full h-[50px] pointer-events-none opacity-0 z-[-1]" aria-hidden="true" />
-
-      <nav aria-label="Main Navigation" className={`fixed top-0 z-50 w-full transition-all duration-500 ${navBackground} ${isHidden ? "-translate-y-full" : "translate-y-0"}`}>
+      <nav aria-label="Main Navigation" className={`fixed top-0 z-50 w-full transition-all duration-500 bg-transparent border-transparent`}>
         <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-5 flex items-center justify-between relative z-50">
           
           {/* 1. LEFT WING: Logo (J.P. Morgan Style Serif) */}

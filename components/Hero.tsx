@@ -4,7 +4,7 @@ import HeroMap from "@/components/HeroMap";
 export default function Hero() {
   return (
     <section 
-      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24"
+      className="relative min-h-[100vh] w-full flex items-center overflow-hidden pt-24 pb-16 md:pt-28 md:pb-24"
       aria-label="Introduction and Global Presence"
     >
       {/* Subtle Ambient Glow to separate text from background without looking like a laser */}

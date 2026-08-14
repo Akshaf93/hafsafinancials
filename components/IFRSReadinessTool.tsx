@@ -15,7 +15,7 @@ interface DiagnosticData {
 
 export default function IFRSReadinessTool() {
   const [step, setStep] = useState(1);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false );
   const [data, setData] = useState<DiagnosticData>({
     frameworks: [],
     complexity: "",
