@@ -100,7 +100,7 @@ export default function Navbar() {
             
             {/* IFRS Tool: Very quiet, purely text with minimal icon */}
             <Link 
-              href="/opt-in" 
+              href="/diagnostic" 
               className="text-[14px] font-medium tracking-wide text-[#FDFCF0]/70 hover:text-[#E5D095] transition-colors flex items-center gap-2"
             >
               <svg className="w-4 h-4 text-[#E5D095]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,7 +136,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="w-full max-w-xs h-[1px] bg-[#FDFCF0]/10 my-4" />
-              <Link href="/opt-in" onClick={() => setIsMobileMenuOpen(false)} className="text-[15px] font-medium text-[#E5D095]">
+              <Link href="/diagnostic" onClick={() => setIsMobileMenuOpen(false)} className="text-[15px] font-medium text-[#E5D095]">
                 IFRS Readiness Tool
               </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-full max-w-xs py-4 mt-2 rounded-sm text-center text-[13px] font-medium border border-[#E5D095] text-[#E5D095] uppercase tracking-widest">
