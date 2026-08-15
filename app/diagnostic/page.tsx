@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DiagnosticPage() {
   return (
-    <main className="w-full bg-transparent selection:bg-[#E5D095] selection:text-[#050505] home-snap-trigger">
+    <main className="w-full h-screen overflow-y-auto snap-y snap-mandatory bg-transparent selection:bg-[#E5D095] selection:text-[#050505]">
       
       {/* Global Architectural Grid (Fixed in background) */}
       <div className="fixed inset-0 bg-[linear-gradient(rgba(253,252,240,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(253,252,240,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none -z-20" />

@@ -9,8 +9,7 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    // FIXED: Changed bg-[#050505] to bg-transparent so your global layout.tsx background shows through!
-    <main className="w-full bg-transparent selection:bg-[#E5D095] selection:text-[#050505] home-snap-trigger">
+    <main className="w-full h-screen overflow-y-auto snap-y snap-mandatory bg-transparent selection:bg-[#E5D095] selection:text-[#050505]">
 
       {/* --- SECTION 1: EDITORIAL HEADER (Viewport Snapped) --- */}
       <section className="relative w-full h-screen min-h-[650px] max-h-[1080px] flex items-center overflow-hidden snap-start snap-always border-b border-[#FDFCF0]/5 pt-16">

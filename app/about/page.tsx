@@ -15,22 +15,22 @@ const OwnersMessage = dynamic(() => import("@/components/OwnersMessage"));
 
 export default function AboutPage() {
   return (
-    <main className="w-full home-snap-trigger">
+    <main className="w-full h-screen overflow-y-auto snap-y snap-mandatory">
       
       {/* Section 1: Vision (Hero) 
           - Static Import (Not Dynamic) because we want this visible IMMEDIATELY.
       */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-20">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 pt-20 pb-10">
         <AboutHero />
       </section>
 
       {/* Section 2: Philosophy */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 pt-20 pb-10">
         <AboutPhilosophy />
       </section>
 
       {/* Section 3: Values */}
-      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10">
+      <section className="h-screen w-full flex items-center justify-center snap-start snap-always relative px-6 border-t border-[#FDFCF0]/10 pt-20 pb-10">
         <AboutValues />
       </section>
 
