@@ -15,7 +15,7 @@ const OwnersMessage = dynamic(() => import("@/components/OwnersMessage"));
 
 export default function AboutPage() {
   return (
-    <main className="w-full h-screen overflow-y-auto snap-y snap-mandatory">
+    <main className="w-full">
       
       {/* Section 1: Vision (Hero) 
           - Static Import (Not Dynamic) because we want this visible IMMEDIATELY.

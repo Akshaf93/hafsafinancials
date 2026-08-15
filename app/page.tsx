@@ -25,7 +25,7 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 
 export default function Home() {
   return (
-    <main className="w-full h-screen overflow-y-auto snap-y snap-mandatory">
+    <main className="w-full">
         {/* SECTION 1: HERO - Keep Static for Immediate LCP */}
         <section className="min-h-screen w-full snap-start relative flex flex-col justify-center overflow-hidden pt-20">
             <Hero />
